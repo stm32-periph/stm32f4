@@ -2,11 +2,11 @@
   @page LTDC_AnimatedPictureFromSDCard LTDC example
   
   @verbatim  
-  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    LTDC/LTDC_AnimatedPictureFromSDCard/USER/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the LTDC_AnimatedPictureFromSDCard example.
   ******************************************************************************
   *
@@ -29,5 +29,5 @@
  
   - This directory "USER" should be copied inside the micro SD card root.
  
- * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+ * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
  */

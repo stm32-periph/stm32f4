@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/system_stm32f4xx.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *          This file contains the system clock configuration for STM32F4xx devices.
   *             

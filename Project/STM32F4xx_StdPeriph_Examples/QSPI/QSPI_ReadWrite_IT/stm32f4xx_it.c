@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    QSPI/QSPI_ReadWrite_IT/Src/stm32f4xx_it.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
   *          peripherals interrupt service routine.
@@ -32,7 +32,7 @@
 #include "stm32f4xx_it.h"
 
 
-/** @addtogroup STM32F4xx_Examples
+/** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
   */
 
@@ -164,7 +164,7 @@ void SysTick_Handler(void)
   * @param  None
   * @retval None
   */
-void QuadSPI_IRQHandler(void)
+void QUADSPI_IRQHandler(void)
 {  
   /* QSPI Fifo Threshold interrupt occurred ----------------------------------*/
   if(QSPI_GetITStatus(QSPI_IT_FT) != RESET)

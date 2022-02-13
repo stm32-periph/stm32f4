@@ -2,11 +2,11 @@
   @page FMC_SDRAM_DataMemory FMC SDRAM Data Memory example
   
   @verbatim
-  ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
+  ******************* (C) COPYRIGHT 2015 STMicroelectronics ********************
   * @file    FMC/FMC_SDRAM_DataMemory/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the FMC SDRAM Data Memory example.
   ******************************************************************************
   *
@@ -41,6 +41,10 @@ and initialized to be ready to contain data.
 The user has to configure his preferred toolchain using the provided linker file.
 The RAM zone is modified in order to use the external memory as a RAM. 
 
+At this stage, all the used data can be located in the external SDRAM memory.
+
+The user can use the debugger's watch to evaluate "uwTabAddr" and "MSPValue" variables
+values which should be equal to "0xC00xxxxx".
 
 @par Directory contents
 
@@ -50,7 +54,7 @@ The RAM zone is modified in order to use the external memory as a RAM.
   - FMC/FMC_SDRAM_DataMemory/stm32f4xx_it.h       Interrupt handlers header file
   - FMC/FMC_SDRAM_DataMemory/main.c               Main program
   - FMC/FMC_SDRAM_DataMemory/main.h               Main program header file 
-  - FMC/FMC_SDRAM_DataMemory/startup              Directory containing startup file for each toolchain               
+  - FMC/FMC_SDRAM_DataMemory/startup              Directory containing startup file for each toolchain
 
      
 @par Hardware and Software environment 
@@ -74,18 +78,18 @@ In order to make the program work, you must do the following:
     - in Project->Options for Linker window, uncheck the option "Use Memory Layout
       from Target Dialog". You can then import the scatter file dedicated for this 
       example.
-    - uncomment "#define DATA_IN_ExtSDRAM " in the "system_stm32f4xx.c" file               
 
  <li> EWARM 
     - use "stm32f4xx_flash_extsdram.icf" as linker file (under Project\STM32F4xx_StdPeriph_Templates\EWARM)
-    - uncomment "#define DATA_IN_ExtSDRAM " in the "system_stm32f4xx.c" file
 
  <li> TrueSTUDIO 
-    - In the project properties window, select 'C/C++ Build'->settings node then 
+    - In the project properties window, select 'C/C++ Build'->settings node->'Tool Settings' Tab then 
       the 'C Linker'->General node and use "stm32f4xx_flash_extsdram.ld" as Script File
       (under Project\STM32F4xx_StdPeriph_Templates\TrueSTUDIO).
-    - uncomment "#define DATA_IN_ExtSDRAM " in the "system_stm32f4xx.c" file
-      
+
+ <li> SW4STM32
+    - In the project properties window, select 'C/C++ Build'->settings then in 'C Linker' file refer to " STM32F439NIHx_FLASH_extsdram.ld".
+
 </ul>
 
  - Rebuild all files and load your image into target memory

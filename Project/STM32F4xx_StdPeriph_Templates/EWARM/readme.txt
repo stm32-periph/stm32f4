@@ -5,8 +5,8 @@
   ******************* (C) COPYRIGHT 2015 STMicroelectronics ********************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   This sub-directory contains all the user-modifiable files needed to
   *          create a new project linked with the STM32F4xx Standard Peripherals 
   *          Library and working with IAR Embedded Workbench for ARM (EWARM)
@@ -74,10 +74,6 @@
      - STM32F401xx: to configure the project for STM32F401xx devices.
      @note The needed define symbols for this config are already declared in the
            preprocessor section: STM32F401xx, USE_STDPERIPH_DRIVER
-     
-     - STM32F446xx: to configure the project for STM32F446xx devices.
-     @note The needed define symbols for this config are already declared in the
-           preprocessor section: STM32F446xx, USE_STDPERIPH_DRIVER
            
  - Rebuild all files: Project->Rebuild all
  - Load project image: Project->Download and Debug

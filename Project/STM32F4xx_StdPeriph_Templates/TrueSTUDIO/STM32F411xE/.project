@@ -109,7 +109,7 @@
 		<link>
 			<name>Doc/readme.txt</name>
 			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/readme.txt</locationURI>
+			<locationURI>PARENT-2-PROJECT_LOC/readme.txt</locationURI>
 		</link>
 		<link>
 			<name>STM32F4xx_StdPeriph_Driver/misc.c</name>
@@ -182,6 +182,11 @@
 			<locationURI>PARENT-4-PROJECT_LOC/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dma2d.c</locationURI>
 		</link>
 		<link>
+			<name>STM32F4xx_StdPeriph_Driver/stm32f4xx_dsi.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_dsi.c</locationURI>
+		</link>
+		<link>
 			<name>STM32F4xx_StdPeriph_Driver/stm32f4xx_exti.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_exti.c</locationURI>
@@ -240,6 +245,11 @@
 			<name>STM32F4xx_StdPeriph_Driver/stm32f4xx_iwdg.c</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_iwdg.c</locationURI>
+		</link>
+		<link>
+			<name>STM32F4xx_StdPeriph_Driver/stm32f4xx_lptim.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_lptim.c</locationURI>
 		</link>
 		<link>
 			<name>STM32F4xx_StdPeriph_Driver/stm32f4xx_ltdc.c</name>
@@ -320,6 +330,11 @@
 			<name>TrueSTUDIO/startup_stm32f40_41xxx.s</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/Libraries/CMSIS/Device/ST/STM32F4xx/Source/Templates/TrueSTUDIO/startup_stm32f40_41xxx.s</locationURI>
+		</link>
+		<link>
+			<name>TrueSTUDIO/startup_stm32f410xx.s</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Libraries/CMSIS/Device/ST/STM32F4xx/Source/Templates/TrueSTUDIO/startup_stm32f410xx.s</locationURI>
 		</link>
 		<link>
 			<name>TrueSTUDIO/startup_stm32f411xe.s</name>

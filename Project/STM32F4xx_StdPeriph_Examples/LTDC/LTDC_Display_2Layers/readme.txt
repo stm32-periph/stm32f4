@@ -2,11 +2,11 @@
   @page LTDC_Display_2Layers LTDC Display 2 layers example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    LTDC/LTDC_Display_2Layers/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the LTDC Display 2 layers example.
   ******************************************************************************
   *

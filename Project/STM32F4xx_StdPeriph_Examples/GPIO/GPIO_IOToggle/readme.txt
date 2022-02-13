@@ -2,11 +2,11 @@
   @page GPIO_IOToggle GPIO IO Toggle example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    GPIO/IO_Toggle/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the GPIO IO Toggle example.
   ******************************************************************************
   *

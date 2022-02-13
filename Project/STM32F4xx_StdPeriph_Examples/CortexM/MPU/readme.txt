@@ -2,11 +2,11 @@
   @page CortexM_MPU CortexM MPU example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    CortexM4/MPU/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the CortexM MPU example.
   ******************************************************************************
   *
@@ -76,6 +76,9 @@ In order to make the program work, you must do the following:
     the C Linker->General node and use "stm32F_flash_ROAarray.ld" as Script File.
     This linker is configured for STM32F4xx. It should be updated to use it
     with other STM32 devices.
+- For SW4STM32 toolchain you have to follow these instructions : 
+  - In the project properties window, select C/C++ Build->settings then the C Linker->General
+    and refer to "STM32F417IGHx_flash_ROAarray.ld" as a linker file.
 </ul>    
  - Select the project workspace related to the used device 
    - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/main.c 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -55,10 +55,7 @@ int main(void)
  
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/
-       startup_stm32f429_439xx.s/startup_stm32f401xx.s/startup_stm32f411xe.s or
-       startup_stm32f446xx.s)
-       before to branch to application main.
+       files before to branch to application main.
        To reconfigure the default setting of SystemInit() function, 
        refer to system_stm32f4xx.c file */
 

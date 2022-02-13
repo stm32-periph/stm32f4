@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DCMI/DCMI_CameraExample/camera_api.c 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   This file contains the routine needed to configure OV9655/OV2640 
   *          Camera modules.
   ******************************************************************************

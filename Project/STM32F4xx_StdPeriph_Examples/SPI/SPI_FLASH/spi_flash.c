@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_FLASH/spi_flash.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   This file provides a set of functions needed to manage the SPI M25Pxxx
   *          FLASH memory. 
   *            

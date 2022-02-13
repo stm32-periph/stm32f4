@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    CEC/CEC_DataExchange/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the CEC Data Exchange Example.
   ******************************************************************************
   * @attention
@@ -87,7 +87,7 @@ In this example, HCLK is configured at 180 MHz.
 @par Directory contents 
 
   - CEC/CEC_DataExchange/system_stm32f4xx.c   STM32F4xx system clock configuration file
-  - CEC/CEC_DataExchange/stm32f4xx_conf.h HAL Library configuration file
+  - CEC/CEC_DataExchange/stm32f4xx_conf.h     Library configuration file
   - CEC/CEC_DataExchange/stm32f4xx_it.c       Interrupt handlers
   - CEC/CEC_DataExchange/stm32f4xx_it.h       Interrupt handlers header file
   - CEC/CEC_DataExchange/main.c               Main program

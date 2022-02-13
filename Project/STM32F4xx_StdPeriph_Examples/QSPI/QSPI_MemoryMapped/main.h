@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    QSPI/QSPI_MemoryMapped/main.h
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -38,8 +38,8 @@
    evaluation board (U3)
   */
 #if !defined(QSPI_FLASH_MICRON) && !defined(QSPI_FLASH_SPANSION)
-   //#define QSPI_FLASH_SPANSION  /*!< QSPI FLASH Spansion */
-  #define QSPI_FLASH_MICRON */  /*!<  QSPI FLASH Micron */
+  /* #define QSPI_FLASH_SPANSION */  /*!< QSPI FLASH Spansion */
+   #define QSPI_FLASH_MICRON     /*!<  QSPI FLASH Micron */
 #endif
 
 /*GPIO Pins and Clocks Definition*/
@@ -48,11 +48,19 @@
 #define QSPIx_IRQn                    QUADSPI_IRQn
 #define QSPIx_IRQHANDLER              QUADSPI_IRQHandler
 
+#if defined(STM32F446xx)
 #define QSPIx_CLK_PIN                 GPIO_Pin_3
 #define QSPIx_CLK_GPIO_PORT           GPIOD
 #define QSPIx_CLK_GPIO_CLK            RCC_AHB1Periph_GPIOD
 #define QSPIx_CLK_SOURCE              GPIO_PinSource3
 #define QSPIx_CLK_AF                  GPIO_AF9_QUADSPI
+#else /* STM32F469_479xx */
+#define QSPIx_CLK_PIN                 GPIO_Pin_10
+#define QSPIx_CLK_GPIO_PORT           GPIOF
+#define QSPIx_CLK_GPIO_CLK            RCC_AHB1Periph_GPIOF
+#define QSPIx_CLK_SOURCE              GPIO_PinSource10
+#define QSPIx_CLK_AF                  GPIO_AF9_QUADSPI
+#endif /* STM32F446xx */
 
 #define QSPIx_D0_PIN                  GPIO_Pin_8
 #define QSPIx_D0_GPIO_PORT            GPIOF
@@ -78,11 +86,19 @@
 #define QSPIx_D3_SOURCE               GPIO_PinSource6
 #define QSPIx_D3_AF                   GPIO_AF9_QUADSPI
 
+#if defined(STM32F446xx)
 #define QSPIx_CS_PIN                  GPIO_Pin_6
 #define QSPIx_CS_GPIO_PORT            GPIOG
 #define QSPIx_CS_GPIO_CLK             RCC_AHB1Periph_GPIOG
 #define QSPIx_CS_SOURCE               GPIO_PinSource6
 #define QSPIx_CS_AF                   GPIO_AF10_QUADSPI
+#else /* STM32F469_479xx */
+#define QSPIx_CS_PIN                  GPIO_Pin_6
+#define QSPIx_CS_GPIO_PORT            GPIOB
+#define QSPIx_CS_GPIO_CLK             RCC_AHB1Periph_GPIOB
+#define QSPIx_CS_SOURCE               GPIO_PinSource6
+#define QSPIx_CS_AF                   GPIO_AF10_QUADSPI
+#endif /* STM32F446xx */
 
 /* DMA Definitions */
 #define QSPI_DMA_CHANNEL                DMA_Channel_3

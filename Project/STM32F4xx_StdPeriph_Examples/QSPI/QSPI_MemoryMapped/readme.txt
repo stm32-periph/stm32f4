@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    QSPI/QSPI_MemoryMapped/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the QSPI Memory Mapped example.
   ******************************************************************************
   *
@@ -31,7 +31,7 @@ This example describes how to use the QSPI firmware library to perform Write ope
 mode and read operation in DMA mode with QSPI FLASH device.
 
 In this example,the QSPI is interfacing with SPANSION S25FL512S FLASH or MICRON MT25QL512AB FLASH memory
-and up to user to select the right flash connected on his STM32469I-EVAL board 
+and up to user to select the right flash connected on the STM32446E-EVAL/STM32469I-EVAL board 
 by uncommenting the required line in main.h:
 - QSPI_FLASH_SPANSION: QSPI FLASH Spansion
 - QSPI_FLASH_MICRON: QSPI FLASH Micron
@@ -52,7 +52,7 @@ The QSPI Clock is configured to reach maximum frequency at 90 MHZ.
 @par Directory contents 
 
   - QSPI/QSPI_MemoryMapped/system_stm32f4xx.c   STM32F4xx system clock configuration file
-  - QSPI/QSPI_MemoryMapped/stm32f4xx_conf.h HAL Library configuration file
+  - QSPI/QSPI_MemoryMapped/stm32f4xx_conf.h     Library configuration file
   - QSPI/QSPI_MemoryMapped/stm32f4xx_it.c       Interrupt handlers
   - QSPI/QSPI_MemoryMapped/stm32f4xx_it.h       Interrupt handlers header file
   - QSPI/QSPI_MemoryMapped/main.c               Main program
@@ -60,14 +60,11 @@ The QSPI Clock is configured to reach maximum frequency at 90 MHZ.
 
 @par Hardware and Software environment 
  
-  - This example runs on and STM32F446xx devices.
-    
-  - This example has been tested with STMicroelectronics STM32446E-EVAL 
-    (STM32F446xx Devices) evaluation boards and can be easily 
-    tailored to any other supported device and development board.
+  - This example runs on STM32F446xx and STM32F469/479xx devices.
 
-  - This example has been tested with STMSTM32446E-EVAL RevB board which includes
-    the MB758 LCD board.  
+  - This example has been tested with STMicroelectronics STM32446E-EVAL 
+    (STM32F446xx Devices) and STM32469I-EVAL(STM32F469xx Devices) evaluation boards
+    and can be easily tailored to any other supported device and development board.
 
 @par How to use it ?
 

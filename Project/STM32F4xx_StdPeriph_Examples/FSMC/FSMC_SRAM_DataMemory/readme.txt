@@ -2,11 +2,11 @@
   @page FSMC_SRAM_DataMemory FSMC SRAM Data Memory example
   
   @verbatim
-  ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
+  ******************* (C) COPYRIGHT 2015 STMicroelectronics ********************
   * @file    FSMC/FSMC_SRAM_DataMemory/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the FSMC SRAM Data Memory example.
   ******************************************************************************
   *
@@ -34,24 +34,28 @@ The example scenario does not reflect a real application case; its purpose is to
 provide only the procedure to follow to use the external SRAM as data memory.
 
 This example does not use the default library startup file. It uses a modified 
-startup file provided with the example. While startup, the SRAM memory is configured 
+startup file provided with the example. The user has to add the new startup 
+file in the project source list. While startup, the SRAM memory is configured 
 and initialized to be ready to contain data.
 
 The user have to configure his preferred toolchain using the provided linker file.
 The RAM zone is modified in order to use the external memory as a RAM. 
 
+At this stage, all the used data can be located in the external SRAM memory.
+
+The user can use the debugger's watch to evaluate "uwTabAddr" and "MSPValue" variables
+values which should be equal to "0x640xxxxx".
 
 @par Directory contents
-                        
+
  - FSMC/FSMC_SRAM_DataMemory/system_stm32f4xx.c   STM32F4xx system clock configuration file
  - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_conf.h     Library Configuration file
  - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_it.c       Interrupt handlers
  - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_it.h       Interrupt handlers header file
  - FSMC/FSMC_SRAM_DataMemory/main.c               Main program
  - FSMC/FSMC_SRAM_DataMemory/main.h               Main program header file
- - FSMC/FSMC_SRAM_DataMemory/startup              Directory containing startup file for each toolchain               
- 
-      
+ - FSMC/FSMC_SRAM_DataMemory/startup              Directory containing startup file for each toolchain
+
 @par Hardware and Software environment 
 
   - This example runs on STM32F405xx/407xx and STM32F415xx/417xx devices.
@@ -80,20 +84,20 @@ The RAM zone is modified in order to use the external memory as a RAM.
     - in Project->Options for Linker window, un-check the option "Use Memory Layout
       from Target Dialog". You can then import the scatter file dedicated for this 
       example.
-    - uncomment "#define DATA_IN_ExtSRAM " in the "system_stm32f4xx.c" file               
 
  <li> EWARM 
     - use "stm32f4xx_flash_extsram.icf" as linker file (under Project\STM32F4xx_StdPeriph_Templates\EWARM)
-    - uncomment "#define DATA_IN_ExtSRAM " in the "system_stm32f4xx.c" file
 
  <li> TrueSTUDIO 
-    - In the project properties window, select 'C/C++ Build'->settings node then 
+    - In the project properties window, select 'C/C++ Build'->settings node->'Tool Settings' Tab then 
       the 'C Linker'->General node and use "stm32f4xx_flash_extsram.ld" as Script File
       (under Project\STM32F4xx_StdPeriph_Templates\TrueSTUDIO).
-    - uncomment "#define DATA_IN_ExtSRAM " in the "system_stm32f4xx.c" file
-      
-</ul>
 
+ <li> SW4STM32
+    - In the project properties window, select C/C++ Build->settings then the C Linker->General
+      and refer to " STM32F417IGHx_FLASH_extsram.ld " as a linker file.
+
+</ul>
  - Rebuild all files and load your image into target memory
  - Run the example
 

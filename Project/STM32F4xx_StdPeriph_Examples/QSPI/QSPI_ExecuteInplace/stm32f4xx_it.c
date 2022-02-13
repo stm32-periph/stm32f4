@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    QSPI/QSPI_ExecuteInplace/stm32f4xx_it.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
   *          peripherals interrupt service routine.
@@ -31,7 +31,7 @@
 #include "stm32f4xx_it.h"
 
 
-/** @addtogroup STM32F4xx_Examples
+/** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
   */
 

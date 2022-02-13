@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    stm32_eval_legacy.h
   * @author  MCD Application Team
-  * @version V5.0.2
-  * @date    05-March-2012
+  * @version V5.1.0
+  * @date    31-July-2015
   * @brief   This file contains defines legacy for STM32 EVAL drivers.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

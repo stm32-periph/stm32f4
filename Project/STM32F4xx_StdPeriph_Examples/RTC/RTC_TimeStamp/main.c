@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_TimeStamp/main.c 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention

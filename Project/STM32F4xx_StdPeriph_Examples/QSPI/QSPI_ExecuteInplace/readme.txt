@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    QSPI/QSPI_ExecuteInPlace/readme.txt 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Description of the QSPI Execute In Place example.
   ******************************************************************************
   *
@@ -31,7 +31,7 @@ This example describes how to use the QSPI firmware library to execution of a pa
 QSPI FLASH device.
 
 In this example,the QSPI is interfacing with SPANSION S25FL512S FLASH or MICRON MT25QL512AB FLASH memory
-and up to user to select the right flash connected on his STM32469I-EVAL board 
+and up to user to select the right flash connected on the STM32446E-EVAL/STM32469I-EVAL board 
 by uncommenting the required line in main.h:
 - QSPI_FLASH_SPANSION: QSPI FLASH Spansion
 - QSPI_FLASH_MICRON: QSPI FLASH Micron 
@@ -43,52 +43,43 @@ mode to read and execute the code in a forever loop.
 The code performs a GPIO toggle(PC13),it can be displayed using an oscilloscope.
 
 @note
-The QSPI Clock is configured to reach maximum frequency at 90 MHZ.
+- The QSPI Clock is configured to reach maximum frequency at 90 MHZ.
+- For EWARM toolchain, ensure to use standard with IAR extensions compiler option.
 
-@note
-You have to replace linker file by the one stored in project folder :
-- EWARM-> stm32f4xx_flash.icf
-- MDK-ARM-> STM32F446xx -> STM32F446xx.sct 
-    Modify in Project options  :
-     -	Linker -> “Use Memory Layout from Target Dialog” option disabled.
-     -	Linker -> Scatter file -> .\STM32F446xx\STM32F446xx.sct selected.
-- TrueSTUDIO-> STM32F446xx  -> STM32F446ZE_FLASH.ld
-
-@note
-Change in project options,C/C++ Compiler-> Language Conformance to standard with IAR extensions.
-
-@par Directory contents 
-
+@par Directory contents
   - QSPI/QSPI_ExecuteInPlace/system_stm32f4xx.c   STM32F4xx system clock configuration file
-  - QSPI/QSPI_ExecuteInPlace/stm32f4xx_conf.h HAL Library configuration file
+  - QSPI/QSPI_ExecuteInPlace/stm32f4xx_conf.h     Library configuration file
   - QSPI/QSPI_ExecuteInPlace/stm32f4xx_it.c       Interrupt handlers
   - QSPI/QSPI_ExecuteInPlace/stm32f4xx_it.h       Interrupt handlers header file
   - QSPI/QSPI_ExecuteInPlace/main.c               Main program
-  - QSPI/QSPI_ExecuteInPlace/main.h               Header for main.c module  
+  - QSPI/QSPI_ExecuteInPlace/main.h               Header for main.c module
 
-@@par Hardware and Software environment 
- 
-  - This example runs on and STM32F446xx devices.
-    
+@note
+You have to replace linker file by the one provided with in the QSPI/QSPI_ExecuteInPlace example folder
+  - QSPI/QSPI_ExecuteInPlace/EWARM/stm32f4xx_flash.icf                      EWARM linker file
+  - QSPI/QSPI_ExecuteInPlace/MDK-ARM/STM32F446xx/STM32F446xx.sct            MDK-ARM linker file for STM32F446xx devices
+  - QSPI/QSPI_ExecuteInPlace/TrueSTUDIO/STM32F446ZETx_FLASH.ld              TrueSTUDIO linker file for STM32F446xx devices
+  - QSPI/QSPI_ExecuteInPlace/SW4STM32/STM32F446ZETx_FLASH.ld                SW4STM32 linker file for STM32F446xx devices
+  - QSPI/QSPI_ExecuteInPlace/MDK-ARM/STM32F469_479xx/STM32F469_479xx.sct    MDK-ARM linker file for STM32F469_479xx devices
+  - QSPI/QSPI_ExecuteInPlace/TrueSTUDIO/STM32F469NIHx_FLASH.ld              TrueSTUDIO linker file for STM32F469_479xx devices
+  - QSPI/QSPI_ExecuteInPlace/SW4STM32/STM32F469NIHx_FLASH.ld                SW4STM32 linker file for STM32F469_479xx devices
+
+@par Hardware and Software environment
+  - This example runs on STM32F446xx and STM32F469/479xx devices.
+
   - This example has been tested with STMicroelectronics STM32446E-EVAL 
-    (STM32F446xx Devices) evaluation boards and can be easily 
-    tailored to any other supported device and development board.
+    (STM32F446xx Devices) and STM32469I-EVAL(STM32F469xx Devices) evaluation boards
+    and can be easily tailored to any other supported device and development board.
 
-  - This example has been tested with STMSTM32446E-EVAL RevB board which includes
-    the MB758 LCD board. 
-     
-
-  - STM32F446-EVAL Set-up
-   Connect the following pins to an oscilloscope to monitor its waveform :
-        - PC.13 (in CN13 connector)	
+  - STM32F446-EVAL and STM32F469I-EVAL Set-up: Connect the PC13 pin to an oscilloscope
+    to monitor its waveform:
 
 @par How to use it ?
-
 In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the example
-  
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>

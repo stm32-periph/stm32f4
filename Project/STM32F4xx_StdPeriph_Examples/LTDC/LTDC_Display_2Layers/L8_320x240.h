@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    LTDC/LTDC_Display_2Layers/L8_320x240.h 
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   This file contains image used for LTDC Validation.   
   ******************************************************************************
   * @attention

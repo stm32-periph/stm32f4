@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    QSPI/QSPI_ExecuteInplace/stm32f4xx_conf.h  
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Library configuration file.
   ******************************************************************************
   * @attention
@@ -51,7 +51,7 @@
 #include "stm32f4xx_wwdg.h"
 #include "misc.h" /* High level functions for NVIC and SysTick (add-on to CMSIS functions) */
 
-#if defined (STM32F429_439xx) || defined(STM32F446xx)
+#if defined(STM32F429_439xx) || defined(STM32F446xx) || defined(STM32F469_479xx)
 #include "stm32f4xx_cryp.h"
 #include "stm32f4xx_hash.h"
 #include "stm32f4xx_rng.h"
@@ -62,9 +62,9 @@
 #include "stm32f4xx_fmc.h"
 #include "stm32f4xx_ltdc.h"
 #include "stm32f4xx_sai.h"
-#endif /* STM32F429_439xx || STM32F446xx */
+#endif /* STM32F429_439xx || STM32F446xx || STM32F469_479xx */
 
-#if defined (STM32F427_437xx)
+#if defined(STM32F427_437xx)
 #include "stm32f4xx_cryp.h"
 #include "stm32f4xx_hash.h"
 #include "stm32f4xx_rng.h"
@@ -76,7 +76,7 @@
 #include "stm32f4xx_sai.h"
 #endif /* STM32F427_437xx */
 
-#if defined (STM32F40_41xxx)
+#if defined(STM32F40_41xxx)
 #include "stm32f4xx_cryp.h"
 #include "stm32f4xx_hash.h"
 #include "stm32f4xx_rng.h"
@@ -86,17 +86,35 @@
 #include "stm32f4xx_fsmc.h"
 #endif /* STM32F40_41xxx */
 
-#if defined (STM32F411xE)
+#if defined(STM32F410xx)
+#include "stm32f4xx_rng.h"
+#include "stm32f4xx_dac.h"
+#endif /* STM32F410xx */
+
+#if defined(STM32F411xE)
 #include "stm32f4xx_flash_ramfunc.h"
 #endif /* STM32F411xE */
 
-#if defined (STM32F446xx)
+#if defined(STM32F446xx) || defined(STM32F469_479xx)
 #include "stm32f4xx_qspi.h"
+#endif /* STM32F446xx || STM32F469_479xx */
+
+#if defined(STM32F410xx) || defined(STM32F446xx)
 #include "stm32f4xx_fmpi2c.h"
+#endif /* STM32F410xx || STM32F446xx */
+
+#if defined(STM32F446xx)
 #include "stm32f4xx_spdifrx.h"
 #include "stm32f4xx_cec.h"
 #endif /* STM32F446xx */
 
+#if defined(STM32F469_479xx)
+#include "stm32f4xx_dsi.h"
+#endif /* STM32F469_479xx */
+
+#if defined(STM32F410xx)
+#include "stm32f4xx_lptim.h"
+#endif /* STM32F410xx */
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -109,7 +127,7 @@
 
 /* Uncomment the line below to expanse the "assert_param" macro in the 
    Standard Peripheral Library drivers code */
- /* #define USE_FULL_ASSERT    1 */
+/* #define USE_FULL_ASSERT    1 */
 
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT

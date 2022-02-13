@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    QSPI/QSPI_ReadWrite_IT/main.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.6.0
+  * @date    04-September-2015
   * @brief   Main Program Body 
   ******************************************************************************
   * @attention
@@ -30,7 +30,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-/** @addtogroup STM32F4xx_Examples
+/** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
   */
 

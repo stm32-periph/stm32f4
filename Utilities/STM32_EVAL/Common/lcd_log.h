@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    lcd_log.h
   * @author  MCD Application Team
-  * @version V5.0.2
-  * @date    05-March-2012
+  * @version V5.1.0
+  * @date    31-July-2015
   * @brief   header for the lcd_log.c file
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -73,6 +73,16 @@
 #else
  #define     LCD_CACHE_DEPTH     YWINDOW_SIZE
 #endif
+
+#if defined(USE_STM324x9I_EVAL)
+  #define LCD_PIXEL_WIDTH         0x1E0    /* 480 */
+  #define LCD_PIXEL_HEIGHT        0x110    /* 272 */
+#else
+  #define LCD_PIXEL_WIDTH         0x0140   /* 320 */
+  #define LCD_PIXEL_HEIGHT        0x00F0   /* 240 */
+#endif
+
+
 /**
   * @}
   */ 
