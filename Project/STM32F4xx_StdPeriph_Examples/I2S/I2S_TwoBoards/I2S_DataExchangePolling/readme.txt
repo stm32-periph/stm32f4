@@ -2,11 +2,11 @@
   @page I2S_DataExchangePolling I2S communication example using polling mode 
   
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the I2S full duplex communication example.
   ******************************************************************************
   *

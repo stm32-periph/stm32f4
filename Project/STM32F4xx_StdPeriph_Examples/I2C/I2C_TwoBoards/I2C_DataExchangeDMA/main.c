@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.c
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -149,7 +149,8 @@ int main(void)
   I2C_Send7bitAddress(I2Cx, SLAVE_ADDRESS, I2C_Direction_Transmitter);
       
 #endif /* I2C_10BITS_ADDRESS */
-  
+  /* I2Cx DMA Enable */
+  I2C_DMACmd(I2Cx, ENABLE);
   /* Test on I2Cx EV6 and clear it or time out */
   TimeOut = USER_TIMEOUT;
   while ((!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))&&(TimeOut != 0x00))
@@ -158,8 +159,6 @@ int main(void)
   {
     TimeOut_UserCallback();
   }
-  /* I2Cx DMA Enable */
-  I2C_DMACmd(I2Cx, ENABLE);
   
   /* Enable DMA TX Channel */
   DMA_Cmd(I2Cx_DMA_STREAM_TX, ENABLE);
@@ -280,7 +279,8 @@ int main(void)
   I2C_Send7bitAddress(I2Cx, SLAVE_ADDRESS, I2C_Direction_Receiver);
       
 #endif /* I2C_10BITS_ADDRESS */
-  
+  /* I2Cx DMA Enable */
+  I2C_DMACmd(I2Cx, ENABLE);  
   /* Test on I2Cx EV6 and clear it or time out */
   TimeOut = USER_TIMEOUT;
   while ((!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))&&(TimeOut != 0x00))
@@ -289,9 +289,6 @@ int main(void)
   {
     TimeOut_UserCallback();
   }
-  /* I2Cx DMA Enable */
-  I2C_DMACmd(I2Cx, ENABLE);
-  
   /* Enable DMA RX Channel */
   DMA_Cmd(I2Cx_DMA_STREAM_RX, ENABLE);
   
@@ -369,15 +366,12 @@ int main(void)
   
   I2C_Init(I2Cx, &I2C_InitStructure);
   
-  /* Slave Receiver ----------------------------------------------------------*/
-
+  /* Slave Receiver ----------------------------------------------------------*/  
+  /* I2Cx DMA Enable */
+  I2C_DMACmd(I2Cx, ENABLE);
   /* Test on I2C EV1 and clear it */
   while (!I2C_CheckEvent(I2Cx, I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED))
   {}
-
-  /* I2Cx DMA Enable */
-  I2C_DMACmd(I2Cx, ENABLE); 
-  
   /* Enable DMA RX Channel */
   DMA_Cmd(I2Cx_DMA_STREAM_RX, ENABLE);
   
@@ -425,14 +419,13 @@ int main(void)
   DMA_ClearFlag(I2Cx_DMA_STREAM_RX, I2Cx_RX_DMA_TCFLAG | I2Cx_RX_DMA_FEIFLAG | I2Cx_RX_DMA_DMEIFLAG | \
                                        I2Cx_RX_DMA_TEIFLAG | I2Cx_RX_DMA_HTIFLAG);
   
-/* Slave Transmitter ---------------------------------------------------------*/   
-  
+/* Slave Transmitter ---------------------------------------------------------*/
+  /* I2Cx DMA Enable */
+  I2C_DMACmd(I2Cx, ENABLE);
   /* Test on I2C EV1 and clear it or time out*/
   while (!I2C_CheckEvent(I2Cx, I2C_EVENT_SLAVE_TRANSMITTER_ADDRESS_MATCHED))
   {}
-  /* I2Cx DMA Enable */
-  I2C_DMACmd(I2Cx, ENABLE); 
-  
+ 
   /* Enable DMA RX Channel */
   DMA_Cmd(I2Cx_DMA_STREAM_TX, ENABLE);
   
@@ -626,9 +619,6 @@ static void I2C_Config(void)
    /* Configure I2C Filters */
    I2C_AnalogFilterCmd(I2Cx,ENABLE);
    I2C_DigitalFilterConfig(I2Cx,0x0F);
-   
-  /* I2C ENABLE */
-  //I2C_Cmd(I2Cx, ENABLE);
 }
 
 /**

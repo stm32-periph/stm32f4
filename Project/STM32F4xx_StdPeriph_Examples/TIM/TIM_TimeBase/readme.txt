@@ -5,8 +5,8 @@
   ******************************************************************************
   * @file    TIM/TIM_TimeBase/main.c 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the TIM Time Base example.
   ******************************************************************************
   *

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f427x.s
   * @author    MCD Application Team
-  * @version   V1.6.0
-  * @date      10-July-2015
+  * @version   V1.7.0
+  * @date      22-April-2016
   * @brief     STM32F42xxx/43xxx Devices vector table for GCC based toolchain.   
   *            Same as startup_stm32f42_43xxx.s and maintained for legacy purpose
   *            This module performs:

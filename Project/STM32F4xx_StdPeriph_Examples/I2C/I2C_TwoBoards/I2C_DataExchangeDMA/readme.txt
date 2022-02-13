@@ -2,11 +2,11 @@
   @page I2C_DataExchangeDMA Two boards I2C Communication: Data Exchange using DMA example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    I2C/I2C_TwoBoards/I2C_DataExchangeDMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the I2C Data Exchange between two boards using DMA 
   *          example.
   ******************************************************************************

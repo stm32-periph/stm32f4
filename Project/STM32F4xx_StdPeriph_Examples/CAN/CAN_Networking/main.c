@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    CAN/CAN_Networking/main.c 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -51,7 +51,6 @@ uint8_t ubKeyNumber = 0x0;
 /* Private function prototypes -----------------------------------------------*/
 static void NVIC_Config(void);
 static void CAN_Config(void);
-static void Delay(void);
 void Init_RxMes(CanRxMsg *RxMessage);
 /* Private functions ---------------------------------------------------------*/
 
@@ -98,7 +97,10 @@ int main(void)
         LED_Display(++ubKeyNumber);
         TxMessage.Data[0] = ubKeyNumber;
         CAN_Transmit(CANx, &TxMessage);
-        Delay();
+        /* Wait until one of the mailboxes is empty */
+        while((CAN_GetFlagStatus(CANx, CAN_FLAG_RQCP0) !=RESET) || \
+              (CAN_GetFlagStatus(CANx, CAN_FLAG_RQCP1) !=RESET) || \
+              (CAN_GetFlagStatus(CANx, CAN_FLAG_RQCP2) !=RESET));
         
         while(STM_EVAL_PBGetState(BUTTON_KEY) != KEY_NOT_PRESSED)
         {
@@ -248,20 +250,6 @@ void LED_Display(uint8_t Ledstatus)
       break;
     default:
       break;
-  }
-}
-
-/**
-  * @brief  Delay
-  * @param  None
-  * @retval None
-  */
-static void Delay(void)
-{
-  uint16_t nTime = 0x0000;
-
-  for(nTime = 0; nTime <0xFFF; nTime++)
-  {
   }
 }
 

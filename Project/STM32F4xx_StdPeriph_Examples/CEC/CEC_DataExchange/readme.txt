@@ -2,16 +2,16 @@
   @page CEC_DataExchange example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    CEC/CEC_DataExchange/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the CEC Data Exchange Example.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

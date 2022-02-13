@@ -2,11 +2,11 @@
   @page CRYP_AES_CCM  Encrypt and Decrypt data using AES Algo using CCM chaining mode example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    CRYP/CRYP_AES_CCM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the CRYP AES Algorithm using CCM chaining mode
   *          example
   ******************************************************************************

@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    DSI_TearingEffect_GPIO/main.c 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -125,7 +125,6 @@ int main(void)
   CmdCfgStructure.VSPolarity            = DSI_VSYNC_ACTIVE_HIGH;
   CmdCfgStructure.DEPolarity            = DSI_DATA_ENABLE_ACTIVE_HIGH;
   CmdCfgStructure.ColorCoding           = DSI_RGB565;
-  CmdCfgStructure.HorizontalLine        = ((HSYNCH+HBP+HACT+HFP) * 2); /* Hline * (LaneByteClk / PixelClk) */
   CmdCfgStructure.CommandSize           = HACT;
   CmdCfgStructure.TearingEffectSource   = DSI_TE_EXTERNAL;
   CmdCfgStructure.TearingEffectPolarity = DSI_TE_RISING_EDGE;
@@ -145,7 +144,7 @@ int main(void)
   LPCmdStructure.LPDcsShortWriteOneP   = DSI_LP_DSW1P_ENABLE;
   LPCmdStructure.LPDcsShortReadNoP     = DSI_LP_DSR0P_ENABLE;
   LPCmdStructure.LPDcsLongWrite        = DSI_LP_DLW_ENABLE;
-  DSI_ConfigLowPowerCommand(DSI, &LPCmdStructure);
+  DSI_ConfigCommand(DSI, &LPCmdStructure);
 
   /* Configure and enable the LTDC */
   LCD_Config();
@@ -167,7 +166,7 @@ int main(void)
   
   /* Send image in High Speed */
   LPCmdStructure.LPDcsLongWrite = DSI_LP_DLW_DISABLE;
-  DSI_ConfigLowPowerCommand(DSI, &LPCmdStructure);
+  DSI_ConfigCommand(DSI, &LPCmdStructure);
   
   /* Enable the Bus Turn Around feature to retrieve TE information via the DSI link */
   DSI_ConfigFlowControl(DSI, DSI_FLOW_CONTROL_BTA);
@@ -263,8 +262,16 @@ static void DSI_Config(void)
 
   GPIO_PinAFConfig(GPIOJ, GPIO_PinSource2, GPIO_AF_DSI);  
   
+  /* RCC Configuration -------------------------------------------------------*/
+  /* LTDC clock configuration */
   /* PLLSAIP and PLLSAIQ are not used and are set to there reset values */
-  RCC_PLLSAIConfig(384, 2, 4, 7);
+  /* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 MHz */
+  /* PLLSAI_VCO Output = PLLSAI_VCO Input * PLLSAIN = 417 MHz */
+  /* PLLLCDCLK = PLLSAI_VCO Output/PLLSAIR = 417 MHz / 5 = 83.4 MHz */
+  RCC_PLLSAIConfig(LTDC_PLLSAIN, LTDC_PLLSAIP, LTDC_PLLSAIQ, LTDC_PLLSAIR);
+  
+  /* LTDC clock frequency = PLLLCDCLK / RCC_PLLSAIDivR_Div2 = 83.4 / 2 = 41.7 MHz */  
+  RCC_LTDCCLKDivConfig(RCC_PLLSAIDivR_Div2);
   
   /* LTDC_CLK = LTDC_CLK(first level)/PLLSAIDIVR */ 
   RCC_LTDCCLKDivConfig(RCC_PLLSAIDivR_Div2);  

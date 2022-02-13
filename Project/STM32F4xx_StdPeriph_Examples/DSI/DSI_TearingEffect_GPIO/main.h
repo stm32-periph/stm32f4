@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    DSI_TearingEffect_GPIO/main.h 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -35,6 +35,11 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
+/* SAI PLL parameters to be used for the LTDC clock configuration */
+#define LTDC_PLLSAIN          417
+#define LTDC_PLLSAIP          2
+#define LTDC_PLLSAIQ          4
+#define LTDC_PLLSAIR          5
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 void TimingDelay_Decrement(void);

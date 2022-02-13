@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f411xe.s
   * @author    MCD Application Team
-  * @version   V1.6.0
-  * @date      10-July-2015
+  * @version   V1.7.0
+  * @date      22-April-2016
   * @brief     STM32F411xExx Devices vector table for GCC based toolchain. 
   *            This module performs:
   *                - Set the initial SP

@@ -2,11 +2,11 @@
   @page Template Description of the Templates project
   
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Project/STM32F4xx_StdPeriph_Templates/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the TEMPLATE example
   ******************************************************************************
   *
@@ -29,7 +29,7 @@
 
 This example is used as a template project that can be used as reference to build
 any new firmware application for STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx, 
-STM32F429xx/439xx, STM32F401xx/410xx/411xE, STM32F446xx or STM32F469xx/479xx devices 
+STM32F429xx/439xx, STM32F401xx/410xx/411xE, STM32F412xx, STM32F446xx or STM32F469xx/479xx devices 
 using the STM32F4xx Standard Peripherals Library.
 
 @par Directory contents
@@ -44,12 +44,14 @@ using the STM32F4xx Standard Peripherals Library.
 @par Hardware and Software environment
 
   - This example runs on STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx, 
-    STM32F429xx/439xx, STM32F401xx/410xx/411xE, STM32F446xx and STM32F469xx/479xx devices.
+    STM32F429xx/439xx, STM32F401xx/410xx/411xE,STM32F412xx, STM32F446xx 
+    and STM32F469xx/479xx devices.
 
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) 
-    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) and STM32446E-EVAL RevB
-   (STM32F446xx Devices) evaluation boards.
+    STM32F41xx Devices),STM32F410xx-Nucleo RevC (STM32F410xx), STM32F412G-Discovery RevC
+    (STM32F412xx),STM32437I-EVAL (STM32F427xx/STM32F437xx Devices), STM324x9I-EVAL RevB 
+    (STM32F429xx/STM32F439xx Devices), STM32446E-EVAL RevB (STM32F446xx Devices) 
+    and STM32F469I-EVAL RevB (STM32F469xx Devices) evaluation boards.
     This example can be easily tailored to any other supported device and development board.
 
 @par How to use it ? 
@@ -72,6 +74,14 @@ In order to make the program work, you must do the following:
     - Click on File->Switch Workspace->Other and browse to TrueSTUDIO workspace directory.
     - Click on File->Import, select General->'Existing Projects into Workspace' and then click "Next". 
     - Browse to the TrueSTUDIO workspace directory, select the project.
+    - Rebuild all project files: Select the project in the "Project explorer" 
+      window then click on Project->build project menu.
+    - Run program: Run->Debug (F11)
+ + SW4STM32
+    - Open the SW4STM32 toolchain.
+    - Click on File->Switch Workspace->Other and browse to SW4STM32 workspace directory.
+    - Click on File->Import, select General->'Existing Projects into Workspace' and then click "Next". 
+    - Browse to the SW4STM32 workspace directory, select the project.
     - Rebuild all project files: Select the project in the "Project explorer" 
       window then click on Project->build project menu.
     - Run program: Run->Debug (F11)

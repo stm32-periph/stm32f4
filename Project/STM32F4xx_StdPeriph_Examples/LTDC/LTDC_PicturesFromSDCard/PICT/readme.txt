@@ -2,11 +2,11 @@
   @page LTDC_PicturesFromSDCard LTDC Pictures From SD Card example
   
   @verbatim  
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    LTDC/LTDC_PicturesFromSDCard/PICTURES/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the LTDC Pictures From SD Card example.
   ******************************************************************************
   *
@@ -35,5 +35,5 @@
                     640x480 with AM-640480G5TNQW-T00H LCD (MB1063).
      pixel format : RGB565, RGB888 or ARGB8888
  
- * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+ * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
  */

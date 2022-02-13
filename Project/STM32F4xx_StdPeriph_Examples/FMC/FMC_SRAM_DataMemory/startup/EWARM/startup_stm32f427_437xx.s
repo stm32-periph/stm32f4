@@ -1,8 +1,8 @@
-;/******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
+;/******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
 ;* File Name          : startup_stm32f42_43xxx.s
 ;* Author             : MCD Application Team
-;* Version            : V1.6.0
-;* Date               : 04-September-2015
+;* Version            : V1.7.0
+;* Date               : 22-April-2016
 ;* Description        : STM32F427xx/437xx devices vector table for EWARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP

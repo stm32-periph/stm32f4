@@ -2,11 +2,11 @@
   @page FMC_NOR NOR flash memory functionalities use example
   
   @verbatim
-  ******************* (C) COPYRIGHT 2015 STMicroelectronics ********************
+  ******************* (C) COPYRIGHT 2016 STMicroelectronics ********************
   * @file    FMC/FMC_NOR/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-20152
+  * @version V1.7.0
+  * @date    22-April-20162
   * @brief   Description of the FMC NOR example.
   ******************************************************************************
   *

@@ -2,11 +2,11 @@
   @page I2C_EXAMPLES I2C EXAMPLES
 
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    I2C/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Reference to the I2C CPAL (UM1029).
   ******************************************************************************
   *

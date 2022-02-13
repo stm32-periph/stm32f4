@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    DCMI/DCMI_CameraExample/dcmi_ov9655.c
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   This file includes the driver for OV9655 Camera module mounted on 
   *          STM324xG-EVAL and STM32437I-EVAL evaluation boards.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

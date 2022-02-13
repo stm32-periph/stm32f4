@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    system_stm32f4xx.c
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    10-July-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *          This file contains the system clock configuration for STM32F4xx devices.
   *             
@@ -369,7 +369,7 @@
 #if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F469_479xx)
  /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N */
  #define PLL_M      25
-#elif defined (STM32F446xx)
+#elif defined(STM32F412xG) || defined (STM32F446xx)
  #define PLL_M      8
 #elif defined (STM32F410xx) || defined (STM32F411xE)
  #if defined(USE_HSE_BYPASS)
@@ -386,13 +386,22 @@
 #if defined(STM32F446xx)
 /* PLL division factor for I2S, SAI, SYSTEM and SPDIF: Clock =  PLL_VCO / PLLR */
 #define PLL_R      7
+#elif defined(STM32F412xG)
+#define PLL_R      2
+#else
 #endif /* STM32F446xx */ 
 
-#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F446xx) || defined(STM32F469_479xx)
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F446xx) || defined(STM32F469_479xx)
 #define PLL_N      360
 /* SYSCLK = PLL_VCO / PLL_P */
 #define PLL_P      2
-#endif /* STM32F40_41xxx || STM32F427_437x || STM32F429_439xx || STM32F446xx || STM32F469_479xx */
+#endif /* STM32F427_437x || STM32F429_439xx || STM32F446xx || STM32F469_479xx */
+
+#if defined (STM32F40_41xxx)
+#define PLL_N      336
+/* SYSCLK = PLL_VCO / PLL_P */
+#define PLL_P      2
+#endif /* STM32F40_41xxx */
 
 #if defined(STM32F401xx)
 #define PLL_N      336
@@ -400,7 +409,7 @@
 #define PLL_P      4
 #endif /* STM32F401xx */
 
-#if defined(STM32F410xx) || defined(STM32F411xE)
+#if defined(STM32F410xx) || defined(STM32F411xE) || defined(STM32F412xG)
 #define PLL_N      400
 /* SYSCLK = PLL_VCO / PLL_P */
 #define PLL_P      4   
@@ -436,9 +445,9 @@
   uint32_t SystemCoreClock = 84000000;
 #endif /* STM32F401xx */
 
-#if defined(STM32F410xx) || defined(STM32F411xE)
+#if defined(STM32F410xx) || defined(STM32F411xE) || defined(STM32F412xG)
   uint32_t SystemCoreClock = 100000000;
-#endif /* STM32F410xx || STM32F401xE */
+#endif /* STM32F410xx || STM32F401xE || STM32F412xG */
 
 __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
 
@@ -551,9 +560,9 @@ void SystemInit(void)
 void SystemCoreClockUpdate(void)
 {
   uint32_t tmp = 0, pllvco = 0, pllp = 2, pllsource = 0, pllm = 2;
-#if defined(STM32F446xx)  
+#if defined(STM32F412xG) || defined(STM32F446xx)  
   uint32_t pllr = 2;
-#endif /* STM32F446xx */
+#endif /* STM32F412xG || STM32F446xx */
   /* Get SYSCLK source -------------------------------------------------------*/
   tmp = RCC->CFGR & RCC_CFGR_SWS;
 
@@ -572,7 +581,7 @@ void SystemCoreClockUpdate(void)
       pllsource = (RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) >> 22;
       pllm = RCC->PLLCFGR & RCC_PLLCFGR_PLLM;
       
-#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F446xx) || defined(STM32F469_479xx)
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F412xG) || defined(STM32F446xx) || defined(STM32F469_479xx)
       if (pllsource != 0)
       {
         /* HSE used as PLL clock source */
@@ -597,11 +606,11 @@ void SystemCoreClockUpdate(void)
         pllvco = (HSI_VALUE / pllm) * ((RCC->PLLCFGR & RCC_PLLCFGR_PLLN) >> 6);
       }  
 #endif /* USE_HSE_BYPASS */  
-#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx || STM32F446xx || STM32F469_479xx */  
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx || STM32F412xG ||  STM32F446xx || STM32F469_479xx */  
       pllp = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLP) >>16) + 1 ) *2;
       SystemCoreClock = pllvco/pllp;      
       break;
-#if defined(STM32F446xx)      
+#if defined(STM32F412xG) || defined(STM32F446xx)      
       case 0x0C:  /* PLL R used as system clock source */
        /* PLL_VCO = (HSE_VALUE or HSI_VALUE / PLL_M) * PLL_N
          SYSCLK = PLL_VCO / PLL_R
@@ -622,7 +631,7 @@ void SystemCoreClockUpdate(void)
       pllr = (((RCC->PLLCFGR & RCC_PLLCFGR_PLLR) >>28) + 1 ) *2;
       SystemCoreClock = pllvco/pllr;      
       break;
-#endif /* STM32F446xx */
+#endif /* STM32F412xG || STM32F446xx */
     default:
       SystemCoreClock = HSI_VALUE;
       break;
@@ -644,7 +653,7 @@ void SystemCoreClockUpdate(void)
   */
 static void SetSysClock(void)
 {
-#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F446xx)|| defined(STM32F469_479xx)
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F412xG) || defined(STM32F446xx)|| defined(STM32F469_479xx)
 /******************************************************************************/
 /*            PLL (clocked by HSE) used as System clock source                */
 /******************************************************************************/
@@ -678,13 +687,13 @@ static void SetSysClock(void)
     /* HCLK = SYSCLK / 1*/
     RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
 
-#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F446xx) || defined(STM32F469_479xx)    
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) ||  defined(STM32F412xG) || defined(STM32F446xx) || defined(STM32F469_479xx)    
     /* PCLK2 = HCLK / 2*/
     RCC->CFGR |= RCC_CFGR_PPRE2_DIV2;
     
     /* PCLK1 = HCLK / 4*/
     RCC->CFGR |= RCC_CFGR_PPRE1_DIV4;
-#endif /* STM32F40_41xxx || STM32F427_437x || STM32F429_439xx  || STM32F446xx || STM32F469_479xx */
+#endif /* STM32F40_41xxx || STM32F427_437x || STM32F429_439xx  || STM32F412xG || STM32F446xx || STM32F469_479xx */
 
 #if defined(STM32F401xx)
     /* PCLK2 = HCLK / 2*/
@@ -700,11 +709,11 @@ static void SetSysClock(void)
                    (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
 #endif /* STM32F40_41xxx || STM32F401xx || STM32F427_437x || STM32F429_439xx || STM32F469_479xx */
 
-#if defined(STM32F446xx)
+#if  defined(STM32F412xG) || defined(STM32F446xx)
     /* Configure the main PLL */
     RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) -1) << 16) |
                    (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24) | (PLL_R << 28);
-#endif /* STM32F446xx */    
+#endif /* STM32F412xG || STM32F446xx */    
     
     /* Enable the main PLL */
     RCC->CR |= RCC_CR_PLLON;
@@ -728,10 +737,10 @@ static void SetSysClock(void)
     FLASH->ACR = FLASH_ACR_PRFTEN | FLASH_ACR_ICEN |FLASH_ACR_DCEN |FLASH_ACR_LATENCY_5WS;
 #endif /* STM32F427_437x || STM32F429_439xx || STM32F446xx || STM32F469_479xx */
 
-#if defined(STM32F40_41xxx)     
+#if defined(STM32F40_41xxx)  || defined(STM32F412xG)   
     /* Configure Flash prefetch, Instruction cache, Data cache and wait state */
     FLASH->ACR = FLASH_ACR_PRFTEN | FLASH_ACR_ICEN |FLASH_ACR_DCEN |FLASH_ACR_LATENCY_5WS;
-#endif /* STM32F40_41xxx  */
+#endif /* STM32F40_41xxx  || STM32F412xG */
 
 #if defined(STM32F401xx)
     /* Configure Flash prefetch, Instruction cache, Data cache and wait state */
@@ -859,14 +868,178 @@ static void SetSysClock(void)
 #endif /* USE_HSE_BYPASS */  
 #endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx || STM32F469_479xx */  
 }
+#if defined (DATA_IN_ExtSRAM) && defined (DATA_IN_ExtSDRAM)
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) ||\
+    defined(STM32F469xx) || defined(STM32F479xx)
+/**
+  * @brief  Setup the external memory controller.
+  *         Called in startup_stm32f4xx.s before jump to main.
+  *         This function configures the external memories (SRAM/SDRAM)
+  *         This SRAM/SDRAM will be used as program data memory (including heap and stack).
+  * @param  None
+  * @retval None
+  */
+void SystemInit_ExtMemCtl(void)
+{
+  __IO uint32_t tmp = 0x00;
 
+  register uint32_t tmpreg = 0, timeout = 0xFFFF;
+  register uint32_t index;
+
+  /* Enable GPIOC, GPIOD, GPIOE, GPIOF, GPIOG, GPIOH and GPIOI interface clock */
+  RCC->AHB1ENR |= 0x000001F8;
+
+  /* Delay after an RCC peripheral clock enabling */
+  tmp = READ_BIT(RCC->AHB1ENR, RCC_AHB1ENR_GPIOCEN);
+  
+  /* Connect PDx pins to FMC Alternate function */
+  GPIOD->AFR[0]  = 0x00CCC0CC;
+  GPIOD->AFR[1]  = 0xCCCCCCCC;
+  /* Configure PDx pins in Alternate function mode */  
+  GPIOD->MODER   = 0xAAAA0A8A;
+  /* Configure PDx pins speed to 100 MHz */  
+  GPIOD->OSPEEDR = 0xFFFF0FCF;
+  /* Configure PDx pins Output type to push-pull */  
+  GPIOD->OTYPER  = 0x00000000;
+  /* No pull-up, pull-down for PDx pins */ 
+  GPIOD->PUPDR   = 0x00000000;
+
+  /* Connect PEx pins to FMC Alternate function */
+  GPIOE->AFR[0]  = 0xC00CC0CC;
+  GPIOE->AFR[1]  = 0xCCCCCCCC;
+  /* Configure PEx pins in Alternate function mode */ 
+  GPIOE->MODER   = 0xAAAA828A;
+  /* Configure PEx pins speed to 100 MHz */ 
+  GPIOE->OSPEEDR = 0xFFFFC3CF;
+  /* Configure PEx pins Output type to push-pull */  
+  GPIOE->OTYPER  = 0x00000000;
+  /* No pull-up, pull-down for PEx pins */ 
+  GPIOE->PUPDR   = 0x00000000;
+  
+  /* Connect PFx pins to FMC Alternate function */
+  GPIOF->AFR[0]  = 0xCCCCCCCC;
+  GPIOF->AFR[1]  = 0xCCCCCCCC;
+  /* Configure PFx pins in Alternate function mode */   
+  GPIOF->MODER   = 0xAA800AAA;
+  /* Configure PFx pins speed to 50 MHz */ 
+  GPIOF->OSPEEDR = 0xAA800AAA;
+  /* Configure PFx pins Output type to push-pull */  
+  GPIOF->OTYPER  = 0x00000000;
+  /* No pull-up, pull-down for PFx pins */ 
+  GPIOF->PUPDR   = 0x00000000;
+
+  /* Connect PGx pins to FMC Alternate function */
+  GPIOG->AFR[0]  = 0xCCCCCCCC;
+  GPIOG->AFR[1]  = 0xCCCCCCCC;
+  /* Configure PGx pins in Alternate function mode */ 
+  GPIOG->MODER   = 0xAAAAAAAA;
+  /* Configure PGx pins speed to 50 MHz */ 
+  GPIOG->OSPEEDR = 0xAAAAAAAA;
+  /* Configure PGx pins Output type to push-pull */  
+  GPIOG->OTYPER  = 0x00000000;
+  /* No pull-up, pull-down for PGx pins */ 
+  GPIOG->PUPDR   = 0x00000000;
+  
+  /* Connect PHx pins to FMC Alternate function */
+  GPIOH->AFR[0]  = 0x00C0CC00;
+  GPIOH->AFR[1]  = 0xCCCCCCCC;
+  /* Configure PHx pins in Alternate function mode */ 
+  GPIOH->MODER   = 0xAAAA08A0;
+  /* Configure PHx pins speed to 50 MHz */ 
+  GPIOH->OSPEEDR = 0xAAAA08A0;
+  /* Configure PHx pins Output type to push-pull */  
+  GPIOH->OTYPER  = 0x00000000;
+  /* No pull-up, pull-down for PHx pins */ 
+  GPIOH->PUPDR   = 0x00000000;
+  
+  /* Connect PIx pins to FMC Alternate function */
+  GPIOI->AFR[0]  = 0xCCCCCCCC;
+  GPIOI->AFR[1]  = 0x00000CC0;
+  /* Configure PIx pins in Alternate function mode */ 
+  GPIOI->MODER   = 0x0028AAAA;
+  /* Configure PIx pins speed to 50 MHz */ 
+  GPIOI->OSPEEDR = 0x0028AAAA;
+  /* Configure PIx pins Output type to push-pull */  
+  GPIOI->OTYPER  = 0x00000000;
+  /* No pull-up, pull-down for PIx pins */ 
+  GPIOI->PUPDR   = 0x00000000;
+  
+/*-- FMC Configuration -------------------------------------------------------*/
+  /* Enable the FMC interface clock */
+  RCC->AHB3ENR |= 0x00000001;
+  /* Delay after an RCC peripheral clock enabling */
+  tmp = READ_BIT(RCC->AHB3ENR, RCC_AHB3ENR_FMCEN);
+
+  FMC_Bank5_6->SDCR[0] = 0x000019E4;
+  FMC_Bank5_6->SDTR[0] = 0x01115351;      
+  
+  /* SDRAM initialization sequence */
+  /* Clock enable command */
+  FMC_Bank5_6->SDCMR = 0x00000011; 
+  tmpreg = FMC_Bank5_6->SDSR & 0x00000020; 
+  while((tmpreg != 0) && (timeout-- > 0))
+  {
+    tmpreg = FMC_Bank5_6->SDSR & 0x00000020; 
+  }
+
+  /* Delay */
+  for (index = 0; index<1000; index++);
+  
+  /* PALL command */
+  FMC_Bank5_6->SDCMR = 0x00000012;           
+  timeout = 0xFFFF;
+  while((tmpreg != 0) && (timeout-- > 0))
+  {
+    tmpreg = FMC_Bank5_6->SDSR & 0x00000020; 
+  }
+  
+  /* Auto refresh command */
+  FMC_Bank5_6->SDCMR = 0x00000073;
+  timeout = 0xFFFF;
+  while((tmpreg != 0) && (timeout-- > 0))
+  {
+    tmpreg = FMC_Bank5_6->SDSR & 0x00000020; 
+  }
+ 
+  /* MRD register program */
+  FMC_Bank5_6->SDCMR = 0x00046014;
+  timeout = 0xFFFF;
+  while((tmpreg != 0) && (timeout-- > 0))
+  {
+    tmpreg = FMC_Bank5_6->SDSR & 0x00000020; 
+  } 
+  
+  /* Set refresh count */
+  tmpreg = FMC_Bank5_6->SDRTR;
+  FMC_Bank5_6->SDRTR = (tmpreg | (0x0000027C<<1));
+  
+  /* Disable write protection */
+  tmpreg = FMC_Bank5_6->SDCR[0]; 
+  FMC_Bank5_6->SDCR[0] = (tmpreg & 0xFFFFFDFF);
+
+#if defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx)
+  /* Configure and enable Bank1_SRAM2 */
+  FMC_Bank1->BTCR[2]  = 0x00001011;
+  FMC_Bank1->BTCR[3]  = 0x00000201;
+  FMC_Bank1E->BWTR[2] = 0x0fffffff;
+#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx */ 
+#if defined(STM32F469xx) || defined(STM32F479xx)
+  /* Configure and enable Bank1_SRAM2 */
+  FMC_Bank1->BTCR[2]  = 0x00001091;
+  FMC_Bank1->BTCR[3]  = 0x00110212;
+  FMC_Bank1E->BWTR[2] = 0x0fffffff;
+#endif /* STM32F469xx || STM32F479xx */
+
+  (void)(tmp); 
+}
+#endif /* STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx || STM32F469xx || STM32F479xx */
+#elif defined (DATA_IN_ExtSRAM)
 /**
   * @brief  Setup the external memory controller. Called in startup_stm32f4xx.s 
   *          before jump to __main
   * @param  None
   * @retval None
   */ 
-#ifdef DATA_IN_ExtSRAM
 /**
   * @brief  Setup the external memory controller.
   *         Called in startup_stm32f4xx.s before jump to main.
@@ -1020,10 +1193,8 @@ void SystemInit_ExtMemCtl(void)
   FMC_NORSRAMInitStructure.FMC_WriteTimingStruct = &NORSRAMTimingStructure;
 */
   
-}
-#endif /* DATA_IN_ExtSRAM */
-  
-#ifdef DATA_IN_ExtSDRAM
+}  
+#elif defined (DATA_IN_ExtSDRAM)
 /**
   * @brief  Setup the external memory controller.
   *         Called in startup_stm32f4xx.s before jump to main.
@@ -1202,7 +1373,7 @@ void SystemInit_ExtMemCtl(void)
 */
   
 }
-#endif /* DATA_IN_ExtSDRAM */
+#endif /* DATA_IN_ExtSDRAM && DATA_IN_ExtSRAM */
 
 
 /**

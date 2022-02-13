@@ -2,11 +2,11 @@
   @page CRYP_AESECBmode  Encrypt and Decrypt data using AES-128 Algo in ECB mode with DMA example
   
   @verbatim
-  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    CRYP/CRYP_AESECBmode/readme.txt 
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Description of the CRYP AES-128 Algo in ECB mode with DMA example.
   ******************************************************************************
   *

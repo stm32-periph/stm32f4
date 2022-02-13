@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    LTDC/LTDC_AnimatedPictureFromSDCard/fatfs_storage.c
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    04-September-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   This file includes the Storage (FatFs) driver for the STM324x9I-EVAL
   *          example.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
