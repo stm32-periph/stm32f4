@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    SPI/SPI_TwoBoards/SPI_DataExchangeInterrupt/readme.txt 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Description of the SPI Communication Boards Data Exchange using 
   *          interrupt example.
   ******************************************************************************
@@ -68,6 +68,8 @@ the SPI peripheral as STM32 Master device or as STM32 Slave .
 In master board, SPI peripheral is configured as Master full duplex with Interrupt,
 whereas in Slave board, SPI peripheral is configured as Slave Full duplex with Interrupt. 
 
+- press Tamper button to start the transfer.
+
 At the end of the data transfer, a data consistency check will be performed 
 in master and slave sides. In case of mismatch between sent and received data,
 LED2 and LED4 are OFF. Otherwise LED1 and LED3 are ON.
@@ -106,17 +108,17 @@ infinite loop, but user can add his own implementation to manage timeout failure
 
  
 @par Hardware and Software environment  
-  - This example runs on STM32F40xx/STM32F41xx, STM32F427x/STM32F437x Devices.
+  - This example runs on STM32F405xx/407xx, STM32F415xx/417xx and STM32F427xx/437xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices) and STM32437I-EVAL (STM32F427x/STM32F437x Devices) evaluation 
-    boards and can be easily tailored to any other supported device and development 
-    board.
+    STM32F41xx Devices) and STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) 
+    evaluation boards and can be easily tailored to any other supported device 
+    and development board.
 
   - STM324xG-EVAL and STM32437I-EVAL Set-up 
     - Use LED1, LED2, LED3 and LED4 connected respectively to PG.06, PG.08, PI.09
       and PC.07 pins
-    - Use the Joystick Push Button 
+    - Use the Tamper Push Button 
     - Connect BoardA SPI2 SCK pin  (PI1) to BoardB SPI2 SCK pin  (PI1)
     - Connect BoardA SPI2 MOSI pin (PI3) to BoardB SPI2 MOSI pin (PI3)
     - Connect BoardA SPI2 MISO pin (PI2) to BoardB SPI2 MOSI pin (PI2)
@@ -127,6 +129,13 @@ In order to make the program work, you must do the following :
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
+ - Select the project workspace related to the used device 
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
+      
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
+      
  - Rebuild all files and load your image into target memory
  - Run the example
 

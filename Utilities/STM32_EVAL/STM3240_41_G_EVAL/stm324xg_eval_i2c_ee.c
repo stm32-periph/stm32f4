@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324xg_eval_i2c_ee.c
   * @author  MCD Application Team
-  * @version V1.1.1
-  * @date    11-January-2013
+  * @version V1.1.2
+  * @date    19-September-2013
   * @brief   This file provides a set of functions needed to manage the I2C M24CXX 
   *          EEPROM memory mounted on STM324xG-EVAL evaluation board.
   *          

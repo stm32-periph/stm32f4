@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    WWDG/WWDG_Example/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -154,7 +154,7 @@ void SysTick_Handler(void)
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f4xx.s).                                               */
+/*  file (startup_stm32f40xx.s/startup_stm32f427x.s/startup_stm32f429x.s).    */
 /******************************************************************************/
 
 /**
@@ -173,10 +173,10 @@ void SysTick_Handler(void)
   */
 void EXTI15_10_IRQHandler(void)
 {
-  if (EXTI_GetITStatus(KEY_BUTTON_EXTI_LINE) != RESET)
+  if (EXTI_GetITStatus(BUTTON_EXTI_LINE) != RESET)
   {  
     /* Clear the Key Button EXTI Line Pending Bit */
-    EXTI_ClearITPendingBit(KEY_BUTTON_EXTI_LINE);
+    EXTI_ClearITPendingBit(BUTTON_EXTI_LINE);
     
     /* As the following address is invalid (not mapped), a Hardfault exception
 	  will be generated with an infinite loop and when the WWDG counter falls to 63

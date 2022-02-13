@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_IRQPriority/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -58,11 +58,11 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
-     */      
+     */       
   
   /* NVIC configuration ------------------------------------------------------*/
   NVIC_Config();     
@@ -73,8 +73,8 @@ int main(void)
   STM_EVAL_LEDInit(LED3);
   STM_EVAL_LEDInit(LED4);
   
-  /* Initialize the KEY and Wakeup buttons mounted on EVAL board */  
-  STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_EXTI);
+  /* Initialize the KEY/Tamper and Wakeup buttons mounted on EVAL board */  
+  STM_EVAL_PBInit(BUTTON_KEY_TAMPER, BUTTON_MODE_EXTI);
   STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE_EXTI); 
 
   /* Configure the SysTick Handler Priority: Preemption priority and subpriority */
@@ -128,8 +128,8 @@ static void NVIC_Config(void)
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
   
-  /* Enable the KEY_BUTTON_EXTI_IRQn Interrupt */
-  NVIC_InitStructure.NVIC_IRQChannel = KEY_BUTTON_EXTI_IRQn;
+  /* Enable the KEY_BUTTON_EXTI_IRQn/TAMPER_BUTTON_EXTI_IRQn Interrupt */
+  NVIC_InitStructure.NVIC_IRQChannel = BUTTON_EXTI_IRQn;
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;

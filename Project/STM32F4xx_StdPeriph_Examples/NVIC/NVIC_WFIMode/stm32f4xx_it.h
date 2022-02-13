@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_WFIMode/stm32f4xx_it.h 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
@@ -50,7 +50,13 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
+
+#ifdef USE_STM324x9I_EVAL
+void DMA2_Stream5_IRQHandler(void);
+#else
 void DMA1_Stream1_IRQHandler(void);
+#endif /* USE_STM324x9I_EVAL */ 
+
 void EXTI15_10_IRQHandler(void);
 
 #ifdef __cplusplus

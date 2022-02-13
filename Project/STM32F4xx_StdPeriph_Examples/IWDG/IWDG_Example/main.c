@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    IWDG/IWDG_Example/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -61,16 +61,18 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */     
        
-  /* Initialize LED1, LED2 and Key Button mounted on EVAL board */       
+  /* Initialize LED1, LED2 and Key/Tamper Button mounted on EVAL board */       
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
-  STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_EXTI);
+  STM_EVAL_PBInit(BUTTON, BUTTON_MODE_EXTI);
+
+  
 
   /* Setup SysTick Timer for 1 msec interrupts  */
   if (SysTick_Config(SystemCoreClock / 1000))
@@ -113,8 +115,7 @@ int main(void)
                           = 0.25s / (32/LsiFreq)
                           = LsiFreq/(32 * 4)
                           = LsiFreq/128
-   */
-   
+   */   
   IWDG_SetReload(uwLsiFreq/128);
 
   /* Reload IWDG counter */

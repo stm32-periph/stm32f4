@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DCMI/DCMI_CameraExample/camera_api.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This file contains the routinue needed to configure OV9655/OV2640 
   *          Camera modules.
   ******************************************************************************
@@ -333,15 +333,6 @@ void TimingDelay_Decrement(void)
   { 
     TimingDelay--;
   }
-}
-
-/**
-  * @brief  Empty function.
-  * @param  None
-  * @retval None
-  */
-void NullFunc(void)
-{
 }
 
 /**

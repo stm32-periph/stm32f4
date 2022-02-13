@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    TIM/TIM_7PWMOutput/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -59,8 +59,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main.
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */
@@ -159,8 +159,8 @@ void TIM_Config(void)
   /* GPIOA, GPIOB and GPIOE Clocks enable */
   RCC_AHB1PeriphClockCmd( RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOE , ENABLE);
   
-  /* GPIOA Configuration: Channel 1, 3 and 4 as alternate function push-pull */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_10 | GPIO_Pin_11;
+  /* GPIOA Configuration: Channel 1 and 3 as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_10;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
@@ -169,13 +169,13 @@ void TIM_Config(void)
   
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_TIM1);
   GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_TIM1);
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource11, GPIO_AF_TIM1);
-  
-  /* GPIOE Configuration: Channel 2 as alternate function push-pull */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 ; 
+    
+  /* GPIOE Configuration: Channel 2 and 4 as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_14; 
   GPIO_Init(GPIOE, &GPIO_InitStructure);
   
   GPIO_PinAFConfig(GPIOE, GPIO_PinSource11, GPIO_AF_TIM1);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource14, GPIO_AF_TIM1);
    
   /* GPIOB Configuration: Channel 1N, 2N and 3N as alternate function push-pull */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;

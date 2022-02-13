@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FLASH/FLASH_Program/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -239,7 +239,7 @@ static uint32_t GetSector(uint32_t Address)
     sector = FLASH_Sector_11;  
   }
 
-#else /* USE_STM324x7I_EVAL */  
+#else /* USE_STM324x7I_EVAL or USE_STM324x9I_EVAL */  
   else if((Address < ADDR_FLASH_SECTOR_12) && (Address >= ADDR_FLASH_SECTOR_11))
   {
     sector = FLASH_Sector_11;  
@@ -293,7 +293,7 @@ static uint32_t GetSector(uint32_t Address)
   {
     sector = FLASH_Sector_23;  
   }
-#endif /* USE_STM324x7I_EVAL */
+#endif /* USE_STM324x7I_EVAL or USE_STM324x9I_EVAL */
   return sector;
 }
 

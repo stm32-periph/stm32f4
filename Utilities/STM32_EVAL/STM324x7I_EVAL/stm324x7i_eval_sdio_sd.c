@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x7i_eval_sdio_sd.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file provides a set of functions needed to manage the SDIO SD 
   *          Card memory mounted on STM324x7I-EVAL evaluation board.
   *
@@ -1567,7 +1567,7 @@ SD_Error SD_WriteMultiBlocks(uint8_t *writebuff, uint64_t WriteAddr, uint16_t Bl
   StopCondition = 1;
   SDIO->DCTRL = 0x0;
 
-  SDIO_ITConfig(SDIO_IT_DCRCFAIL | SDIO_IT_DTIMEOUT | SDIO_IT_DATAEND | SDIO_IT_RXOVERR | SDIO_IT_STBITERR, ENABLE);
+  SDIO_ITConfig(SDIO_IT_DCRCFAIL | SDIO_IT_DTIMEOUT | SDIO_IT_DATAEND | SDIO_IT_TXUNDERR | SDIO_IT_STBITERR, ENABLE);
   SD_LowLevel_DMA_TxConfig((uint32_t *)writebuff, (NumberOfBlocks * BlockSize));
   SDIO_DMACmd(ENABLE);
 

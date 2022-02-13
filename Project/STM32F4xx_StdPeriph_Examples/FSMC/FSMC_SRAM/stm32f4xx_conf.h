@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FSMC/FSMC_SRAM/stm32f4xx_conf.h  
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Library configuration file.
   ******************************************************************************
   * @attention
@@ -32,17 +32,11 @@
 /* Includes ------------------------------------------------------------------*/
 /* Uncomment the line below to enable peripheral header file inclusion */
 #include "stm32f4xx_adc.h"
-#include "stm32f4xx_can.h"
 #include "stm32f4xx_crc.h"
-#include "stm32f4xx_cryp.h"
-#include "stm32f4xx_dac.h"
 #include "stm32f4xx_dbgmcu.h"
-#include "stm32f4xx_dcmi.h"
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_flash.h"
-#include "stm32f4xx_fsmc.h"
-#include "stm32f4xx_hash.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_i2c.h"
 #include "stm32f4xx_iwdg.h"
@@ -57,6 +51,27 @@
 #include "stm32f4xx_usart.h"
 #include "stm32f4xx_wwdg.h"
 #include "misc.h" /* High level functions for NVIC and SysTick (add-on to CMSIS functions) */
+
+#if defined (STM32F42_43xxx)
+#include "stm32f4xx_cryp.h"
+#include "stm32f4xx_hash.h"
+#include "stm32f4xx_can.h"
+#include "stm32f4xx_dac.h"
+#include "stm32f4xx_dcmi.h"
+#include "stm32f4xx_dma2d.h"
+#include "stm32f4xx_fmc.h"
+#include "stm32f4xx_ltdc.h"
+#include "stm32f4xx_sai.h"
+#endif /* STM32F42_43xxx */
+
+#if defined (STM32F40_41xxx)
+#include "stm32f4xx_cryp.h"
+#include "stm32f4xx_hash.h"
+#include "stm32f4xx_can.h"
+#include "stm32f4xx_dac.h"
+#include "stm32f4xx_dcmi.h"
+#include "stm32f4xx_fsmc.h"
+#endif /* STM32F42_43xxx */
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

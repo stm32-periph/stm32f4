@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_VBATMeasurement/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -38,6 +38,39 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+
+#if defined (USE_STM324xG_EVAL)
+  #define MESSAGE1   " STM32F4xx ADC1 VBAT Measurement Example"
+  #define MESSAGE2   "**VBAT Measurement**"
+  #define MESSAGE3   " Eval Board Instant " 
+  #define MESSAGE4   "  Battery Voltage   "
+  #define MESSAGE5   "       %d,%d V   "
+  #define LINENUM            0x13
+  #define FONTSIZE         Font8x12
+  #define VBATDIV              2
+
+#elif defined (USE_STM324x7I_EVAL) 
+  #define MESSAGE1   " STM32F4xx ADC1 VBAT Measurement Example"
+  #define MESSAGE2   "**VBAT Measurement**"
+  #define MESSAGE3   " Eval Board Instant " 
+  #define MESSAGE4   "  Battery Voltage   "
+  #define MESSAGE5   "       %d,%d V   "
+  #define LINENUM           0x13
+  #define FONTSIZE       Font8x12
+  #define VBATDIV              4
+
+#else
+  #define MESSAGE1   " STM32F4xx ADC1 VBAT Measurement Example"
+  #define MESSAGE2   "*******VBAT Measurement*******"
+  #define MESSAGE3   "      Eval Board Instant      "
+  #define MESSAGE4   "       Battery Voltage        "
+  #define MESSAGE5   "            %d,%d V             "
+  #define LINENUM            0x15
+  #define FONTSIZE        Font12x12
+  #define BUTTON_KEY      BUTTON_TAMPER
+  #define VBATDIV              4
+#endif
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 __IO uint16_t uhADCConvertedValue = 0;
@@ -63,8 +96,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */
@@ -175,10 +208,10 @@ void Display(void)
    uint8_t aTextBuffer[50];
 
   /*The VBAT pin is internally connected to a bridge divider by 2 */
-  uwVBATVoltage = (uhADCConvertedValue*2)*3300/0xFFF;
+  uwVBATVoltage = (uhADCConvertedValue*VBATDIV)*3300/0xFFF;
   uwVbatV = uwVBATVoltage/1000;
   uwVbatmV = (uwVBATVoltage%1000)/100;
-  sprintf((char*)aTextBuffer,"       %d,%d V   ", uwVbatV, uwVbatmV);
+  sprintf((char*)aTextBuffer, MESSAGE5, uwVbatV, uwVbatmV);
   LCD_DisplayStringLine(LCD_LINE_6, aTextBuffer);
 
   delay(100);
@@ -195,29 +228,49 @@ void Display_Init(void)
   /* Initialize the LCD */
   LCD_Init();
 
+  /* Display message on LCD ***************************************************/
+#if defined (USE_STM324x9I_EVAL) 
+  /* Initialize the LCD Layers */
+  LCD_LayerInit();
+  
+  /* Enable The Display */
+  LCD_DisplayOn(); 
+  /* Set LCD Background Layer  */
+  LCD_SetLayer(LCD_BACKGROUND_LAYER);
+  /* Clear the Background Layer */ 
+  LCD_Clear(LCD_COLOR_WHITE);
+  
+  /* Set LCD Foreground Layer  */
+  LCD_SetLayer(LCD_FOREGROUND_LAYER);
+
+  /* Configure the transparency for foreground */
+  LCD_SetTransparency(100);
+#endif /* USE_STM324x9I_EVAL */
+  
   /* Clear the LCD */
   LCD_Clear(White);
 
   /* Set the LCD Text size */
-  LCD_SetFont(&Font8x12);
+  LCD_SetFont(&FONTSIZE);
 
   /* Set the LCD Back Color and Text Color*/
   LCD_SetBackColor(Blue);
   LCD_SetTextColor(White);
 
-  LCD_DisplayStringLine(LCD_LINE_19, (uint8_t*)" STM32F4xx ADC1 VBAT Measurement example");
-
+  LCD_DisplayStringLine(LINE(LINENUM), (uint8_t*)MESSAGE1);
+  LCD_DisplayStringLine(LINE(0x16), (uint8_t*)"                                        ");
+  
   /* Set the LCD Text size */
   LCD_SetFont(&Font16x24);
 
-  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t*)"**VBAT Measurement**");
+  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t*)MESSAGE2);
 
   /* Set the LCD Back Color and Text Color*/
   LCD_SetBackColor(White);
   LCD_SetTextColor(Blue);
 
-  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t*)" Eval Board Instant ");
-  LCD_DisplayStringLine(LCD_LINE_4, (uint8_t*)"  Battery Voltage   ");
+  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t*)MESSAGE3);
+  LCD_DisplayStringLine(LCD_LINE_4, (uint8_t*)MESSAGE4);
 }
 
 /**

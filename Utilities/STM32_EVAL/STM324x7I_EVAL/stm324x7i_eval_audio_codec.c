@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    STM324x7i_eval_audio_codec.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file includes the low layer driver for CS43L22 Audio Codec
   *          available on STM324x7I-EVAL evaluation board(MB786).  
   ******************************************************************************
@@ -802,6 +802,9 @@ static void Codec_Reset(void)
   
   /* Power on the codec */
   IOE_WriteIOPin(AUDIO_RESET_PIN, BitSet);
+  
+  /* wait for a delay to insure wakeup */
+  Delay(10); 
 }
 
 /**

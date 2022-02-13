@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x7i_eval_sdio_sd.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file contains all the functions prototypes for the SD Card 
   *          stm324x7i_eval_sdio_sd driver firmware library.
   *

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    STM324x7i_eval_lcd.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file contains all the functions prototypes for the STM324x7i_eval_lcd.c
   *          driver.
   ******************************************************************************
@@ -339,7 +339,7 @@ void LCD_DisplayOff(void);
   * @{
   */ 
 void LCD_CtrlLinesConfig(void);
-void LCD_FSMCConfig(void);
+void LCD_FMCConfig(void);
 /**
   * @}
   */

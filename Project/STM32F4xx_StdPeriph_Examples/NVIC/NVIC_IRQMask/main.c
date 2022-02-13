@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_IRQMask/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -54,11 +54,11 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
-     */     
+     */    
 
   /* Initialize Leds mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
@@ -66,8 +66,13 @@ int main(void)
   STM_EVAL_LEDInit(LED3);
   STM_EVAL_LEDInit(LED4);
 
-  /* Initialize the KEY and Tamper buttons mounted on EVAL board */
+  /* Initialize the KEY/WAKEUP and Tamper buttons mounted on EVAL board */
+#ifdef USE_STM324x9I_EVAL
+  STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE_GPIO);
+#else
   STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_GPIO);
+#endif /* USE_STM324x9I_EVAL */
+  
   STM_EVAL_PBInit(BUTTON_TAMPER, BUTTON_MODE_EXTI);
     
   /* TIM configuration -------------------------------------------------------*/
@@ -75,11 +80,11 @@ int main(void)
 
   while (1)
   { 
-    /* Wait until KEY button is pressed. */
-    while(STM_EVAL_PBGetState(BUTTON_KEY) == RESET)
+    /* Wait until KEY/WAKEUP button is pressed */
+    while(STM_EVAL_PBGetState(BUTTON_WAKEUP_KEY) == RESET)
     {
     }
-    while(STM_EVAL_PBGetState(BUTTON_KEY) != RESET)
+    while(STM_EVAL_PBGetState(BUTTON_WAKEUP_KEY) != RESET)
     {
     }
 
@@ -91,11 +96,11 @@ int main(void)
     /* Turn LED4 ON */
     STM_EVAL_LEDOn(LED4);
 
-    /* Wait until KEY button is pressed. */
-    while(STM_EVAL_PBGetState(BUTTON_KEY) == RESET)
+    /* Wait until KEY/WAKEUP button is pressed */
+    while(STM_EVAL_PBGetState(BUTTON_WAKEUP_KEY) == RESET)
     {
     }
-    while(STM_EVAL_PBGetState(BUTTON_KEY) != RESET)
+    while(STM_EVAL_PBGetState(BUTTON_WAKEUP_KEY) != RESET)
     {
     }
 

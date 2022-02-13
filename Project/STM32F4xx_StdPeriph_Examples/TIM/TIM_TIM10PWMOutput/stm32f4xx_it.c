@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    TIM/TIM_TIM10PWMOutput/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and
   *          peripherals interrupt service routine.

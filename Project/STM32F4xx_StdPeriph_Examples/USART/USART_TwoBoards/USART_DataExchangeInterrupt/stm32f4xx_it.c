@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeInterrupt/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -29,7 +29,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
-#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_Timer/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -61,10 +61,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
-       To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f4xx.c file
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main.
      */  
   
   /* Initialize the LCD */
@@ -188,6 +186,11 @@ static void RTC_AlarmConfig(void)
  
   /* Set the alarm A Masks */
   RTC_AlarmStructure.RTC_AlarmMask = RTC_AlarmMask_All;
+  RTC_AlarmStructure.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_Date;
+  RTC_AlarmStructure.RTC_AlarmDateWeekDay = RTC_Weekday_Monday;
+  RTC_AlarmStructure.RTC_AlarmTime.RTC_Hours = 0x0;
+  RTC_AlarmStructure.RTC_AlarmTime.RTC_Minutes =0x0;
+  RTC_AlarmStructure.RTC_AlarmTime.RTC_Seconds =0x0;
   RTC_SetAlarm(RTC_Format_BCD, RTC_Alarm_A, &RTC_AlarmStructure);
   
   /* Set alarm A sub seconds and enable SubSec Alarm : generate 8 interrupts per Second */

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    STM324x7i_eval_i2c_ee.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file contains all the functions prototypes for the 
   *          STM324x7i_eval_i2c_ee.c driver.
   ******************************************************************************
@@ -119,7 +119,7 @@
    You may modify these timeout values depending on CPU frequency and application
    conditions (interrupts routines ...). */   
 #define sEE_FLAG_TIMEOUT         ((uint32_t)0x1000)
-#define sEE_LONG_TIMEOUT         ((uint32_t)(10 * sEE_FLAG_TIMEOUT))
+#define sEE_LONG_TIMEOUT         ((uint32_t)(30 * sEE_FLAG_TIMEOUT))
 
 /* Maximum number of trials for sEE_WaitEepromStandbyState() function */
 #define sEE_MAX_TRIALS_NUMBER     300

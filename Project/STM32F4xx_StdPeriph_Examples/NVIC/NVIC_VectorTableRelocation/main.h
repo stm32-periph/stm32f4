@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    NVIC/NVIC_VectorTable_Relocation/main.h 
+  * @file    NVIC/NVIC_VectorTableRelocation/main.h 
   * @author  MCD Application Team
   * @version V1.1.0
-  * @date    18-January-2013
-  * @brief   Main program body
+  * @version V1.2.0
+  * @date    19-September-2013
   ******************************************************************************
   * @attention
   *
@@ -36,6 +36,9 @@
 
 #elif defined (USE_STM324x7I_EVAL) 
   #include "stm324x7i_eval.h"
+
+#elif defined (USE_STM324x9I_EVAL) 
+  #include "stm324x9i_eval.h"
 
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"

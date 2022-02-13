@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CAN/CAN_Networking/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -64,8 +64,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */     
@@ -159,11 +159,7 @@ static void CAN_Config(void)
   CAN_Init(CANx, &CAN_InitStructure);
 
   /* CAN filter init */
-#ifdef  USE_CAN1
   CAN_FilterInitStructure.CAN_FilterNumber = 0;
-#else /* USE_CAN2 */
-  CAN_FilterInitStructure.CAN_FilterNumber = 14;
-#endif  /* USE_CAN1 */
   CAN_FilterInitStructure.CAN_FilterMode = CAN_FilterMode_IdMask;
   CAN_FilterInitStructure.CAN_FilterScale = CAN_FilterScale_32bit;
   CAN_FilterInitStructure.CAN_FilterIdHigh = 0x0000;
@@ -194,12 +190,7 @@ static void NVIC_Config(void)
 {
   NVIC_InitTypeDef  NVIC_InitStructure;
 
-#ifdef  USE_CAN1 
   NVIC_InitStructure.NVIC_IRQChannel = CAN1_RX0_IRQn;
-#else  /* USE_CAN2 */
-  NVIC_InitStructure.NVIC_IRQChannel = CAN2_RX0_IRQn;
-#endif /* USE_CAN1 */
-
   NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x0;
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x0;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;

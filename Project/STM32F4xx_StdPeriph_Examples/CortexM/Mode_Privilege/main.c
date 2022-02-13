@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CortexM/Mode_Privilege/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -43,7 +43,9 @@
 #define SP_MAIN                     0x00   /* Main stack */
 #define THREAD_MODE_PRIVILEGED      0x00   /* Thread mode has privileged access */
 #define THREAD_MODE_UNPRIVILEGED    0x01   /* Thread mode has unprivileged access */
-
+ /* Private function prototypes -----------------------------------------------*/
+static __INLINE  void __SVC(void); 
+ 
 /* Private macro -------------------------------------------------------------*/
 #if defined ( __CC_ARM   )
  __ASM void __SVC(void) 
@@ -63,7 +65,6 @@
 __IO uint8_t PSPMemAlloc[SP_PROCESS_SIZE];
 __IO uint32_t Index = 0, PSPValue = 0, CurrentStack = 0, ThreadMode = 0;
 
-/* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -75,10 +76,10 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main.
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
-        system_stm32f4xx.c file
+       system_stm32f4xx.c file
      */     
        
 /* Switch Thread mode Stack from Main to Process -----------------------------*/

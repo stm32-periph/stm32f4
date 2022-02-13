@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeInterrupt/main.h
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -41,10 +41,13 @@
 
 #elif defined (USE_STM324x7I_EVAL) 
   #include "stm324x7i_eval.h"
-   
+
+#elif defined (USE_STM324x9I_EVAL) 
+  #include "stm324x9i_eval.h"
+
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
-#endif   
+#endif  
 
 /* Exported typedef -----------------------------------------------------------*/
 #define countof(a)   (sizeof(a) / sizeof(*(a)))
@@ -101,6 +104,28 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 #define USARTx_RX_AF                     GPIO_AF_USART3
 
 #endif /* USE_STM324x7I_EVAL */
+
+#if defined (USE_STM324x9I_EVAL)
+
+#define USARTx                           USART1
+#define USARTx_CLK                       RCC_APB2Periph_USART1
+#define USARTx_CLK_INIT                  RCC_APB2PeriphClockCmd
+#define USARTx_IRQn                      USART1_IRQn
+#define USARTx_IRQHandler                USART1_IRQHandler
+
+#define USARTx_TX_PIN                    GPIO_Pin_9                
+#define USARTx_TX_GPIO_PORT              GPIOA                       
+#define USARTx_TX_GPIO_CLK               RCC_AHB1Periph_GPIOA
+#define USARTx_TX_SOURCE                 GPIO_PinSource9
+#define USARTx_TX_AF                     GPIO_AF_USART1
+
+#define USARTx_RX_PIN                    GPIO_Pin_10                
+#define USARTx_RX_GPIO_PORT              GPIOA                    
+#define USARTx_RX_GPIO_CLK               RCC_AHB1Periph_GPIOA
+#define USARTx_RX_SOURCE                 GPIO_PinSource10
+#define USARTx_RX_AF                     GPIO_AF_USART1
+
+#endif /* USE_STM324x9I_EVAL */
 
 #define BUFFERSIZE                     100
 

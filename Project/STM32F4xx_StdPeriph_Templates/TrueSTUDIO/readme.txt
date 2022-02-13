@@ -51,13 +51,21 @@
    and then click "Next". 
  - Browse to the TrueSTUDIO workspace directory and select the project: 
  
-   - STM324xG_EVAL: to load the project for STM32F40xx/41xx devices.
-   @note The needed define symbols for this config are already declared in the
-         preprocessor section: USE_STM324xG_EVAL, STM32F40XX, USE_STDPERIPH_DRIVER
-         
-   - STM324x7I_EVAL: to load the project for STM32F427x/437x devices.
-   @note The needed define symbols for this config are already declared in the
-         preprocessor section: USE_STM324x7I_EVAL, STM32F427X, USE_STDPERIPH_DRIVER
+     - STM32F429_439xx: to configure the project for STM32F429xx/439xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324x9I_EVAL, STM32F429_439xx, USE_STDPERIPH_DRIVER
+
+    - STM32F427_437xx: to configure the project for STM32F427xx/437xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324x7I_EVAL, STM32F427_437xx, USE_STDPERIPH_DRIVER
+           
+     - STM32F40_41xxx: to configure the project for STM32F40/41xxx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324xG_EVAL, STM32F40_41xxx, USE_STDPERIPH_DRIVER
+           
+     - STM32F401xx: to configure the project for STM32F401xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: STM32F401xx, USE_STDPERIPH_DRIVER
          
  - Rebuild all project files: Select the project in the "Project explorer" 
    window then click on Project->build project menu.

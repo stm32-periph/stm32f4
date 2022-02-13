@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    IWDG/IWDG_Example/stm32f4xx_it.h 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
@@ -50,6 +50,8 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
+void EXTI15_10_IRQHandler(void);
+void TIM5_IRQHandler(void);
 
 #ifdef __cplusplus
 }

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_IOExpander/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -151,7 +151,7 @@ void SysTick_Handler(void)
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f40xx.s/startup_stm32f427x.s).                         */
+/*  file (startup_stm32f40xx.s/startup_stm32f427x.s/startup_stm32f429x.s).  */
 /******************************************************************************/
 
 /**
@@ -170,6 +170,10 @@ void SysTick_Handler(void)
   */
 void EXTI0_IRQHandler(void)
 {
+  
+  /* Set the LCD Text Color */
+  LCD_SetTextColor(Blue); 
+  
   if(EXTI_GetITStatus(WAKEUP_BUTTON_EXTI_LINE) != RESET)
   {
     /* Toggle LD3 */
@@ -186,42 +190,49 @@ void EXTI0_IRQHandler(void)
   * @param  None
   * @retval None
   */
-void EXTI2_IRQHandler(void)
+void EXTI9_5_IRQHandler(void)
 {
-  if(EXTI_GetITStatus(IOE_IT_EXTI_LINE) != RESET)
-  {
-    
-#ifdef IOE_INTERRUPT_MODE   
+  if(EXTI_GetITStatus(IOE16_IT_EXTI_LINE) != RESET)
+  {  
+#ifdef IOE_INTERRUPT_MODE 
+    __IO uint16_t tmpsr = 0;  
     static JOY_State_TypeDef JoyState = JOY_NONE;
     static TS_STATE* TS_State;
     
-    /* Check if the interrupt source is the Touch Screen */
-    if (IOE_GetGITStatus(IOE_1_ADDR, IOE_TS_IT) & IOE_TS_IT)
+    /* Get the interrupt status register */
+    tmpsr = IOE16_GetITStatus();
+    
+    /* Check Touch screen interrupt event occured */
+    if((tmpsr & IOE16_TS_IT) != 0)
     {
       /* Update the structure with the current position */
       TS_State = IOE_TS_GetState();  
-      
-      if ((TS_State->TouchDetected) && (TS_State->Y < 220) && (TS_State->Y > 180))
+    
+      if ((TS_State->TouchDetected) && (TS_State->Y < 92) && (TS_State->Y > 52))
       {
-        if ((TS_State->X > 10) && (TS_State->X < 70))
+        if ((TS_State->X > 60) && (TS_State->X < 120))
         {
-          LCD_DisplayStringLine(Line6, (uint8_t *)" LD4                ");
-          STM_EVAL_LEDOn(LED4);
-        }
-        else if ((TS_State->X > 90) && (TS_State->X < 150))
-        {
-          LCD_DisplayStringLine(Line6, (uint8_t *)"      LD3           ");
-          STM_EVAL_LEDOn(LED3);
-        }
-        else if ((TS_State->X > 170) && (TS_State->X < 230))
-        {
-          LCD_DisplayStringLine(Line6, (uint8_t *)"           LD2      ");
-          STM_EVAL_LEDOn(LED2);
-        }     
-        else if ((TS_State->X > 250) && (TS_State->X < 310))
-        {
-          LCD_DisplayStringLine(Line6, (uint8_t *)"                LD1 ");
+          LCD_SetTextColor(LCD_COLOR_GREEN);   
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"     LD1                ");
           STM_EVAL_LEDOn(LED1);
+        }
+        else if ((TS_State->X > 140) && (TS_State->X < 200))
+        {
+          LCD_SetTextColor(LCD_COLOR_YELLOW); 
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"          LD2           ");
+          STM_EVAL_LEDOn(LED2);
+        }
+        else if ((TS_State->X > 220) && (TS_State->X < 280))
+        {
+          LCD_SetTextColor(LCD_COLOR_RED); 
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"               LD3      ");
+          STM_EVAL_LEDOn(LED3);
+        }     
+        else if ((TS_State->X > 300) && (TS_State->X < 360))
+        {
+          LCD_SetTextColor(LCD_COLOR_BLUE); 
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"                    LD4 ");
+          STM_EVAL_LEDOn(LED4);
         }
       }
       else
@@ -233,59 +244,50 @@ void EXTI2_IRQHandler(void)
       }    
       
       /* Clear the interrupt pending bits */    
-      IOE_ClearGITPending(IOE_1_ADDR, IOE_TS_IT);      
+      IOE_ClearGITPending(IOE_TS_IT);     
     }
-    else if (IOE_GetGITStatus(IOE_2_ADDR, IOE_GIT_GPIO))
+    
+    /* Check joystick interrupt event occured */
+    if((tmpsr & IOE16_JOY_IT) != 0 )
     {
-      /* Get the Joytick State */
-      JoyState = IOE_JoyStickGetState();
+      /* Get the Joystick State */
+      JoyState = IOE16_JoyStickGetState();
       
+      /* Set the LCD Text Color */
+      LCD_SetTextColor(Blue); 
+  
       switch (JoyState)
       {
-      case JOY_NONE:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT  ----        ");
-        break;
-      case JOY_UP:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT  UP         ");
-        break;     
-      case JOY_DOWN:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT DOWN        ");
-        break;          
-      case JOY_LEFT:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT LEFT        ");
-        break;         
-      case JOY_RIGHT:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT  RIGHT        ");
-        break;                 
-      case JOY_CENTER:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT CENTER       ");
-        break; 
-      default:
-        LCD_DisplayStringLine(Line5, (uint8_t *)"JOY: IT ERROR      ");
-        break;         
-      }   
-      
-      /* Clear the interrupt pending bits */    
-      IOE_ClearGITPending(IOE_2_ADDR, IOE_GIT_GPIO);
-      IOE_ClearIOITPending(IOE_2_ADDR, IOE_JOY_IT);     
-    }
-    else
-    {
-      IOE_ClearGITPending(IOE_1_ADDR, ALL_IT);
-      IOE_ClearGITPending(IOE_2_ADDR, ALL_IT);
+        case JOY_NONE:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:     ----          ");
+          break;
+        case JOY_UP:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:     UP            ");
+          break;     
+        case JOY_DOWN:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:    DOWN           ");
+          break;          
+        case JOY_LEFT:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:    LEFT           ");
+          break;         
+        case JOY_RIGHT:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:    RIGHT          ");
+          break;                 
+        case JOY_CENTER:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:   CENTER          ");
+          break; 
+        default:
+          LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)"  JOY:   ERROR           ");
+          break;         
+      } 
     }
 #endif /* IOE_INTERRUPT_MODE */
-    
-    EXTI_ClearITPendingBit(IOE_IT_EXTI_LINE);
-  } 
-  
-  /* Clear all ITs if the interrupt line is blocked */
-  if(!GPIO_ReadInputDataBit(GPIOI,IOE_IT_PIN))
-  {
-    IOE_ClearGITPending(IOE_1_ADDR, ALL_IT);
-    IOE_ClearGITPending(IOE_2_ADDR, ALL_IT);
-  }
- 
+
+    /* Clear all pending bits */
+    EXTI_ClearITPendingBit(IOE16_IT_EXTI_LINE);
+    IOE_ClearGITPending(ALL_GIT);
+    IOE16_GetITStatus();  
+  }  
 }
 
 /**
@@ -295,22 +297,15 @@ void EXTI2_IRQHandler(void)
   */
 void EXTI15_10_IRQHandler(void)
 {
-  if(EXTI_GetITStatus(KEY_BUTTON_EXTI_LINE) != RESET)
-  {
-    /* Toggle LD1 */
-    STM_EVAL_LEDToggle(LED1);
-
-    LCD_DisplayStringLine(Line4, (uint8_t *)"IT:   KEY Pressed   ");
-	
-    EXTI_ClearITPendingBit(KEY_BUTTON_EXTI_LINE);
-  }
-
+  /* Set the LCD Text Color */
+  LCD_SetTextColor(Blue); 
+  
   if(EXTI_GetITStatus(TAMPER_BUTTON_EXTI_LINE) != RESET)
   {
     /* Toggle LD2 */
     STM_EVAL_LEDToggle(LED2);
 
-    LCD_DisplayStringLine(Line4, (uint8_t *)"IT: TAMPER Pressed  ");
+    LCD_DisplayStringLine(Line4, (uint8_t *)"IT: TAMPER/KEY Pressed  ");
    
     EXTI_ClearITPendingBit(TAMPER_BUTTON_EXTI_LINE);
   }

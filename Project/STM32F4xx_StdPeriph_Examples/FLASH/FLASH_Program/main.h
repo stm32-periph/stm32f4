@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FLASH/FLASH_Program/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -37,6 +37,9 @@
 #elif defined (USE_STM324x7I_EVAL) 
   #include "stm324x7i_eval.h"
 
+#elif defined (USE_STM324x9I_EVAL) 
+  #include "stm324x9i_eval.h"
+  
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
@@ -48,7 +51,7 @@
 #if defined (USE_STM324xG_EVAL)
 #define FLASH_USER_END_ADDR     ADDR_FLASH_SECTOR_11   /* End @ of user Flash area */
 
-#else /* USE_STM324x7I_EVAL*/
+#else /* USE_STM324x7I_EVAL or USE_STM324x9I_EVAL */
 #define FLASH_USER_END_ADDR     ADDR_FLASH_SECTOR_23   /* End @ of user Flash area */
 #endif 
 
@@ -66,7 +69,7 @@
 #define ADDR_FLASH_SECTOR_10    ((uint32_t)0x080C0000) /* Base @ of Sector 10, 128 Kbytes */
 #define ADDR_FLASH_SECTOR_11    ((uint32_t)0x080E0000) /* Base @ of Sector 11, 128 Kbytes */
 
-#if defined (USE_STM324x7I_EVAL)
+#if defined (USE_STM324x7I_EVAL) || defined (USE_STM324x9I_EVAL) 
 #define ADDR_FLASH_SECTOR_12     ((uint32_t)0x08100000) /* Base @ of Sector 12, 16 Kbytes */
 #define ADDR_FLASH_SECTOR_13     ((uint32_t)0x08104000) /* Base @ of Sector 13, 16 Kbytes */
 #define ADDR_FLASH_SECTOR_14     ((uint32_t)0x08108000) /* Base @ of Sector 14, 16 Kbytes */
@@ -79,7 +82,7 @@
 #define ADDR_FLASH_SECTOR_21     ((uint32_t)0x081A0000) /* Base @ of Sector 21, 128 Kbytes  */
 #define ADDR_FLASH_SECTOR_22     ((uint32_t)0x081C0000) /* Base @ of Sector 22, 128 Kbytes */
 #define ADDR_FLASH_SECTOR_23     ((uint32_t)0x081E0000) /* Base @ of Sector 23, 128 Kbytes */
-#endif /* USE_STM324x7I_EVAL */
+#endif /* USE_STM324x7I_EVAL or USE_STM324x9I_EVAL */
 
 #define DATA_32                 ((uint32_t)0x12345678)
 

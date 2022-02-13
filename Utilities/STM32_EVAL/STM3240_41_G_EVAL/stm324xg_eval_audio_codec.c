@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324xg_eval_audio_codec.c
   * @author  MCD Application Team
-  * @version V1.1.1
-  * @date    11-January-2013
+  * @version V1.1.2
+  * @date    19-September-2013
   * @brief   This file includes the low layer driver for CS43L22 Audio Codec
   *          available on STM324xG-EVAL evaluation board(MB786).  
   ******************************************************************************

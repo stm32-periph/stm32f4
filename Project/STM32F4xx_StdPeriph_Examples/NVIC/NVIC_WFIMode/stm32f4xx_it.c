@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_WFIMode/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -43,11 +43,10 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-uint8_t TestStatus = 0;
-uint16_t SrcBuffer[10] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39};
-extern uint16_t DstBuffer[10];
-extern __IO uint32_t LowPowerMode;
-extern uint8_t Buffercmp16(uint16_t*, uint16_t*, uint16_t);
+uint8_t ubTestStatus = 0;
+uint16_t aSrcBuffer[10] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39};
+extern uint16_t aDstBuffer[10];
+extern __IO uint32_t uwLowPowerMode;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -157,7 +156,7 @@ void SysTick_Handler(void)
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f4xx.s).                                               */
+/*  file (startup_stm32f40xx.s/startup_stm32f427x.s/startup_stm32f429x.s).    */
 /******************************************************************************/
 
 /**
@@ -169,6 +168,33 @@ void SysTick_Handler(void)
 {
 }*/
 
+
+#ifdef USE_STM324x9I_EVAL
+/**
+  * @brief  This function handles DMA2 Stream5 interrupt request.
+  * @param  None
+  * @retval None
+  */
+void DMA2_Stream5_IRQHandler(void)
+{
+  if(DMA_GetITStatus(DMA2_Stream5, DMA_IT_TCIF5))
+  {
+    DMA_ClearITPendingBit(DMA2_Stream5, DMA_IT_TCIF5);
+
+    /* Check the received buffer */
+    ubTestStatus = Buffercmp16(aSrcBuffer, aDstBuffer, 10);
+
+    if(ubTestStatus == 0)
+    {
+      STM_EVAL_LEDToggle(LED2);
+    }
+    else
+    {
+      STM_EVAL_LEDToggle(LED3);
+    }
+  }
+}
+#else
 /**
   * @brief  This function handles DMA1 Stream1 interrupt request.
   * @param  None
@@ -181,9 +207,9 @@ void DMA1_Stream1_IRQHandler(void)
     DMA_ClearITPendingBit(DMA1_Stream1, DMA_IT_TCIF1);
 
     /* Check the received buffer */
-    TestStatus = Buffercmp16(SrcBuffer, DstBuffer, 10);
+    ubTestStatus = Buffercmp16(aSrcBuffer, aDstBuffer, 10);
 
-    if(TestStatus == 0)
+    if(ubTestStatus == 0)
     {
       STM_EVAL_LEDToggle(LED2);
     }
@@ -193,6 +219,7 @@ void DMA1_Stream1_IRQHandler(void)
     }
   }
 }
+#endif /* USE_STM324x9I_EVAL */
 
 /**
   * @brief  This function handles External lines 15 to 10 interrupt request.
@@ -201,11 +228,11 @@ void DMA1_Stream1_IRQHandler(void)
   */
 void EXTI15_10_IRQHandler(void)
 {
-  if(EXTI_GetITStatus(KEY_BUTTON_EXTI_LINE) != RESET)
+  if(EXTI_GetITStatus(BUTTON_EXTI_LINE) != RESET)
   {
-    EXTI_ClearITPendingBit(KEY_BUTTON_EXTI_LINE);
+    EXTI_ClearITPendingBit(BUTTON_EXTI_LINE);
   
-    LowPowerMode = 1;
+    uwLowPowerMode = 1;
   }  
 }
 

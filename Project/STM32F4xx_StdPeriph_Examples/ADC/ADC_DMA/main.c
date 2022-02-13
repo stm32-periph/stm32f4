@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_DMA/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -38,6 +38,36 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+
+#if defined (USE_STM324xG_EVAL)
+  #define MESSAGE1   " ADC conversion w/DMA transfer example  " 
+  #define MESSAGE2   "ADC Ch7 Conv @2.4Msps" 
+  #define MESSAGE3   "  Turn RV1(PF.09)    "
+  #define MESSAGE4   "   Potentiometer     "
+  #define MESSAGE5   "   ADC = %d,%d V   "
+  #define LINENUM            0x13
+  #define FONTSIZE         Font8x12
+
+#elif defined (USE_STM324x7I_EVAL)   
+  #define MESSAGE1    " ADC conversion w/DMA transfer example  "
+  #define MESSAGE2   "ADC Ch7 Conv @2.4Msps" 
+  #define MESSAGE3   "  Turn RV1(PF.09)    "
+  #define MESSAGE4   "   Potentiometer     "
+  #define MESSAGE5   "   ADC = %d,%d V   "
+  #define LINENUM            0x13
+  #define FONTSIZE         Font8x12
+
+#else
+  #define MESSAGE1   " ADC conversion w/DMA transfer example  "
+  #define MESSAGE2   "    ADC Ch7 Conv @2.4Msps     " 
+  #define MESSAGE3   "       Turn RV1(PF.09)        "
+  #define MESSAGE4   "        Potentiometer         "
+  #define MESSAGE5   "         ADC = %d,%d V          "
+  #define LINENUM            0x15
+  #define FONTSIZE         Font12x12
+
+#endif
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 __IO uint16_t uhADCxConvertedValue = 0;
@@ -61,8 +91,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */
@@ -181,7 +211,7 @@ static void Display(void)
   uwVoltage = (uwADCxConvertedVoltage)/1000;
   uwMVoltage = (uwADCxConvertedVoltage%1000)/100;
 
-  sprintf((char*)aTextBuffer,"   ADC = %d,%d V   ", uwVoltage, uwMVoltage);
+  sprintf((char*)aTextBuffer, MESSAGE5, uwVoltage, uwMVoltage);
   LCD_DisplayStringLine(LCD_LINE_6, aTextBuffer);
 }
 
@@ -194,29 +224,59 @@ static void Display_Init(void)
 {
   /* Initialize the LCD */
   LCD_Init();
+  
+  /* Display message on LCD ***************************************************/
+#if defined (USE_STM324x9I_EVAL) 
+  /* Initialize the LCD Layers */
+  LCD_LayerInit();
+  
+  /* Enable The Display */
+  LCD_DisplayOn(); 
+ 
+  /* Set LCD Background Layer  */
+  LCD_SetLayer(LCD_BACKGROUND_LAYER);
+ 
   /* Clear the Background Layer */ 
   LCD_Clear(LCD_COLOR_WHITE);
+  
+  /* Set LCD Foreground Layer  */
+  LCD_SetLayer(LCD_FOREGROUND_LAYER);
+
+  /* Configure the transparency for foreground */
+  LCD_SetTransparency(100);
+#endif /* USE_STM324x9I_EVAL */
+
+  /* Clear the Background Layer */ 
+  LCD_Clear(LCD_COLOR_WHITE);
+  
   /* Set the LCD Back Color */
   LCD_SetBackColor(LCD_COLOR_BLUE);
+ 
   /* Set the LCD Text Color */
   LCD_SetTextColor(LCD_COLOR_WHITE);
+ 
   /* Set the LCD Text size */
-  LCD_SetFont(&Font8x12);
+  LCD_SetFont(&FONTSIZE);
+  
   /* Display LCD Footer Message */
-  LCD_DisplayStringLine(LCD_LINE_19, (uint8_t*)FOOTER_MESSAGE);
+  LCD_DisplayStringLine(LINE(LINENUM), (uint8_t*)MESSAGE1);
+  LCD_DisplayStringLine(LINE(0x16), (uint8_t*)"                                        ");
 
   /* Set the LCD Text size */
   LCD_SetFont(&Font16x24);
+ 
   /* Display Configuration Messages */
-  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t*)CONFIG1_MESSAGE);
+  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t*)MESSAGE2);
 
   /* Set the LCD Back Color */
   LCD_SetBackColor(LCD_COLOR_WHITE);
+  
   /* Set the LCD Text Color */
   LCD_SetTextColor(LCD_COLOR_BLUE);
+  
   /* Display */
-  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t*)CONFIG2_MESSAGE);
-  LCD_DisplayStringLine(LCD_LINE_4, (uint8_t*)CONFIG3_MESSAGE);
+  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t*)MESSAGE3);
+  LCD_DisplayStringLine(LCD_LINE_4, (uint8_t*)MESSAGE4);
 }
 #endif /* USE_LCD */
 

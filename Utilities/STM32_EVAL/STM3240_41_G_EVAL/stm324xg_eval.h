@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324xg_eval.h
   * @author  MCD Application Team
-  * @version V1.1.1
-  * @date    11-January-2013
+  * @version V1.1.2
+  * @date    19-September-2013
   * @brief   This file contains definitions for STM324xG_EVAL's Leds, push-buttons
   *          and COM ports hardware resources.
   ******************************************************************************

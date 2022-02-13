@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CAN/CAN_Networking/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -157,7 +157,6 @@ void SysTick_Handler(void)
 /*  file (startup_stm32f40xx.s/startup_stm32f427x.s).                         */
 /******************************************************************************/
 
-#ifdef USE_CAN1
 /**
   * @brief  This function handles CAN1 RX0 request.
   * @param  None
@@ -173,25 +172,6 @@ void CAN1_RX0_IRQHandler(void)
     ubKeyNumber = RxMessage.Data[0];
   }
 }
-#endif  /* USE_CAN1 */
-
-#ifdef USE_CAN2
-/**
-  * @brief  This function handles CAN2 RX0 request.
-  * @param  None
-  * @retval None
-  */
-void CAN2_RX0_IRQHandler(void)
-{
-  CAN_Receive(CAN2, CAN_FIFO0, &RxMessage);
-
-  if ((RxMessage.StdId == 0x321)&&(RxMessage.IDE == CAN_ID_STD) && (RxMessage.DLC == 1))
-  {
-    LED_Display(RxMessage.Data[0]);
-    ubKeyNumber = RxMessage.Data[0];
-  }
-}
-#endif  /* USE_CAN2 */
 
 /**
   * @}

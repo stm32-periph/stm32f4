@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This sub-directory contains all the user-modifiable files needed to
   *          create a new project linked with the STM32F4xx Standard Peripherals
   *          Library and working with RIDE7 software toolchain.
@@ -42,11 +42,22 @@
  - Open the Project.rprj project.                          
  - Rebuild all files: Project->build project
  - Load project image: Debug->start(ctrl+D)
+     - STM32F429_439xx: to configure the project for STM32F429xx/439xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324x9I_EVAL, STM32F429_439xx, USE_STDPERIPH_DRIVER
+
+    - STM32F427_437xx: to configure the project for STM32F427xx/437xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324x7I_EVAL, STM32F427_437xx, USE_STDPERIPH_DRIVER
+           
+     - STM32F40_41xxx: to configure the project for STM32F40/41xxx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324xG_EVAL, STM32F40_41xxx, USE_STDPERIPH_DRIVER
+           
+     - STM32F401xx: to configure the project for STM32F401xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: STM32F401xx, USE_STDPERIPH_DRIVER
  - Run program: Debug->Run(ctrl+F9)  
-
- @note The needed define symbols for this config are already declared in the
-       preprocessor section: USE_STM324xG_EVAL, STM32F4XX, USE_STDPERIPH_DRIVER 
-
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

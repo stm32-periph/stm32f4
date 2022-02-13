@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.h
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -73,10 +73,10 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 #define I2Sx_CK_SOURCE                 GPIO_PinSource13
 #define I2Sx_CK_AF                     GPIO_AF_SPI2
 
-#define I2Sx_SD_PIN                    GPIO_Pin_3
-#define I2Sx_SD_GPIO_PORT              GPIOC
-#define I2Sx_SD_GPIO_CLK               RCC_AHB1Periph_GPIOC
-#define I2Sx_SD_SOURCE                 GPIO_PinSource3
+#define I2Sx_SD_PIN                    GPIO_Pin_15
+#define I2Sx_SD_GPIO_PORT              GPIOB
+#define I2Sx_SD_GPIO_CLK               RCC_AHB1Periph_GPIOB
+#define I2Sx_SD_SOURCE                 GPIO_PinSource15
 #define I2Sx_SD_AF                     GPIO_AF_SPI2
 
 #define I2Sxext_SD_PIN                 GPIO_Pin_2

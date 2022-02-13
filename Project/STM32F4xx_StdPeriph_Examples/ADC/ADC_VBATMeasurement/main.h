@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_VBATMeasurement/main.h 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -38,6 +38,10 @@
 #elif defined (USE_STM324x7I_EVAL) 
   #include "stm324x7i_eval_lcd.h"
 
+#elif defined (USE_STM324x9I_EVAL) 
+  #include "stm324x9i_eval.h"
+  #include "stm324x9i_eval_lcd.h"
+
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
@@ -59,13 +63,22 @@
   #define DMA_STREAMx              DMA2_Stream0
   #define ADCx_DR_ADDRESS          ((uint32_t)0x4001204C)
 
-#else /* defined (USE_STM324x7I_EVAL)*/ 
+#elif defined (USE_STM324x7I_EVAL)  
 
   #define ADCx                     ADC1
   #define ADCx_CLK                 RCC_APB2Periph_ADC1
   #define DMA_CHANNELx             DMA_Channel_0
   #define DMA_STREAMx              DMA2_Stream0
   #define ADCx_DR_ADDRESS          ((uint32_t)0x4001204C)
+
+#else
+
+  #define ADCx                     ADC1
+  #define ADCx_CLK                 RCC_APB2Periph_ADC1
+  #define DMA_CHANNELx             DMA_Channel_0
+  #define DMA_STREAMx              DMA2_Stream0
+  #define ADCx_DR_ADDRESS          ((uint32_t)0x4001204C)
+  
 #endif
 /* Exported functions ------------------------------------------------------- */
 

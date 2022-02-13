@@ -5,8 +5,8 @@
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This sub-directory contains all the user-modifiable files needed to
   *          create a new project linked with the STM32F4xx Standard Peripherals 
   *          Library and working with IAR Embedded Workbench for ARM (EWARM)
@@ -43,7 +43,12 @@
                                 used to place program code (readonly) in internal 
                                 FLASH and data (readwrite, Stack and Heap)in 
                                 external SRAM. You can customize this file to your need.  
-                                
+  
+ - stm32f4xx_flash_extsdram.icf: This file is the IAR Linker configuration file 
+                                 used to place program code (readonly) in internal 
+                                 FLASH and data (readwrite, Stack and Heap)in 
+                                 external SDRAM. You can customize this file to your need.  
+                                                              
  - stm32f4xx_ram.icf:  This file is the IAR Linker configuration file used to 
                        place program code (readonly) and data (readwrite, Stack 
                        and Heap)in internal SRAM. 
@@ -53,14 +58,22 @@
 
  - Open the Project.eww workspace.
   - In the workspace toolbar select the project config:
-     - STM324xG_EVAL: to configure the project for STM32F40xx/41xx devices.
+     - STM32F429_439xx: to configure the project for STM32F429xx/439xx devices.
      @note The needed define symbols for this config are already declared in the
-           preprocessor section: USE_STM324xG_EVAL, STM32F40XX, USE_STDPERIPH_DRIVER
+           preprocessor section: USE_STM324x9I_EVAL, STM32F429_439xx, USE_STDPERIPH_DRIVER
+
+    - STM32F427_437xx: to configure the project for STM32F427xx/437xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324x7I_EVAL, STM32F427_437xx, USE_STDPERIPH_DRIVER
            
-     - STM324x7I_EVAL: to configure the project for STM32F427x/437x devices.
+     - STM32F40_41xxx: to configure the project for STM32F40/41xxx devices.
      @note The needed define symbols for this config are already declared in the
-           preprocessor section: USE_STM324x7I_EVAL, STM32F427X, USE_STDPERIPH_DRIVER
-                    
+           preprocessor section: USE_STM324xG_EVAL, STM32F40_41xxx, USE_STDPERIPH_DRIVER
+           
+     - STM32F401xx: to configure the project for STM32F401xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: STM32F401xx, USE_STDPERIPH_DRIVER
+           
  - Rebuild all files: Project->Rebuild all
  - Load project image: Project->Download and Debug
  - Run program: Debug->Go(F5) 

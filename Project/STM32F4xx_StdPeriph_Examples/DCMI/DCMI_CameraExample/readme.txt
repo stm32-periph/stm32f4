@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    DCMI/DCMI_CameraExample/readme.txt 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Description of the DCMI Camera example.
   ******************************************************************************
   *
@@ -63,25 +63,39 @@ You can use the potentiometer RV1 to fine tune on the fly the camera's brightnes
     - DCMI/DCMI_CameraExample/system_stm32f4xx.c   STM32F4xx system clock configuration file
 
 
-@par Hardware and Software environment  
-  - This example runs on STM32F40xx/STM32F41xx, STM32F427x/STM32F437x Devices.
+@par Hardware and Software environment
+
+  - This example runs on STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx and devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices) and STM32437I-EVAL (STM32F427x/STM32F437x Devices) evaluation 
-    boards and can be easily tailored to any other supported device and development 
-    board.
-
+    STM32F41xx Devices) and STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) 
+    evaluation boards and can be easily tailored to any other supported device 
+    and development board.
 
 @par How to use it ?
 In order to make the program work, you must do the following :
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
- - Add the following files the project source list
+ - Select the project workspace related to the used device 
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
+     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c 
+     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_ioe.c 
+     - Utilities\STM32_EVAL\Common\lcd_log.c
+     - camera_api.c
+     - dcmi_ov2640.c
+     - dcmi_ov9655.c          
+      
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
+     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.c 
+     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_ioe.c
+     - Utilities\STM32_EVAL\Common\lcd_log.c    
      - camera_api.c
      - dcmi_ov2640.c
      - dcmi_ov9655.c
-     - Utilities\STM32_EVAL\Common\lcd_log.c
+
  - Rebuild all files and load your image into target memory
  - Run the example
 

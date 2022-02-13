@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RNG/RNG_MultiRNG/main.c
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -38,6 +38,36 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+
+#if defined (USE_STM324xG_EVAL)
+  #define MESSAGE1   "  To Generate 8x32bit RNG, Press Key  >>"
+  #define MESSAGE2   "*** RNG  Example ***"
+  #define MESSAGE3   "  Press KEY button " 
+  #define MESSAGE4   "     to START     "
+  #define MESSAGE5   "   [ 0x%08X ]   "
+  #define LINENUM            0x13
+  #define FONTSIZE         Font8x12
+
+#elif defined (USE_STM324x7I_EVAL) 
+  #define MESSAGE1   "  To Generate 8x32bit RNG, Press Key  >>"
+  #define MESSAGE2   "*** RNG  Example ***"
+  #define MESSAGE3   "  Press KEY button " 
+  #define MESSAGE4   "     to START     "
+  #define MESSAGE5   "   [ 0x%08X ]   "
+  #define LINENUM          0x13
+  #define FONTSIZE       Font8x12
+
+#else
+  #define MESSAGE1   "  To Generate 8x32bit RNG, Press Key  >>"
+  #define MESSAGE2   "******** RNG  Example ********"
+  #define MESSAGE3   "       Press KEY button       "
+  #define MESSAGE4   "           to START           "
+  #define MESSAGE5   "        [ 0x%08X ]        "
+  #define LINENUM           0x15
+  #define FONTSIZE        Font12x12
+  #define BUTTON_KEY      BUTTON_TAMPER
+#endif
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
@@ -67,7 +97,8 @@ int main(void)
 
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */
@@ -159,29 +190,48 @@ static void Display_Init(void)
 /* Initialize the LCD */
   LCD_Init();
 
+/* Display message on LCD ***************************************************/
+#if defined (USE_STM324x9I_EVAL) 
+  /* Initialize the LCD Layers */
+  LCD_LayerInit();
+  /* Enable The Display */
+  LCD_DisplayOn(); 
+  /* Set LCD Background Layer  */
+  LCD_SetLayer(LCD_BACKGROUND_LAYER);
+  /* Clear the Background Layer */ 
+  LCD_Clear(LCD_COLOR_WHITE);
+  
+  /* Set LCD Foreground Layer  */
+  LCD_SetLayer(LCD_FOREGROUND_LAYER);
+
+  /* Configure the transparency for foreground */
+  LCD_SetTransparency(100);
+#endif /* USE_STM324x9I_EVAL */  
+  
   /* Clear the LCD */ 
   LCD_Clear(White);
 
   /* Set the LCD Text size */
-  LCD_SetFont(&Font8x12);
+  LCD_SetFont(&FONTSIZE);
 
   /* Set the LCD Back Color and Text Color*/
   LCD_SetBackColor(Blue);
   LCD_SetTextColor(White);
-
-  LCD_DisplayStringLine(LINE(0x13), (uint8_t*)"  To generate 8x32bit RNG, Press Key  >>");
-
+  
+  LCD_DisplayStringLine(LINE(LINENUM), (uint8_t*)MESSAGE1);
+  LCD_DisplayStringLine(LINE(0x16), (uint8_t*)"                                         ");
+  
   /* Set the LCD Text size */
   LCD_SetFont(&Font16x24);
 
-  LCD_DisplayStringLine(LINE(0), (uint8_t*)"*** RNG  Example ***");
+  LCD_DisplayStringLine(LINE(0), (uint8_t*)MESSAGE2);
 
   /* Set the LCD Back Color and Text Color*/
   LCD_SetBackColor(White);
   LCD_SetTextColor(Blue); 
 
-  LCD_DisplayStringLine(LINE(3), (uint8_t*)"  Press KEY button ");
-  LCD_DisplayStringLine(LINE(5), (uint8_t*)"     to START     ");
+  LCD_DisplayStringLine(LINE(3), (uint8_t*)MESSAGE3);
+  LCD_DisplayStringLine(LINE(5), (uint8_t*)MESSAGE4);
 #endif
 }
 
@@ -206,7 +256,7 @@ static void Display(uint32_t rnumber, uint8_t line)
 #endif
 
 #ifdef PRINT_ON_LCD
-  sprintf((char*)text,"   [ 0x%08X ]   ", rnumber);
+  sprintf((char*)text, MESSAGE5, rnumber);
   LCD_DisplayStringLine(LINE(line),text);
 #endif
 }

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_EEPROM/main.h 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -45,11 +45,9 @@
 #endif
 
 /* Private define ------------------------------------------------------------*/
-/* used to display the ADC converted value on LCD */
+/* used to display the transfer status */
 #define USE_LCD
-  /* if you are not using the LCD, you can monitor the converted value by adding
-     the variable "uhADCxConvertedValue" to the debugger watch window */
-
+  
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/

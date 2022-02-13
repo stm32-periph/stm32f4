@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    HASH/HASH_SHA1MD5/stm32f4xx_it.h 
+  * @file    HASH/HASH_SHA1_MD5/stm32f4xx_it.h 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention

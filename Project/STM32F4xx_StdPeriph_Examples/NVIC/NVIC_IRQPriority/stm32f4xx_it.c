@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_IRQPriority/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -160,7 +160,7 @@ void SysTick_Handler(void)
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f4xx.s).                                               */
+/*  file (startup_stm32f40xx.s/startup_stm32f427x.s/startup_stm32f429x.s).    */
 /******************************************************************************/
 
 /**
@@ -195,7 +195,7 @@ void EXTI15_10_IRQHandler(void)
 {
   NVIC_InitTypeDef NVIC_InitStructure;
   
-  if(EXTI_GetITStatus(KEY_BUTTON_EXTI_LINE) != RESET)
+  if(EXTI_GetITStatus(BUTTON_EXTI_LINE) != RESET)
   {
     ubPreemptionPriorityValue = !ubPreemptionPriorityValue;
     ubPreemptionOccured = 0;
@@ -210,8 +210,8 @@ void EXTI15_10_IRQHandler(void)
     /* Configure the SysTick Handler Priority: Preemption priority and subpriority */
     NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(), !ubPreemptionPriorityValue, 0));    
 
-    /* Clear KEY_BUTTON_EXTI_LINE pending bit */
-    EXTI_ClearITPendingBit(KEY_BUTTON_EXTI_LINE);
+    /* Clear KEY_BUTTON_EXTI_LINE/TAMPER_BUTTON_EXTI_LINE pending bit */
+    EXTI_ClearITPendingBit(BUTTON_EXTI_LINE);
   }
 }
 

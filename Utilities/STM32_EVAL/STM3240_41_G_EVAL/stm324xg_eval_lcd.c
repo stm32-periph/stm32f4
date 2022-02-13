@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324xg_eval_lcd.c
   * @author  MCD Application Team
-  * @version V1.1.1
-  * @date    11-January-2013
+  * @version V1.1.2
+  * @date    19-September-2013
   * @brief   This file includes the LCD driver for AM-240320L8TNQW00H (LCD_ILI9320)
   *          and AM240320D5TOQW01H (LCD_ILI9325) Liquid Crystal Display Modules
   *          of STM324xG-EVAL evaluation board(MB786) RevB.

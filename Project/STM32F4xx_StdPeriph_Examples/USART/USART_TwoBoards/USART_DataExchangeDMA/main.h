@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeDMA/main.h
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -35,12 +35,16 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
+
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval.h"
 
 #elif defined (USE_STM324x7I_EVAL) 
   #include "stm324x7i_eval.h"
-   
+
+#elif defined (USE_STM324x9I_EVAL) 
+  #include "stm324x9i_eval.h"
+
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
@@ -153,6 +157,56 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
   #define USARTx_DMA_RX_IRQHandler         DMA1_Stream1_IRQHandler
 
 #endif /* USE_STM324x7I_EVAL */
+
+#if defined (USE_STM324x9I_EVAL)
+     
+  /* Definition for USARTx resources ********************************************/
+  #define USARTx                           USART1
+  #define USARTx_CLK                       RCC_APB2Periph_USART1
+  #define USARTx_CLK_INIT                  RCC_APB2PeriphClockCmd
+  #define USARTx_IRQn                      USART1_IRQn
+  #define USARTx_IRQHandler                USART1_IRQHandler
+
+  #define USARTx_TX_PIN                    GPIO_Pin_9                
+  #define USARTx_TX_GPIO_PORT              GPIOA                       
+  #define USARTx_TX_GPIO_CLK               RCC_AHB1Periph_GPIOA
+  #define USARTx_TX_SOURCE                 GPIO_PinSource9
+  #define USARTx_TX_AF                     GPIO_AF_USART1
+
+  #define USARTx_RX_PIN                    GPIO_Pin_10                
+  #define USARTx_RX_GPIO_PORT              GPIOA                    
+  #define USARTx_RX_GPIO_CLK               RCC_AHB1Periph_GPIOA
+  #define USARTx_RX_SOURCE                 GPIO_PinSource10
+  #define USARTx_RX_AF                     GPIO_AF_USART1
+
+  /* Definition for DMAx resources **********************************************/
+  #define USARTx_DR_ADDRESS                ((uint32_t)USART1 + 0x04) 
+
+  #define USARTx_DMA                       DMA2
+  #define USARTx_DMAx_CLK                  RCC_AHB1Periph_DMA2
+     
+  #define USARTx_TX_DMA_CHANNEL            DMA_Channel_4
+  #define USARTx_TX_DMA_STREAM             DMA2_Stream7
+  #define USARTx_TX_DMA_FLAG_FEIF          DMA_FLAG_FEIF7
+  #define USARTx_TX_DMA_FLAG_DMEIF         DMA_FLAG_DMEIF7
+  #define USARTx_TX_DMA_FLAG_TEIF          DMA_FLAG_TEIF7
+  #define USARTx_TX_DMA_FLAG_HTIF          DMA_FLAG_HTIF7
+  #define USARTx_TX_DMA_FLAG_TCIF          DMA_FLAG_TCIF7
+              
+  #define USARTx_RX_DMA_CHANNEL            DMA_Channel_4
+  #define USARTx_RX_DMA_STREAM             DMA2_Stream5
+  #define USARTx_RX_DMA_FLAG_FEIF          DMA_FLAG_FEIF5
+  #define USARTx_RX_DMA_FLAG_DMEIF         DMA_FLAG_DMEIF5
+  #define USARTx_RX_DMA_FLAG_TEIF          DMA_FLAG_TEIF5
+  #define USARTx_RX_DMA_FLAG_HTIF          DMA_FLAG_HTIF5
+  #define USARTx_RX_DMA_FLAG_TCIF          DMA_FLAG_TCIF5
+
+  #define USARTx_DMA_TX_IRQn               DMA2_Stream7_IRQn
+  #define USARTx_DMA_RX_IRQn               DMA2_Stream5_IRQn
+  #define USARTx_DMA_TX_IRQHandler         DMA2_Stream7_IRQHandler
+  #define USARTx_DMA_RX_IRQHandler         DMA2_Stream5_IRQHandler
+
+#endif /* USE_STM324x9I_EVAL */
 
 /* Misc definition ************************************************************/
 /* Transmit buffer size */

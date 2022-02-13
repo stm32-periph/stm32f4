@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DMA/DMA_FLASHToRAM/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -70,10 +70,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
-       To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f4xx.c file
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main.
      */     
 
   /* Configure LEDs to monitor program status */
@@ -93,8 +91,8 @@ int main(void)
      end of the transfer) .
      There is also another way to check on end of transfer by monitoring the 
      number of remaining data to be transferred. */
-  /* while (DMA_GetCurrentMemoryTarget(DMA_STREAM) != 0) */   /* First method */
-  while (DMA_GetCmdStatus(DMA_STREAM) != DISABLE)           /* Second method */
+  /* while (DMA_GetCurrentMemoryTarget(DMA_STREAM) != 0) */  /* First method */
+  while (DMA_GetCmdStatus(DMA_STREAM) != DISABLE)            /* Second method */
   {
     /*
        Since this code present a simple example of how to use DMA, it is just

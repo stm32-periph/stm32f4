@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    PWR/PWR_CurrentConsumption/stm32f4xx_lp_modes.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the STM32F4xx Low Power Modes:
   *           - Sleep Mode

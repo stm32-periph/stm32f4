@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    STM324x7i_eval_audio_codec.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file contains all the functions prototypes for the 
   *          STM324x7i_eval_audio_codec.c driver.
   ******************************************************************************
@@ -252,7 +252,7 @@ void EVAL_AUDIO_Error_CallBack(void* pData);
    Typically the user implementation of this callback should reset I2C peripheral
    and re-initialize communication or in worst case reset all the application. */
 uint32_t Codec_TIMEOUT_UserCallback(void);
- 
+void Audio_MAL_IRQHandler(void); 
 #endif /* __STM324x7I_EVAL_AUDIOCODEC_H */
 
 /**

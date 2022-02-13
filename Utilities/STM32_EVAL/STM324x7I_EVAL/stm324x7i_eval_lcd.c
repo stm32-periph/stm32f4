@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    STM324x7i_eval_lcd.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    11-January-2013
+  * @version V1.0.1
+  * @date    19-September-2013
   * @brief   This file includes the LCD driver for AM-240320L8TNQW00H (LCD_ILI9320)
   *          and AM240320D5TOQW01H (LCD_ILI9325) Liquid Crystal Display Modules
   *          of STM324x7I-EVAL evaluation board(MB786) RevB.
@@ -129,10 +129,10 @@ void LCD_DeInit(void)
   LCD_DisplayOff();
 
   /* BANK 3 (of NOR/SRAM Bank 1~4) is disabled */
-  FSMC_NORSRAMCmd(FSMC_Bank1_NORSRAM3, ENABLE);
+  FMC_NORSRAMCmd(FMC_Bank1_NORSRAM3, ENABLE);
   
   /*!< LCD_SPI DeInit */
-  FSMC_NORSRAMDeInit(FSMC_Bank1_NORSRAM3);
+  FMC_NORSRAMDeInit(FMC_Bank1_NORSRAM3);
    
 /*-- GPIO Configuration ------------------------------------------------------*/
   /* SRAM Data lines configuration */
@@ -237,8 +237,8 @@ void LCD_Init(void)
 /* Configure the LCD Control pins --------------------------------------------*/
   LCD_CtrlLinesConfig();
 
-/* Configure the FSMC Parallel interface -------------------------------------*/
-  LCD_FSMCConfig();
+/* Configure the FMC Parallel interface -------------------------------------*/
+  LCD_FMCConfig();
 
   _delay_(5); /* delay 50 ms */
 
@@ -1271,7 +1271,7 @@ void LCD_DisplayOff(void)
 }
 
 /**
-  * @brief  Configures LCD Control lines (FSMC Pins) in alternate function mode.
+  * @brief  Configures LCD Control lines (FMC Pins) in alternate function mode.
   * @param  None
   * @retval None
   */
@@ -1294,66 +1294,66 @@ void LCD_CtrlLinesConfig(void)
   GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 
   GPIO_Init(GPIOD, &GPIO_InitStructure);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource0, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource1, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource4, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource5, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource10, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_FSMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource0, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource1, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource4, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource5, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource10, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_FMC);
 
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 |
                                 GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | 
                                 GPIO_Pin_15;
   GPIO_Init(GPIOE, &GPIO_InitStructure);
 
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource7 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource8 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource9 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource10 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource11 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource12 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource13 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource14 , GPIO_AF_FSMC);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource15 , GPIO_AF_FSMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource7 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource8 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource9 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource10 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource11 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource12 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource13 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource14 , GPIO_AF_FMC);
+  GPIO_PinAFConfig(GPIOE, GPIO_PinSource15 , GPIO_AF_FMC);
 
   /* SRAM Address lines configuration */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
   GPIO_Init(GPIOF, &GPIO_InitStructure);  
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource0, GPIO_AF_FSMC);	   
+  GPIO_PinAFConfig(GPIOF, GPIO_PinSource0, GPIO_AF_FMC);	   
 
   /* NE3 configuration */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10; 
 
   GPIO_Init(GPIOG, &GPIO_InitStructure);
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, GPIO_AF_FSMC);
+  GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, GPIO_AF_FMC);
 }
 
 /**
-  * @brief  Configures the Parallel interface (FSMC) for LCD(Parallel mode)
+  * @brief  Configures the Parallel interface (FMC) for LCD(Parallel mode)
   * @param  None
   * @retval None
   */
-void LCD_FSMCConfig(void)
+void LCD_FMCConfig(void)
 {
-  FSMC_NORSRAMInitTypeDef  FSMC_NORSRAMInitStructure;
-  FSMC_NORSRAMTimingInitTypeDef  p;
+  FMC_NORSRAMInitTypeDef  FMC_NORSRAMInitStructure;
+  FMC_NORSRAMTimingInitTypeDef  p;
    
-  /* Enable FSMC clock */
-  RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FSMC, ENABLE);
+  /* Enable FMC clock */
+  RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_FMC, ENABLE);
   
-/*-- FSMC Configuration ------------------------------------------------------*/
+/*-- FMC Configuration ------------------------------------------------------*/
 /*----------------------- SRAM Bank 3 ----------------------------------------*/
-  /* FSMC_Bank1_NORSRAM4 configuration */
-  p.FSMC_AddressSetupTime = 5;
-  p.FSMC_AddressHoldTime = 0;
-  p.FSMC_DataSetupTime = 9;
-  p.FSMC_BusTurnAroundDuration = 0;
-  p.FSMC_CLKDivision = 0;
-  p.FSMC_DataLatency = 0;
-  p.FSMC_AccessMode = FSMC_AccessMode_A;
+  /* FMC_Bank1_NORSRAM4 configuration */
+  p.FMC_AddressSetupTime = 5;
+  p.FMC_AddressHoldTime = 1;
+  p.FMC_DataSetupTime = 9;
+  p.FMC_BusTurnAroundDuration = 0;
+  p.FMC_CLKDivision = 1;
+  p.FMC_DataLatency = 0;
+  p.FMC_AccessMode = FMC_AccessMode_A;
   /* Color LCD configuration ------------------------------------
      LCD configured as follow:
         - Data/Address MUX = Disable
@@ -1363,26 +1363,27 @@ void LCD_FSMCConfig(void)
         - Extended Mode = Enable
         - Asynchronous Wait = Disable */
 
-  FSMC_NORSRAMInitStructure.FSMC_Bank = FSMC_Bank1_NORSRAM3;
-  FSMC_NORSRAMInitStructure.FSMC_DataAddressMux = FSMC_DataAddressMux_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_MemoryType = FSMC_MemoryType_SRAM;
-  FSMC_NORSRAMInitStructure.FSMC_MemoryDataWidth = FSMC_MemoryDataWidth_16b;
-  FSMC_NORSRAMInitStructure.FSMC_BurstAccessMode = FSMC_BurstAccessMode_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_AsynchronousWait = FSMC_AsynchronousWait_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_WaitSignalPolarity = FSMC_WaitSignalPolarity_Low;
-  FSMC_NORSRAMInitStructure.FSMC_WrapMode = FSMC_WrapMode_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_WaitSignalActive = FSMC_WaitSignalActive_BeforeWaitState;
-  FSMC_NORSRAMInitStructure.FSMC_WriteOperation = FSMC_WriteOperation_Enable;
-  FSMC_NORSRAMInitStructure.FSMC_WaitSignal = FSMC_WaitSignal_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_ExtendedMode = FSMC_ExtendedMode_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_WriteBurst = FSMC_WriteBurst_Disable;
-  FSMC_NORSRAMInitStructure.FSMC_ReadWriteTimingStruct = &p;
-  FSMC_NORSRAMInitStructure.FSMC_WriteTimingStruct = &p;
+  FMC_NORSRAMInitStructure.FMC_Bank = FMC_Bank1_NORSRAM3;
+  FMC_NORSRAMInitStructure.FMC_DataAddressMux = FMC_DataAddressMux_Disable;
+  FMC_NORSRAMInitStructure.FMC_MemoryType = FMC_MemoryType_SRAM;
+  FMC_NORSRAMInitStructure.FMC_MemoryDataWidth = FMC_NORSRAM_MemoryDataWidth_16b;
+  FMC_NORSRAMInitStructure.FMC_BurstAccessMode = FMC_BurstAccessMode_Disable;
+  FMC_NORSRAMInitStructure.FMC_AsynchronousWait = FMC_AsynchronousWait_Disable;
+  FMC_NORSRAMInitStructure.FMC_WaitSignalPolarity = FMC_WaitSignalPolarity_Low;
+  FMC_NORSRAMInitStructure.FMC_WrapMode = FMC_WrapMode_Disable;
+  FMC_NORSRAMInitStructure.FMC_WaitSignalActive = FMC_WaitSignalActive_BeforeWaitState;
+  FMC_NORSRAMInitStructure.FMC_WriteOperation = FMC_WriteOperation_Enable;
+  FMC_NORSRAMInitStructure.FMC_WaitSignal = FMC_WaitSignal_Disable;
+  FMC_NORSRAMInitStructure.FMC_ExtendedMode = FMC_ExtendedMode_Disable;
+  FMC_NORSRAMInitStructure.FMC_WriteBurst = FMC_WriteBurst_Disable;
+  FMC_NORSRAMInitStructure.FMC_ContinousClock = FMC_CClock_SyncOnly;
+  FMC_NORSRAMInitStructure.FMC_ReadWriteTimingStruct = &p;
+  FMC_NORSRAMInitStructure.FMC_WriteTimingStruct = &p;
 
-  FSMC_NORSRAMInit(&FSMC_NORSRAMInitStructure);   
+  FMC_NORSRAMInit(&FMC_NORSRAMInitStructure);   
 
-  /* Enable FSMC NOR/SRAM Bank3 */
-  FSMC_NORSRAMCmd(FSMC_Bank1_NORSRAM3, ENABLE);
+  /* Enable FMC NOR/SRAM Bank3 */
+  FMC_NORSRAMCmd(FMC_Bank1_NORSRAM3, ENABLE);
 }
 
 /**

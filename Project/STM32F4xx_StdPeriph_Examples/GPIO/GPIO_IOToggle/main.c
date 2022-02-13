@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    GPIO/GPIO_IOToggle/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -54,8 +54,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */  
@@ -64,7 +64,7 @@ int main(void)
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
 
   /* Configure PG6 and PG8 in output pushpull mode */
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_8;
+  GPIO_InitStructure.GPIO_Pin = LED1_PIN | LED2_PIN;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -79,54 +79,54 @@ int main(void)
   while (1)
   {
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
 
     /* Set PG6 and PG8 */
-    GPIOG->BSRRL = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRL = LED1_PIN | LED2_PIN;
     /* Reset PG6 and PG8 */
-    GPIOG->BSRRH = GPIO_Pin_6 | GPIO_Pin_8;
+    GPIOG->BSRRH = LED1_PIN | LED2_PIN;
   }
 }
 

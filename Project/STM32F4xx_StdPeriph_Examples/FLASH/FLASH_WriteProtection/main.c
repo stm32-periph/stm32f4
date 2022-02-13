@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FLASH/FLASH_WriteProtection/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -56,8 +56,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main.
+       file (startup_stm32f40xx.s/startup_stm32f427x.s/startup_stm32f429x.s)  
+       before to branch to application main.
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */     

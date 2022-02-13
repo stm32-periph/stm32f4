@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SysTick/SysTick_Example/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -41,7 +41,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 GPIO_InitTypeDef GPIO_InitStructure;
-static __IO uint32_t uwTimingDelay;
+static __IO uint32_t TimingDelay;
 
 /* Private function prototypes -----------------------------------------------*/
 static void Delay(__IO uint32_t nTime);   
@@ -57,8 +57,8 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */       
@@ -90,7 +90,7 @@ int main(void)
 
     3. You can change the SysTick IRQ priority by calling the
        NVIC_SetPriority(SysTick_IRQn,...) just after the SysTick_Config() function 
-       call. The NVIC_SetPriority() is defined inside the core_cm4.h file.
+       call. The NVIC_SetPriority() is defined inside the core_cm3.h file.
 
     4. To adjust the SysTick time base, use the following formula:
                             
@@ -130,9 +130,9 @@ int main(void)
   */
 void Delay(__IO uint32_t nTime)
 { 
-  uwTimingDelay = nTime;
+  TimingDelay = nTime;
 
-  while(uwTimingDelay != 0);
+  while(TimingDelay != 0);
 }
 
 /**
@@ -142,9 +142,9 @@ void Delay(__IO uint32_t nTime)
   */
 void TimingDelay_Decrement(void)
 {
-  if (uwTimingDelay != 0)
+  if (TimingDelay != 0)
   { 
-    uwTimingDelay--;
+    TimingDelay--;
   }
 }
 

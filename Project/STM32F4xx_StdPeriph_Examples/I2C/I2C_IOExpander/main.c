@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_IOExpander/main.c 
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    18-January-2013
+  * @version V1.2.0
+  * @date    19-September-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -54,17 +54,15 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
-       application main. 
-       To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f4xx.c file
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       before to branch to application main.
      */     
 
   /* SysTick end of count event each 10ms */
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
          
-  /* Initialize LEDs and push-buttons mounted on STM324xG-EVAL board */
+  /* Initialize LEDs and push-buttons mounted on STM324x9I-EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
@@ -73,26 +71,34 @@ int main(void)
   /* Select the Button test mode (polling or interrupt) BUTTON_MODE in main.h */
   STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE);
   STM_EVAL_PBInit(BUTTON_TAMPER, BUTTON_MODE);
-  STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE);
 
   /* Initialize the LCD */
   LCD_Init();
- 
+
+  /* Initialize the LCD Layers */
+  LCD_LayerInit();  
+  
+  /* Enable LCD display */
+  LCD_DisplayOn();
+  
+  /* Set foreground layer */
+  LCD_SetLayer(LCD_FOREGROUND_LAYER);
+  
   /* Clear the LCD */ 
   LCD_Clear(White);
   /* Set the LCD Back Color */
-  LCD_SetBackColor(Blue);
+  LCD_SetBackColor(White);
   /* Set the LCD Text Color */
-  LCD_SetTextColor(White);    
+  LCD_SetTextColor(Blue);    
  
-  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t *)"   STM324xG-EVAL    ");
-  LCD_DisplayStringLine(LCD_LINE_1, (uint8_t *)"  Example on how to ");
-  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t *)" use the IO Expander");
+  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t *)"        STM324x9I-EVAL    ");
+  LCD_DisplayStringLine(LCD_LINE_1, (uint8_t *)"      Example on how to   ");
+  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t *)"     use the IO Expander  ");
   
   /* Configure the IO Expander */
-  if (IOE_Config() == IOE_OK)
+  if (IOE_Config() == IOE_OK && IOE16_Config() == IOE16_OK)
   {
-    LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"   IO Expander OK   ");
+    LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"      IO Expander OK   ");
   }
   else
   {
@@ -105,17 +111,28 @@ int main(void)
 
   /* Leds Control blocks */
   LCD_SetTextColor(Blue);
-  LCD_DrawRect(180, 310, 40, 60);
+  LCD_DrawRect(310, 180,  40, 60);
   LCD_SetTextColor(Red);
-  LCD_DrawRect(180, 230, 40, 60);
+  LCD_DrawRect(230, 180, 40, 60);
   LCD_SetTextColor(Yellow);
-  LCD_DrawRect(180, 150, 40, 60);
+  LCD_DrawRect(150, 180, 40, 60);
   LCD_SetTextColor(Green);
-  LCD_DrawRect(180, 70, 40, 60);
+  LCD_DrawRect(70, 180, 40, 60);
 
 #ifdef IOE_INTERRUPT_MODE
-  /* Enable the Touch Screen and Joystick interrupts */
-  IOE_ITConfig(IOE_ITSRC_JOYSTICK | IOE_ITSRC_TSC); 
+  /* Configure motherboard interrupt source IO_EXP4 */ 
+  IOE16_IOPinConfig(IOE16_TS_IT,Direction_IN);
+  IOE16_ITConfig(IOE16_TS_IT);
+  
+  /* Enable joystick interrupt */
+  IOE16_ITConfig(JOY_IO16_PINS);
+  
+  /* Enable the Touch Screen interrupt */
+  IOE_TSITConfig(); 
+  
+  /* Read IOs state to let IO interrupt occur */
+  IOE16_I2C_ReadDeviceRegister(IOE16_REG_GPMR_LSB);
+  IOE16_I2C_ReadDeviceRegister(IOE16_REG_GPMR_MSB);
 #endif /* IOE_INTERRUPT_MODE */
   
   
@@ -126,7 +143,10 @@ int main(void)
     static TS_STATE* TS_State;
     
     /* Get the Joystick State */
-    JoyState = IOE_JoyStickGetState();
+    JoyState = IOE16_JoyStickGetState();
+    
+    /* Set the LCD Text Color */
+    LCD_SetTextColor(Blue); 
    
     switch (JoyState)
     {
@@ -156,26 +176,30 @@ int main(void)
     /* Update the structure with the current position */
     TS_State = IOE_TS_GetState();  
     
-    if ((TS_State->TouchDetected) && (TS_State->Y < 220) && (TS_State->Y > 180))
+    if ((TS_State->TouchDetected) && (TS_State->Y < 92) && (TS_State->Y > 52))
     {
-      if ((TS_State->X > 10) && (TS_State->X < 70))
+      if ((TS_State->X > 60) && (TS_State->X < 120))
       {
-        LCD_DisplayStringLine(LCD_LINE_6, (uint8_t *)" LD4                ");
+        LCD_SetTextColor(LCD_COLOR_GREEN);   
+        LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"     LD1                ");
         STM_EVAL_LEDOn(LED4);
       }
-      else if ((TS_State->X > 90) && (TS_State->X < 150))
+      else if ((TS_State->X > 140) && (TS_State->X < 200))
       {
-        LCD_DisplayStringLine(LCD_LINE_6, (uint8_t *)"      LD3           ");
+        LCD_SetTextColor(LCD_COLOR_YELLOW); 
+        LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"          LD2           ");
         STM_EVAL_LEDOn(LED3);
       }
-      else if ((TS_State->X > 170) && (TS_State->X < 230))
+      else if ((TS_State->X > 220) && (TS_State->X < 280))
       {
-        LCD_DisplayStringLine(LCD_LINE_6, (uint8_t *)"           LD2      ");
+        LCD_SetTextColor(LCD_COLOR_RED); 
+        LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"               LD3      ");
         STM_EVAL_LEDOn(LED2);
       }     
-      else if ((TS_State->X > 250) && (TS_State->X < 310))
+      else if ((TS_State->X > 300) && (TS_State->X < 360))
       {
-        LCD_DisplayStringLine(LCD_LINE_6, (uint8_t *)"                LD1 ");
+        LCD_SetTextColor(LCD_COLOR_BLUE); 
+        LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"                    LD4 ");
         STM_EVAL_LEDOn(LED1);
       }
     }
@@ -192,20 +216,15 @@ int main(void)
     /* Insert 10 ms delay */
     Delay(1);
     
-    if (STM_EVAL_PBGetState(BUTTON_KEY) == 0)
-    {
-      /* Toggle LD1 */
-      STM_EVAL_LEDToggle(LED1);
-
-      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol:   KEY Pressed  ");
-    }
+    /* Set the LCD Text Color */
+    LCD_SetTextColor(Blue); 
 
     if (STM_EVAL_PBGetState(BUTTON_TAMPER) == 0)
     {
       /* Toggle LD2 */
       STM_EVAL_LEDToggle(LED2);
 
-      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol: TAMPER Pressed ");
+      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol: TAMPER/KEY Pressed ");
     }
 
     if (STM_EVAL_PBGetState(BUTTON_WAKEUP) != 0)
