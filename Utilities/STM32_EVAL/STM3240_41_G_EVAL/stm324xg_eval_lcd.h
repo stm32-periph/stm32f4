@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm324xg_eval_lcd.h
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    09-March-2012
+  * @version V1.1.1
+  * @date    11-January-2013
   * @brief   This file contains all the functions prototypes for the stm324xg_eval_lcd.c
   *          driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -264,6 +264,11 @@ typedef struct
 #define LCD_PIXEL_WIDTH          0x0140
 #define LCD_PIXEL_HEIGHT         0x00F0
 
+/** 
+  * @brief  Old LCD Initialization function name, maintenated for legacy purpose  
+  */ 
+#define STM324xG_LCD_Init      LCD_Init
+
 /**
   * @}
   */ 
@@ -283,7 +288,7 @@ typedef struct
   * @{
   */
 void LCD_DeInit(void);   
-void STM324xG_LCD_Init(void);
+void LCD_Init(void);
 void LCD_SetColors(__IO uint16_t _TextColor, __IO uint16_t _BackColor); 
 void LCD_GetColors(__IO uint16_t *_TextColor, __IO uint16_t *_BackColor);
 void LCD_SetTextColor(__IO uint16_t Color);

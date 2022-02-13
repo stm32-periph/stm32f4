@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    CRC/CRC_Example/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
+#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -42,7 +42,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-static const uint32_t DataBuffer[BUFFER_SIZE] =
+static const uint32_t aDataBuffer[BUFFER_SIZE] =
   {
     0x00001021, 0x20423063, 0x408450a5, 0x60c670e7, 0x9129a14a, 0xb16bc18c,
     0xd1ade1ce, 0xf1ef1231, 0x32732252, 0x52b54294, 0x72f762d6, 0x93398318,
@@ -65,7 +65,7 @@ static const uint32_t DataBuffer[BUFFER_SIZE] =
     0xdf7caf9b, 0xbfba8fd9, 0x9ff86e17, 0x7e364e55, 0x2e933eb2, 0x0ed11ef0
   };
 
-__IO uint32_t CRCValue = 0;
+__IO uint32_t uwCRCValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -79,16 +79,17 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
-        system_stm32f4xx.c file
+       system_stm32f4xx.c file
      */
 
   /* Enable CRC clock */
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_CRC, ENABLE);
 
   /* Compute the CRC of "DataBuffer" */
-  CRCValue = CRC_CalcBlockCRC((uint32_t *)DataBuffer, BUFFER_SIZE);
+  uwCRCValue = CRC_CalcBlockCRC((uint32_t *)aDataBuffer, BUFFER_SIZE);
 
   while (1)
   {

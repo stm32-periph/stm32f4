@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    WWDG/WWDG_Example/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,8 +26,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
-#include "stm324xg_eval.h"
+#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -41,10 +40,10 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-__IO uint32_t TimingDelay = 0;
+__IO uint32_t uwTimingDelay = 0;
 
 /* Private function prototypes -----------------------------------------------*/
-void Delay(__IO uint32_t nTime);
+static void Delay(__IO uint32_t nTime);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -57,12 +56,13 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
-        system_stm32f4xx.c file
+       system_stm32f4xx.c file
      */     
        
-   /* Initialize LEDs and Key Button mounted on STM324xG-EVAL board */       
+   /* Initialize LEDs and Key Button mounted on EVAL board */       
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_EXTI);
@@ -103,7 +103,8 @@ int main(void)
   WWDG_SetWindowValue(80);
 
   /* Enable WWDG and set counter value to 127, WWDG timeout = ~780 us * 64 = 49.92 ms 
-    In this case the refresh window is: ~780 * (127-80) = 36.6ms < refresh window < ~780 * 64 = 49.9ms
+     In this case the refresh window is: 
+           ~780 * (127-80) = 36.6ms < refresh window < ~780 * 64 = 49.9ms
   */
   WWDG_Enable(127);
    
@@ -125,11 +126,11 @@ int main(void)
   * @param  nTime: specifies the delay time length, in milliseconds.
   * @retval None
   */
-void Delay(__IO uint32_t nTime)
+static void Delay(__IO uint32_t nTime)
 { 
-  TimingDelay = nTime;
+  uwTimingDelay = nTime;
 
-  while(TimingDelay != 0);
+  while(uwTimingDelay != 0);
 }
 
 #ifdef  USE_FULL_ASSERT

@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    Lib_DEBUG/Lib_DEBUG_Example/stm32f4xx_ip_dbg.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   This file provides all peripherals pointers initialization.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -99,6 +99,13 @@ SDIO_TypeDef        * SDIO_DBG;
 SPI_TypeDef         * SPI1_DBG;
 SPI_TypeDef         * SPI2_DBG;
 SPI_TypeDef         * SPI3_DBG;
+
+#ifdef STM32F427X
+SPI_TypeDef         * SPI4_DBG;
+SPI_TypeDef         * SPI5_DBG;
+SPI_TypeDef         * SPI6_DBG;
+#endif /* STM32F427X */
+
 SYSCFG_TypeDef      * SYSCFG_DBG;
 TIM_TypeDef         * TIM1_DBG;
 TIM_TypeDef         * TIM2_DBG;
@@ -120,6 +127,12 @@ USART_TypeDef       * USART3_DBG;
 USART_TypeDef       * UART4_DBG;
 USART_TypeDef       * UART5_DBG;
 USART_TypeDef       * USART6_DBG;
+
+#ifdef STM32F427X
+USART_TypeDef       * UART7_DBG;
+USART_TypeDef       * UART8_DBG;
+#endif /* STM32F427X */
+
 WWDG_TypeDef        * WWDG_DBG;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -234,7 +247,12 @@ void IP_Debug(void)
   SPI1_DBG = (SPI_TypeDef *)  SPI1_BASE;
   SPI2_DBG = (SPI_TypeDef *)  SPI2_BASE;
   SPI3_DBG = (SPI_TypeDef *)  SPI3_BASE;
-
+  
+#ifdef STM32F427X  
+  SPI4_DBG = (SPI_TypeDef *)  SPI4_BASE;
+  SPI5_DBG = (SPI_TypeDef *)  SPI5_BASE;
+  SPI6_DBG = (SPI_TypeDef *)  SPI6_BASE;
+#endif /* STM32F427X */
 /************************************* SYSCFG *********************************/
   SYSCFG_DBG = (SYSCFG_TypeDef *)  SYSCFG_BASE;
 
@@ -262,6 +280,12 @@ void IP_Debug(void)
   UART5_DBG  = (USART_TypeDef *)  UART5_BASE;
   USART6_DBG = (USART_TypeDef *)  USART6_BASE;
 
+#ifdef STM32F427X  
+  USART6_DBG = (USART_TypeDef *)  USART6_BASE;
+  UART7_DBG  = (USART_TypeDef *)  UART7_BASE;
+  UART8_DBG  = (USART_TypeDef *)  UART8_BASE;
+#endif /* STM32F427X */
+  
 /************************************* WWDG************************************/
   WWDG_DBG = (WWDG_TypeDef *)  WWDG_BASE;
 }

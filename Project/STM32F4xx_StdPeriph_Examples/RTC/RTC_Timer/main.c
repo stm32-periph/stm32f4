@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    RTC/RTC_Timer/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -41,13 +41,15 @@
 #define MESSAGE1   "*** Progress Bar ***" 
 #define MESSAGE2   "WAKEUP     TAMPER     KEY " 
 #define MESSAGE3   " Reset      Stop     Start" 
-
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-RTC_InitTypeDef RTC_InitStructure;
+RTC_InitTypeDef  RTC_InitStructure;
 RTC_TimeTypeDef  RTC_TimeStruct;
 
 /* Private function prototypes -----------------------------------------------*/
+static void RTC_Config(void);
+static void RTC_AlarmConfig(void);
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -59,14 +61,15 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */  
   
   /* Initialize the LCD */
-  STM324xG_LCD_Init(); 
-
+  LCD_Init(); 
+  
   /* Clear the LCD */ 
   LCD_Clear(White);
 
@@ -76,7 +79,7 @@ int main(void)
   /* Set the LCD Text Color */
   LCD_SetTextColor(White);
    
-  /* Displays MESSAGE1 on line 1 */
+  /* Displays MESSAGE1 on line 0 */
   LCD_DisplayStringLine(LINE(0), (uint8_t *)MESSAGE1);
 
   /* RTC configuration */
@@ -93,7 +96,7 @@ int main(void)
   STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
   STM_EVAL_PBInit(BUTTON_TAMPER, BUTTON_MODE_EXTI);  
      
-  /* Configure RTC AlarmA register to generate 8 interrupts per 1 Second */
+  /* Configure RTC alarm A register to generate 8 interrupts per 1 Second */
   RTC_AlarmConfig();
   
   /* set LCD Font */
@@ -111,8 +114,7 @@ int main(void)
 
   /* Infinite loop */
   while (1)
-  {
-  }
+  {}
 }
 
 /**
@@ -120,7 +122,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void RTC_Config(void)
+static void RTC_Config(void)
 {
   /* Enable the PWR clock */
   RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
@@ -144,6 +146,7 @@ void RTC_Config(void)
   RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);
 
   /* Configure the RTC data register and RTC prescaler */
+  /* ck_spre(1Hz) = RTCCLK(LSI) /(AsynchPrediv + 1)*(SynchPrediv + 1)*/
   RTC_InitStructure.RTC_AsynchPrediv = 0x7F;
   RTC_InitStructure.RTC_SynchPrediv  = 0xFF;
   RTC_InitStructure.RTC_HourFormat   = RTC_HourFormat_24;
@@ -151,11 +154,10 @@ void RTC_Config(void)
   
   /* Set the time to 00h 00mn 00s AM */
   RTC_TimeStruct.RTC_H12     = RTC_H12_AM;
-  RTC_TimeStruct.RTC_Hours   = 0x00;
-  RTC_TimeStruct.RTC_Minutes = 0x00;
-  RTC_TimeStruct.RTC_Seconds = 0x00;  
+  RTC_TimeStruct.RTC_Hours   = 0;
+  RTC_TimeStruct.RTC_Minutes = 0;
+  RTC_TimeStruct.RTC_Seconds = 0;  
   RTC_SetTime(RTC_Format_BCD, &RTC_TimeStruct);
-  
 }
 
 /**
@@ -163,7 +165,7 @@ void RTC_Config(void)
   * @param  None
   * @retval None
   */
-void RTC_AlarmConfig(void)
+static void RTC_AlarmConfig(void)
 {
   EXTI_InitTypeDef EXTI_InitStructure;
   RTC_AlarmTypeDef RTC_AlarmStructure;
@@ -184,16 +186,15 @@ void RTC_AlarmConfig(void)
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
  
-  /* Set the alarmA Masks */
+  /* Set the alarm A Masks */
   RTC_AlarmStructure.RTC_AlarmMask = RTC_AlarmMask_All;
   RTC_SetAlarm(RTC_Format_BCD, RTC_Alarm_A, &RTC_AlarmStructure);
   
-  /* Set AlarmA subseconds and enable SubSec Alarm : generate 8 interripts per Second */
+  /* Set alarm A sub seconds and enable SubSec Alarm : generate 8 interrupts per Second */
   RTC_AlarmSubSecondConfig(RTC_Alarm_A, 0xFF, RTC_AlarmSubSecondMask_SS14_5);
 
-  /* Enable AlarmA interrupt */
+  /* Enable alarm A interrupt */
   RTC_ITConfig(RTC_IT_ALRA, ENABLE);
-
 }
 
 #ifdef  USE_FULL_ASSERT

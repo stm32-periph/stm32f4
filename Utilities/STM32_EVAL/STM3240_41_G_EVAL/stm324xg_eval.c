@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324xg_eval.c
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    09-March-2012
+  * @version V1.1.1
+  * @date    11-January-2013
   * @brief   This file provides
   *            - set of firmware functions to manage Leds, push-button and COM ports
   *            - low level initialization functions for SD card (on SDIO) and
@@ -13,7 +13,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -430,7 +430,7 @@ void SD_LowLevel_Init(void)
 
   /* Configure PC.08, PC.09, PC.10, PC.11 pins: D0, D1, D2, D3 pins */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_25MHz;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
@@ -480,7 +480,7 @@ void SD_LowLevel_DMA_TxConfig(uint32_t *BufferSRC, uint32_t BufferSize)
   SDDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)SDIO_FIFO_ADDRESS;
   SDDMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)BufferSRC;
   SDDMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
-  SDDMA_InitStructure.DMA_BufferSize = 0;
+  SDDMA_InitStructure.DMA_BufferSize = BufferSize;
   SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   SDDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   SDDMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
@@ -522,7 +522,7 @@ void SD_LowLevel_DMA_RxConfig(uint32_t *BufferDST, uint32_t BufferSize)
   SDDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)SDIO_FIFO_ADDRESS;
   SDDMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)BufferDST;
   SDDMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
-  SDDMA_InitStructure.DMA_BufferSize = 0;
+  SDDMA_InitStructure.DMA_BufferSize = BufferSize;
   SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   SDDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   SDDMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
@@ -612,7 +612,7 @@ void sEE_LowLevel_Init(void)
   
   /* Release reset signal of sEE_I2C IP */
   RCC_APB1PeriphResetCmd(sEE_I2C_CLK, DISABLE);
-    
+ 
   /*!< GPIO configuration */
   /* Connect PXx to I2C_SCL*/
   GPIO_PinAFConfig(sEE_I2C_SCL_GPIO_PORT, sEE_I2C_SCL_SOURCE, sEE_I2C_SCL_AF);

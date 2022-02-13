@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    RTC/RTC_StopWatch/main.h 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -30,10 +30,18 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
-#include "stm324xg_eval.h"
-#include "stm324xg_eval_lcd.h"
-#include <stdio.h>
+
+#if defined (USE_STM324xG_EVAL)
+  #include "stm324xg_eval.h"
+  #include "stm324xg_eval_lcd.h"
+
+#elif defined (USE_STM324x7I_EVAL) 
+  #include "stm324x7i_eval.h"
+  #include "stm324x7i_eval_lcd.h"
+
+#else
+ #error "Please select first the Evaluation board used in your application (in Project Options)"
+#endif
 
 /* Exported types ------------------------------------------------------------*/
 typedef struct {
@@ -43,10 +51,9 @@ typedef struct {
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-void RTC_Config(void);
-void RTC_Time_display(uint8_t Line,__IO uint16_t Color_x,Table_TypeDef table );
-Table_TypeDef RTC_Get_Time(uint32_t Second_fraction , RTC_TimeTypeDef* RTC_TimeStructure );
-void RTC_TamperConfig(void);
+Table_TypeDef RTC_Get_Time(uint32_t Second_fraction , RTC_TimeTypeDef* RTC_TimeStructure);
+void          RTC_Time_display(uint8_t Line,uint16_t Color_x,Table_TypeDef table );
+
 
 #endif /* __MAIN_H */
 

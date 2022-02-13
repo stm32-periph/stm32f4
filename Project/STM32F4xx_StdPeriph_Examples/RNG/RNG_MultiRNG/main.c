@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    RNG/RNG_MultiRNG/main.c
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,10 +26,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
-#include "stm324xg_eval.h"
-#include "stm324xg_eval_lcd.h"
-#include <stdio.h>
+#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -40,17 +37,13 @@
   */ 
 
 /* Private typedef -----------------------------------------------------------*/
-
-//#define PRINT_ON_USART
-#define PRINT_ON_LCD
-
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
-void RNG_Config(void);
-void Display_Init(void);
-void Display(uint32_t rng, uint8_t line);
+static void RNG_Config(void);
+static void Display_Init(void);
+static void Display(uint32_t rng, uint8_t line);
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -70,7 +63,7 @@ void Display(uint32_t rng, uint8_t line);
 int main(void)
 {
  uint32_t random32bit = 0;
- uint8_t Counter = 0;
+ uint32_t counter = 0;
 
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
@@ -99,7 +92,7 @@ int main(void)
     {
     }
 
-    for(Counter = 0; Counter < 8; Counter++)
+    for(counter = 0; counter < 8; counter++)
     {
       /* Wait until one RNG number is ready */
       while(RNG_GetFlagStatus(RNG_FLAG_DRDY)== RESET)
@@ -110,7 +103,7 @@ int main(void)
       random32bit = RNG_GetRandomNumber();
 
       /* Display the Random number value on the LCD or/and USART */
-      Display(random32bit, Counter+1);
+      Display(random32bit, counter+1);
     }
   }
 }
@@ -120,7 +113,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void RNG_Config(void)
+static void RNG_Config(void)
 {  
  /* Enable RNG clock source */
   RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_RNG, ENABLE);
@@ -134,7 +127,7 @@ void RNG_Config(void)
   * @param  None
   * @retval None
   */
-void Display_Init(void)
+static void Display_Init(void)
 {
 #ifdef PRINT_ON_USART 
 
@@ -164,7 +157,7 @@ void Display_Init(void)
 
 #ifdef PRINT_ON_LCD  
 /* Initialize the LCD */
-  STM324xG_LCD_Init();
+  LCD_Init();
 
   /* Clear the LCD */ 
   LCD_Clear(White);
@@ -176,19 +169,19 @@ void Display_Init(void)
   LCD_SetBackColor(Blue);
   LCD_SetTextColor(White);
 
-  LCD_DisplayStringLine(LINE(0x13), "  To generate 8x32bit RNG, Press Key  >>");
+  LCD_DisplayStringLine(LINE(0x13), (uint8_t*)"  To generate 8x32bit RNG, Press Key  >>");
 
   /* Set the LCD Text size */
   LCD_SetFont(&Font16x24);
 
-  LCD_DisplayStringLine(LINE(0), "*** RNG  Example ***");
+  LCD_DisplayStringLine(LINE(0), (uint8_t*)"*** RNG  Example ***");
 
   /* Set the LCD Back Color and Text Color*/
   LCD_SetBackColor(White);
   LCD_SetTextColor(Blue); 
 
-  LCD_DisplayStringLine(LINE(3),"  Press KEY button ");
-  LCD_DisplayStringLine(LINE(5),"     to START     ");
+  LCD_DisplayStringLine(LINE(3), (uint8_t*)"  Press KEY button ");
+  LCD_DisplayStringLine(LINE(5), (uint8_t*)"     to START     ");
 #endif
 }
 
@@ -198,7 +191,7 @@ void Display_Init(void)
   * @param  line: LCD line number
   * @retval None
   */
-void Display(uint32_t rnumber, uint8_t line)
+static void Display(uint32_t rnumber, uint8_t line)
 {
 #ifdef PRINT_ON_LCD
   uint8_t text[50];

@@ -6,6 +6,7 @@
 
 
 
+
   
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -94,7 +95,7 @@ div.Section1
             <h1 style="margin-bottom: 18pt; text-align: center;" align="center"><span style="font-size: 20pt; font-family: Verdana; color: rgb(51, 102, 255);">Release
 Notes for STM3240_41_G_EVAL Evaluation Board Drivers</span><span style="font-size: 20pt; font-family: Verdana;"><o:p></o:p></span></h1>
             <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial; color: black;">Copyright
-2012 STMicroelectronics</span><span style="color: black;"><u1:p></u1:p><o:p></o:p></span></p>
+2013 STMicroelectronics</span><span style="color: black;"><u1:p></u1:p><o:p></o:p></span></p>
             <p class="MsoNormal" style="text-align: center;" align="center"><span style="font-size: 10pt; font-family: Arial; color: black;"><img alt="" id="_x0000_i1025" src="../../../_htmresc/logo.bmp" style="border: 0px solid ; width: 86px; height: 65px;"></span><span style="font-size: 10pt;"><o:p></o:p></span></p>
             </td>
           </tr>
@@ -113,7 +114,45 @@ update History</a><o:p></o:p></span></li>
             </ol>
             <span style="font-family: &quot;Times New Roman&quot;;">
             </span>
-            <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">STM3240_41_G_EVAL Evaluation Board Drivers update History</span></h2><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 167px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.2 / 09-March-2012<o:p></o:p></span></h3>
+            <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">STM3240_41_G_EVAL Evaluation Board Drivers update History</span></h2><br><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 167px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.1.1 / 11-January-2013<o:p></o:p></span></h3>
+
+
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes<o:p></o:p></span></u></b></p>
+
+
+
+            
+            
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm324xg_eval_ioe.c</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Update the MEMS pins configuration in </span><span style="font-size: 10pt; font-family: Verdana;"><span style="font-style: italic;">IOE_Config() </span>function.</span><i><span style="font-size: 10pt; font-family: &quot;Tahoma&quot;,&quot;sans-serif&quot;;"></span></i><span style="font-size: 10pt; font-family: &quot;Tahoma&quot;,&quot;sans-serif&quot;;"> </span><span style="font-size: 10pt; font-family: Verdana;"> </span></li></ul><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;"></span><span style="font-size: 10pt; font-family: Verdana;">Update I2C communication&nbsp;sequence <span style="font-style: italic;"></span><span style="font-style: italic;"></span> in<span style="font-style: italic;"> I2C_ReadDataBuffer()</span> function&nbsp;</span><span style="font-size: 10pt; font-family: Verdana;">to ensure efficient and robust I2C </span><span style="font-size: 10pt; font-family: Verdana;">transfer.</span></li></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm324xg_eval_lcd.c</span></li><ul><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">Replace <span style="font-style: italic;">STM324xG_LCD_Init()</span> function by </span><span style="font-size: 10pt; font-family: Verdana;"><span style="font-style: italic;">LCD_Init()</span> function and add a legacy for old LCD Initialization function name for compatibility purpose.&nbsp;</span></li></ul></ul>
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 167px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.1.0 / 21-December-2012<o:p></o:p></span></h3>
+
+
+            
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes<o:p></o:p></span></u></b></p>
+
+
+
+            
+            
+            <ul style="margin-top: 0cm;" type="square">
+<li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm3224xg_eval_sdio_sd.h/.c</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Support SDHC memory cards with capacity greater than 4 GB<br>
+</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Transmit
+and receive functions: swap the order of state machine and DMA
+configuration, to fix marginal limitation where the card sent data to
+the SDIO interface while the DMA is not ready to transfer them</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Support SDHS (High Speed) memory cards, add new function SD_HighSpeed()<br>
+                  </span></li></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm324xg_eval_ioe.c</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Configuration clean up and corrections</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Touch screen (</span><span style="font-size: 10pt; font-family: Verdana;">TSC)</span><span style="font-size: 10pt; font-family: Verdana;"> Interrupt mode enhancement</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Update Read/Write low layer functions to ensure efficient and robust I2C </span><span style="font-size: 10pt; font-family: Verdana;">transfer</span><br>
+                  <span style="font-size: 10pt; font-family: Verdana;"></span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Update legacy functions <span style="font-style: italic;">I2C_WriteDeviceRegister()</span>, <span style="font-style: italic;">I2C_ReadDeviceRegister()</span> and <span style="font-style: italic;">I2C_ReadDataBuffer()</span> to use&nbsp;&nbsp; polling mode instead of DMA</span></li><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Add three new functions <span style="font-style: italic;">I2C_DMA_WriteDeviceRegister()</span>, <span style="font-style: italic;">I2C_DMA_ReadDeviceRegister()</span> and <span style="font-style: italic;">I2C_DMA_ReadDataBuffer()</span>, for DMA based I2C transfer<br>
+                    </span></li></ul></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm324xg_eval.c<br>
+                </span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">SD_LowLevel_Init(): </span><span style="font-size: 10pt; font-family: Verdana;">Set the GPIO clock to 50MHz to support High Speed mode</span></li></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm324xg_eval_i2c_ee.c<br>
+                </span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Enable I2C DMA request only after the enable of the DMA stream, to avoid DMA FIFO error generation<br>
+                  </span></li></ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">stm324xg_eval_fsmc_sram.c</span></li><ul><li class="MsoNormal" style="color: black; margin-top: 4.5pt; margin-bottom: 4.5pt;"><span style="font-size: 10pt; font-family: Verdana;">Change memory type to SRAM instead of PSRAM (PSRAM is available only on STM324xG-EVAL RevA) and update timing values</span></li></ul>
+            </ul>
+<h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 167px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.2 / 09-March-2012<o:p></o:p></span></h3>
             <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
 Changes<o:p></o:p></span></u></b></p>
 

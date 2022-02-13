@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    RTC/RTC_LSI/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,8 +26,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
-#include "stm324xg_eval.h"
+#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -41,13 +40,14 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-RTC_InitTypeDef   RTC_InitStructure;
-__IO uint32_t LsiFreq = 0;
-__IO uint32_t CaptureNumber = 0, PeriodValue = 0;
+RTC_InitTypeDef RTC_InitStructure;
+__IO uint32_t   uwLsiFreq = 0;
+__IO uint32_t   uwCaptureNumber = 0; 
+__IO uint32_t   uwPeriodValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
-void RTC_Config(void);
-uint32_t GetLSIFrequency(void);
+static void     RTC_Config(void);
+static uint32_t GetLSIFrequency(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -60,33 +60,35 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */     
    
-  /* Initialize LEDs mounted on STM324xG-EVAL board --------------------------*/
+  /* Initialize LEDs mounted on EVAL board -----------------------------------*/
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
-  STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_GPIO);
+  STM_EVAL_PBInit(BUTTON_TAMPER, BUTTON_MODE_GPIO);
   
   /* RTC Configuration -------------------------------------------------------*/
   RTC_Config();
 
-  /* Wait Until KEY BUTTON is pressed */
-  while(STM_EVAL_PBGetState(BUTTON_KEY) != RESET)
+  /* Wait Until BUTTON TAMPER is pressed */
+  while(STM_EVAL_PBGetState(BUTTON_TAMPER) != RESET)
   {
   }
   
   /* Get the LSI frequency:  TIM5 is used to measure the LSI frequency */
-  LsiFreq = GetLSIFrequency();
+  uwLsiFreq = GetLSIFrequency();
 
   /* Turn on LED2 */
   STM_EVAL_LEDOn(LED2);
 
   /* Calendar Configuration */
+  /* ck_spre(1Hz) = RTCCLK(LSI) /(AsynchPrediv + 1)*(SynchPrediv + 1)*/
   RTC_InitStructure.RTC_AsynchPrediv = 0x7F;
-  RTC_InitStructure.RTC_SynchPrediv	=  (LsiFreq/128) - 1;
+  RTC_InitStructure.RTC_SynchPrediv	= (uwLsiFreq/128) - 1;
   RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
   RTC_Init(&RTC_InitStructure);
 
@@ -100,7 +102,7 @@ int main(void)
   * @param  None
   * @retval None
   */
-void RTC_Config(void)
+static void RTC_Config(void)
 {
   NVIC_InitTypeDef NVIC_InitStructure; 
   EXTI_InitTypeDef EXTI_InitStructure;
@@ -111,8 +113,8 @@ void RTC_Config(void)
   /* Allow access to RTC */
   PWR_BackupAccessCmd(ENABLE);
 
-/* LSI used as RTC source clock */
-/* The RTC Clock may varies due to LSI frequency dispersion. */   
+  /* LSI used as RTC source clock */
+  /* The RTC Clock may varies due to LSI frequency dispersion. */   
   /* Enable the LSI OSC */ 
   RCC_LSICmd(ENABLE);
 
@@ -132,7 +134,7 @@ void RTC_Config(void)
 
   /* Calendar Configuration with LSI supposed at 32KHz */
   RTC_InitStructure.RTC_AsynchPrediv = 0x7F;
-  RTC_InitStructure.RTC_SynchPrediv	=  0xFF; /* (32KHz / 128) - 1 = 0xFF*/
+  RTC_InitStructure.RTC_SynchPrediv  = 0xFF; /* (32KHz / 128) - 1 = 0xFF*/
   RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
   RTC_Init(&RTC_InitStructure);  
 
@@ -167,7 +169,7 @@ void RTC_Config(void)
   * @param  None
   * @retval LSI Frequency
   */
-uint32_t GetLSIFrequency(void)
+static uint32_t GetLSIFrequency(void)
 {
   NVIC_InitTypeDef   NVIC_InitStructure;
   TIM_ICInitTypeDef  TIM_ICInitStructure;
@@ -218,15 +220,13 @@ uint32_t GetLSIFrequency(void)
   /* Enable the CC4 Interrupt Request */  
   TIM_ITConfig(TIM5, TIM_IT_CC4, ENABLE);
 
-
   /* Wait until the TIM5 get 2 LSI edges (refer to TIM5_IRQHandler() in 
     stm32f4xx_it.c file) ******************************************************/
-  while(CaptureNumber != 2)
+  while(uwCaptureNumber != 2)
   {
   }
   /* Deinitialize the TIM5 peripheral registers to their default reset values */
   TIM_DeInit(TIM5);
-
 
   /* Compute the LSI frequency, depending on TIM5 input clock frequency (PCLK1)*/
   /* Get SYSCLK, HCLK and PCLKx frequency */
@@ -236,11 +236,11 @@ uint32_t GetLSIFrequency(void)
   if ((RCC->CFGR & RCC_CFGR_PPRE1) == 0)
   { 
     /* PCLK1 prescaler equal to 1 => TIMCLK = PCLK1 */
-    return ((RCC_ClockFreq.PCLK1_Frequency / PeriodValue) * 8);
+    return ((RCC_ClockFreq.PCLK1_Frequency / uwPeriodValue) * 8);
   }
   else
   { /* PCLK1 prescaler different from 1 => TIMCLK = 2 * PCLK1 */
-    return (((2 * RCC_ClockFreq.PCLK1_Frequency) / PeriodValue) * 8) ;
+    return (((2 * RCC_ClockFreq.PCLK1_Frequency) / uwPeriodValue) * 8) ;
   }
 }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Project</name>
+	<name>STM324xG_EVAL</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -21,22 +21,22 @@
 		<link>
 			<name>CMSIS</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/.metadata/Link</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/.metadata/Link</locationURI>
 		</link>
 		<link>
 			<name>STM32F4xx_StdPeriph_Driver</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/.metadata/Link</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/.metadata/Link</locationURI>
 		</link>
 		<link>
 			<name>STM32_EVAL</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/.metadata/Link</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/.metadata/Link</locationURI>
 		</link>
 		<link>
 			<name>User</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/.metadata/Link</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/.metadata/Link</locationURI>
 		</link>
 		<link>
 			<name>CMSIS/system_stm32f4xx.c</name>
@@ -199,24 +199,9 @@
 			<locationURI>PARENT-4-PROJECT_LOC/Libraries/STM32F4xx_StdPeriph_Driver/src/stm32f4xx_wwdg.c</locationURI>
 		</link>
 		<link>
-			<name>STM32_EVAL/stm324xg_eval.c</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval.c</locationURI>
-		</link>
-		<link>
-			<name>STM32_EVAL/stm324xg_eval_fsmc_sram.c</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval_fsmc_sram.c</locationURI>
-		</link>
-		<link>
-			<name>STM32_EVAL/stm324xg_eval_ioe.c</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval_ioe.c</locationURI>
-		</link>
-		<link>
-			<name>STM32_EVAL/stm324xg_eval_lcd.c</name>
-			<type>1</type>
-			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval_lcd.c</locationURI>
+			<name>STM32_EVAL/STM324xG_EVAL</name>
+			<type>2</type>
+			<locationURI>PARENT-1-PROJECT_LOC/.metadata/Link</locationURI>
 		</link>
 		<link>
 			<name>User/main.c</name>
@@ -227,6 +212,26 @@
 			<name>User/stm32f4xx_it.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/stm32f4xx_it.c</locationURI>
+		</link>
+		<link>
+			<name>STM32_EVAL/STM324xG_EVAL/stm324xg_eval.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval.c</locationURI>
+		</link>
+		<link>
+			<name>STM32_EVAL/STM324xG_EVAL/stm324xg_eval_fsmc_sram.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval_fsmc_sram.c</locationURI>
+		</link>
+		<link>
+			<name>STM32_EVAL/STM324xG_EVAL/stm324xg_eval_ioe.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval_ioe.c</locationURI>
+		</link>
+		<link>
+			<name>STM32_EVAL/STM324xG_EVAL/stm324xg_eval_lcd.c</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Utilities/STM32_EVAL/STM3240_41_G_EVAL/stm324xg_eval_lcd.c</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

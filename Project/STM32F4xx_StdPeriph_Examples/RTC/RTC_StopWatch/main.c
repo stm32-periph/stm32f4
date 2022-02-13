@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    RTC/RTC_StopWatch/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -38,17 +38,20 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define MESSAGE1   " **** STOPWATCH ****" 
-#define MESSAGE2   "Push Wakeup to Start" 
+#define MESSAGE1   " **** STOPWATCH ****        " 
+#define MESSAGE2   "Push Wakeup to Start        " 
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-static __IO uint32_t TimingDelay;
-__IO uint32_t Secondfraction = 0;
-__IO uint8_t Startevent = 0;
+__IO uint32_t uwSecondfraction = 0;
+__IO uint8_t  ubStartevent = 0;
+
 RTC_InitTypeDef RTC_InitStructure;
 RTC_TimeTypeDef RTC_TimeStruct; 
+
 /* Private function prototypes -----------------------------------------------*/
+static void RTC_Config(void);
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -58,52 +61,38 @@ RTC_TimeTypeDef RTC_TimeStruct;
   */
 int main(void)
 {
-
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */  
   
   /* Initialize the LCD */
-  STM324xG_LCD_Init(); 
-  
-  /* Clear the LCD */ 
+  LCD_Init();
   LCD_Clear(White);
-
-  /* Set the LCD Back Color */
-  LCD_SetBackColor(Blue);
-  
-  /* Set the LCD Text Color */
-  LCD_SetTextColor(White);
-   
-  /* Displays MESSAGE1 on line 1 */
-  LCD_DisplayStringLine(LINE(0), (uint8_t *)MESSAGE1);
-
-  /* RTC configuration  */
-  RTC_Config();
-  
-  /* Set the LCD Text Color */
-  LCD_SetTextColor(Red);
-  
-  /* Set the LCD Back Color */
-  LCD_SetBackColor(White);
-  
-  /* Draw rectangle on the LCD */
-  LCD_DrawRect(43, 300, 30, 260);
-
-  /* Configure the external interrupt "WAKEUP" and "KEY" buttons */
-  STM_EVAL_PBInit(BUTTON_WAKEUP,BUTTON_MODE_EXTI);
-  STM_EVAL_PBInit(BUTTON_KEY,BUTTON_MODE_EXTI);
-  
-  /* Configure the RTC tamper register */
-  RTC_TamperConfig();
   
   /* Set the LCD Text Color */
   LCD_SetTextColor(Blue);
   
-  /* Displays MESSAGE2 on line 5 */
+  /* Display message */
+  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t*)MESSAGE1);
+  
+  /* RTC configuration  */
+  RTC_Config();
+
+  /* Set the LCD Back Color */
+  LCD_SetBackColor(White);
+  
+  /* Configure buttons on EVAL */
+  STM_EVAL_PBInit(BUTTON_WAKEUP,BUTTON_MODE_EXTI);
+  STM_EVAL_PBInit(BUTTON_TAMPER,BUTTON_MODE_EXTI);
+  
+  /* Set the LCD Text Color */
+  LCD_SetTextColor(Blue);
+  
+  /* Display message */
   LCD_DisplayStringLine(LINE(5), (uint8_t *)MESSAGE2);
   
   /* Infinite loop */
@@ -111,52 +100,28 @@ int main(void)
   {
     /* Set The LCD font size */
     LCD_SetFont(&Font16x24);
-     
+    
     /* Set the LCD Back Color */
     LCD_SetBackColor(White);
-
-    /* Check on the event 'start'*/
-    if(Startevent != 0x0)
+    
+    /* Check on the event 'start' */
+    if(ubStartevent != 0)
     {
-       /* Get the RTC sub second fraction */
-       Secondfraction = 1000 - ((uint32_t)((uint32_t)RTC_GetSubSecond() * 1000) / (uint32_t)0x3FF);
+      /* Get the RTC sub seconds fraction */
+      uwSecondfraction = 1000 - ((uint32_t)((uint32_t)RTC_GetSubSecond() * 1000) / (uint32_t)0x3FF);
     }
     else
     {
       /* Idle */
-      Secondfraction =0x0;
+      uwSecondfraction = 0;
     }
     
-    /* Get the Curent time */
+    /* Get the Current time */
     RTC_GetTime(RTC_Format_BCD, &RTC_TimeStruct);
     
-    /* Display the curent time and the sub second on the LCD */
-    RTC_Time_display(Line2, Black , RTC_Get_Time(Secondfraction , &RTC_TimeStruct));
+    /* Display the current time and the sub seconds on the LCD */
+    RTC_Time_display(Line2, Black , RTC_Get_Time(uwSecondfraction , &RTC_TimeStruct));
   }
-}
-
-
-/**
-  * @brief  Displays the current Time on the LCD.
-  * @param  Line:  the Line where to display the Current time .
-  *           This parameter can be one of the following values:
-  *             @arg Linex: where x can be 0..9
-  * @param  Color_x: specifies the Background Color.
-  * @param  table: the Current time and sub second.
-  * @retval None
-  */
-void RTC_Time_display(uint8_t Line,__IO uint16_t Color_x, Table_TypeDef table )
-{   
-  uint8_t i = 0;
-
-  /* Initialize table */
-  LCD_SetTextColor(Color_x);
-  
-  for (i=0;i<12;i++)
-  {
-    /* Display char on the LCD */
-    LCD_DisplayChar(Line, (290 - (20 *i)), table.tab[i]);
-  }  
 }
 
 /**
@@ -164,7 +129,7 @@ void RTC_Time_display(uint8_t Line,__IO uint16_t Color_x, Table_TypeDef table )
   * @param  None
   * @retval None
   */
-void RTC_Config(void)
+static void RTC_Config(void)
 {
   RTC_TimeTypeDef  RTC_TimeStructure;
   
@@ -190,6 +155,7 @@ void RTC_Config(void)
   RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);
   
   /* Configure the RTC data register and RTC prescaler */
+  /* ck_spre(1Hz) = RTCCLK(LSI) /(AsynchPrediv + 1)*(SynchPrediv + 1)*/
   RTC_InitStructure.RTC_AsynchPrediv = 0x1F;
   RTC_InitStructure.RTC_SynchPrediv  = 0x3FF;
   RTC_InitStructure.RTC_HourFormat   = RTC_HourFormat_24;
@@ -197,9 +163,9 @@ void RTC_Config(void)
   
   /* Set the time to 00h 00mn 00s AM */
   RTC_TimeStructure.RTC_H12     = RTC_H12_AM;
-  RTC_TimeStructure.RTC_Hours   = 0x00;
-  RTC_TimeStructure.RTC_Minutes = 0x00;
-  RTC_TimeStructure.RTC_Seconds = 0x00;  
+  RTC_TimeStructure.RTC_Hours   = 0;
+  RTC_TimeStructure.RTC_Minutes = 0;
+  RTC_TimeStructure.RTC_Seconds = 0;  
   RTC_SetTime(RTC_Format_BCD, &RTC_TimeStructure);
 }
 
@@ -210,73 +176,52 @@ void RTC_Config(void)
   *         contains the current time values. 
   * @retval table : return current time and sub second in a table form
   */
-Table_TypeDef RTC_Get_Time(uint32_t Secondfraction , RTC_TimeTypeDef* RTC_TimeStructure )
+Table_TypeDef RTC_Get_Time(uint32_t Secondfraction , RTC_TimeTypeDef* RTC_TimeStructure)
 {
   Table_TypeDef table2;
 
-  /* Fill the table2 fields with the current Time*/
-  table2.tab[0] = (((uint8_t)(RTC_TimeStructure->RTC_Hours & 0xF0) >> 0x04) + 0x30);
-  table2.tab[1]  = (((uint8_t)(RTC_TimeStructure->RTC_Hours & 0x0F))+ 0x30);
-  table2.tab[2]  = 0x3A;
+  /* Fill the table fields with the current Time*/
+  table2.tab[0]   = (((uint8_t)(RTC_TimeStructure->RTC_Hours & 0xF0) >> 0x04) + 0x30);
+  table2.tab[1]   = (((uint8_t)(RTC_TimeStructure->RTC_Hours & 0x0F))+ 0x30);
+  table2.tab[2]   = 0x3A;
   
-  table2.tab[3]  = (((uint8_t)(RTC_TimeStructure->RTC_Minutes & 0xF0) >> 0x04) + 0x30);
-  table2.tab[4]  =(((uint8_t)(RTC_TimeStructure->RTC_Minutes & 0x0F))+ (uint8_t)0x30);
-  table2.tab[5]  = 0x3A;
+  table2.tab[3]   = (((uint8_t)(RTC_TimeStructure->RTC_Minutes & 0xF0) >> 0x04) + 0x30);
+  table2.tab[4]   =(((uint8_t)(RTC_TimeStructure->RTC_Minutes & 0x0F))+ (uint8_t)0x30);
+  table2.tab[5]   = 0x3A;
 
   table2.tab[6]   = (((uint8_t)(RTC_TimeStructure->RTC_Seconds & 0xF0) >> 0x04)+ 0x30);
   table2.tab[7]   = (((uint8_t)(RTC_TimeStructure->RTC_Seconds & 0x0F)) + 0x30);
   table2.tab[8]   = 0x2E;
   
   table2.tab[9]   = (uint8_t)((Secondfraction / 100) + 0x30);
-  table2.tab[10]  = (uint8_t)(((Secondfraction % 100 ) / 10) +0x30);
-  table2.tab[11]  =  (uint8_t)((Secondfraction % 10) +0x30);
+  table2.tab[10]  = (uint8_t)(((Secondfraction % 100 ) / 10) + 0x30);
+  table2.tab[11]  =  (uint8_t)((Secondfraction % 10) + 0x30);
   
   /* return table2 */
   return table2;
 }
 
 /**
-  * @brief  RTC Tamper Configuration.
-  * @param  None
+  * @brief  Displays the current Time on the LCD.
+  * @param  Line:  the Line where to display the Current time .
+  *           This parameter can be one of the following values:
+  *             @arg Linex: where x can be 0..9
+  * @param  Color_x: specifies the Background Color.
+  * @param  table: the Current time and sub second.
   * @retval None
   */
-void RTC_TamperConfig(void)
-{
-  EXTI_InitTypeDef EXTI_InitStructure;
-  NVIC_InitTypeDef NVIC_InitStructure;
-    
-  /* EXTI configuration */
-  EXTI_ClearITPendingBit(EXTI_Line21);
-  EXTI_InitStructure.EXTI_Line = EXTI_Line21;
-  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
-  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-  EXTI_Init(&EXTI_InitStructure);
+void RTC_Time_display(uint8_t Line,uint16_t Color_x, Table_TypeDef table )
+{   
+  uint8_t index = 0;
 
-  /* Enable RTC_TAMP_STAMP_IRQn */
-  NVIC_InitStructure.NVIC_IRQChannel = TAMP_STAMP_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-  NVIC_Init(&NVIC_InitStructure);
+  /* Initialize table */
+  LCD_SetTextColor(Color_x);
   
-  /* determines the number of active pulse for the specific level */
-  RTC_TamperFilterConfig(RTC_TamperFilter_2Sample);
-  
-  /* Determines the frequency at which each of the tamper inputs are sampled */
-  RTC_TamperSamplingFreqConfig(RTC_TamperSamplingFreq_RTCCLK_Div16384);
-
-  /* Select the tamper 1 with High level */
-  RTC_TamperTriggerConfig(RTC_Tamper_1, RTC_TamperTrigger_LowLevel );
-
-  /* Enabale the tamper 1 */
-  RTC_TamperCmd(RTC_Tamper_1 , ENABLE);
-  
-  /* Enable Tamper interrupt */
-  RTC_ITConfig(RTC_IT_TAMP, ENABLE);
-  
-  /* Clear tamper 1 falg */
-  RTC_ClearFlag(RTC_FLAG_TAMP1F);
+  for (index = 0; index < 12; index++)
+  {
+    /* Display char on the LCD */
+    LCD_DisplayChar(Line, (290 - (20 *index)), table.tab[index]);
+  }  
 }
 
 #ifdef  USE_FULL_ASSERT

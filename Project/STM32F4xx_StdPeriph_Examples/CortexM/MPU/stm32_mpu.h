@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    CortexM/MPU/stm32_mpu.h 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Header for stm32_mpu.c module
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -34,10 +34,7 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-#define MPU_RASR_XN_Pos                          28  
-#define MPU_RASR_XN_Msk                          (1UL << MPU_RASR_XN_Pos)                       
-#define MPU_RASR_AP_Pos                          24  
-#define MPU_RASR_AP_Msk                          (7UL << MPU_RASR_AP_Pos)                      
+
 #define RAM_ADDRESS_START                        (0x20000000UL)
 #define RAM_SIZE                                 (0x19UL << 0UL)
 #define PERIPH_ADDRESS_START                     (0x40000000)

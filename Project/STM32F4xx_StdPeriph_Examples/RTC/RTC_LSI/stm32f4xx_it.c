@@ -2,15 +2,15 @@
   ******************************************************************************
   * @file    RTC/RTC_LSI/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
-#include "stm324xg_eval.h"
+#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -43,8 +43,8 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-extern __IO uint32_t PeriodValue;
-extern __IO uint32_t CaptureNumber;
+extern __IO uint32_t uwPeriodValue;
+extern __IO uint32_t uwCaptureNumber;
 uint16_t tmpCC4[2] = {0, 0};
 
 /* Private function prototypes -----------------------------------------------*/
@@ -153,6 +153,9 @@ void SysTick_Handler(void)
 
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
+/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
+/*  available peripheral interrupt handler's name please refer to the startup */
+/*  file (startup_stm32f40xx.s/startup_stm32f427x.s).                         */
 /******************************************************************************/
 
 /**
@@ -181,35 +184,18 @@ void TIM5_IRQHandler(void)
   if (TIM_GetITStatus(TIM5, TIM_IT_CC4) != RESET)
   {    
     /* Get the Input Capture value */
-    tmpCC4[CaptureNumber++] = TIM_GetCapture4(TIM5);
+    tmpCC4[uwCaptureNumber++] = TIM_GetCapture4(TIM5);
    
     /* Clear CC4 Interrupt pending bit */
     TIM_ClearITPendingBit(TIM5, TIM_IT_CC4);
 
-    if (CaptureNumber >= 2)
+    if (uwCaptureNumber >= 2)
     {
       /* Compute the period length */
-      PeriodValue = (uint16_t)(0xFFFF - tmpCC4[0] + tmpCC4[1] + 1);
+      uwPeriodValue = (uint16_t)(0xFFFF - tmpCC4[0] + tmpCC4[1] + 1);
     }
   }
 }
-
-/******************************************************************************/
-/*                 STM32F4xx Peripherals Interrupt Handlers                   */
-/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
-/*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f4xx.s).                                               */
-/******************************************************************************/
-
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */
-/*void PPP_IRQHandler(void)
-{
-}*/
-
 
 /**
   * @}

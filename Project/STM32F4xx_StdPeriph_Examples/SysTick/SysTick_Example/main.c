@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    SysTick/SysTick_Example/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -41,10 +41,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 GPIO_InitTypeDef GPIO_InitStructure;
-static __IO uint32_t TimingDelay;
+static __IO uint32_t uwTimingDelay;
 
 /* Private function prototypes -----------------------------------------------*/
-void Delay(__IO uint32_t nTime);
+static void Delay(__IO uint32_t nTime);   
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -57,12 +57,13 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
-        system_stm32f4xx.c file
-     */     
+       system_stm32f4xx.c file
+     */       
        
-  /* Initialize Leds mounted on STM324xG-EVAL board */
+  /* Initialize LEDs and LCD available on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
@@ -89,7 +90,7 @@ int main(void)
 
     3. You can change the SysTick IRQ priority by calling the
        NVIC_SetPriority(SysTick_IRQn,...) just after the SysTick_Config() function 
-       call. The NVIC_SetPriority() is defined inside the core_cm3.h file.
+       call. The NVIC_SetPriority() is defined inside the core_cm4.h file.
 
     4. To adjust the SysTick time base, use the following formula:
                             
@@ -129,9 +130,9 @@ int main(void)
   */
 void Delay(__IO uint32_t nTime)
 { 
-  TimingDelay = nTime;
+  uwTimingDelay = nTime;
 
-  while(TimingDelay != 0);
+  while(uwTimingDelay != 0);
 }
 
 /**
@@ -141,9 +142,9 @@ void Delay(__IO uint32_t nTime)
   */
 void TimingDelay_Decrement(void)
 {
-  if (TimingDelay != 0x00)
+  if (uwTimingDelay != 0)
   { 
-    TimingDelay--;
+    uwTimingDelay--;
   }
 }
 

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324xg_eval_i2c_ee.c
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    09-March-2012
+  * @version V1.1.1
+  * @date    11-January-2013
   * @brief   This file provides a set of functions needed to manage the I2C M24CXX 
   *          EEPROM memory mounted on STM324xG-EVAL evaluation board.
   *          
@@ -48,7 +48,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -169,9 +169,6 @@ void sEE_Init(void)
   /* Apply sEE_I2C configuration after enabling it */
   I2C_Init(sEE_I2C, &I2C_InitStructure);
 
-  /* Enable the sEE_I2C peripheral DMA requests */
-  I2C_DMACmd(sEE_I2C, ENABLE);
-  
 #if defined (sEE_M24C64_32)
   /*!< Select the EEPROM address according to the state of E0, E1, E2 pins */
   sEEAddress = sEE_HW_ADDRESS;  
@@ -357,6 +354,9 @@ uint32_t sEE_ReadBuffer(uint8_t* pBuffer, uint16_t ReadAddr, uint16_t* NumByteTo
     
     /* Enable the DMA Rx Stream */
     DMA_Cmd(sEE_I2C_DMA_STREAM_RX, ENABLE);    
+
+    /* Enable the sEE_I2C peripheral DMA requests */
+    I2C_DMACmd(sEE_I2C, ENABLE);      
   }
   
   /* If all operations OK, return sEE_OK (0) */
@@ -460,6 +460,9 @@ uint32_t sEE_WritePage(uint8_t* pBuffer, uint16_t WriteAddr, uint8_t* NumByteToW
   
   /* Enable the DMA Tx Stream */
   DMA_Cmd(sEE_I2C_DMA_STREAM_TX, ENABLE);
+  
+  /* Enable the sEE_I2C peripheral DMA requests */
+  I2C_DMACmd(sEE_I2C, ENABLE);
   
   /* If all operations OK, return sEE_OK (0) */
   return sEE_OK;

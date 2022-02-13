@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    CortexM/MPU/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,14 +26,14 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+#include "main.h"
 #include "stm32_mpu.h"
-#include "stm324xg_eval.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
   */
 
-/** @addtogroup CortexM4_MPU
+/** @addtogroup CortexM_MPU
   * @{
   */
   
@@ -58,7 +58,8 @@ int main(void)
   
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       file (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main.
        To reconfigure the default setting of SystemInit() function, refer to
         system_stm32f4xx.c file
      */  
@@ -70,9 +71,9 @@ int main(void)
   /* Set MPU regions */
   MPU_Config();
 
- #ifdef ACCESS_PERMISSION
+#ifdef ACCESS_PERMISSION
   MPU_AccessPermConfig();
- #endif  
+#endif  
 
   /* Infinite loop */
   while (1)

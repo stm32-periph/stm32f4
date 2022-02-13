@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    RCC/RCC_Example/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,8 +26,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx.h"
-#include "stm324xg_eval.h"
+#include "main.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -42,7 +41,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/ 
 /* Private function prototypes -----------------------------------------------*/
-void Delay (uint32_t nCount);
+static void Delay (uint32_t uwCount);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -53,18 +52,19 @@ void Delay (uint32_t nCount);
   */
 int main(void)
 {
- GPIO_InitTypeDef GPIO_InitStructure;
- NVIC_InitTypeDef NVIC_InitStructure;
- RCC_ClocksTypeDef RCC_ClockFreq;
+  GPIO_InitTypeDef GPIO_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+  RCC_ClocksTypeDef RCC_ClockFreq;
 
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
-     */     
+     */      
 
-  /* Initialize LEDs mounted on STM324xG-EVAL board ***************************/
+  /* Initialize LEDs and LCD available on EVAL board **************************/
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
@@ -126,15 +126,15 @@ int main(void)
 
 /**
   * @brief  Inserts a delay time.
-  * @param  nCount: specifies the delay time length.
+  * @param  uwCount: specifies the delay time length.
   * @retval None
   */
-void Delay(__IO uint32_t nCount)
+static void Delay(__IO uint32_t uwCount)
 {
   /* Decrement nCount value */
-  while (nCount != 0)
+  while (uwCount != 0)
   {
-    nCount--;
+    uwCount--;
   }
 }
 

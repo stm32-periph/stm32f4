@@ -2,11 +2,11 @@
   @page ewarm EWARM Project Template for STM32F4xx devices
   
   @verbatim
-  ******************* (C) COPYRIGHT 2012 STMicroelectronics ********************
+  ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   This sub-directory contains all the user-modifiable files needed to
   *          create a new project linked with the STM32F4xx Standard Peripherals 
   *          Library and working with IAR Embedded Workbench for ARM (EWARM)
@@ -52,12 +52,18 @@
  @par How to use it ?
 
  - Open the Project.eww workspace.
+  - In the workspace toolbar select the project config:
+     - STM324xG_EVAL: to configure the project for STM32F40xx/41xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324xG_EVAL, STM32F40XX, USE_STDPERIPH_DRIVER
+           
+     - STM324x7I_EVAL: to configure the project for STM32F427x/437x devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: USE_STM324x7I_EVAL, STM32F427X, USE_STDPERIPH_DRIVER
+                    
  - Rebuild all files: Project->Rebuild all
  - Load project image: Project->Download and Debug
- - Run program: Debug->Go(F5)
-
- @note The needed define symbols for this config are already declared in the
-       preprocessor section: USE_STM324xG_EVAL, STM32F4XX, USE_STDPERIPH_DRIVER 
+ - Run program: Debug->Go(F5) 
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

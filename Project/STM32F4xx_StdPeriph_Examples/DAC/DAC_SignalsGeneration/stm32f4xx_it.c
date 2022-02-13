@@ -2,15 +2,15 @@
   ******************************************************************************
   * @file     DAC/DAC_SignalsGeneration/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -29,7 +29,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
-#include "stm324xg_eval.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -41,7 +40,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-extern __IO uint8_t SelectedWavesForm, KeyPressed;
+extern __IO uint8_t ubSelectedWavesForm, ubKeyPressed;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -151,17 +150,9 @@ void SysTick_Handler(void)
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
 /*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f4xx.s).                                               */
+/*  file (startup_stm32f40xx.s/startup_stm32f427x.s).                         */
 /******************************************************************************/
 
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */
-/*void PPP_IRQHandler(void)
-{
-}*/
 /**
   * @brief  This function handles External line 15 interrupt request.
   * @param  None
@@ -172,10 +163,10 @@ void EXTI15_10_IRQHandler(void)
   if(EXTI_GetITStatus(KEY_BUTTON_EXTI_LINE) != RESET)
   { 
     /* Change the wave */
-    KeyPressed = 1;
+    ubKeyPressed = 1;
 
     /* Change the selected waves forms */
-    SelectedWavesForm = !SelectedWavesForm;
+    ubSelectedWavesForm = !ubSelectedWavesForm;
 
     /* Clear the Right Button EXTI line pending bit */
     EXTI_ClearITPendingBit(KEY_BUTTON_EXTI_LINE);

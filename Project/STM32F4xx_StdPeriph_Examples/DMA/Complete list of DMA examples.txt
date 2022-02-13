@@ -2,11 +2,11 @@
   @page DMA_EXAMPLES DMA examples List
   
   @verbatim
-  ******************** (C) COPYRIGHT 2012 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    DMA/readme.txt 
   * @author  MCD Application Team  
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   STM32F4xx Standard Peripherals DMA examples List.
   ******************************************************************************
   *
@@ -29,20 +29,21 @@ In addition to this example (DMA\FLASH_RAM), other examples uses the DMA:
 
   * <ul>
   * <li><B>  Complet List of DMA Examples </B>
-  * - @subpage ADC_ADC3_DMA
-  * - @subpage DualADC_Interleaved_DMAmode3
-  * - @subpage DualADC_RegulSimu_DMAmode1
-  * - @subpage TripleADC_Interleaved_DMAmode2
-  * - @subpage ADC_VBAT_Measurement
-  * - @subpage AES_ECBmode_DMA
-  * - @subpage TDES_ECBmode_DMA
-  * - @subpage DAC_SignalsGen
-  * - @subpage DCMI_Camera  
-  * - @subpage SHA1_MD5_DMA
+  * - @subpage ADC_DMA
+  * - @subpage ADC_DualModeInterleaved
+  * - @subpage ADC_DualModeRegulSimu
+  * - @subpage ADC_TripleModeInterleaved
+  * - @subpage ADC_VBATMeasurement
+  * - @subpage CRYP_AES_DMA
+  * - @subpage CRYP_TDES_DMA
+  * - @subpage DAC_SignalsGeneration
+  * - @subpage DCMI_CameraExample  
+  * - @subpage HASH_SHA1MD5_DMA
   * - @subpage I2C_DataExchangeDMA
-  * - @subpage NVIC_DMA_WFIMode
+  * - @subpage NVIC_DMAWFIMode
+  * - @subpage SPI_DataExchangeDMA  
   * - @subpage TIM_DMA
-  * - @subpage TIM1_DMABURST
+  * - @subpage TIM_DMABurst
   * - @subpage USART_DataExchangeDMA
   * </ul>
  

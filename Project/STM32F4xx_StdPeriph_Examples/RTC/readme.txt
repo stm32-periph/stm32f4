@@ -2,11 +2,11 @@
   @page RTC_EXAMPLES RTC EXAMPLES
 
   @verbatim
-  ******************** (C) COPYRIGHT 2012 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    RTC/readme.txt 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Reference to the Application note AN3371.
   ******************************************************************************
   *

@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    13-April-2012
+  * @version V1.1.0
+  * @date    18-January-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -28,35 +28,45 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-/** @addtogroup Template_Project
+/** @addtogroup STM32F4xx_StdPeriph_Templates
   * @{
-  */
+  */ 
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define MESSAGE1   "     STM32F4xx      " 
-#define MESSAGE2   " Device running on  " 
-#define MESSAGE3   " STM3240_41_G-EVAL  " 
+
+#if defined (USE_STM324xG_EVAL)
+  #define MESSAGE1   "     STM32F40xx     "
+  #define MESSAGE2   " Device running on  " 
+  #define MESSAGE3   "   STM324xG-EVAL    "
+
+#else /* USE_STM324x7I_EVAL */ 
+  #define MESSAGE1   "     STM32F427x     "
+  #define MESSAGE2   " Device running on  " 
+  #define MESSAGE3   "  STM324x7I-EVAL    "
+#endif 
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-static __IO uint32_t TimingDelay;
+static __IO uint32_t uwTimingDelay;
+RCC_ClocksTypeDef    RCC_Clocks;
 
 /* Private function prototypes -----------------------------------------------*/
+static void Delay(__IO uint32_t nTime);
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Main program.
+  * @brief   Main program
   * @param  None
   * @retval None
   */
 int main(void)
 {
-  RCC_ClocksTypeDef RCC_Clocks;
-
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       file (startup_stm32f4xx.s) before to branch to application main.
+       files (startup_stm32f40xx.s/startup_stm32f427x.s) before to branch to 
+       application main. 
        To reconfigure the default setting of SystemInit() function, refer to
        system_stm32f4xx.c file
      */  
@@ -64,49 +74,58 @@ int main(void)
   /* SysTick end of count event each 10ms */
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
-
-  /* Initialize LEDs and LCD available on STM324xG-EVAL board *****************/
+  
+  /* Initialize LEDs and LCD available on EVAL board **************************/
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
-  STM_EVAL_LEDInit(LED4);
-
+  STM_EVAL_LEDInit(LED4);  
   /* Initialize the LCD */
-  STM324xG_LCD_Init();
+  LCD_Init();
 
-  /* Display message on STM324xG-EVAL LCD *************************************/
-  /* Clear the LCD */ 
-  LCD_Clear(White);
-
+  /* Display message on LCD ***************************************************/
+  
+  /* Clear the Foreground Layer */ 
+  LCD_Clear(LCD_COLOR_WHITE);
+  
   /* Set the LCD Back Color */
-  LCD_SetBackColor(Blue);
+  LCD_SetBackColor(LCD_COLOR_WHITE);
   /* Set the LCD Text Color */
-  LCD_SetTextColor(White);
-  LCD_DisplayStringLine(LINE(0), (uint8_t *)MESSAGE1);
-  LCD_DisplayStringLine(LINE(1), (uint8_t *)MESSAGE2);
-  LCD_DisplayStringLine(LINE(2), (uint8_t *)MESSAGE3);
+  LCD_SetTextColor(LCD_COLOR_BLUE);
+  
+  /* Display LCD messages */
+  LCD_DisplayStringLine(LCD_LINE_3, (uint8_t *)MESSAGE1);
+  LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)MESSAGE2);
+  LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)MESSAGE3);
 
-  /* Turn on LEDs available on STM324xG-EVAL **********************************/
+  /* Turn on LEDs *************************************************************/
   STM_EVAL_LEDOn(LED1);
   STM_EVAL_LEDOn(LED2);
   STM_EVAL_LEDOn(LED3);
   STM_EVAL_LEDOn(LED4);
 
-  /* Add your application code here
-     */
-
+  /* Add your application code here */
+    
   /* Infinite loop */
   while (1)
   {
-    /* Toggle LD4 */
-    STM_EVAL_LEDToggle(LED4);
-
+    /* Toggle LD1 */
+    STM_EVAL_LEDToggle(LED1);
     /* Insert 50 ms delay */
     Delay(5);
 
     /* Toggle LD2 */
     STM_EVAL_LEDToggle(LED2);
+    /* Insert 50 ms delay */
+    Delay(5);
+    
+    /* Toggle LD3 */
+    STM_EVAL_LEDToggle(LED3);
+    /* Insert 50 ms delay */
+    Delay(5);
 
+    /* Toggle LD4 */    
+    STM_EVAL_LEDToggle(LED4);
     /* Insert 50 ms delay */
     Delay(5);
   }
@@ -114,14 +133,14 @@ int main(void)
 
 /**
   * @brief  Inserts a delay time.
-  * @param  nTime: specifies the delay time length, in 10 ms.
+  * @param  nTime: specifies the delay time length, in milliseconds.
   * @retval None
   */
 void Delay(__IO uint32_t nTime)
-{
-  TimingDelay = nTime;
+{ 
+  uwTimingDelay = nTime;
 
-  while(TimingDelay != 0);
+  while(uwTimingDelay != 0);
 }
 
 /**
@@ -131,9 +150,9 @@ void Delay(__IO uint32_t nTime)
   */
 void TimingDelay_Decrement(void)
 {
-  if (TimingDelay != 0x00)
+  if (uwTimingDelay != 0x00)
   { 
-    TimingDelay--;
+    uwTimingDelay--;
   }
 }
 
@@ -141,7 +160,7 @@ void TimingDelay_Decrement(void)
 
 /**
   * @brief  Reports the name of the source file and the source line number
-  *   where the assert_param error has occurred.
+  *         where the assert_param error has occurred.
   * @param  file: pointer to the source file name
   * @param  line: assert_param error line source number
   * @retval None

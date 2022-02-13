@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm324xg_eval_ioe.h
   * @author  MCD Application Team
-  * @version V1.0.2
-  * @date    09-March-2012
+  * @version V1.1.1
+  * @date    11-January-2013
   * @brief   This file contains all the functions prototypes for the
   *          stm324xg_eval_ioe.c driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2012 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -127,7 +127,6 @@ typedef enum
   IOE_DMA_TX = 0,
   IOE_DMA_RX = 1
 }IOE_DMADirection_TypeDef;
-
 
 /**
   * @}
@@ -480,11 +479,8 @@ uint8_t IOE_ITConfig(uint32_t IOE_ITSRC_Source);
   *         To enable this function use uncomment the define USE_TIMEOUT_USER_CALLBACK
   *         at the top of this file.          
   */
-#ifdef USE_TIMEOUT_USER_CALLBACK 
+
  uint8_t IOE_TimeoutUserCallback(void);
-#else
- #define IOE_TimeoutUserCallback()  IOE_TIMEOUT
-#endif /* USE_TIMEOUT_USER_CALLBACK */
 
 /** 
   * @brief IO pins control functions
@@ -537,6 +533,12 @@ uint8_t IOE_ITOutConfig(uint8_t Polarity, uint8_t Type);
 uint8_t I2C_WriteDeviceRegister(uint8_t DeviceAddr, uint8_t RegisterAddr, uint8_t RegisterValue);
 uint8_t I2C_ReadDeviceRegister(uint8_t DeviceAddr, uint8_t RegisterAddr);
 uint16_t I2C_ReadDataBuffer(uint8_t DeviceAddr, uint32_t RegisterAddr);
+
+uint8_t I2C_DMA_WriteDeviceRegister(uint8_t DeviceAddr, uint8_t RegisterAddr, uint8_t RegisterValue);
+uint8_t I2C_DMA_ReadDeviceRegister(uint8_t DeviceAddr, uint8_t RegisterAddr);
+uint16_t I2C_DMA_ReadDataBuffer(uint8_t DeviceAddr, uint32_t RegisterAddr);
+
+
 
 #ifdef __cplusplus
 }
