@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_FLASH/spi_flash.h
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file contains all the functions prototypes for the spi_flash
   *          firmware driver.
   ******************************************************************************

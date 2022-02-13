@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -60,7 +60,7 @@ const uint16_t aTxSlaveBuffer[] =
 
 __IO uint16_t aRxMasterBuffer [RX_MASTER_BUFFERSIZE];
 __IO uint16_t aRxSlaveBuffer [RX_SLAVE_BUFFERSIZE];
-__IO uint8_t  ubBufferCounter = 0;
+uint32_t  ubBufferCounter = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 static void I2S_Config(void);

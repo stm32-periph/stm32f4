@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    CortexM4/MPU/readme.txt 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Description of the CortexM MPU example.
   ******************************************************************************
   *
@@ -71,20 +71,11 @@ In order to make the program work, you must do the following:
  - Add the required example files
    - stm32_mpu.c
 <ul>
-- For RIDE and TrueSTUDIO toolchains you have to follow these instructions
-
-    <li> RIDE 
-        - In the Application options -> script menu, set "Use Default Script File" 
-          to "No" and use "stm32F_flash_ROAarray.ld" as Script File. 
-          This linker is configured for STM32F4xx. It should be updated to use it
-          with other STM32 devices.      
-        
-
-    <li> TrueSTUDIO 
-          - In the project properties window, select C/C++ Build->settings node then 
-           the C Linker->General node and use "stm32F_flash_ROAarray.ld" as Script File.
-          This linker is configured for STM32F4xx. It should be updated to use it
-          with other STM32 devices.         
+- For TrueSTUDIO toolchains you have to follow these instructions
+  - In the project properties window, select C/C++ Build->settings node then 
+    the C Linker->General node and use "stm32F_flash_ROAarray.ld" as Script File.
+    This linker is configured for STM32F4xx. It should be updated to use it
+    with other STM32 devices.
 </ul>    
  - Select the project workspace related to the used device 
    - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:

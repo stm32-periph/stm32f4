@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    PWR/PWR_CurrentConsumption/stm32f4xx_lp_modes.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the STM32F4xx Low Power Modes:
   *           - Sleep Mode
@@ -269,9 +269,12 @@ void StandbyMode_Measure(void)
   /* Enable WKUP pin 1 */
   PWR_WakeUpPinCmd(ENABLE);
 
+  /* Clear Power WakeUp (CWUF) pending flag */
+  PWR_ClearFlag(PWR_FLAG_WU);
+
   /* Request to enter STANDBY mode (Wake Up flag is cleared in PWR_EnterSTANDBYMode function) */
   PWR_EnterSTANDBYMode();
-  
+
   /* Infinite loop */
   while (1)
   {
@@ -337,7 +340,13 @@ void StandbyRTCMode_Measure(void)
   */
   RTC_WakeUpClockConfig(RTC_WakeUpClock_RTCCLK_Div16);
   RTC_SetWakeUpCounter(0xA000-1);
-  
+
+  /* Disable the Wakeup Interrupt */
+  RTC_ITConfig(RTC_IT_WUT, DISABLE);
+
+  /* Clear Power WakeUp (CWUF) pending flag */
+  PWR_ClearFlag(PWR_FLAG_WU);
+
   /* Enable the Wakeup Interrupt */
   RTC_ITConfig(RTC_IT_WUT, ENABLE); 
 
@@ -428,7 +437,13 @@ void StandbyRTCBKPSRAMMode_Measure(void)
   */
   RTC_WakeUpClockConfig(RTC_WakeUpClock_RTCCLK_Div16);
   RTC_SetWakeUpCounter(0xA000-1);
-  
+
+  /* Disable the Wakeup Interrupt */
+  RTC_ITConfig(RTC_IT_WUT, DISABLE);
+
+  /* Clear Power WakeUp (CWUF) pending flag */
+  PWR_ClearFlag(PWR_FLAG_WU);
+
   /* Enable the Wakeup Interrupt */
   RTC_ITConfig(RTC_IT_WUT, ENABLE);
 

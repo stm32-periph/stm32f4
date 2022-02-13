@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_Calendar/main.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Main program body
   ******************************************************************************
   * @attention

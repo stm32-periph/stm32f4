@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CortexM/MPU/stm32_mpu.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Access rights configuration using Cortex-M3 MPU regions.
   ******************************************************************************
   * @attention
@@ -53,9 +53,6 @@
 
 #elif defined   (  __GNUC__  )
  uint8_t PrivilegedReadOnlyArray[32] __attribute__((section(".ROarraySection")));
-
-#elif defined   (  __TASKING__  )
- uint8_t PrivilegedReadOnlyArray[32] __at(0x20002000);
 #endif
 
 /* Private function prototypes -----------------------------------------------*/

@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    I2C/I2C_TwoBoards/I2C_DataExchangeDMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Description of the I2C Data Exchange between two boards using DMA 
   *          example.
   ******************************************************************************

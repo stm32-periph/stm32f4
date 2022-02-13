@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    PWR/PWR_STANDBY/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and peripherals
   *          interrupt service routine.
@@ -174,6 +174,12 @@ void EXTI15_10_IRQHandler(void)
     /* Disable the Alarm A */
     RTC_AlarmCmd(RTC_Alarm_A, DISABLE);
 
+    /* Disable RTC Alarm A Interrupt  */
+    RTC_ITConfig(RTC_IT_ALRA, DISABLE);
+
+    /* Clear Power WakeUp (CWUF) pending flag */
+    PWR_ClearFlag(PWR_FLAG_WU);
+
     RTC_GetTime(RTC_Format_BIN, &RTC_TimeStructure);
 
     /* Set the alarm to current time + 5s */
@@ -185,11 +191,11 @@ void EXTI15_10_IRQHandler(void)
     RTC_AlarmStructure.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_Date;
     RTC_AlarmStructure.RTC_AlarmMask = RTC_AlarmMask_DateWeekDay | RTC_AlarmMask_Hours | RTC_AlarmMask_Minutes;
     RTC_SetAlarm(RTC_Format_BIN, RTC_Alarm_A, &RTC_AlarmStructure);
-  
+
     /* Enable RTC Alarm A Interrupt: this Interrupt will wake-up the system from
        STANDBY mode (RTC Alarm IT not enabled in NVIC) */
     RTC_ITConfig(RTC_IT_ALRA, ENABLE);
-  
+
     /* Enable the Alarm A */
     RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
 

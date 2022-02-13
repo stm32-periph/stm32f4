@@ -109,7 +109,7 @@
 		<link>
 			<name>Doc/readme.txt</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/readme.txt</locationURI>
+			<locationURI>PARENT-1-PROJECT_LOC/readme.txt</locationURI>
 		</link>
 		<link>
 			<name>STM32F4xx_StdPeriph_Driver/misc.c</name>
@@ -295,6 +295,11 @@
 			<name>TrueSTUDIO/startup_stm32f40_41xxx.s</name>
 			<type>1</type>
 			<locationURI>PARENT-4-PROJECT_LOC/Libraries/CMSIS/Device/ST/STM32F4xx/Source/Templates/TrueSTUDIO/startup_stm32f40_41xxx.s</locationURI>
+		</link>
+		<link>
+			<name>TrueSTUDIO/startup_stm32f411xe.s</name>
+			<type>1</type>
+			<locationURI>PARENT-4-PROJECT_LOC/Libraries/CMSIS/Device/ST/STM32F4xx/Source/Templates/TrueSTUDIO/startup_stm32f411xe.s</locationURI>
 		</link>
 		<link>
 			<name>TrueSTUDIO/startup_stm32f427_437xx.s</name>

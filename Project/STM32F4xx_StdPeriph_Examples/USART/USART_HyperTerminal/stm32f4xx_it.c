@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_HyperTerminal/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -171,7 +171,7 @@ void SysTick_Handler(void)
   * @param  None
   * @retval None
   */
-void USARTx_IRQHandler(void)
+void USARTx_IRQHANDLER(void)
 {
   if(USART_GetITStatus(EVAL_COM1, USART_IT_RXNE) != RESET)
   {

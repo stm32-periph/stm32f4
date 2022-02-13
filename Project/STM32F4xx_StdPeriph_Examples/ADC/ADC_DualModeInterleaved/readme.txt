@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    ADC/ADC_DualModeInterleaved/readme.txt 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Description of the Dual interleaved mode and DMA mode3 example.
   ******************************************************************************
   *

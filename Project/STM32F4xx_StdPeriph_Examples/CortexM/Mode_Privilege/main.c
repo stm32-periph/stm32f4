@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CortexM/Mode_Privilege/main.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -58,8 +58,6 @@ static __INLINE  void __SVC(void);
  static __INLINE  void __SVC()                     { __ASM ("svc 0x01");}
 #elif defined   (  __GNUC__  )
  static __INLINE void __SVC()                      { __ASM volatile ("svc 0x01");}
- #elif defined ( __TASKING__ )
- static __INLINE  void __SVC()                     { __ASM ("svc 0x01");}
 #endif
 
 /* Private variables ---------------------------------------------------------*/

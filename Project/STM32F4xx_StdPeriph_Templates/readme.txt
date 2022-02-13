@@ -2,11 +2,11 @@
   @page Template  <Example brief description (1 line)>
   
   @verbatim
-  ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2014 STMicroelectronics *******************
   * @file    Project/STM32F4xx_StdPeriph_Templates/readme.txt 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Description of the TEMPLATE example
   ******************************************************************************
   *
@@ -28,8 +28,8 @@
 @par Example Description
 
 This example is used as a template project that can be used as reference to build
-any new firmware application for STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx 
-or STM32F429xx/439xx devices using the STM32F4xx Standard Peripherals Library.
+any new firmware application for STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx, 
+STM32F429xx/439xx or STM32F401xx/411xE devices using the STM32F4xx Standard Peripherals Library.
 
 
 @par Directory contents
@@ -44,14 +44,13 @@ or STM32F429xx/439xx devices using the STM32F4xx Standard Peripherals Library.
 
 @par Hardware and Software environment
 
-  - This example runs on STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx and 
-    STM32F429xx/439xx devices.
+  - This example runs on STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx, 
+    STM32F429xx/439xx and  STM32F401xx/411xE devices.
   
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
     STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
-    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
-    can be easily tailored to any other supported device and development board.
-
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards.
+    This example can be easily tailored to any other supported device and development board.
 
 @par How to use it ? 
 
@@ -76,13 +75,7 @@ In order to make the program work, you must do the following:
     - Rebuild all project files: Select the project in the "Project explorer" 
       window then click on Project->build project menu.
     - Run program: Run->Debug (F11)
- 
- + Ride   
-    - Open the Project.rprj project.                          
-    - Rebuild all files: Project->build project
-    - Load project image: Debug->start(ctrl+D)
-    - Run program: Debug->Run(ctrl+F9)  
-              
+
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
  

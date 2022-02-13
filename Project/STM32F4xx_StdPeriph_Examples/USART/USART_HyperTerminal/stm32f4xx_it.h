@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_HyperTerminal/stm32f4xx_it.h 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
@@ -46,7 +46,7 @@ void SVC_Handler(void);
 void DebugMon_Handler(void);
 void PendSV_Handler(void);
 void SysTick_Handler(void);
-void USARTx_IRQHandler(void);
+void USARTx_IRQHANDLER(void);
 
 #endif /* __STM32F4xx_IT_H */
 

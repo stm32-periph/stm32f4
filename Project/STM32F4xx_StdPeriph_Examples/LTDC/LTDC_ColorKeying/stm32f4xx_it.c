@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    LTDC/LTDC_ColorKeying/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -144,7 +144,6 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-//  TimingDelay_Decrement();
 }
 
 /******************************************************************************/

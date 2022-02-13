@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    LTDC/LTDC_Display_2Layers/RGB565_320x240.h 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file contains image used for LTDC Validation.   
   ******************************************************************************
   * @attention

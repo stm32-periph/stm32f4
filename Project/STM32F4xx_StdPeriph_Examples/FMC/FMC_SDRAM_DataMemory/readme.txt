@@ -5,8 +5,8 @@
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    FMC/FMC_SDRAM_DataMemory/readme.txt 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Description of the FMC SDRAM Data Memory example.
   ******************************************************************************
   *
@@ -80,16 +80,6 @@ In order to make the program work, you must do the following:
     - use "stm32f4xx_flash_extsdram.icf" as linker file (under Project\STM32F4xx_StdPeriph_Templates\EWARM)
     - uncomment "#define DATA_IN_ExtSDRAM " in the "system_stm32f4xx.c" file
 
- <li> RIDE 
-    - In the Application options -> script menu, set "Use Default Script File" 
-      to "No" and use "stm32f4xx_flash_extsdram.ld" as Script File.
-    - uncomment "#define DATA_IN_ExtSDRAM " in the "system_stm32f4xx.c" file
-
-<li> TASKING 
-    -In the project properties window, select C/C++ Build->settings node then 
-         the  "Linker->Script file"  and use "stm32f4xx_extsdram.lsl" as Script File.
-    - uncomment "#define DATA_IN_ExtSDRAM " in the "system_stm32f4xx.c" file
-  
  <li> TrueSTUDIO 
     - In the project properties window, select 'C/C++ Build'->settings node then 
       the 'C Linker'->General node and use "stm32f4xx_flash_extsdram.ld" as Script File

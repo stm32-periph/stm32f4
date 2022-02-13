@@ -5,8 +5,8 @@
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    FSMC/FSMC_SRAM_DataMemory/readme.txt 
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    13-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   Description of the FSMC SRAM Data Memory example.
   ******************************************************************************
   *
@@ -86,16 +86,6 @@ The RAM zone is modified in order to use the external memory as a RAM.
     - use "stm32f4xx_flash_extsram.icf" as linker file (under Project\STM32F4xx_StdPeriph_Templates\EWARM)
     - uncomment "#define DATA_IN_ExtSRAM " in the "system_stm32f4xx.c" file
 
- <li> RIDE 
-    - In the Application options -> script menu, set "Use Default Script File" 
-      to "No" and use "stm32f4xx_flash_extsram.ld" as Script File.
-    - uncomment "#define DATA_IN_ExtSRAM " in the "system_stm32f4xx.c" file
-
-<li> TASKING 
-    -In the project properties window, select C/C++ Build->settings node then 
-         the  "Linker->Script file"  and use "stm32f4xx_extsram.lsl" as Script File.
-    - uncomment "#define DATA_IN_ExtSRAM " in the "system_stm32f4xx.c" file
-  
  <li> TrueSTUDIO 
     - In the project properties window, select 'C/C++ Build'->settings node then 
       the 'C Linker'->General node and use "stm32f4xx_flash_extsram.ld" as Script File
