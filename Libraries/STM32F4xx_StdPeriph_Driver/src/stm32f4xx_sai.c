@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_sai.c
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    22-April-2016  
+  * @version V1.7.1
+  * @date    20-May-2016  
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial Audio Interface (SAI):
   *           + Initialization and Configuration

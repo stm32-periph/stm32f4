@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    Project/STM32F4xx_StdPeriph_Templates/readme.txt 
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    22-April-2016
+  * @version V1.7.1
+  * @date    20-May-2016
   * @brief   Description of the TEMPLATE example
   ******************************************************************************
   *

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_rcc.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    22-April-2016
+  * @version V1.7.1
+  * @date    20-May-2016
   * @brief   This file contains all the functions prototypes for the RCC firmware library.
   ******************************************************************************
   * @attention
@@ -928,11 +928,11 @@ void        RCC_LSEModeConfig(uint8_t RCC_Mode);
 void        RCC_DSIClockSourceConfig(uint8_t RCC_ClockSource);
 #endif /*  STM32F469_479xx */
 
-/* Features available only for STM32F446xx/STM32F469_479xx devices */
-#if defined(STM32F446xx) || defined(STM32F469_479xx)
+/* Features available only for STM32F412xG/STM32F446xx/STM32F469_479xx devices */
+#if defined(STM32F412xG) || defined(STM32F446xx) || defined(STM32F469_479xx)
 void        RCC_48MHzClockSourceConfig(uint8_t RCC_ClockSource);
 void        RCC_SDIOClockSourceConfig(uint8_t RCC_ClockSource);
-#endif /* STM32F446xx || STM32F469_479xx */
+#endif /* STM32F412xG || STM32F446xx || STM32F469_479xx */
 
 /* Features available only for STM32F446xx devices */
 #if defined(STM32F446xx)
@@ -941,10 +941,10 @@ void        RCC_SPDIFRXClockSourceConfig(uint8_t RCC_ClockSource);
 void        RCC_CECClockSourceConfig(uint8_t RCC_ClockSource);
 #endif /* STM32F446xx */
 
-/* Features available only for STM32F410xx/STM32F446xx devices */
-#if defined(STM32F410xx) || defined(STM32F446xx)
+/* Features available only for STM32F410xx/STM32F412xG/STM32F446xx devices */
+#if defined(STM32F410xx) || defined(STM32F412xG) || defined(STM32F446xx)
 void        RCC_FMPI2C1ClockSourceConfig(uint32_t RCC_ClockSource);
-#endif /* STM32F410xx || STM32F446xx */
+#endif /* STM32F410xx || STM32F412xG || STM32F446xx */
 
 /* Features available only for STM32F410xx devices */
 #if defined(STM32F410xx)

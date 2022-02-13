@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2016 STMicroelectronics *******************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    22-April-2016
+  * @version V1.7.1
+  * @date    20-May-2016
   * @brief   This sub-directory contains all the user-modifiable files needed to 
   *          create a new project linked with the STM32F4xx Standard Peripherals  
   *          Library and working with RealView Microcontroller Development Kit(MDK-ARM)

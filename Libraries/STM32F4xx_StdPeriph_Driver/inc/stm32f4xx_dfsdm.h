@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_dfsdm.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    22-April-2016
+  * @version V1.7.1
+  * @date    20-May-2016
   * @brief   This file contains all the functions prototypes for the DFSDM
   *          firmware library
   ******************************************************************************
@@ -711,6 +711,7 @@ void DFSDM_InjectedContinuousModeCmd(DFSDM_TypeDef* DFSDMx, FunctionalState NewS
 void DFSDM_FastModeCmd(DFSDM_TypeDef* DFSDMx, FunctionalState NewState);
 void DFSDM_ConfigInjectedTrigger(DFSDM_TypeDef* DFSDMx, uint32_t DFSDM_Trigger, uint32_t DFSDM_TriggerEdge);
 void DFSDM_ConfigBRKShortCircuitDetector(DFSDM_Channel_TypeDef* DFSDM_Channelx, uint32_t DFSDM_SCDBreak_i, FunctionalState NewState);
+void DFSDM_ConfigBRKAnalogWatchDog(DFSDM_Channel_TypeDef* DFSDM_Channelx, uint32_t DFSDM_SCDBreak_i, FunctionalState NewState);
 void DFSDM_ConfigShortCircuitThreshold(DFSDM_Channel_TypeDef* DFSDM_Channelx, uint32_t DFSDM_SCDThreshold);
 void DFSDM_ConfigAnalogWatchdog(DFSDM_TypeDef* DFSDMx, uint32_t DFSDM_AWDChannelx, uint32_t DFSDM_AWDFastMode);
 void DFSDM_ConfigAWDFilter(DFSDM_Channel_TypeDef* DFSDM_Channelx, uint32_t AWD_SincOrder, uint32_t AWD_SincOverSampleRatio);

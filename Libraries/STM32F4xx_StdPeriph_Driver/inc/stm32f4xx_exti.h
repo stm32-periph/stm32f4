@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_exti.h
   * @author  MCD Application Team
-  * @version V1.7.0
-  * @date    22-April-2016
+  * @version V1.7.1
+  * @date    20-May-2016
   * @brief   This file contains all the functions prototypes for the EXTI firmware
   *          library.
   ******************************************************************************
