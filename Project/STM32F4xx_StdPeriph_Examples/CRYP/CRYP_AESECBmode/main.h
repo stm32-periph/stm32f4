@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    CRYP/CRYP_AESECBmode/main.h 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-/* The size of the plain text in word (PlainData is declared as usigned word). It must be a multiple of 4.
+/* The size of the plain text in word (PlainData is declared as unsigned word). It must be a multiple of 4.
    AES is a block cipher algorithm. The plain text must be multiple of 128 bits = 16 bytes = 4 words */
 #define DATA_SIZE              ((uint32_t)8)
 

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_FLASH/spi_flash.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides a set of functions needed to manage the SPI M25Pxxx
   *          FLASH memory. 
   *            
@@ -39,7 +39,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -403,7 +403,7 @@ uint8_t sFLASH_ReadByte(void)
   */
 uint8_t sFLASH_SendByte(uint8_t byte)
 {
-  /*!< Loop while DR register in not emplty */
+  /*!< Loop while DR register in not empty */
   while (SPI_I2S_GetFlagStatus(sFLASH_SPI, SPI_I2S_FLAG_TXE) == RESET);
 
   /*!< Send byte through the SPI1 peripheral */
@@ -424,7 +424,7 @@ uint8_t sFLASH_SendByte(uint8_t byte)
   */
 uint16_t sFLASH_SendHalfWord(uint16_t HalfWord)
 {
-  /*!< Loop while DR register in not emplty */
+  /*!< Loop while DR register in not empty */
   while (SPI_I2S_GetFlagStatus(sFLASH_SPI, SPI_I2S_FLAG_TXE) == RESET);
 
   /*!< Send Half Word through the sFLASH peripheral */
@@ -456,7 +456,7 @@ void sFLASH_WriteEnable(void)
 
 /**
   * @brief  Polls the status of the Write In Progress (WIP) flag in the FLASH's
-  *         status register and loop until write opertaion has completed.
+  *         status register and loop until write operation has completed.
   * @param  None
   * @retval None
   */

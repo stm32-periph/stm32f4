@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    CRYP/CRYP_AESECBmode/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the CRYP AES-128 Algo in ECB mode with DMA example.
   ******************************************************************************
   *
@@ -38,7 +38,7 @@ The data to be encrypted is a 256-bit data (8 words), which corresponds to
 
 This example behaves as below: 
 - AES Encryption   (PlainData --> EncryptedData)
-- AES Key prepation for decryption (Encryption Key --> Decryption Key)
+- AES Key preparation for decryption (Encryption Key --> Decryption Key)
 - AES Decryption (EncryptedData --> DecryptedData)
 
 The Plain data, encrypted data and decrypted data can be displayed on a PC 

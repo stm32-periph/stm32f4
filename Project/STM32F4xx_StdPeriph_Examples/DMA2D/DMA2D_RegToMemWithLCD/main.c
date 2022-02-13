@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    DMA2D/DMA2D_RegToMemWithLCD/main.c 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -85,7 +85,7 @@ int main(void)
 
 /**
   * @brief DMA2D configuration.
-  * @note  This function Configure tha DMA2D peripheral :
+  * @note  This function Configure the DMA2D peripheral :
   *        1) Configure the transfer mode : register to memory
   *        2) Configure the color to be used to fill user defined area.
   *        3) Configure the output memory address at SRAM memory
@@ -125,7 +125,7 @@ static void DMA2D_Config(void)
 
 /**
   * @brief LCD configuration.
-  * @note  This function Configure tha LTDC peripheral :
+  * @note  This function Configure the LTDC peripheral :
   *        1) Configure the Pixel Clock for the LCD
   *        2) Configure the LTDC Timing and Polarity
   *        3) Configure the LTDC Layer 1 :
@@ -139,10 +139,10 @@ static void DMA2D_Config(void)
 static void LCD_Config(void)
 {
   
-  /* Initialise the LCD */
+  /* Initialize the LCD */
   LCD_Init();
   
-  /* Initialise the LCD Layers */
+  /* Initialize the LCD Layers */
   LCD_LayerInit();
   
   /* Clear the Hole LCD */

@@ -5,7 +5,7 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.3.0
+  * @version V1.5.0
   * @date    13-November-2013
   * @brief   This sub-directory contains all the user-modifiable files needed to
   *          create a new project linked with the STM32F4xx Standard Peripherals
@@ -32,7 +32,7 @@
  - .cproject/.project:  A pre-configured project file with the provided library
                         structure that produces an executable image with TrueSTUDIO.
 
- - stm32_flash.ld:             This file is the TrueSTUDIO linker script used to 
+ - STM32XX_FLASH.ld:             This file is the TrueSTUDIO linker script used to 
                                place program code (readonly) in internal FLASH and
                                data (readwrite, Stack and Heap)in internal SRAM. 
                                You can customize this file to your need.
@@ -67,6 +67,10 @@
      - STM32F401xx: to configure the project for STM32F401xx devices.
      @note The needed define symbols for this config are already declared in the
            preprocessor section: STM32F401xx, USE_STDPERIPH_DRIVER
+           
+     - STM32F446xx: to configure the project for STM32F446xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: STM32F446xx, USE_STDPERIPH_DRIVER
          
  - Rebuild all project files: Select the project in the "Project explorer" 
    window then click on Project->build project menu.

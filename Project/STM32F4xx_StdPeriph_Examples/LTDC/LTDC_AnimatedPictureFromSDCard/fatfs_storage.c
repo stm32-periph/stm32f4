@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    LTDC/LTDC_AnimatedPictureFromSDCard/fatfs_storage.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file includes the Storage (FatFs) driver for the STM324x9I-EVAL
   *          example.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ uint32_t Storage_Init(void)
 {
   SD_Init();
   
-  /****************** FatFs Volume Acess ******************************/
+  /****************** FatFs Volume Access ******************************/
   if (f_mount(0, &fs))
   {
     return 1;
@@ -112,7 +112,7 @@ uint32_t Storage_Init(void)
   * @param  DirName: the Directory name to open
   * @param  FileName: the file name to open
   * @param  BufferAddress: A pointer to a buffer to copy the file to
-  * @param  FileLen: the File lenght
+  * @param  FileLen: the File length
   * @retval err: Error status (0=> success, 1=> fail)
   */
 uint32_t Storage_OpenReadFile(uint32_t Address, const char* BmpName)
@@ -173,7 +173,7 @@ uint32_t Storage_OpenReadFile(uint32_t Address, const char* BmpName)
   * @param  DirName: the Directory name to open
   * @param  FileName: the file name to open
   * @param  BufferAddress: A pointer to a buffer to copy the file to
-  * @param  FileLen: the File lenght
+  * @param  FileLen: the File length
   * @retval err: Error status (0=> success, 1=> fail)
   */
 uint32_t Storage_CheckBitmapFile(const char* BmpName, uint32_t *FileLen)

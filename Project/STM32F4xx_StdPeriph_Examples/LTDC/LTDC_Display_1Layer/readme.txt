@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    LTDC/LTDC_Display_1Layer/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the LTDC Display Layer 1 example.
   ******************************************************************************
   *
@@ -56,9 +56,9 @@ After LCD initialization, the LCD layer 1 is configured to display image
           |     /|\     |         | / / / / / / / / / / / / / / / / / / / |    |
           |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
  Total    |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
- Heigh    |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
+ Height    |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
           |Active|      |         |/ / / / / / / / / / / / / / / / / / / /|    |
-          |Heigh |      |         |/ / / / / / Active Display Area / / / /|    |
+          |Height |      |         |/ / / / / / Active Display Area / / / /|    |
           |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
           |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
           |      |      |         |/ / / / / / / / / / / / / / / / / / / /|    |
@@ -81,7 +81,7 @@ After LCD initialization, the LCD layer 1 is configured to display image
 
   Vertical Synchronization (Vsync)   = 10
   Vertical Back Porch (VBP)          = 2
-  Active Heigh                       = 272
+  Active Height                       = 272
   Vertical Front Porch (VFP)         = 2
   
   LCD_TFT windowing configuration :
@@ -92,7 +92,7 @@ After LCD initialization, the LCD layer 1 is configured to display image
 
   HorizontalStart = (Offset_X + Hsync + HBP);
   HorizontalStop  = (Offset_X + Hsync + HBP + Window_Width - 1); 
-  VarticalStart   = (Offset_Y + Vsync + VBP);
+  Verticalstart   = (Offset_Y + Vsync + VBP);
   VerticalStop    = (Offset_Y + Vsync + VBP + Window_Heigh - 1);
   
   Window_width and Window_heigh should be in line with the image size to be 

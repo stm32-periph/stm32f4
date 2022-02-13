@@ -5,8 +5,8 @@
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    FSMC/FSMC_SRAM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the FSMC SRAM example.
   ******************************************************************************
   *
@@ -35,7 +35,7 @@ After initializing the device, user can perform read/write operations on it.
 A data buffer is written to the SRAM memory, then read back and checked to verify 
 its correctness.
 
-To enable the continuous clock feature feature, the burst access mode must be 
+To enable the continuous clock feature featured, the burst access mode must be 
 also enabled in the used FSMC SRAM bank. The continuous clock will be automatically 
 enabled in the FSMC SRAM bank 1.
 

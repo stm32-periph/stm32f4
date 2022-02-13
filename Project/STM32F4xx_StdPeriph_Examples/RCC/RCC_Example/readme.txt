@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    RCC/RCC_Example/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the RCC example.
   ******************************************************************************
   *
@@ -43,7 +43,7 @@ HSE clock failure). You can monitor the HSE clock on MCO1 pin(PA8).
 Four LEDs are toggled with a timing defined by the Delay function.
 
  @note On the STM324xG-EVAL/STM32437I-EVAL/STM324x9I-EVAL RevB boards,  
-       to genertate the HSE failure you can remove the HSE quartz from the socket.
+       to generate the HSE failure you can remove the HSE quartz from the socket.
  
 
 @par Directory contents 

@@ -5,8 +5,8 @@
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    FMC/FMC_NOR/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-20142
+  * @version V1.5.0
+  * @date    06-March-20152
   * @brief   Description of the FMC NOR example.
   ******************************************************************************
   *

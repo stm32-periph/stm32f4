@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    TIM/TIM_DMA/main.c 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -99,7 +99,7 @@ int main(void)
     based on this variable will be incorrect.  
   -----------------------------------------------------------------------------*/
   
-  /* Compute the value to be set in ARR regiter to generate signal frequency at 17.57 Khz */
+  /* Compute the value to be set in ARR register to generate signal frequency at 17.57 Khz */
   uhTimerPeriod = (SystemCoreClock / 17570 ) - 1;
   /* Compute CCR1 value to generate a duty cycle at 50% */
   aSRC_Buffer[0] = (uint16_t) (((uint32_t) 5 * (uhTimerPeriod - 1)) / 10);

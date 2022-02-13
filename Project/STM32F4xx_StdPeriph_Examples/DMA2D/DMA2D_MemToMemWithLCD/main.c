@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    DMA2D/DMA2D_MemToMemWithLCD/main.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -162,10 +162,10 @@ static void DMA2D_Config(void)
   */
 static void LCD_Config(void)
 {
-  /* Initialise the LCD */
+  /* Initialize the LCD */
   LCD_Init();
   
-  /* Initialise the LCD Layers */
+  /* Initialize the LCD Layers */
   LCD_LayerInit();
   
   /* Set the Foreground as active Layer */

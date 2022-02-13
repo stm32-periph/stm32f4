@@ -134,12 +134,12 @@
 /  Always set 512 for memory card and hard disk but a larger value may be
 /  required for on-board flash memory, floppy disk and optical disk.
 /  When _MAX_SS is larger than 512, it configures FatFs to variable sector size
-/  and GET_SECTOR_SIZE command must be implememted to the disk_ioctl function. */
+/  and GET_SECTOR_SIZE command must be implemented to the disk_ioctl function. */
 
 
 #define	_MULTI_PARTITION	0	/* 0:Single partition, 1/2:Enable multiple partition */
 /* When set to 0, each volume is bound to the same physical drive number and
-/ it can mount only first primaly partition. When it is set to 1, each volume
+/ it can mount only first primary partition. When it is set to 1, each volume
 / is tied to the partitions listed in VolToPart[]. */
 
 
@@ -174,16 +174,16 @@
 #define _FS_TIMEOUT		1000	/* Timeout period in unit of time ticks */
 #define	_SYNC_t			HANDLE	/* O/S dependent type of sync object. e.g. HANDLE, OS_EVENT*, ID and etc.. */
 
-/* The _FS_REENTRANT option switches the reentrancy (thread safe) of the FatFs module.
+/* The _FS_REENTRANT option switches the reentrance (thread safe) of the FatFs module.
 /
-/   0: Disable reentrancy. _SYNC_t and _FS_TIMEOUT have no effect.
-/   1: Enable reentrancy. Also user provided synchronization handlers,
+/   0: Disable reentrance. _SYNC_t and _FS_TIMEOUT have no effect.
+/   1: Enable reentrance. Also user provided synchronization handlers,
 /      ff_req_grant, ff_rel_grant, ff_del_syncobj and ff_cre_syncobj
 /      function must be added to the project. */
 
 
 #define	_FS_SHARE	0	/* 0:Disable or >=1:Enable */
-/* To enable file shareing feature, set _FS_SHARE to 1 or greater. The value
+/* To enable file sharing feature, set _FS_SHARE to 1 or greater. The value
    defines how many files can be opened simultaneously. */
 
 

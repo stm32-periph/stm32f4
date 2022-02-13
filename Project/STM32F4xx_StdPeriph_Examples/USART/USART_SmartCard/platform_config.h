@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    USART/USART_SmartCard/platform_config.h 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Evaluation board specific configuration file.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -60,7 +60,7 @@
   #define SC_USART_CK_AF                     GPIO_AF_USART6
 
 
-  /* Smartcard Inteface GPIO pins */
+  /* Smartcard Interface GPIO pins */
   #define SC_3_5V_PIN                        GPIO_Pin_15
   #define SC_3_5V_GPIO_PORT                  GPIOH
   #define SC_3_5V_GPIO_CLK                   RCC_AHB1Periph_GPIOH
@@ -105,7 +105,7 @@
   #define SC_USART_CK_AF                     GPIO_AF_USART6
 
 
-  /* Smartcard Inteface GPIO pins */
+  /* Smartcard Interface GPIO pins */
   #define SC_3_5V_PIN                        GPIO_Pin_15
   #define SC_3_5V_GPIO_PORT                  GPIOH
   #define SC_3_5V_GPIO_CLK                   RCC_AHB1Periph_GPIOH

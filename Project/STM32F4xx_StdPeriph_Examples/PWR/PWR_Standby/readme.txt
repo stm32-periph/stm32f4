@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    PWR/PWR_Standby/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the PWR STANDBY example.
   ******************************************************************************
   *
@@ -58,7 +58,7 @@ These Steps are repeated in an infinite loop.
 
  @note This example can not be used in DEBUG mode, this is due to the fact 
        that the Cortex-M4 core is no longer clocked during low power mode 
-       so debugging features are disbaled.
+       so debugging features are disabled.
       
 
 @par Directory contents 

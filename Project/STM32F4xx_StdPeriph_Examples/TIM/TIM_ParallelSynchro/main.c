@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    TIM/TIM_ParallelSynchro/main.c 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Main program body
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -90,7 +90,7 @@ int main(void)
     ARR = (TIM2 counter clock / TIM2 output clock) - 1
         = 255
 
-    The dutu cycle (TIM2_CCR1) is computed as follows:
+    The duty cycle (TIM2_CCR1) is computed as follows:
     CCR1 = ((TIM2_ARR + 1) * 25)/100
          = 64
      

@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    DCMI/DCMI_CameraExample/dcmi_ov2640.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file includes the driver for OV2640 Camera module mounted on
   *          STM324xG-EVAL and STM32437I-EVAL evaluation boards.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -1404,7 +1404,7 @@ void OV2640_ContrastConfig(uint8_t value1, uint8_t value2)
   * @param  Addr: OV2640 register address.
   * @param  Data: Data to be written to the specific register 
   * @retval 0x00 if write operation is OK.
-  *       0xFF if timeout condition occured (device not connected or bus error).
+  *       0xFF if timeout condition occurred (device not connected or bus error).
   */
 uint8_t OV2640_WriteReg(uint16_t Addr, uint8_t Data)
 {
@@ -1417,18 +1417,18 @@ uint8_t OV2640_WriteReg(uint16_t Addr, uint8_t Data)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   }
    
-  /* Send DCMI selcted device slave Address for write */
+  /* Send DCMI selected device slave Address for write */
   I2C_Send7bitAddress(I2C1, OV2640_DEVICE_WRITE_ADDRESS, I2C_Direction_Transmitter);
  
   /* Test on I2C1 EV6 and clear it */
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   }
  
@@ -1439,7 +1439,7 @@ uint8_t OV2640_WriteReg(uint16_t Addr, uint8_t Data)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   }
   
@@ -1450,7 +1450,7 @@ uint8_t OV2640_WriteReg(uint16_t Addr, uint8_t Data)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   }  
  
@@ -1465,7 +1465,7 @@ uint8_t OV2640_WriteReg(uint16_t Addr, uint8_t Data)
   * @brief  Reads a byte from a specific Camera register
   * @param  Addr: OV2640 register address.
   * @retval data read from the specific register or 0xFF if timeout condition
-  *         occured. 
+  *         occurred. 
   */
 uint8_t OV2640_ReadReg(uint16_t Addr)
 {
@@ -1479,18 +1479,18 @@ uint8_t OV2640_ReadReg(uint16_t Addr)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   } 
   
-  /* Send DCMI selcted device slave Address for write */
+  /* Send DCMI selected device slave Address for write */
   I2C_Send7bitAddress(I2C1, OV2640_DEVICE_READ_ADDRESS, I2C_Direction_Transmitter);
  
   /* Test on I2C1 EV6 and clear it */
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   } 
 
@@ -1501,7 +1501,7 @@ uint8_t OV2640_ReadReg(uint16_t Addr)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_TRANSMITTED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   } 
   
@@ -1515,18 +1515,18 @@ uint8_t OV2640_ReadReg(uint16_t Addr)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_MODE_SELECT))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   } 
   
-  /* Send DCMI selcted device slave Address for write */
+  /* Send DCMI selected device slave Address for write */
   I2C_Send7bitAddress(I2C1, OV2640_DEVICE_READ_ADDRESS, I2C_Direction_Receiver);
    
   /* Test on I2C1 EV6 and clear it */
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   }  
  
@@ -1537,7 +1537,7 @@ uint8_t OV2640_ReadReg(uint16_t Addr)
   timeout = DCMI_TIMEOUT_MAX; /* Initialize timeout value */
   while(!I2C_CheckEvent(I2C1, I2C_EVENT_MASTER_BYTE_RECEIVED))
   {
-    /* If the timeout delay is exeeded, exit with error code */
+    /* If the timeout delay is exceeded, exit with error code */
     if ((timeout--) == 0) return 0xFF;
   }   
     

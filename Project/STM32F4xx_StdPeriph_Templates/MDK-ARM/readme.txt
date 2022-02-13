@@ -30,7 +30,7 @@
  
 @par Directory contents
  
- - Project.uvproj/.uvopt: A pre-configured project file with the provided library 
+ - Project.uvprojx/.uvoptx: A pre-configured project file with the provided library 
                           structure that produces an executable image with MDK-ARM.
 
  @note Enabling "Options for Target — Output – Browser Information" is useful for
@@ -39,7 +39,7 @@
  
 @par How to use it ?
  
- - Open the Project.uvproj project
+ - Open the Project.uvprojx project
  - In the workspace toolbar select the project config:
      - STM32F429_439xx: to configure the project for STM32F429xx/439xx devices.
      @note The needed define symbols for this config are already declared in the
@@ -56,6 +56,10 @@
      - STM32F401xx: to configure the project for STM32F401xx devices.
      @note The needed define symbols for this config are already declared in the
            preprocessor section: STM32F401xx, USE_STDPERIPH_DRIVER
+		   
+	 - STM32F446xx: to configure the project for STM32F446xx devices.
+     @note The needed define symbols for this config are already declared in the
+           preprocessor section: STM32F446xx, USE_STDPERIPH_DRIVER
            
  - Rebuild all files: Project->Rebuild all target files
  - Load project image: Debug->Start/Stop Debug Session

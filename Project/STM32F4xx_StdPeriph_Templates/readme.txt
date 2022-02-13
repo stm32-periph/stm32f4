@@ -1,12 +1,12 @@
 /**
-  @page Template  <Example brief description (1 line)>
+  @page Template  Description of the Templates project
   
   @verbatim
-  ******************** (C) COPYRIGHT 2014 STMicroelectronics *******************
+  ******************** (C) COPYRIGHT 2015 STMicroelectronics *******************
   * @file    Project/STM32F4xx_StdPeriph_Templates/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the TEMPLATE example
   ******************************************************************************
   *
@@ -29,7 +29,7 @@
 
 This example is used as a template project that can be used as reference to build
 any new firmware application for STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx, 
-STM32F429xx/439xx or STM32F401xx/411xE devices using the STM32F4xx Standard Peripherals Library.
+STM32F429xx/439xx, STM32F401xx/411xE or STM32F446xx devices using the STM32F4xx Standard Peripherals Library.
 
 
 @par Directory contents
@@ -45,11 +45,12 @@ STM32F429xx/439xx or STM32F401xx/411xE devices using the STM32F4xx Standard Peri
 @par Hardware and Software environment
 
   - This example runs on STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx, 
-    STM32F429xx/439xx and  STM32F401xx/411xE devices.
+    STM32F429xx/439xx, STM32F401xx/411xE and STM32F446xx devices.
   
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
-    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) and STM32446E-EVAL RevB
+	(STM32F446xx Devices) evaluation boards.
     This example can be easily tailored to any other supported device and development board.
 
 @par How to use it ? 

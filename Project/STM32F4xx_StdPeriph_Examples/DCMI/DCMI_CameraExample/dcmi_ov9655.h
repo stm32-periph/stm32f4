@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    DCMI/DCMI_CameraExample/dcmi_ov9655.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Header for dcmi_ov9655.c module
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ typedef struct
 /* Exported constants --------------------------------------------------------*/
 
 /* Use this define to set the maximum delay timeout for the I2C DCMI_OV9655_SingleRandomWrite()
-   and DCMI_OV9655_SingleRandomRead() operations. Exeeding this timeout delay,
+   and DCMI_OV9655_SingleRandomRead() operations. Exceeding this timeout delay,
    the read/write functions will be aborted and return error code (0xFF).
    The period of the delay will depend on the system operating frequency. The following
    value has been set for system running at 168 MHz. */

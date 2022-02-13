@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    LTDC/LTDC_ColorKeying/readme.txt 
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   Description of the LTDC Color Keying example.
   ******************************************************************************
   *
@@ -20,7 +20,7 @@
   * distributed under the License is distributed on an "AS IS" BASIS, 
   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   * See the License for the specific language governing permissions and
-  * limitations under the Licens
+  * limitations under the License
   *   
   ******************************************************************************
   @endverbatim
