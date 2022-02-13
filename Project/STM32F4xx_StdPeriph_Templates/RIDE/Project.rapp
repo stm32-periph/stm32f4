@@ -1,7 +1,7 @@
 
-<ApplicationBuild Header="STM322xG_EVAL" Extern=".\Project.rapp" Path=".\Project.rapp" OutputFile=".\STM324xG_EVAL\Project.elf" sate="98" Config="STM322xG_EVAL" >
+<ApplicationBuild Header="STM324xG_EVAL" Extern=".\Project.rapp" Path=".\Project.rapp" OutputFile=".\STM324xG_EVAL\Project.elf" sate="98" Config="STM324xG_EVAL" >
 	<Configs>
-		<Config Header="STM322xG_EVAL" />
+		<Config Header="STM324xG_EVAL" />
 																																																																																																																																																																																																																																																																																																																																																																																																																																																
 	</Configs>
 	<Group Header="CMSIS" Marker="-1" OutputFile="" sate="0" >
@@ -105,7 +105,7 @@
 			</Set>
 																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	
 		</Config>
-		<Config Header="STM322xG_EVAL" >
+		<Config Header="STM324xG_EVAL" >
 			<Set Header="ApplicationBuild" >
 				<Section Header="Directories" >
 					<Property Header="OutDir" Value="$(ApplicationDir)\STM324xG_EVAL" Removable="1" />
