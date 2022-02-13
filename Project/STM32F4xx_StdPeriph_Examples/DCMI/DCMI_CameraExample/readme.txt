@@ -1,12 +1,12 @@
 /**
-  @page DCMI_CameraExample Camera example Readme file
+  @page DCMI_CameraExample DCMI Camera example
   
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    DCMI/DCMI_CameraExample/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the DCMI Camera example.
   ******************************************************************************
   *
@@ -48,20 +48,20 @@ You can use the potentiometer RV1 to fine tune on the fly the camera's brightnes
 
 @par Directory contents
 
-    - DCMI/DCMI_CameraExample/main.h               Main config file
-    - DCMI/DCMI_CameraExample/camera_api.h         Header for camera_api.c
-    - DCMI/DCMI_CameraExample/dcmi_ov2640.h        Header for dcmi_ov2640.c
-    - DCMI/DCMI_CameraExample/dcmi_ov9655.h        Header for dcmi_ov9655.c
-    - DCMI/DCMI_CameraExample/lcd_lo_conf.h        Lcd_log configuration file
-    - DCMI/DCMI_CameraExample/stm32f4xx_it.h       Header for stm32f4xx_it.c
-    - DCMI/DCMI_CameraExample/stm32f4xx_conf.h     library configuration file 
-    - DCMI/DCMI_CameraExample/main.c               Main program  
-    - DCMI/DCMI_CameraExample/camera_api.c         High level driver for OV9655/OV2640 Cameras
-    - DCMI/DCMI_CameraExample/dcmi_ov2640.c        Driver for OV2640 Camera module
-    - DCMI/DCMI_CameraExample/dcmi_ov9655.c        Driver for OV9655 Camera module
-    - DCMI/DCMI_CameraExample/stm32f4xx_it.c       Interrupt handlers
-    - DCMI/DCMI_CameraExample/system_stm32f4xx.c   STM32F4xx system clock configuration file
-
+  - DCMI/DCMI_CameraExample/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - DCMI/DCMI_CameraExample/stm32f4xx_conf.h     Library Configuration file
+  - DCMI/DCMI_CameraExample/stm32f4xx_it.c       Interrupt handlers
+  - DCMI/DCMI_CameraExample/stm32f4xx_it.h       Interrupt handlers header file
+  - DCMI/DCMI_CameraExample/main.c               Main program
+  - DCMI/DCMI_CameraExample/main.h               Main program header file
+  - DCMI/DCMI_CameraExample/lcd_lo_conf.h        Lcd_log configuration file
+  - DCMI/DCMI_CameraExample/camera_api.c         High level driver for OV9655/OV2640 Cameras    
+  - DCMI/DCMI_CameraExample/camera_api.h         Header for camera_api.c
+  - DCMI/DCMI_CameraExample/dcmi_ov2640.c        Driver for OV2640 Camera module
+  - DCMI/DCMI_CameraExample/dcmi_ov2640.h        Header for dcmi_ov2640.c
+  - DCMI/DCMI_CameraExample/dcmi_ov9655.c        Driver for OV9655 Camera module
+  - DCMI/DCMI_CameraExample/dcmi_ov9655.h        Header for dcmi_ov9655.c
+  
 
 @par Hardware and Software environment
 
@@ -71,14 +71,15 @@ You can use the potentiometer RV1 to fine tune on the fly the camera's brightnes
     STM32F41xx Devices) and STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) 
     evaluation boards and can be easily tailored to any other supported device 
     and development board.
-
+    
 @par How to use it ?
-In order to make the program work, you must do the following :
+
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c 
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_ioe.c 
@@ -87,7 +88,7 @@ In order to make the program work, you must do the following :
      - dcmi_ov2640.c
      - dcmi_ov9655.c          
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.c 
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_ioe.c
@@ -98,7 +99,6 @@ In order to make the program work, you must do the following :
 
  - Rebuild all files and load your image into target memory
  - Run the example
-
   
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

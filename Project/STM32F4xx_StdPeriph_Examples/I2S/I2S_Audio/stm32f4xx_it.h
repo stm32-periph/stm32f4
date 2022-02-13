@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    I2S/Audio/stm32f4xx_it.h 
+  * @file    I2S/I2S_Audio/stm32f4xx_it.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention

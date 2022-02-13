@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CRYP/CRYP_DESTDESmodes/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -57,6 +57,10 @@ uint8_t Decryptedtext[PLAIN_TEXT_SIZE]; /* Decrypted text */
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
+static void USART_Config(void);
+static void Display_PlainData(uint32_t datalength);
+static void Display_EncryptedData(uint8_t Algo, uint8_t mode,uint32_t datalength);
+static void Display_DecryptedData(uint8_t Algo, uint8_t mode,uint32_t datalength);
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -65,11 +69,6 @@ uint8_t Decryptedtext[PLAIN_TEXT_SIZE]; /* Decrypted text */
 #else
   #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
-
-static void USART_Config(void);
-static void Display_PlainData(uint32_t datalength);
-static void Display_EncryptedData(uint8_t Algo, uint8_t mode,uint32_t datalength);
-static void Display_DecryptedData(uint8_t Algo, uint8_t mode,uint32_t datalength);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -86,7 +85,7 @@ int main(void)
        before to branch to application main.
      */     
        
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit
@@ -96,7 +95,7 @@ int main(void)
   */
   USART_Config();
 
-  /* Display Plain Data*/
+  /* Display Plain Data */
   Display_PlainData(PLAIN_TEXT_SIZE);
 
   /* Enable CRYP clock */
@@ -154,7 +153,7 @@ int main(void)
   }
 
 /******************************************************************************/
-/*                             TDES mode ECB                                   */
+/*                             TDES mode ECB                                  */
 /******************************************************************************/
 
 /*=====================================================
@@ -179,7 +178,7 @@ int main(void)
   }
 
 /******************************************************************************/
-/*                             TDES mode CBC                                   */
+/*                             TDES mode CBC                                  */
 /******************************************************************************/
 
 /*=====================================================
@@ -237,7 +236,7 @@ static void Display_PlainData(uint32_t datalength)
   }
 }
 /**
-  * @brief  Display Encrypted Data 
+  * @brief  Displays Encrypted Data 
   * @param  Algo: Algorithm used (DES or TDES)
   * @param  mode: chaining mode
   * @param  datalength: length of the data to display
@@ -276,7 +275,7 @@ static void Display_EncryptedData(uint8_t Algo, uint8_t mode, uint32_t datalengt
 }
 
 /**
-  * @brief  Display Decrypted Data 
+  * @brief  Displays Decrypted Data 
   * @param  Algo: Algorithm used (DES or TDES)
   * @param  mode: chaining mode
   * @param  datalength: length of the data to display

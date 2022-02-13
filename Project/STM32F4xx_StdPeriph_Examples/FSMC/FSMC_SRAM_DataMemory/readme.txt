@@ -1,13 +1,13 @@
 /**
-  @page FSMC_SRAM_DataMemory FSMC SRAM DataMemory example
+  @page FSMC_SRAM_DataMemory FSMC SRAM Data Memory example
   
   @verbatim
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    FSMC/FSMC_SRAM_DataMemory/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the FSMC SRAM_DataMemory example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the FSMC SRAM Data Memory example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -27,28 +27,29 @@
  
 @par Example Description 
 
-  This example shows how to use the SRAM mounted on on STM3240_41_G_EVAL or STM32437I_EVAL 
-  board as program data memory (including heap and stack).
-  
-  The example scenario does not reflect a real application case; its purpose is to
-  provide only the procedure to follow to use the external SRAM as data memory.
+This example shows how to use the SRAM mounted on on STM3240_41_G_EVAL or STM32437I_EVAL 
+board as program data memory (including heap and stack).
 
-  This example does not use the default library startup file. It uses a modified 
-  startup file provided with the example. While startup, the SRAM memory is configured 
-  and initialized to be ready to contain data.
-  
-  The user have to configure his preferred toolchain using the provided linker file.
-  The RAM zone is modified in order to use the external memory as a RAM. 
- 
+The example scenario does not reflect a real application case; its purpose is to
+provide only the procedure to follow to use the external SRAM as data memory.
+
+This example does not use the default library startup file. It uses a modified 
+startup file provided with the example. While startup, the SRAM memory is configured 
+and initialized to be ready to contain data.
+
+The user have to configure his preferred toolchain using the provided linker file.
+The RAM zone is modified in order to use the external memory as a RAM. 
+
+
 @par Directory contents
-                       
- - FSMC/FSMC_SRAM_DataMemory/system_stm32f4xx.c          STM32F4xx system clock configuration file 
- - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_conf.h            Library Configuration file
- - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_it.c              Interrupt handlers
- - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_it.h              Header for stm32f4xx_it.c
- - FSMC/FSMC_SRAM_DataMemory/main.c                      Main program   
- - FSMC/FSMC_SRAM_DataMemory/main.h                      Header for main.c module 
- - FSMC/FSMC_SRAM_DataMemory/startup                     Directory containing startup file for each toolchain               
+                        
+ - FSMC/FSMC_SRAM_DataMemory/system_stm32f4xx.c   STM32F4xx system clock configuration file
+ - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_conf.h     Library Configuration file
+ - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_it.c       Interrupt handlers
+ - FSMC/FSMC_SRAM_DataMemory/stm32f4xx_it.h       Interrupt handlers header file
+ - FSMC/FSMC_SRAM_DataMemory/main.c               Main program
+ - FSMC/FSMC_SRAM_DataMemory/main.h               Main program header file
+ - FSMC/FSMC_SRAM_DataMemory/startup              Directory containing startup file for each toolchain               
  
       
 @par Hardware and Software environment 
@@ -66,9 +67,10 @@
     STM32F41xx Devices) evaluation boards and can be easily tailored to any 
     other supported device and development board.
 
+
 @par How to use it ? 
 
- In order to make the program work, you must do the following :
+ In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain   

@@ -1,13 +1,13 @@
 /**
-  @page ADC_TripleModeInterleaved  Use ADC1, ADC2 and ADC3 in Triple interleaved mode and DMA mode2 with 6Msps 
+  @page ADC_TripleModeInterleaved  Triple interleaved mode and DMA mode2 example 
 
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    ADC/ADC_TripleModeInterleaved/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the Triple interleaved mode and DMA mode2 Example
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the Triple interleaved mode and DMA mode2 example
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -27,9 +27,8 @@
 
 @par Example Description 
 
-This example provides a short description of how to use the ADC peripheral to 
-convert a regular channel in Triple interleaved mode using DMA in mode 2 with 
-6Msps .
+This example shows how to use the ADC peripheral to convert a regular channel
+in Triple interleaved mode using DMA in mode 2 with 6Msps.
 
 The Triple interleaved delay is configured 5 ADC clk cycles.
 
@@ -60,19 +59,17 @@ In this example, the system clock is 144MHz, APB2 = 72MHz and ADC clock = APB2 /
 Since ADCCLK= 36MHz and Conversion rate = 5 cycles 
 ==> Conversion Time = 36M/5cyc = 7.2Msps
 
-@note Refer to "simulation.xls" file to have the diagram simulation of the example.
+ @note Refer to "simulation.xls" file to have the diagram simulation of the example.
 
 
 @par Directory contents 
-
+  
   - ADC/ADC_TripleModeInterleaved/system_stm32f4xx.c   STM32F4xx system clock configuration file
   - ADC/ADC_TripleModeInterleaved/stm32f4xx_conf.h     Library Configuration file
-  - ADC/ADC_TripleModeInterleaved/stm32f4xx_it.h       Interrupt handlers header file
   - ADC/ADC_TripleModeInterleaved/stm32f4xx_it.c       Interrupt handlers
+  - ADC/ADC_TripleModeInterleaved/stm32f4xx_it.h       Interrupt handlers header file
   - ADC/ADC_TripleModeInterleaved/main.c               Main program
   - ADC/ADC_TripleModeInterleaved/main.h               Main program header file
-
-
 
       
 @par Hardware and Software environment 
@@ -81,29 +78,29 @@ Since ADCCLK= 36MHz and Conversion rate = 5 cycles
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
 
-  - STM324xG-EVAL, STM32437I-EVAL and STM324x9I-EVAL Set-up 
+  - STM324xG-EVAL, STM32437I-EVAL and STM324x9I-EVAL RevB Set-up 
     - Connect PC.2 to a power supply (do not forget to connect the power supply GND
       to the EVAL board GND)
 
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
            
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
           
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
                  
  - Rebuild all files and load your image into target memory

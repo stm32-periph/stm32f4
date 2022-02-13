@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FLASH/FLASH_Program/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -38,11 +38,7 @@
   */ 
 
 /* Private typedef -----------------------------------------------------------*/
-
 /* Private define ------------------------------------------------------------*/
-
-
-
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 uint32_t uwStartSector = 0;
@@ -54,11 +50,12 @@ __IO uint32_t uwData32 = 0;
 __IO uint32_t uwMemoryProgramStatus = 0;
   
 /* Private function prototypes -----------------------------------------------*/
-/* Private functions ---------------------------------------------------------*/
 static uint32_t GetSector(uint32_t Address);
 
+/* Private functions ---------------------------------------------------------*/
+
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */

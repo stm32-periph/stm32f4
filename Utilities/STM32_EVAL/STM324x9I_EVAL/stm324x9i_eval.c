@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file provides
   *            - set of firmware functions to manage Leds, push-button and COM ports
   *            - low level initialization functions for SD card (on SDIO) and EEPROM

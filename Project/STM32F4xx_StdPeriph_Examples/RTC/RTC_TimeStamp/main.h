@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_TimeStamp/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -44,7 +44,6 @@
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
 
-
 /* Exported types ------------------------------------------------------------*/                                        
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
@@ -52,15 +51,6 @@
 void RTC_TimeShow(void);
 void RTC_DateShow(void);
 void RTC_TimeStampShow(void);
-
-
-#ifdef __GNUC__
-  /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
-     set to 'Yes') calls __io_putchar() */
-  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
-#endif /* __GNUC__ */
 
 #endif /* __MAIN_H */
 

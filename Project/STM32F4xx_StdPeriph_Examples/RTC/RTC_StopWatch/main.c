@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_StopWatch/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -55,7 +55,7 @@ static void RTC_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Main program.
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -63,7 +63,7 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s)
        before to branch to application main.
      */  
   
@@ -93,7 +93,6 @@ int main(void)
   /* Display message */
   LCD_DisplayStringLine(LINE(5), (uint8_t *)MESSAGE2);
   
-  /* Infinite loop */
   while (1)
   {
     /* Set The LCD font size */

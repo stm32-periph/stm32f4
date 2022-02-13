@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_WFIMode/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -51,7 +51,7 @@ static void Delay(__IO uint32_t nCount);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -74,7 +74,7 @@ int main(void)
   /* DMA1/2 Stream1/5 channel4 (connected to USART3_RX/USART1_RX) configuration */
   DMA_Config();
 
-  /* EVAL_COM1 (USART3/1) configuration ----------------------------------------*/
+  /* EVAL_COM1 (USART3/1) configuration --------------------------------------*/
   USART_Config();  
     
   while (1)
@@ -102,8 +102,8 @@ int main(void)
   */
 static void USART_Config(void)
 {
-  /* EVAL_COM1 configuration ---------------------------------------------------*/
-  /* EVAL_COM1 configured as follow:
+  /* EVAL_COM1 configuration -------------------------------------------------*/
+  /* EVAL_COM1 configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_Timer/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -30,7 +30,6 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval.h"
   #include "stm324xg_eval_lcd.h"
@@ -44,7 +43,6 @@
 #endif
 
 /* Exported types ------------------------------------------------------------*/
-
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

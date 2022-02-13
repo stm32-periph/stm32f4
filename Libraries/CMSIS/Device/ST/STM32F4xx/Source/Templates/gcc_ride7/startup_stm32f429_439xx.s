@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f429_439xx.s
   * @author    MCD Application Team
-  * @version   V1.2.1
-  * @date      19-September-2013
+  * @version   V1.3.0
+  * @date      08-November-2013
   * @brief     STM32F429xx/439xx Devices vector table for RIDE7 toolchain.          
   *            This module performs:
   *                - Set the initial SP

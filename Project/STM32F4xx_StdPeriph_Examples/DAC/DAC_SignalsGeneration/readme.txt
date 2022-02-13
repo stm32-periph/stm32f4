@@ -1,12 +1,12 @@
 /**
-  @page DAC_SignalsGen DAC Signals generation example
+  @page DAC_SignalsGeneration DAC Signals generation example
   
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    DAC/DAC_SignalsGeneration/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the DAC Signals generation example.
   ******************************************************************************
   *
@@ -38,18 +38,17 @@ the two DAC channels:
 
 
 @par Directory contents 
-
-  - DAC/DAC_SignalsGeneration/stm32f4xx_conf.h    Library Configuration file
-  - DAC/DAC_SignalsGeneration/stm32f4xx_it.c      Interrupt handlers
-  - DAC/DAC_SignalsGeneration/stm32f4xx_it.h      Interrupt handlers header file
-  - DAC/DAC_SignalsGeneration/main.c              Main program
-  - DAC/DAC_SignalsGeneration/main.h              Main program header file
-  - DAC/DAC_SignalsGeneration/system_stm32f4xx.c  STM32F4xx system source file
   
+  - DAC/DAC_SignalsGeneration/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - DAC/DAC_SignalsGeneration/stm32f4xx_conf.h     Library Configuration file
+  - DAC/DAC_SignalsGeneration/stm32f4xx_it.c       Interrupt handlers
+  - DAC/DAC_SignalsGeneration/stm32f4xx_it.h       Interrupt handlers header file
+  - DAC/DAC_SignalsGeneration/main.c               Main program
+  - DAC/DAC_SignalsGeneration/main.h               Main program header file
 
 
-
-@par Hardware and Software environment  
+@par Hardware and Software environment
+  
   - This example runs on STM32F405xx/407xx, STM32F415xx/417xx and STM32F427xx/437xx 
     devices.
     
@@ -60,19 +59,20 @@ the two DAC channels:
   - STM324xG-EVAL and STM32437I-EVAL Set-up 	
      - Use KEY push-button connected to PG15.
      - Connect PA4 (DAC Channel1) and PA5 (DAC Channel2) pins to an oscilloscope.
-     - Make sure that JP31 is removed.
+       @note Make sure that JP31 is open.
 
 
 @par How to use it ? 
 
-- Copy all source files from this example folder to the template folder under
+In order to make the program work, you must do the following:
+ - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
         
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
              
  - Rebuild all files and load your image into target memory
@@ -80,4 +80,4 @@ the two DAC channels:
   
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
-
+ 

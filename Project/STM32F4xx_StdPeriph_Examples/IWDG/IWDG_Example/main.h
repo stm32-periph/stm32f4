@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    IWDG/IWDG_Example/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -30,7 +30,6 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval.h"
 
@@ -47,13 +46,13 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #ifdef USE_STM324x9I_EVAL 
-#define BUTTON            BUTTON_TAMPER
-#define BUTTON_EXTI_LINE  TAMPER_BUTTON_EXTI_LINE
-#else
-#define BUTTON            BUTTON_KEY
-#define BUTTON_EXTI_LINE  KEY_BUTTON_EXTI_LINE
-#endif /* USE_STM324x9I_EVAL */
+ #define BUTTON            BUTTON_TAMPER
+ #define BUTTON_EXTI_LINE  TAMPER_BUTTON_EXTI_LINE
 
+#else
+ #define BUTTON            BUTTON_KEY
+ #define BUTTON_EXTI_LINE  KEY_BUTTON_EXTI_LINE
+#endif /* USE_STM324x9I_EVAL */
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */

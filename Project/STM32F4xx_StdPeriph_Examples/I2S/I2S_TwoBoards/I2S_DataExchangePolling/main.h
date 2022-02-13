@@ -2,9 +2,9 @@
   ******************************************************************************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Main program body
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
@@ -43,7 +43,6 @@
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
-
 
 /* Exported typedef -----------------------------------------------------------*/
 #define countof(a)   (sizeof(a) / sizeof(*(a)))

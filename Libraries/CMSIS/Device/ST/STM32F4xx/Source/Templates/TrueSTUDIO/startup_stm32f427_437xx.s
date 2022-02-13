@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f427_437xx.s
   * @author    MCD Application Team
-  * @version   V1.2.1
-  * @date      19-September-2013
+  * @version   V1.3.0
+  * @date      08-November-2013
   * @brief     STM32F427xx/437xx Devices vector table for Atollic TrueSTUDIO toolchain.   
   *            This module performs:
   *                - Set the initial SP

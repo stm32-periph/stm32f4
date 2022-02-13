@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FMC/FMC_SDRAM_DMA/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -87,7 +87,7 @@ int main(void)
        function, refer to system_stm32f4xx.c file
      */       
      
-  /* Initialize LEDs on STM324x9I-EVAL board */
+  /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2); 
   STM_EVAL_LEDInit(LED3); 
@@ -119,24 +119,23 @@ int main(void)
   if (uwWriteReadStatus)
   {
     /* KO */
-    /* Turn on LD2 */
+    /* Turn on LED2 */
     STM_EVAL_LEDOn(LED2);  
   }
   else
   { 
     /* OK */
-    /* Turn on LD1 */
+    /* Turn on LED1 */
     STM_EVAL_LEDOn(LED1);   
   }
 
   while (1)
   {
-  } 
-  
+  }  
 }
 
 /**
-  * @brief  Configure the DMA controller according to the Stream parameters
+  * @brief  Configures the DMA controller according to the Stream parameters
   *         defined in main.h file with word size 
   * @param  None
   * @retval None

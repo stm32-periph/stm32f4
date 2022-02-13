@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CAN/CAN_LoopBack/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -47,15 +47,18 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
+/* Uncomment the line below if you will use the CAN 1 peripheral */
 #define USE_CAN1
+/* Uncomment the line below if you will use the CAN 2 peripheral */
 /* #define USE_CAN2 */
 
 #ifdef  USE_CAN1
-  #define CANx                       CAN1
-  #define CAN_CLK                    RCC_APB1Periph_CAN1      
-#else /*USE_CAN2*/
-  #define CANx                       CAN2
-  #define CAN_CLK                    (RCC_APB1Periph_CAN1 | RCC_APB1Periph_CAN2)   
+  #define CANx              CAN1
+  #define CAN_CLK           RCC_APB1Periph_CAN1      
+
+#else /* USE_CAN2 */
+  #define CANx              CAN2
+  #define CAN_CLK           (RCC_APB1Periph_CAN1 | RCC_APB1Periph_CAN2)   
 #endif  /* USE_CAN1 */
 
 /* Exported macro ------------------------------------------------------------*/

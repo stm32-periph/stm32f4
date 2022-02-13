@@ -1,13 +1,13 @@
 /**
-  @page ADC_DualModeInterleaved  Use ADC1 and ADC2 in Dual interleaved mode and DMA mode3
+  @page ADC_DualModeInterleaved  Dual interleaved mode and DMA mode3 example
 
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    ADC/ADC_DualModeInterleaved/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the Dual interleaved mode and DMA mode3 Example
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the Dual interleaved mode and DMA mode3 example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -27,12 +27,12 @@
 
 @par Example Description 
 
-This example provides a short description of how to use the ADC peripheral to
-convert a regular channel in Dual interleaved mode using DMA in mode 3 with 5Msps.
+This example shows how to use the ADC peripheral to convert a regular channel 
+in Dual interleaved mode using DMA in mode 3 with 5Msps.
 
 DMA mode 3 is used in interleaved mode in 6-bit and 8-bit resolutions.
 
-The Dual interleaved delay is configured 6 ADC clk cycles.
+The Dual interleaved delay is configured 6 ADC clock cycles.
 
 On each DMA request (two data items are available) two bytes representing two 
 ADC-converted data items are transferred as a half word.
@@ -50,7 +50,7 @@ In this example, the system clock is 144MHz, APB2 =72MHz and ADC clock = APB2 /2
 Since ADCCLK= 36MHz and Conversion rate = 6 cycle
 ==> Conversion Time = 36M/6cyc = 6Msps.
 
-@note Refer to "simulation.xls" file to have the diagram simulation of the example.
+ @note Refer to "simulation.xls" file to have the diagram simulation of the example.
 
 
 @par Directory contents 
@@ -61,6 +61,7 @@ Since ADCCLK= 36MHz and Conversion rate = 6 cycle
   - ADC/ADC_DualModeInterleaved/stm32f4xx_it.c       Interrupt handlers
   - ADC/ADC_DualModeInterleaved/main.c               Main program
   - ADC/ADC_DualModeInterleaved/main.h               Main program header file
+  
 
 @par Hardware and Software environment 
 
@@ -68,38 +69,38 @@ Since ADCCLK= 36MHz and Conversion rate = 6 cycle
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
 
-  - STM324xG-EVAL, STM32437I-EVAL and STM324x9I-EVAL Set-up
+  - STM324xG-EVAL, STM32437I-EVAL and STM324x9I-EVAL RevB Set-up
     - Connect PC.2 to a power supply (do not forget to connect the power supply 
-      GND to the EVAL board GND)
+      GND to the EVAL board GND).
 
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c 
-     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_sram.c
+     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_fsmc_sram.c
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_ioe.c 
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.c 
-     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_sram.c
+     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_fmc_sram.c
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_ioe.c
      
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_lcd.c 
-     - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_sdram.c
+     - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_fmc_sdram.c
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_ioe8.c   
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_ioe16.c 
             

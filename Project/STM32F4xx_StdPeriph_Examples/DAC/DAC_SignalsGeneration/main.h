@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DAC/DAC_SignalsGeneration/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -46,12 +46,10 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 #if defined (USE_STM324xG_EVAL)
-
   #define DAC_DHR12R2_ADDRESS    0x40007414
   #define DAC_DHR8R1_ADDRESS     0x40007410
 
 #else /* defined (USE_STM324x7I_EVAL)*/ 
-
   #define DAC_DHR12R2_ADDRESS    0x40007414
   #define DAC_DHR8R1_ADDRESS     0x40007410
 

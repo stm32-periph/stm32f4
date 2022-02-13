@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CRYP/CRYP_TDESECBmode/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -31,7 +31,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
-#include "stdio.h"
+#include <stdio.h>
 
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval.h"
@@ -48,9 +48,8 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-
 #define BLOCKS_NBR  5  /* User can change this value to enlarge or reduce the 
-                          nbre of blocks to encrypt  */
+                          number of blocks to encrypt  */
 
 #define DATA_SIZE              ((BLOCKS_NBR*64)/32)
 #define CRYP_DIN_REG_ADDR      ((uint32_t)0x50060008)  /* Crypto DIN register address */

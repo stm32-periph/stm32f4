@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeDMA/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -44,8 +44,6 @@ DMA_InitTypeDef  DMA_InitStructure;
 uint8_t aTxBuffer[BUFFERSIZE] = "USART DMA Example: Communication between two USART using DMA";
 uint8_t aRxBuffer [BUFFERSIZE];
 __IO uint32_t TimeOut = 0x0;   
-
-
 
 /* Private function prototypes -----------------------------------------------*/
 static void USART_Config(void);
@@ -137,7 +135,7 @@ int main(void)
   }
   
 #endif /* USART_RECEIVER */
-         
+
   while (1)
   { 
   }
@@ -184,7 +182,7 @@ static void USART_Config(void)
   /* Enable the USART OverSampling by 8 */
   USART_OverSampling8Cmd(USARTx, ENABLE); 
   
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 5250000 baud
 		   - Maximum BaudRate that can be achieved when using the Oversampling by 8
 		     is: (USART APB Clock / 8) 

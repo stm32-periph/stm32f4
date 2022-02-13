@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RNG/RNG_MultiRNG/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -163,7 +163,7 @@ static void Display_Init(void)
 #ifdef PRINT_ON_USART 
 
  USART_InitTypeDef USART_InitStructure;
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit
@@ -236,7 +236,7 @@ static void Display_Init(void)
 }
 
 /**
-  * @brief  Display the Random number value on LCD or/and USART
+  * @brief  Displays the Random number value on LCD or/and USART
   * @param  rnumber: random number to display
   * @param  line: LCD line number
   * @retval None

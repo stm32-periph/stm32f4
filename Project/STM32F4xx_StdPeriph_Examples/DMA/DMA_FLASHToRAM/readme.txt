@@ -1,12 +1,12 @@
 /**
-  @page DMA_FLASHToRAM DMA FLASH To RAM Example
+  @page DMA_FLASHToRAM DMA FLASH To RAM example
   
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    DMA/DMA_FLASHToRAM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the DMA FLASH to RAM example.
   ******************************************************************************
   *
@@ -27,8 +27,8 @@
 
 @par Example Description 
 
-This example provides a description of how to use a DMA channel to transfer 
-a word data buffer from FLASH memory to embedded SRAM memory.
+This example shows how to use a DMA channel to transfer a word data buffer from 
+FLASH memory to embedded SRAM memory.
 
 DMA2 Stream0 channel0 is configured to transfer the contents of a 32-word data 
 buffer stored in Flash memory to the reception buffer declared in RAM.
@@ -58,12 +58,12 @@ example by modifying defines values in the file main.h.
 Note that only DMA2 Streams are able to perform Memory-to-Memory transfers.
 
 There are different options to check on the DMA end of transfer:
- 1. Use DMA Transfer Complete interrupt.
- 2. Use DMA enable state (the DMA stream is disabled by hardware when transfer 
-    is complete).
- 3. Use DMA Stream transfer counter value (the counter value is decremented when
-    transfer is ongoing and is equal to 0 at the transfer end).
- 4. Use DMA Transfer Complete flag (polling mode).
+1)Use DMA Transfer Complete interrupt.
+2)Use DMA enable state (the DMA stream is disabled by hardware when transfer 
+  is complete).
+3)Use DMA Stream transfer counter value (the counter value is decremented when
+  transfer is ongoing and is equal to 0 at the transfer end).
+4)Use DMA Transfer Complete flag (polling mode).
 
 In this example methods 1, 2 and 3 are provided (you can select between method 2 
 and 3 by uncommenting relative code in waiting loop in the main.c file).
@@ -77,8 +77,7 @@ and 3 by uncommenting relative code in waiting loop in the main.c file).
   - DMA/DMA_FLASHToRAM/stm32f4xx_it.h       Interrupt handlers header file
   - DMA/DMA_FLASHToRAM/main.c               Main program
   - DMA/DMA_FLASHToRAM/main.h               Main program header file
-
-
+  
      
 @par Hardware and Software environment 
 
@@ -86,25 +85,25 @@ and 3 by uncommenting relative code in waiting loop in the main.c file).
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
     
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
        
  - Rebuild all files and load your image into target memory

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FLASH/FLASH_WriteProtection/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -48,7 +48,7 @@ __IO uint32_t SectorsWRPStatus = 0xFFF;
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -96,7 +96,7 @@ int main(void)
         }
       }
       /* Disable the Flash option control register access (recommended to protect 
-        the option Bytes against possible unwanted operations) */
+         the option Bytes against possible unwanted operations) */
       FLASH_OB_Lock();
 
       /* Get FLASH_WRP_SECTORS write protection status */
@@ -133,7 +133,7 @@ int main(void)
       }
 
       /* Disable the Flash option control register access (recommended to protect 
-        the option Bytes against possible unwanted operations) */
+         the option Bytes against possible unwanted operations) */
       FLASH_OB_Lock();
 
       /* Get FLASH_WRP_SECTORS write protection status */

@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the I2S full duplex communication example.
   ******************************************************************************
   *
@@ -27,9 +27,8 @@
 
 @par Example Description 
 
-This example provides a small application to show how to configure the I2S for
-full duplex communication, based on polling mode and through I2S firmware
-library. 
+This example shows how to to configure the I2S for full duplex communication, 
+based on polling mode and through I2S firmware library. 
 
 - Hardware Description
 
@@ -51,10 +50,10 @@ the I2S peripheral as STM32 Master device or as STM32 Slave device.
 |        |    | Slave RX |____|_____ext_SD______|____| Slave TX |    |         |
 |        |    |__________|    |                 |    |__________|    |         |
 |        |                    |                 |                    |         |
-|        |  O LD1             |                 |  O LD1             |         |
-|        |  O LD2             |                 |  O LD2             |         |
-|        |  O LD3             |                 |  O LD3             |         |
-|        |  O LD4             |                 |  O LD4             |         |
+|        |  O LED1            |                 |  O LED1            |         |
+|        |  O LED2            |                 |  O LED2            |         |
+|        |  O LED3            |                 |  O LED3            |         |
+|        |  O LED4            |                 |  O LED4            |         |
 |        |                    |                 |                    |         |
 |        |             GND O--|-----------------|--O GND             |         |
 |        |____________________|                 |____________________|         |
@@ -63,14 +62,14 @@ the I2S peripheral as STM32 Master device or as STM32 Slave device.
 *------------------------------------------------------------------------------*
 @endverbatim
 
-@note The connection between the pins should use a short wires and a common Ground.
+ @note The connection between the pins should use a short wires and a common Ground.
 
 - Software Description
-In this Example, the I2S full duplex interface is based on the I2S2 peripheral with 
+In this example, the I2S full duplex interface is based on the I2S2 peripheral with 
 an extra instance called I2S_ext used only for full duplex communication and can
 operate only in Slave Mode.
 
-Both I2Ss are configured as below:
+Both I2Ss are configured as follows:
   - Audio Frequency: 8 KHz
   - Standard: Phillips
   - MCLK Output: disabled
@@ -94,9 +93,8 @@ Receiver ans I2S2_ext is configured as Slave Transmitter.
 - In Slave Board, after the Communication end, if the received buffer is correct 
   the LED 3 turns ON.
   
-@note 
-  In this example the I2S_MCK signal is not used in the communication, this signal is needed to 
-  be provided to external codec audio component.
+ @note In this example the I2S_MCK signal is not used in the communication, this  
+       signal is needed to be provided to external codec audio component.
 
 In both boards, the SysTick is configured to generate interrupt each 10ms. A dedicated  
 counter inside the SysTick ISR is used to toggle LED1 each 100ms indicating that the 
@@ -104,15 +102,13 @@ firmware is running.
 
 
 @par Directory contents 
-
-  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/stm32f4xx_conf.h    Library Configuration file
-  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/stm32f4xx_it.c      Interrupt handlers
-  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/stm32f4xx_it.h      Interrupt handlers header file
-  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.c              Main program
-  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.h              Main program header file
-  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/system_stm32f4xx.c  STM32F4xx system source file
   
-
+  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/stm32f4xx_conf.h     Library Configuration file
+  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/stm32f4xx_it.c       Interrupt handlers
+  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/stm32f4xx_it.h       Interrupt handlers header file
+  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.c               Main program
+  - I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.h               Main program header file
 
 
 @par Hardware and Software environment
@@ -135,15 +131,15 @@ firmware is running.
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
        
  - Rebuild all files and load your image into target memory

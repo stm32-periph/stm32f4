@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    STM324x9i_eval_audio_codec.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file contains all the functions prototypes for the 
   *          STM324x9i_eval_audio_codec.c driver.
   ******************************************************************************
@@ -93,13 +93,6 @@
 /*----------------------------------------------------------------------------
                     OPTIONAL Configuration defines parameters
   ----------------------------------------------------------------------------*/
-/* I2C clock speed configuration (in Hz) 
-  WARNING: 
-   Make sure that this define is not already declared in other files (ie. 
-  stm324x9i_eval.h file). It can be used in parallel by other modules. */
-#ifndef I2C_SPEED
- #define I2C_SPEED                        50000
-#endif /* I2C_SPEED */
 
 #define SAI_AudioFreq_192k          ((uint32_t)192000)
 #define SAI_AudioFreq_96k           ((uint32_t)96000)

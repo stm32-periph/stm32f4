@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval_ioe16.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file contains all the functions prototypes for the
   *          stm324x9i_eval_ioe16.c driver.
   ******************************************************************************
@@ -25,17 +25,6 @@
   *
   ******************************************************************************
   */ 
-
-  /* File Info : ---------------------------------------------------------------
-    SUPPORTED FEATURES:
-      - IO Read/write : Set/Reset and Read (Polling/Interrupt)
-      - Joystick: config and Read (Polling/Interrupt)
-
-    UNSUPPORTED FEATURES:
-      - Row ADC Feature is not supported (not implemented on STM324x9I_EVAL board)
-      - Touch Screen Features: Single point mode (Polling/Interrupt)
-      - TempSensor Feature: accuracy not determined (Polling)
-  ----------------------------------------------------------------------------*/
 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -74,6 +63,7 @@
   * @brief  Joystick State definitions  
   */ 
 #ifndef __STM324X9I_EVAL_H
+
 typedef enum 
 { 
   JOY_NONE = 0,
@@ -117,13 +107,6 @@ typedef enum
   */ 
 
 /**
- * @brief Uncomment the line below to enable verfying each written byte in write
- *        operation. The I2C_WriteDeviceRegister() function will then compare the
- *        written and read data and return error status if a mismatch occurs.
- */
-/* #define VERIFY_WRITTENDATA */
-
-/**
  * @brief Uncomment the line below if you want to use user timeout callback.
  *        Function prototypes is declared in this file but function body may be
  *        implemented into user application.  
@@ -140,10 +123,10 @@ typedef enum
 #ifdef USE_Delay
 #include "main.h"
  
-  #define _delay_     Delay  /* !< User can provide more timing precise _delay_ function
+  #define _delay_     Delay   /* !< User can provide more timing precise _delay_ function
                                    (with 10ms time base), using SysTick for example */
 #else
-  #define _delay_     delay      /* !< Default _delay_ function with less precise timing */
+  #define _delay_     delay   /* !< Default _delay_ function with less precise timing */
 #endif    
 
 /*------------------------------------------------------------------------------
@@ -165,15 +148,6 @@ typedef enum
 #define IOE16_I2C_SDA_SOURCE       GPIO_PinSource9
 #define IOE16_I2C_SDA_AF           GPIO_AF_I2C1
 #define IOE16_I2C_DR               ((uint32_t)0x40005410)
-
-/* I2C clock speed configuration (in Hz) 
-  WARNING: 
-   Make sure that this define is not already declared in other files (ie. 
-  stm324x9i_eval.h file). It can be used in parallel by other modules. */
-#ifndef I2C_SPEED
-#define I2C_SPEED                  100000
-#endif /* I2C_SPEED */
-
 
 /** 
   * @brief  IO Expander Interrupt line on EXTI  
@@ -216,7 +190,7 @@ typedef enum
 #define IOE16_REG_ID_VER           0x02
 
 /** 
-  * @brief  System Control Registe  
+  * @brief  System Control Register  
   */ 
 #define IOE16_REG_SYS_CTRL         0x03
 
@@ -321,12 +295,12 @@ typedef enum
 #define ALL_IT_MSB                 0xFF00
 #define IOE16_JOY_IT               (IO16_IT_10 | IO16_IT_11 | IO16_IT_12 | IO16_IT_13 | IO16_IT_14)
 #define IOE16_TS_IT                IO16_IT_4
+
 /** 
   * @brief  Edge detection value  
   */ 
 #define EDGE_FALLING               0x01
 #define EDGE_RISING                0x02
-
 
 /**
   * @}
@@ -337,16 +311,11 @@ typedef enum
 /** @defgroup STM324x9I_EVAL_IOE16_Exported_Macros
   * @{
   */ 
-/**
-  * @}
-  */ 
-
-
 
 /** @defgroup STM324x9I_EVAL_IOE16_Exported_Functions
   * @{
   */ 
-
+  
 /** 
   * @brief  Configuration and initialization functions  
   */
@@ -362,12 +331,12 @@ uint8_t          IOE16_Polarity_Inversion(uint16_t IO_Pin, IOE16_BitValue_TypeDe
 JOYState_TypeDef IOE16_JoyStickGetState(void);
 
 /** 
-  * @brief Interrupts Mangement functions
+  * @brief Interrupts Management functions
   */
 uint16_t IOE16_GetITStatus(void);
 
 /** 
-  * @brief IO-Expander Control functions
+  * @brief IO Expander Control functions
   */
 uint8_t  IOE16_IsOperational(void);
 uint8_t  IOE16_Reset(void);
@@ -386,8 +355,8 @@ uint16_t IOE16_I2C_ReadDataBuffer(uint32_t RegisterAddr);
 
 /** 
   * @brief  Timeout user callback function. This function is called when a timeout
-  *         condition occurs during communication with IO Expander. Only protoype
-  *         of this function is decalred in IO Expander driver. Its implementation
+  *         condition occurs during communication with IO Expander. Only prototype
+  *         of this function is declared in IO Expander driver. Its implementation
   *         may be done into user application. This function may typically stop
   *         current operations and reset the I2C peripheral and IO Expander.
   *         To enable this function use uncomment the define USE_TIMEOUT_USER_CALLBACK

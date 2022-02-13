@@ -2,11 +2,13 @@
   ******************************************************************************
   * @file    STM324x9i_eval_lcd.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
-  * @brief   This file includes the LCD driver for AM480272H3TMQW-T01H 
-  *          and AM640480G5TNQW-T00H Liquid Crystal Display Modules
-  *          of STM324x9I-EVAL evaluation board(MB1045).
+  * @version V1.0.3
+  * @date    13-November-2013
+  * @brief   This file provides driver for AMPIRE 480x272 AM480272H3TMQW-T01H 
+  *          (MB1046) and 480x640 AM640480G5TNQW-T00H (MB1063) LCD modules mounted 
+  *          on STM324x9I-EVAL evaluation board (MB1045). Please note that AMPIRE
+  *          480x272 LCD is provided with STM32429I-EVAL board AMPIRE 480x640 LCD
+  *          is provided with STM32439I-EVAL board
   ******************************************************************************
   * @attention
   *
@@ -66,9 +68,13 @@
 #define POLY_X(Z)              ((int32_t)((Points + Z)->X))
 #define POLY_Y(Z)              ((int32_t)((Points + Z)->Y))
 #define LCD_FRAME_BUFFER       ((uint32_t)0xC0000000)
-#define BUFFER_OFFSET          ((uint32_t)0x130000)
+
+/* The offset value is calculated as follows: 
+   Maximum width x Maximum Length x Maximum Pixel size (ARGB8888) in bytes
+   => 640 x 480 x 4 =  1228800 or 0x12C000 */
+#define BUFFER_OFFSET          ((uint32_t)0x12C000)
   
-#define LCD_TIMEOUT_MAX    0x3000 /*<! The value of the maximal timeout for I2C waiting loops */    
+#define LCD_TIMEOUT_MAX    0x3000 /* The value of the maximal timeout for I2C waiting loops */    
 
 /**
   * @}
@@ -134,101 +140,6 @@ void LCD_DeInit(void)
   LCD_DisplayOff();
    
   /* GPIO Configuration ------------------------------------------------------*/
-  /* GPIOD configuration */
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource0, GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource1, GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource10, GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_MCO);
-
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0  | GPIO_Pin_1  | GPIO_Pin_8    |
-                                GPIO_Pin_9  |  GPIO_Pin_10 | GPIO_Pin_14  | 
-                                GPIO_Pin_15;
-  
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-
-  GPIO_Init(GPIOD, &GPIO_InitStructure);
-
-  /* GPIOE configuration */
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource0 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource1 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource7 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource8 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource9 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource10 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource11 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource12 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource13 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource14 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOE, GPIO_PinSource15 , GPIO_AF_MCO);
-
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0  | GPIO_Pin_1  | GPIO_Pin_7  |
-                                GPIO_Pin_8  | GPIO_Pin_9  | GPIO_Pin_10 | 
-                                GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | 
-                                GPIO_Pin_14 | GPIO_Pin_15;
-
-  GPIO_Init(GPIOE, &GPIO_InitStructure);
-
-  /* GPIOF configuration */
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource0 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource1 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource2 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource3 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource4 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource5 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource11 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource12 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource13 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource14 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOF, GPIO_PinSource15 , GPIO_AF_MCO);
-
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0  | GPIO_Pin_1  | GPIO_Pin_2  | 
-                                GPIO_Pin_3  | GPIO_Pin_4  | GPIO_Pin_5  | 
-                                GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 |
-                                GPIO_Pin_14 | GPIO_Pin_15;      
-
-  GPIO_Init(GPIOF, &GPIO_InitStructure);
-
-  /* GPIOG configuration */
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource0 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource1 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource4 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource5 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource8 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOG, GPIO_PinSource15 , GPIO_AF_MCO);
-  
-
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_4 | 
-                                GPIO_Pin_5 | GPIO_Pin_8 | GPIO_Pin_15;        
-
-  GPIO_Init(GPIOG, &GPIO_InitStructure);
-  
-  
-  /* GPIOH configuration */
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource2 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource3 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource5 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource8 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource9 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource10 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource11 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource12 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource13 , GPIO_AF_MCO);  
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource14 , GPIO_AF_MCO);
-  GPIO_PinAFConfig(GPIOH, GPIO_PinSource15 , GPIO_AF_MCO);  
-  
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2  | GPIO_Pin_3  | GPIO_Pin_5  | 
-                                GPIO_Pin_8  | GPIO_Pin_9  | GPIO_Pin_10 |
-                                GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 |
-                                GPIO_Pin_14 | GPIO_Pin_15;      
-
-  GPIO_Init(GPIOH, &GPIO_InitStructure);
-
   /* GPIOI configuration */
   GPIO_PinAFConfig(GPIOI, GPIO_PinSource0 , GPIO_AF_MCO);
   GPIO_PinAFConfig(GPIOI, GPIO_PinSource1 , GPIO_AF_MCO);
@@ -297,32 +208,7 @@ void LCD_DeInit(void)
   GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
 
-  GPIO_Init(GPIOK, &GPIO_InitStructure);
-
-  /* GPIOA configuration */
-  GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_MCO);
-
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-  
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-
-  GPIO_Init(GPIOA, &GPIO_InitStructure);  
- 
-  /* GPIOC configuration */
-  GPIO_PinAFConfig(GPIOC, GPIO_PinSource8, GPIO_AF_MCO);
-
-  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
-  
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-
-  GPIO_Init(GPIOC, &GPIO_InitStructure);  
-  
+  GPIO_Init(GPIOK, &GPIO_InitStructure);  
 }
 
 /**
@@ -369,6 +255,9 @@ void LCD_Init(void)
   /* LCD AMPIRE640480 is used */
   if(CurrentLcd == USE_LCD_AM640480)
   {  
+    /* Initialise I2C for touch panel usage */
+    LCD_I2C_Config();
+    
     /* Initialize the LCD pixel width and pixel height */
     LCD_PIXEL_WIDTH  = 640;
     LCD_PIXEL_HEIGHT = 480;
@@ -760,13 +649,13 @@ void LCD_ClearLine(uint16_t Line)
   */
 void LCD_Clear(uint16_t Color)
 {
-  uint32_t index = 0;
+  uint16_t *index ;
   
   /* erase memory */
-  for (index = 0x00; index < BUFFER_OFFSET; index++)
+  for (index = (uint16_t *)CurrentFrameBuffer; index < (uint16_t *)(CurrentFrameBuffer+(BUFFER_OFFSET)); index++)
   {
-    *(__IO uint16_t*)(CurrentFrameBuffer + (2*index)) = Color;
-  } 
+    *index = Color;
+  }
 }
 
 /**
@@ -839,7 +728,7 @@ void LCD_ReSetColorKeying(void)
   * @brief  Draws a character on LCD.
   * @param  Xpos: the Line where to display the character shape.
   * @param  Ypos: start column address.
-  * @param  c: pointer to the character data.
+  * @param  c:    pointer to the character data.
   * @retval None
   */
 void LCD_DrawChar(uint16_t Xpos, uint16_t Ypos, const uint16_t *c)
@@ -876,8 +765,8 @@ void LCD_DrawChar(uint16_t Xpos, uint16_t Ypos, const uint16_t *c)
 /**
   * @brief  Displays one character (16dots width, 24dots height).
   * @param  Line: the Line where to display the character shape .
-  *   This parameter can be one of the following values:
-  *     @arg LCD_LINE_x: where x can be 0..19
+  *               This parameter can be one of the following values:
+  *               @arg LCD_LINE_x: where x can be 0..19 (depending on the LCD height) 
   * @param  Column: start column address.
   * @param  Ascii: character ascii code, must be between 0x20 and 0x7E.
   * @retval None
@@ -889,10 +778,13 @@ void LCD_DisplayChar(uint16_t Line, uint16_t Column, uint8_t Ascii)
 }
 
 /**
-  * @brief  Displays a maximum of 20 char on the LCD (16dots width, 24dots height).
+  * @brief  Displays string on LCD
   * @param  Line: the Line where to display the character shape .
-  *   This parameter can be one of the following values:
-  *     @arg LCD_LINE_x: where x can be 0..19
+  *               This parameter can be one of the following values:
+  *               @arg LCD_LINE_x: where x can be
+  *                                0..39 for AMPIRE 480x272
+  *                                0..59 for AMPIRE 480x640
+  * @note   This function is based on character font (16dots width, 24dots height)
   * @param  *ptr: pointer to string to display on LCD.
   * @retval None
   */
@@ -971,7 +863,7 @@ void LCD_DrawLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length, uint8_t Directi
   uint32_t  Xaddress = 0;
   uint16_t Red_Value = 0, Green_Value = 0, Blue_Value = 0;
   
-  Xaddress = CurrentFrameBuffer + 2*(LCD_PIXEL_WIDTH*Ypos + Xpos);
+  Xaddress = CurrentFrameBuffer + 2*((LCD_PIXEL_WIDTH*Ypos) + Xpos);
  
   Red_Value = (0xF800 & CurrentTextColor) >> 11;
   Blue_Value = 0x001F & CurrentTextColor;
@@ -1361,8 +1253,8 @@ void LCD_DrawFullRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Hei
 void LCD_DrawFullCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius)
 {
   int32_t  D;    /* Decision Variable */ 
-  uint32_t  CurX;/* Current X Value */
-  uint32_t  CurY;/* Current Y Value */ 
+  uint32_t  CurX;/* Current X Value   */
+  uint32_t  CurY;/* Current Y Value   */ 
   
   D = 3 - (Radius << 1);
   
@@ -1748,9 +1640,6 @@ void LCD_DisplayOn(void)
   */
 void LCD_DisplayOff(void)
 {
-  /* Enable LCD Backlight */ 
-  GPIO_ResetBits(GPIOA, GPIO_Pin_8);
-  GPIO_ResetBits(GPIOC, GPIO_Pin_6);
   /* Display Off */
   LTDC_Cmd(DISABLE); 
 }
@@ -1787,24 +1676,32 @@ static void PutPixel(int16_t x, int16_t y)
   {
     return;  
   }
-  LCD_DrawLine(x, y, 1, LCD_DIR_HORIZONTAL);
+  /* Draw pixel */
+  *(__IO uint16_t*)(CurrentFrameBuffer + 2*((LCD_PIXEL_WIDTH*y) + x)) = CurrentTextColor;
 }
  
 /**
-  * @brief  LCD AMPIRE 640x480 get touch screen position.
-  * @param  x: pixel x.
-  * @param  y: pixel y.  
-  * @retval None
+  * @brief  Gets touch screen position for AMPIRE 640x480 LCD
+  * @param  ReadBuffer: buffer filled with the following parameters
+  *                     ReadBuffer [0]: The Byte count (0x0A)   
+  *                     ReadBuffer [1]: X1 coordinate [15,8]  
+  *                     ReadBuffer [2]: X1 coordinate [7,0]
+  *                     ReadBuffer [3]: Y1 coordinate [15,8]
+  *                     ReadBuffer [4]: Y1 coordinate [7,0]
+  *                     ReadBuffer [5]: X2 coordinate [15,8]
+  *                     ReadBuffer [6]: X2 coordinate [7,0]
+  *                     ReadBuffer [7]: Y2 coordinate [15,8]
+  *                     ReadBuffer [8]: Y2 coordinate [7,0]
+  *                     ReadBuffer [9]: Gesture command (01: Zoom In 02: Zoom out) 
+  *                     ReadBuffer [10]: unused byte
+  *              
+  * @retval 11 bytes buffer containing the touch panel information
   */
-
 uint8_t LCD_GetPosition(uint8_t* ReadBuffer)
 {
  uint32_t LCD_TimeOut = 0;
  
  uint8_t i=0;
- 
-  /* Configure the needed pins */
-  LCD_I2C_Config();
  
   /* Begin the configuration sequence */
   I2C_GenerateSTART(LCD_I2C, ENABLE);
@@ -1869,8 +1766,6 @@ uint8_t LCD_GetPosition(uint8_t* ReadBuffer)
   /* End the configuration sequence */
   I2C_GenerateSTOP(LCD_I2C, ENABLE);
 
-  
- 
   /* Enable the I2C peripheral */
   I2C_GenerateSTART(LCD_I2C, ENABLE);
  
@@ -2008,15 +1903,18 @@ uint8_t LCD_TimeOutUserCallback(void)
 
 /**
   * @brief  LCD_CheckDevice
-  * @param  None
-  * @retval 0
+  * @note   The AMPIRE 480x272 and 480x640 LCDs provided within STM324x9I_EVAL board 
+  *         doesn’t have an internal ID register, however for AMPIRE 480x272 LCD we 
+  *         can workaround this limitation by detecting the ID of the IO expander 
+  *         (STMPE811) mounted on MB1046 daughter board
+  * @param  None.
+  * @retval None.
   */
 void LCD_CheckDevice(void)
 {    
-  /* I2C initialization */
-  LCD_I2C_Config();
+  /* Initialize IO expander to detect if AMPIRE 480x272 LCD (MB1046) is connected  */
+  IOE_Config();
   
-  /* LCD Ampire 480x272 is used */
   if(IOE_ReadID() == (uint16_t)STMPE811_ID)
   {
     CurrentLcd = USE_LCD_AM480272;  
@@ -2037,48 +1935,52 @@ static void LCD_I2C_Config(void)
 {
   I2C_InitTypeDef I2C_InitStructure;
   GPIO_InitTypeDef GPIO_InitStructure; 
- 
-  /* Enable LCD_I2C and LCD_I2C_GPIO_PORT & Alternate Function clocks */
-  RCC_APB1PeriphClockCmd(LCD_I2C_CLK, ENABLE);
-  RCC_AHB1PeriphClockCmd(LCD_I2C_SCL_GPIO_CLK | LCD_I2C_SDA_GPIO_CLK, ENABLE);
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
   
-  /* Reset LCD_I2C IP */
-  RCC_APB1PeriphResetCmd(LCD_I2C_CLK, ENABLE);
-  /* Release reset signal of LCD_I2C IP */
-  RCC_APB1PeriphResetCmd(LCD_I2C_CLK, DISABLE);
-
-  /* Connect PXx to I2C_SCL*/
-  GPIO_PinAFConfig(LCD_I2C_SCL_GPIO_PORT, LCD_I2C_SCL_SOURCE, LCD_I2C_SCL_AF);
-  /* Connect PXx to I2C_SDA*/
-  GPIO_PinAFConfig(LCD_I2C_SDA_GPIO_PORT, LCD_I2C_SDA_SOURCE, LCD_I2C_SDA_AF); 
+  /* If the I2C peripheral is already enabled, don't reconfigure it */
+  if ((I2C1->CR1 & I2C_CR1_PE) == 0)
+  { 
+    /* Enable LCD_I2C and LCD_I2C_GPIO_PORT & Alternate Function clocks */
+    RCC_APB1PeriphClockCmd(LCD_I2C_CLK, ENABLE);
+    RCC_AHB1PeriphClockCmd(LCD_I2C_SCL_GPIO_CLK | LCD_I2C_SDA_GPIO_CLK, ENABLE);
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
     
-  /* LCD_I2C SCL and SDA pins configuration */
-  GPIO_InitStructure.GPIO_Pin = LCD_I2C_SCL_PIN;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-  GPIO_Init(LCD_I2C_SCL_GPIO_PORT, &GPIO_InitStructure);
-
-  GPIO_InitStructure.GPIO_Pin = LCD_I2C_SDA_PIN;
-  GPIO_Init(LCD_I2C_SDA_GPIO_PORT, &GPIO_InitStructure); 
-  
-  /* LCD_I2C configuration */
-  I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
-  I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
-  I2C_InitStructure.I2C_OwnAddress1 = 0x00;
-  I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
-  I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-  I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
-  
-  I2C_Init(LCD_I2C, &I2C_InitStructure);
+    /* Reset LCD_I2C IP */
+    RCC_APB1PeriphResetCmd(LCD_I2C_CLK, ENABLE);
+    /* Release reset signal of LCD_I2C IP */
+    RCC_APB1PeriphResetCmd(LCD_I2C_CLK, DISABLE);
+    
+    /* Connect PXx to I2C_SCL*/
+    GPIO_PinAFConfig(LCD_I2C_SCL_GPIO_PORT, LCD_I2C_SCL_SOURCE, LCD_I2C_SCL_AF);
+    /* Connect PXx to I2C_SDA*/
+    GPIO_PinAFConfig(LCD_I2C_SDA_GPIO_PORT, LCD_I2C_SDA_SOURCE, LCD_I2C_SDA_AF); 
+    
+    /* LCD_I2C SCL and SDA pins configuration */
+    GPIO_InitStructure.GPIO_Pin = LCD_I2C_SCL_PIN;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+    GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+    GPIO_Init(LCD_I2C_SCL_GPIO_PORT, &GPIO_InitStructure);
+    
+    GPIO_InitStructure.GPIO_Pin = LCD_I2C_SDA_PIN;
+    GPIO_Init(LCD_I2C_SDA_GPIO_PORT, &GPIO_InitStructure); 
+    
+    /* LCD_I2C configuration */
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = 0x00;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
+    
+    I2C_Init(LCD_I2C, &I2C_InitStructure);
+  }
 }  
   
 /**
-  * @brief GPIO config for LTDC.
-  * @retval
-  *  None
+  * @brief GPIO configuration for LTDC.
+  * @param  None
+  * @retval None
   */
 static void LCD_AF_GPIOConfig(void)
 {

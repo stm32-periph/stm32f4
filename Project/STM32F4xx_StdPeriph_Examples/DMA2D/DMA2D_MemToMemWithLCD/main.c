@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DMA2D/DMA2D_MemToMemWithLCD/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -50,7 +50,7 @@ static void LCD_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -187,9 +187,6 @@ static void LCD_Config(void)
 }  
 
 #ifdef  USE_FULL_ASSERT
-
-#endif
-
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
@@ -207,6 +204,9 @@ void assert_failed(uint8_t* file, uint32_t line)
   {
   }
 }
+#endif
+
+
 /**
   * @}
   */

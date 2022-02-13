@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    I2C/I2C_TwoBoards/I2C_DataExchangeDMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the I2C Data Exchange between two boards using DMA 
   *          example.
   ******************************************************************************
@@ -24,12 +24,12 @@
   * limitations under the License.
   *
   ******************************************************************************
-   @endverbatim
+  @endverbatim
 
 @par Example Description 
 
-This is a typical example of how to use the I2C firmware library to ensure the
-steps of an I2C communication between slave Receiver/Transmitter and master 
+This example shows how to use the I2C firmware library to ensure the steps of 
+an I2C communication between slave Receiver/Transmitter and master 
 Transmitter/Receiver using DMA.
 
 - Hardware Description
@@ -49,10 +49,10 @@ the I2C peripheral as STM32 Master device or as STM32 Slave.
 |        |    |I2C Master|____|_______SDA_______|____|I2C Slave |    |         |
 |        |    |  Device  |____|_______SCL_______|____|  Device  |    |         |
 |        |    |__________|    |                 |    |__________|    |         |
-|        |  O LD1             |                 |  O LD1             |         |
-|        |  O LD2     RESET   |                 |  O LD2     RESET   |         |
-|        |  O LD3        _    |                 |  O LD3        _    |         |
-|        |  O LD4       |_|   |                 |  O LD4       |_|   |         |
+|        |  O LED1            |                 |  O LED1            |         |
+|        |  O LED2     RESET  |                 |  O LED2     RESET  |         |
+|        |  O LED3        _   |                 |  O LED3        _   |         |
+|        |  O LED4       |_|  |                 |  O LED4       |_|  |         |
 |        |                    |                 |                    |         |
 |        |             GND O--|-----------------|--O GND             |         |
 |        |____________________|                 |____________________|         |
@@ -65,28 +65,28 @@ the I2C peripheral as STM32 Master device or as STM32 Slave.
 
 This example requires two boards(Master and Slave)
 
-  - Phase 1:
-    In master board I2C peripheral is configured in Master Transmitter with DMA
-    where in Slave board I2C peripheral is configured in Slave Receiver with DMA.
-    The master will send Data to Slave according to the defined buffer size.
+- Phase 1:
+  In master board I2C peripheral is configured in Master Transmitter with DMA
+  where in Slave board I2C peripheral is configured in Slave Receiver with DMA.
+  The master will send Data to Slave according to the defined buffer size.
    
-  - Phase 2: 
-    In master board I2C peripheral is configured in Master Receiver with DMA,
-    where in Slave board I2C peripheral is configured in Slave Transmitter with 
-    DMA. 
-    Once the master has initiated the communication (Start condition), the slave
-    will send the defined data in his TxBuffer to the master.
+- Phase 2: 
+  In master board I2C peripheral is configured in Master Receiver with DMA,
+  where in Slave board I2C peripheral is configured in Slave Transmitter with 
+  DMA. 
+  Once the master has initiated the communication (Start condition), the slave
+  will send the defined data in his TxBuffer to the master.
 
 At the end of the data transfer, a data consistency check will be performed 
 in master and slave sides. In case of mismatch between sent and received data,
 LED2, LED3 and LED4 are OFF. Otherwise LED2, LED3 and LED4 are ON. 
    
-@note As the data transfers is ensured by DMA, the TxBuffer size must be equal 
-  or greater than two bytes.
+ @note As the data transfers is ensured by DMA, the TxBuffer size must be equal 
+      or greater than two bytes.
  
-The File "I2C/I2C_TwoBoards/DataExchangeDMA/main.h" allows different possibilities
+The file "I2C/I2C_TwoBoards/DataExchangeDMA/main.h" allows different possibilities
 of configuration of this example:
-  - Addressing mode : 7-bit or 10-bit
+  - Addressing mode: 7-bit or 10-bit
   - I2C speed: Fast mode or Standard mode
 
 The SysTick is configured to generate an interrupt each 10ms. A dedicated counter 
@@ -105,18 +105,17 @@ infinite loop, but user can add his own implementation to manage timeout failure
 
 
 @par Directory contents 
+ 
+  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/stm32f4xx_conf.h     Library Configuration file
+  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/stm32f4xx_it.c       Interrupt handlers
+  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/stm32f4xx_it.h       Interrupt handlers header file
+  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.c               Main program
+  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.h               Main program header file
 
-  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/stm32f4xx_conf.h    Library Configuration file
-  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/stm32f4xx_it.c      Interrupt handlers
-  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/stm32f4xx_it.h      Interrupt handlers header file
-  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.c              Main program
-  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.h              Main Header file
-  - I2C/I2C_TwoBoards/I2C_DataExchangeDMA/system_stm32f4xx.c  STM32F4xx system source file
+
+@par Hardware and Software environment
   
-
-
-
-@par Hardware and Software environment  
   - This example runs on STM32F40xx/STM32F41xx, STM32F427x/STM32F437x Devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
@@ -128,13 +127,13 @@ infinite loop, but user can add his own implementation to manage timeout failure
     - Connect I2C1 Master SCL pin (PB.06) to I2C1 Slave SCL (PB.06)
     - Connect I2C1 Master SDA pin (PB.09) to I2C1 Slave SDA (PB.09)
 
-   @note  
-    - Pull-up resistors should be connected to I2C SCL and SDA Pins in case of 
-      other boards use.
+ @note Pull-up resistors should be connected to I2C SCL and SDA Pins in case of 
+       other boards use.
+
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Template
  - Open your preferred toolchain 

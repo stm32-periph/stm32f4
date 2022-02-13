@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_Timer/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -41,6 +41,7 @@
 #define MESSAGE1   "*** Progress Bar ***" 
 #define MESSAGE2   "WAKEUP     TAMPER     KEY " 
 #define MESSAGE3   " Reset      Stop     Start" 
+    
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 RTC_InitTypeDef  RTC_InitStructure;
@@ -53,7 +54,7 @@ static void RTC_AlarmConfig(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Main program.
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -61,7 +62,7 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s)
        before to branch to application main.
      */  
   

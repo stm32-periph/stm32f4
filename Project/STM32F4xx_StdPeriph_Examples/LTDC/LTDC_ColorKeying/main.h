@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    LTDC/LTDC_ColorKeying//main.h 
+  * @file    LTDC/LTDC_ColorKeying/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_TwoBoards/SPI_DataExchangeDMA/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -46,11 +46,11 @@
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
 
-/* Exported typedef -----------------------------------------------------------*/
+/* Exported typedef ----------------------------------------------------------*/
 #define countof(a)   (sizeof(a) / sizeof(*(a)))
 typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
-/* Exported define ------------------------------------------------------------*/
+/* Exported define -----------------------------------------------------------*/
 /* Uncomment the line below if you will use the SPI peripheral as a Master */
 /* #define SPI_MASTER */
 /* Uncomment the line below if you will use the SPI peripheral as a Slave */
@@ -101,7 +101,6 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 #endif /* USE_STM324xG_EVAL */
 
 #if defined (USE_STM324x7I_EVAL) 
-
   #define SPIx                           SPI2
   #define SPIx_CLK                       RCC_APB1Periph_SPI2
   #define SPIx_CLK_INIT                  RCC_APB1PeriphClockCmd
@@ -138,8 +137,6 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 #endif /* USE_STM324x7I_EVAL */
 
 #define BUFFERSIZE                       100
-
-
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

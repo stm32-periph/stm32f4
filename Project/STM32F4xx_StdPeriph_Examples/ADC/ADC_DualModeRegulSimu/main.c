@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_DualModeRegulSimu/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -51,7 +51,7 @@ static void ADC2_CH11_CH12_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -93,7 +93,7 @@ int main(void)
   /* ADC2 regular channels 11, 12 configuration */
   ADC2_CH11_CH12_Config();
 
-  /* Enable DMA request after last transfer (Multi-ADC mode)  */
+  /* Enable DMA request after last transfer (Multi-ADC mode) */
   ADC_MultiModeDMARequestAfterLastTransferCmd(ENABLE);
 
   /* Enable ADC1 */

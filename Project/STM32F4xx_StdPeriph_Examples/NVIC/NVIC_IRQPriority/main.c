@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_IRQPriority/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -40,7 +40,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-__IO uint8_t ubPreemptionOccured = 0; 
+__IO uint8_t ubPreemptionOccurred = 0; 
 __IO uint8_t ubPreemptionPriorityValue = 0; 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -82,22 +82,25 @@ int main(void)
 
   while (1)
   {
-    if(ubPreemptionOccured != 0)
+    if(ubPreemptionOccurred != 0)
     {
-      /* Toggel The lED1 */
+      /* Toggle LED1 */
       STM_EVAL_LEDToggle(LED1);
       
       /* Insert delay Time */
       Delay(0x5FFFF);
       
+      /* Toggle LED2 */
       STM_EVAL_LEDToggle(LED2);
       
       Delay(0x5FFFF);
       
+      /* Toggle LED3 */
       STM_EVAL_LEDToggle(LED3);
       
       Delay(0x5FFFF);
       
+      /* Toggle LED4 */
       STM_EVAL_LEDToggle(LED4);
       
       Delay(0x5FFFF); 

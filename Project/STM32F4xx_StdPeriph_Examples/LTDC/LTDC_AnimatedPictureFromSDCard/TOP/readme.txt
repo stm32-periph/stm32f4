@@ -1,17 +1,14 @@
 /**
-  @page LTDC_AnimatedPictureFromSDCard LTDC Example
+  @page LTDC_AnimatedPictureFromSDCard LTDC example
   
   @verbatim  
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    LTDC/LTDC_AnimatedPictureFromSDCard/USER/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the LTDC_AnimatedPictureFromSDCard example.
   ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -25,10 +22,11 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   *
-  ******************************************************************************  
-   @endverbatim
+  ******************************************************************************
+  @endverbatim
 
-@par Description 
+@par Description
+ 
   - This directory "USER" should be copied inside the micro SD card root.
  
  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>

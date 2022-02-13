@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_EEPROM/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -30,8 +30,6 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-
-
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval_lcd.h"
   #include "stm324xg_eval_i2c_ee.h"
@@ -45,7 +43,7 @@
 #endif
 
 /* Private define ------------------------------------------------------------*/
-/* used to display the transfer status */
+/* Used to display the transfer status on LCD */
 #define USE_LCD
   
 /* Exported types ------------------------------------------------------------*/

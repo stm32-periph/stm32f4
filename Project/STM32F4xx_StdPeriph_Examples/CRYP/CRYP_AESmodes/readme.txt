@@ -5,10 +5,10 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    CRYP/CRYP_AESmodes/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the CRYP AES Algorithm in all modes and all key sizes
-             Example
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the CRYP AES Algorithm in all modes and all key 
+  *          sizes example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -28,9 +28,9 @@
 
 @par Example Description 
 
-This example provides a short description of how to use the CRYPTO peripheral to
-encrypt and decrypt data using AES in chaining modes (ECB, CBC, CTR) and all key sizes
-(128, 192, 256) Algorithm.
+This example shows how to use the CRYPTO peripheral to encrypt and decrypt data 
+using AES in chaining modes (ECB, CBC, CTR) and all key sizes (128, 192, 256) 
+Algorithm.
 
 For this example, a firmware is used to interface with the Crypto peripheral
 in polling mode.
@@ -67,7 +67,7 @@ This example behaves as follows:
 The Plain data, encrypted data and decrypted data can be displayed on a PC
 HyperTerminal using the USART.
 
-The USARTx is configured as follow:
+The USARTx is configured as follows:
     - BaudRate = 115200 baud  
     - Word Length = 8 Bits
     - One Stop Bit
@@ -77,15 +77,13 @@ The USARTx is configured as follow:
 
 
 @par Directory contents 
-
+  
   - CRYP/CRYP_AESmodes/system_stm32f4xx.c   STM32F4xx system clock configuration file
   - CRYP/CRYP_AESmodes/stm32f4xx_conf.h     Library Configuration file
-  - CRYP/CRYP_AESmodes/stm32f4xx_it.h       Interrupt handlers header file
   - CRYP/CRYP_AESmodes/stm32f4xx_it.c       Interrupt handlers
+  - CRYP/CRYP_AESmodes/stm32f4xx_it.h       Interrupt handlers header file
   - CRYP/CRYP_AESmodes/main.c               Main program
-  - CRYP/CRYP_AESmodes/main.h               Main header
-
-
+  - CRYP/CRYP_AESmodes/main.h               Main program header file
 
 
 @par Hardware and Software environment 
@@ -93,7 +91,7 @@ The USARTx is configured as follow:
   - This example runs on STM32F415xx/417xx, STM32F437xx and STM32F439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F41xx 
-    Devices), STM32437I-EVAL (STM32F437xx Devices) and STM32439I-EVAL 
+    Devices), STM32437I-EVAL (STM32F437xx Devices) and STM32439I-EVAL RevB 
     (STM32F439xx Devices) evaluation boards and can be easily tailored 
     to any other supported device and development board.
 
@@ -102,7 +100,7 @@ The USARTx is configured as follow:
       CN16 (USART3) and PC serial port.
       @note Make sure that jumper JP22 is in position 1-2
       
-  - STM32439I-EVAL Set-up 
+  - STM32439I-EVAL RevB Set-up 
     - Connect a null-modem female/female RS232 cable between the DB9 connector 
       CN8 (USART1) and PC serial port.
       @note Make sure that jumper JP7 is in position 1-2
@@ -117,18 +115,18 @@ The USARTx is configured as follow:
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c 
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
        
  - Rebuild all files and load your image into target memory

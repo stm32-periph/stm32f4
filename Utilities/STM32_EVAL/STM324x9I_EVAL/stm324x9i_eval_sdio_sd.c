@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval_sdio_sd.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file provides a set of functions needed to manage the SDIO SD 
   *          Card memory mounted on STM324x9I-EVAL evaluation board. 
   *          
@@ -26,7 +26,7 @@
   *          ============================================    
   *            - To initialize the SD Card, use the SD_Init() function.  It 
   *              Initializes the SD Card and put it into StandBy State (Ready 
-  *              for data transfer). This function provide the following operations:
+  *              for data transfer). This function provides the following operations:
   *
   *              1 - Apply the SD Card initialization process at 400KHz and check
   *                  the SD Card type (Standard Capacity or High Capacity). You 
@@ -39,10 +39,10 @@
   *                     +---------------------------------------------+
   *
   *                  In initialization mode and according to the SD Card standard, 
-  *                  make sure that the SDIO_CK frequency don't exceed 400KHz.
+  *                  make sure that the SDIO_CK frequency doesn't exceed 400KHz.
   *
   *              2 - Get the SD CID and CSD data. All these information are
-  *                  managed by the SDCardInfo structure. This structure provide
+  *                  managed by the SDCardInfo structure. This structure provides
   *                  also ready computed SD Card capacity and Block size.   
   *
   *              3 - Configure the SD Card Data transfer frequency. By Default,
@@ -56,7 +56,7 @@
   *                     +---------------------------------------------+
   *
   *                  In transfer mode and according to the SD Card standard, 
-  *                  make sure that the SDIO_CK frequency don't exceed 25MHz
+  *                  make sure that the SDIO_CK frequency doesn't exceed 25MHz
   *                  and 50MHz in High-speed mode switch.
   *                  To be able to use a frequency higher than 24MHz, you should
   *                  use the SDIO peripheral in bypass mode. Refer to the 
@@ -69,16 +69,16 @@
   *
   *          B - SD Card Read operation
   *          ========================== 
-  *           - You can read SD card by using two function: SD_ReadBlock() and
+  *           - You can read SD card by using two functions : SD_ReadBlock() and
   *             SD_ReadMultiBlocks() functions. These functions support only
   *             512-byte block length.
-  *           - The SD_ReadBlock() function read only one block (512-byte). This
+  *           - The SD_ReadBlock() function reads only one block (512-byte). This
   *             function can transfer the data using DMA controller or using 
   *             polling mode. To select between DMA or polling mode refer to 
   *             "SD_DMA_MODE" or "SD_POLLING_MODE" inside the stm324x9i_eval_sdio_sd.h
   *             file and uncomment the corresponding line. By default the SD DMA
   *             mode is selected          
-  *           - The SD_ReadMultiBlocks() function read only mutli blocks (multiple 
+  *           - The SD_ReadMultiBlocks() function reads only mutli blocks (multiple 
   *             of 512-byte). 
   *           - Any read operation should be followed by two functions to check
   *             if the DMA Controller and SD Card status.

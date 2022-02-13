@@ -6,6 +6,7 @@
 
 
 
+
   
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -113,7 +114,94 @@ update History</a><o:p></o:p></span></li>
             </ol>
             <span style="font-family: &quot;Times New Roman&quot;;">
             </span>
-            <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">STM324x9I_EVAL Evaluation Board Drivers update History</span></h2><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 200px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.0 / 19-September-2013</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+            <h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">STM324x9I_EVAL Evaluation Board Drivers update History</span></h2><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 200px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.3 / 13-November-2013</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes<o:p></o:p></span></u></b></p>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_ioe8.c/.h</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Enhance the Touch panel detection in <span style="font-style: italic;">IOE_TS_GetState()</span> function : Add a check on FIFO Threshold value before&nbsp;reading&nbsp;X and Y position</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"> <o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li></ul></ul><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 23px; width: 868px;"><b><u><span style="font-size: 10pt; color: black; font-family: Verdana;">Known 
+Limitations<o:p></o:p></span></u></b></p>
+<ul style="margin-top: 0cm; text-align: justify;" type="square"><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_audio_codec.c/.h</span></li><ul><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">If
+2 audio streams are played in TDM format (the first stream is
+configured in codec SLOT0 and second stream in codec SLOT1) the
+Pause/Resume, Volume Control and Mute action will apply on both streams.</span></li></ul></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 200px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.2 / 08-November-2013</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes<o:p></o:p></span></u></b></p>
+
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_lcd.c</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Update &nbsp;BUFFER_OFFSET define
+value from </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">0x130000 </span>to </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">0x12C000 </span>and comment to explain how to compute this value<span style="font-style: italic;"></span><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">LCD_DeInit() function: remove SDRAM pins configuration, this is done in SDRAM driver<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">LCD_Init()</span> function: in case where AMPIRE 640x480 LCD is used, add a call to <span style="font-style: italic;">LCD_I2C_Config()</span> to initialize I2C for touch panel usage<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Update and optimize <span style="font-style: italic;">LCD_Clear()</span> function<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Update and optimize <span style="font-style: italic;">putPixel()</span> function:
+write directly to the SDRAM instead of the use of <span style="font-style: italic;">LCD_DrawLine()</span> function<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">GetPosition()</span> function: add more comments in the header about the format of the data returned by this function<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">GetPosition()</span> </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"> function:</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"> remove the I2C configuration </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">(it's already done in LCD_Init() function)<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">LCD_CheckDevice()</span> function: </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">replace <span style="font-style: italic;">LCD_I2C_Config()</span> by
+<span style="font-style: italic;">IOE_Config()</span><span style="font-style: italic;"></span><o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><span style="font-style: italic;">LCD_I2C_Config() </span>function: add a test, if I2C is already configured, then there is no need to reconfigure it again <o:p></o:p></span></li></ul></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ul style="margin-top: 0cm;" type="square">
+<li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_ioe8.c/.h</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Remove EXTI line </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">configuration </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">macros&nbsp;<o:p></o:p></span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Remove
+<span style="font-style: italic;">VERIFY_WRITTENDATA</span> macro, and remove verify written data block from <span style="font-style: italic;">I2C_WriteDeviceRegister()</span> </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">function</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"><o:p></o:p></span></li></ul>
+            </ul>
+
+
+
+
+
+<ul style="margin-top: 0cm;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_ioe16.c/.h</span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Remove
+<span style="font-style: italic;">VERIFY_WRITTENDATA</span> macro, and remove verify written data block from <span style="font-style: italic;">IOE16_I2C_WriteDeviceRegister()</span> </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">function</span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;"></span></li></ul></ul><ul style="margin-top: 0cm;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_audio_codec.c/.h</span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">In <span style="font-style: italic;">Audio_MAL_IRQHandler()</span> </span><span style="font-size: 10pt; font-family: &quot;Verdana&quot;,&quot;sans-serif&quot;;">Remove
+local variables <span style="font-style: italic;">pAddr</span> and <span style="font-style: italic;">Size</span> and replace them by existing global variables
+<span style="font-style: italic;">CurrentPos</span> and <span style="font-style: italic;">AudioRemSize</span></span></li></ul></ul><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 23px; width: 868px;"><b><u><span style="font-size: 10pt; color: black; font-family: Verdana;">Known 
+Limitations<o:p></o:p></span></u></b></p>
+<ul style="margin-top: 0cm; text-align: justify;" type="square"><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_audio_codec.c/.h</span></li><ul><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">If
+2 audio streams are played in TDM format (the first stream is
+configured in codec SLOT0 and second stream in codec SLOT1) the
+Pause/Resume, Volume Control and Mute action will apply on both streams.</span></li></ul></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 200px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.1 / 11-October-2013</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes<o:p></o:p></span></u></b></p>
+
+            <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_lcd.c</span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Update
+LCD_DisplayOff() function : Remove GPIO PA8 and PC6 configuration in
+low level, as we don't need to configure any more these GPIO w/
+STM32x9I-EVAL Boards RevB</span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Add comments for LCD_GetPosition() and &nbsp;LCD_CheckDevice function&nbsp;&nbsp;</span></li></ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_ioe8.c/.h</span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Update&nbsp;<span style="font-style: italic;">IOE_TS_GetState()</span> function : Enhance the TS detection algorithm</span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Update&nbsp;<span style="font-style: italic;">IOE_TS_Config()</span>
+function&nbsp;: Update IOE FIFO threshold register value to 0x01
+instead of 0x0F and update touch screen operation mode register value
+to 0x01 instead of 0x03</span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Add condition in&nbsp;<span style="font-style: italic;">IOE_GPIO_Config() </span>and&nbsp;<span style="font-style: italic;">IOE_I2C_Config() </span>functions to prevent I2C and its GPIOs reconfiguration</span></li><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Update&nbsp;<span style="font-style: italic;">I2C_ReadDataBuffer()</span> function: remove check at "I2C_FLAG_BUSY" in the beginning of the function</span></li></ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_ioe16.c/.h</span></li><ul><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">Add condition in&nbsp;<span style="font-style: italic;">IOE16_GPIO_Config() </span>and&nbsp;<span style="font-style: italic;">IOE16_I2C_Config() </span>functions to prevent I2C and its GPIOs reconfiguration</span></li></ul></ul><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 23px; width: 868px;"><b><u><span style="font-size: 10pt; color: black; font-family: Verdana;">Known 
+Limitations<o:p></o:p></span></u></b></p>
+<ul style="margin-top: 0cm; text-align: justify;" type="square"><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">stm324x9i_eval_audio_codec.c/.h</span></li><ul><li class="MsoNormal" style="margin-top: 4.5pt; margin-bottom: 4.5pt; color: black;"><span style="font-size: 10pt; font-family: Verdana;">If
+2 audio streams are played in TDM format (the first stream is
+configured in codec SLOT0 and second stream in codec SLOT1) the
+Pause/Resume, Volume Control and Mute action will apply on both streams.</span></li></ul></ul><h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; margin-right: 500pt; width: 200px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.0 / 19-September-2013</span></h3><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
 Changes<o:p></o:p></span></u></b></p>
 
             <ul style="margin-top: 0cm;" type="square"><li class="MsoNormal"><span style="font-size: 10pt; font-family: Verdana;">First official release&nbsp;</span><span style="font-size: 10pt; font-family: Verdana;"><span style="font-weight: bold; font-style: italic;"></span></span><span style="font-size: 10pt; font-family: Verdana;">for&nbsp;<span style="font-weight: bold; font-style: italic;">STM324x9I_EVAL</span> board drivers.</span></li></ul><p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 23px; width: 868px;"><b><u><span style="font-size: 10pt; color: black; font-family: Verdana;">Known 

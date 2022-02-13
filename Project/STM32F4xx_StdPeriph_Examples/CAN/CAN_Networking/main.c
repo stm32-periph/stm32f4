@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CAN/CAN_Networking/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -56,7 +56,7 @@ void Init_RxMes(CanRxMsg *RxMessage);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Main program.
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -73,19 +73,18 @@ int main(void)
   /* NVIC configuration */
   NVIC_Config();
 
-  /* Configures LED 1..4 */
+   /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
   STM_EVAL_LEDInit(LED4);
   
-  /* Configure Push button key */
+  /* Initialize Key Button mounted on EVAL board */
   STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_GPIO); 
    
   /* CAN configuration */
   CAN_Config();
   
-  /* Infinite loop */
   while(1)
   {
     while(STM_EVAL_PBGetState(BUTTON_KEY) == KEY_PRESSED)

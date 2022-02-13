@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file contains definitions for STM324x9I_EVAL's Leds, push-buttons
   *          and COM ports hardware resources.
   ******************************************************************************
@@ -251,8 +251,21 @@ typedef enum
 /**
   * @}
   */ 
-  
 
+/** @addtogroup STM324x9I_EVAL_I2C_SPEED
+  * @{
+  */
+    
+/* I2C clock speed configuration (in Hz), used by LCD, Audio Codec, IOE8 
+   and IOE16 drivers */
+#ifndef I2C_SPEED
+ #define I2C_SPEED                        100000
+#endif /* I2C_SPEED */
+
+/**
+  * @}
+  */ 
+  
 /**
   * @}
   */ 

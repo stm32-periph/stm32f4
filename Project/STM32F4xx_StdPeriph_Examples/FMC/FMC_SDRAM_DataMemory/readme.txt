@@ -1,13 +1,13 @@
 /**
-  @page FMC_SDRAM_DataMemory FMC SDRAM data memory example
+  @page FMC_SDRAM_DataMemory FMC SDRAM Data Memory example
   
   @verbatim
   ******************* (C) COPYRIGHT 2013 STMicroelectronics ********************
   * @file    FMC/FMC_SDRAM_DataMemory/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the FMC SDRAM_DataMemory example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the FMC SDRAM Data Memory example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -27,8 +27,8 @@
  
 @par Example Description 
 
-This example shows how to use the MT48LC2M3B2B5-7E SDRAM mounted on STM324x9I-EVAL 
-as data memory (including heap and stack).
+This example shows how to use the MT48LC2M3B2B5-7E SDRAM mounted on 
+STM324x9I-EVAL RevB as data memory (including heap and stack).
  
 The example scenario does not reflect a real application case, its purpose is to
 provide only the procedure to follow to use the external SDRAM as data memory.
@@ -40,30 +40,31 @@ and initialized to be ready to contain data.
   
 The user has to configure his preferred toolchain using the provided linker file.
 The RAM zone is modified in order to use the external memory as a RAM. 
- 
+
+
 @par Directory contents
-                       
- - FMC/FMC_SDRAM_DataMemory/system_stm32f4xx.c          STM32F4xx system clock configuration file 
- - FMC/FMC_SDRAM_DataMemory/stm32f4xx_conf.h            Library Configuration file
- - FMC/FMC_SDRAM_DataMemory/stm32f4xx_it.c              Interrupt handlers
- - FMC/FMC_SDRAM_DataMemory/stm32f4xx_it.h              Header for stm32f4xx_it.c
- - FMC/FMC_SDRAM_DataMemory/main.c                      Main program   
- - FMC/FMC_SDRAM_DataMemory/main.h                      Header for main.c module 
- - FMC/FMC_SDRAM_DataMemory/startup                     Directory containing startup file for each toolchain               
+
+  - FMC/FMC_SDRAM_DataMemory/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - FMC/FMC_SDRAM_DataMemory/stm32f4xx_conf.h     Library Configuration file
+  - FMC/FMC_SDRAM_DataMemory/stm32f4xx_it.c       Interrupt handlers
+  - FMC/FMC_SDRAM_DataMemory/stm32f4xx_it.h       Interrupt handlers header file
+  - FMC/FMC_SDRAM_DataMemory/main.c               Main program
+  - FMC/FMC_SDRAM_DataMemory/main.h               Main program header file 
+  - FMC/FMC_SDRAM_DataMemory/startup              Directory containing startup file for each toolchain               
 
      
 @par Hardware and Software environment 
 
   - This example runs on STM32F429xx/439xx devices.
     
-  - This example has been tested with STMicroelectronics STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+  - This example has been tested with STMicroelectronics STM324x9I-EVAL RevB 
+    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily 
+    tailored to any other supported device and development board.
 
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 

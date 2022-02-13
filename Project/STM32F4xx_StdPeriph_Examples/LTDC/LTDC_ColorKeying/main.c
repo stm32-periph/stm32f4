@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    LTDC/LTDC_ColorKeying/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -52,7 +52,7 @@ static void LCD_AF_GPIOConfig(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -145,10 +145,6 @@ static void LCD_Config(void)
 
 /* Configure the LCD Control pins --------------------------------------------*/
   LCD_AF_GPIOConfig();
-  
-/* Sets LCD backlight --------------------------------------------------------*/
-  GPIO_SetBits(GPIOA, GPIO_Pin_8);
-  GPIO_SetBits(GPIOC, GPIO_Pin_6);
   
 /* LTDC Initialization -------------------------------------------------------*/
 
@@ -282,8 +278,7 @@ static void LCD_AF_GPIOConfig(void)
   
   /* Enable GPIOI, GPIOJ, GPIOG, GPIOF, GPIOH AHB Clocks */
   RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOI | RCC_AHB1Periph_GPIOJ | \
-                         RCC_AHB1Periph_GPIOK | RCC_AHB1Periph_GPIOC | \
-                         RCC_AHB1Periph_GPIOA,  ENABLE);
+                         RCC_AHB1Periph_GPIOK,  ENABLE);
 
 /* GPIOs Configuration */
 /*
@@ -301,9 +296,7 @@ static void LCD_AF_GPIOConfig(void)
  -------------------------------------------------------------------------------
           |  LCD_TFT HSYNC <-> PI.12  | LCDTFT VSYNC <->  PI.13 |
           |  LCD_TFT CLK   <-> PI.14  | LCD_TFT DE   <->  PK.07 |
-           -----------------------------------------------------
-          |LCD_TFT backlight <-> PA.08| LCD_ENABLE <-> PC.06    |
-           -----------------------------------------------------
+           -----------------------------------------------------         
 */
 
  /* GPIOI configuration */
@@ -362,21 +355,7 @@ static void LCD_AF_GPIOConfig(void)
   GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
   GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  GPIO_Init(GPIOK, &GPIO_InitStruct);
-  
-  /* GPIOC configuration */ 
-  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;
-                             
-  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  GPIO_Init(GPIOC, &GPIO_InitStruct);
-  
-  /* GPIOA configuration */ 
-  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;
-     
-  GPIO_Init(GPIOA, &GPIO_InitStruct);  
+  GPIO_Init(GPIOK, &GPIO_InitStruct);   
 }
 
 

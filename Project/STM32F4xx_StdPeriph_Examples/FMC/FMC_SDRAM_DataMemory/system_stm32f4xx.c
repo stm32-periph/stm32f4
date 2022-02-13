@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FMC/FMC_SDRAM_DataMemory/system_stm32f4xx.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *          This file contains the system clock configuration for STM32F4xx devices.
   *             
@@ -239,7 +239,7 @@
 #endif /* STM32F40_41xxx || STM32F427_437x || STM32F429_439xx */
 
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
-/* #define DATA_IN_ExtSDRAM */
+#define DATA_IN_ExtSDRAM
 #endif /* STM32F427_437x || STM32F429_439xx */ 
 
 /*!< Uncomment the following line if you need to relocate your vector Table in

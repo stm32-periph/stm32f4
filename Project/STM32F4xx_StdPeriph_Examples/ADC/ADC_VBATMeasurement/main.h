@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_VBATMeasurement/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -47,16 +47,15 @@
 #endif
 
 /* Private define ------------------------------------------------------------*/
-/* used to display the ADC converted value on LCD */
+/* Used to display the ADC converted value on LCD */
 #define USE_LCD
-  /* if you are not using the LCD, you can monitor the converted value by adding
+  /* If you are not using the LCD, you can monitor the converted value by adding
      the variable "uhADCxConvertedValue" to the debugger watch window */
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 #if defined (USE_STM324xG_EVAL)
-
   #define ADCx                     ADC1
   #define ADCx_CLK                 RCC_APB2Periph_ADC1
   #define DMA_CHANNELx             DMA_Channel_0
@@ -64,7 +63,6 @@
   #define ADCx_DR_ADDRESS          ((uint32_t)0x4001204C)
 
 #elif defined (USE_STM324x7I_EVAL)  
-
   #define ADCx                     ADC1
   #define ADCx_CLK                 RCC_APB2Periph_ADC1
   #define DMA_CHANNELx             DMA_Channel_0
@@ -72,7 +70,6 @@
   #define ADCx_DR_ADDRESS          ((uint32_t)0x4001204C)
 
 #else
-
   #define ADCx                     ADC1
   #define ADCx_CLK                 RCC_APB2Periph_ADC1
   #define DMA_CHANNELx             DMA_Channel_0

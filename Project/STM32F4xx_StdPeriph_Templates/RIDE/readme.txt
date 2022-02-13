@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   This sub-directory contains all the user-modifiable files needed to
   *          create a new project linked with the STM32F4xx Standard Peripherals
   *          Library and working with RIDE7 software toolchain.
@@ -27,7 +27,7 @@
   ******************************************************************************
   @endverbatim
  
- @par Directory contents
+@par Directory contents
  
  - project .rprj/.rapp: A pre-configured project file with the provided library 
                         structure that produces an executable image with RIDE7.
@@ -36,8 +36,9 @@
                                place program code (readonly) in internal FLASH and 
                                data (readwrite, Stack and Heap)in external SRAM. 
                                You can customize this file to your need.
+                     
                                                           
- @par How to use it ?
+@par How to use it ?
  
  - Open the Project.rprj project.                          
  - Rebuild all files: Project->build project

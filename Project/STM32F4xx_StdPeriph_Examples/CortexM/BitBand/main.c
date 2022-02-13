@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CortexM/BitBand/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -32,7 +32,7 @@
   * @{
   */
 
-/** @addtogroup CortexM4_BitBand
+/** @addtogroup CortexM_BitBand
   * @{
   */ 
 
@@ -55,7 +55,7 @@ __IO uint32_t Var, VarAddr = 0, VarBitValue = 0;
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */

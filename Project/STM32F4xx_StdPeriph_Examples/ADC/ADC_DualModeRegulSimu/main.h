@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    ADC/ADC_DualModeRegulSimu/main.c 
+  * @file    ADC/ADC_DualModeRegulSimu/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -47,12 +47,10 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-#if defined (USE_STM324xG_EVAL)
-  
+#if defined (USE_STM324xG_EVAL) 
   #define ADC_CCR_ADDRESS    ((uint32_t)0x40012308)
 
-#elif defined (USE_STM324x7I_EVAL) 
-  
+#elif defined (USE_STM324x7I_EVAL)   
   #define ADC_CCR_ADDRESS    ((uint32_t)0x40012308)
 
 #else

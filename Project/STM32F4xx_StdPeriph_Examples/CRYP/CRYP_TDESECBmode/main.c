@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CRYP/CRYP_TDESECBmode/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -86,7 +86,7 @@ int main(void)
        before to branch to application main.
      */     
        
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit
@@ -97,7 +97,7 @@ int main(void)
   /* USART Configuration */
   USART_Config();
 
-  /* Display Plain Data*/
+  /* Display Plain Data */
   Display_PlainData();
 
 /*=====================================================
@@ -107,7 +107,7 @@ int main(void)
   /* Encrypt */
   TDES_Encrypt_DMA();
 
-  /* Display encrypted Data*/
+  /* Display encrypted Data */
   Display_EncryptedData();
 
 /*=====================================================
@@ -117,14 +117,14 @@ int main(void)
   /* Decrypt */
   TDES_Decrypt_DMA();
 
-  /* Display decrypted data*/
+  /* Display decrypted Data */
   Display_DecryptedData();
 
   while(1);
 }
 
 /**
-  * @brief  Encrypt Data using TDES 
+  * @brief  Encrypts Data using TDES 
   * @note   DATA transfer is done by DMA
   * @note   DMA2 stream6 channel2 is used to transfer data from memory (the 
   *         PlainData Tab) to CRYP Peripheral (the INPUT data register). 
@@ -170,7 +170,7 @@ static void TDES_Encrypt_DMA(void)
   CRYP_DMACmd(CRYP_DMAReq_DataIN, ENABLE);
 
   /* DMA Configuration*********************************************************/
-  /* set commun  DMA parameters for Stream 5 and 6*/
+  /* Set commun  DMA parameters for Stream 5 and 6 */
   DMA_DeInit(DMA2_Stream5);
   DMA_DeInit(DMA2_Stream6);
   DMA_InitStructure.DMA_Channel = DMA_Channel_2;
@@ -186,7 +186,7 @@ static void TDES_Encrypt_DMA(void)
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStructure.DMA_BufferSize = DATA_SIZE;
 
-  /* Set the parameters to be configured specific to stream 6*/
+  /* Set the parameters to be configured specific to stream 6 */
   DMA_InitStructure.DMA_PeripheralBaseAddr = CRYP_DIN_REG_ADDR;
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)PlainData;
   DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
@@ -194,7 +194,7 @@ static void TDES_Encrypt_DMA(void)
   /* Configure the DMA Stream 6 */
   DMA_Init(DMA2_Stream6, &DMA_InitStructure);
 
-  /* Set the parameters to be configured specific to stream 5*/
+  /* Set the parameters to be configured specific to stream 5 */
   DMA_InitStructure.DMA_PeripheralBaseAddr = CRYP_DOUT_REG_ADDR;
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)EncryptedData;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
@@ -206,8 +206,8 @@ static void TDES_Encrypt_DMA(void)
   DMA_Cmd(DMA2_Stream6, ENABLE);
   DMA_Cmd(DMA2_Stream5, ENABLE);
 
-  /* wait until the last transfer from OUT FIFO :
-   all encrypted Data are transfered from crypt processor */
+  /* Wait until the last transfer from OUT FIFO :
+     all encrypted Data are transfered from crypt processor */
   while (DMA_GetFlagStatus(DMA2_Stream6, DMA_FLAG_TCIF5) == RESET);
 
   /* Disable Crypto and DMA ***************************************************/
@@ -219,7 +219,7 @@ static void TDES_Encrypt_DMA(void)
 }
 
 /**
-  * @brief  Decrypt Data using TDES 
+  * @brief  Decrypts Data using TDES 
   * @note   DATA transfer is done by DMA
   * @note   DMA2 stream6 channel2 is used to transfer data from memory (the 
   *         EncryptedData Tab) to CRYP Peripheral (the INPUT data register). 
@@ -263,7 +263,7 @@ static void TDES_Decrypt_DMA(void)
   CRYP_DMACmd(CRYP_DMAReq_DataIN, ENABLE);
 
   /* DMA Configuration ********************************************************/
-  /* set commun  DMA parameters for Stream 5 and 6*/
+  /* Set commun  DMA parameters for Stream 5 and 6 */
   DMA_DeInit(DMA2_Stream5);
   DMA_DeInit(DMA2_Stream6);
   DMA_InitStructure.DMA_Channel = DMA_Channel_2;
@@ -279,7 +279,7 @@ static void TDES_Decrypt_DMA(void)
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStructure.DMA_BufferSize = DATA_SIZE;
 
-  /* Set the parameters to be configured specific to stream 6*/
+  /* Set the parameters to be configured specific to stream 6 */
   DMA_InitStructure.DMA_PeripheralBaseAddr = CRYP_DIN_REG_ADDR; 
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)EncryptedData;
   DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
@@ -287,7 +287,7 @@ static void TDES_Decrypt_DMA(void)
   /* Configure the DMA Stream 6 */
   DMA_Init(DMA2_Stream6, &DMA_InitStructure);
 
-  /* Set the parameters to be configured specific to stream 5*/
+  /* Set the parameters to be configured specific to stream 5 */
   DMA_InitStructure.DMA_PeripheralBaseAddr = CRYP_DOUT_REG_ADDR;
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)DecryptedData;
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
@@ -295,12 +295,12 @@ static void TDES_Decrypt_DMA(void)
   /* Configure the DMA Stream 5 */
   DMA_Init(DMA2_Stream5, &DMA_InitStructure);
 
-  /* Enable DMA streams*/
+  /* Enable DMA streams */
   DMA_Cmd(DMA2_Stream6, ENABLE);
   DMA_Cmd(DMA2_Stream5, ENABLE);
 
-  /* wait until the last transfer from OUT FIFO :
-   all encrypted Data are transfered from crypt processor */
+  /* Wait until the last transfer from OUT FIFO :
+     all encrypted Data are transfered from crypt processor */
   while (DMA_GetFlagStatus(DMA2_Stream6, DMA_FLAG_TCIF5) == RESET);
 
   /* Disable Crypto and DMA ***************************************************/
@@ -312,7 +312,7 @@ static void TDES_Decrypt_DMA(void)
 }
 
 /**
-  * @brief  Display Plain Data 
+  * @brief  Displays Plain Data 
   * @param  None
   * @retval None
   */
@@ -342,7 +342,7 @@ static void Display_PlainData(void)
 }
 
 /**
-  * @brief  Display Encrypted Data 
+  * @brief  Displays Encrypted Data 
   * @param  None
   * @retval None
   */
@@ -369,7 +369,7 @@ static void Display_EncryptedData(void)
 }
 
 /**
-  * @brief  Display Decrypted Data 
+  * @brief  Displays Decrypted Data 
   * @param  None
   * @retval None
   */

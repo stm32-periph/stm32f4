@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_TwoBoards/SPI_DataExchangeInterrupt/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -57,7 +57,7 @@ __IO uint8_t ubCounter = 0;
 /******************************************************************************/
 
 /**
-  * @brief   This function handles NMI exception.
+  * @brief  This function handles NMI exception.
   * @param  None
   * @retval None
   */

@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    PWR/PWR_Stop/system_stm32f4xx.c
+  * @file    PWR/PWR_STOP/system_stm32f4xx.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *          This file contains the system clock configuration for STM32F4xx devices.
   *             

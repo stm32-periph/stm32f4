@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_TimeStamp/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -66,6 +66,14 @@ static void          RTC_Time_display(uint8_t Line,__IO uint16_t Color_x, Table_
 static Table_TypeDef RTC_Get_Time(uint32_t Secondfraction , RTC_TimeTypeDef* RTC_TimeStructure);
 static Table_TypeDef RTC_Get_Date(RTC_DateTypeDef* RTC_DateStructure );
 
+#ifdef __GNUC__
+  /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
+     set to 'Yes') calls __io_putchar() */
+  #define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+  #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
+#endif /* __GNUC__ */
+
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -77,7 +85,7 @@ int main(void)
 {
   /*!< At this stage the microcontroller clock setting is already configured, 
        this is done through SystemInit() function which is called from startup
-       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
+       files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s)
        before to branch to application main.
      */     
   
@@ -85,7 +93,7 @@ int main(void)
   STM_EVAL_PBInit(BUTTON_TAMPER , BUTTON_MODE_EXTI);
   STM_EVAL_PBInit(BUTTON_WAKEUP , BUTTON_MODE_EXTI);
 
-  /* Initialize LEDs and LCD available on EVAL board */
+  /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   
@@ -164,7 +172,6 @@ int main(void)
     /* Display the RTC Time/Date and TimeStamp Time/Date */ 
     RTC_DateShow();
     RTC_TimeShow();
-
   }
    
   while (1)

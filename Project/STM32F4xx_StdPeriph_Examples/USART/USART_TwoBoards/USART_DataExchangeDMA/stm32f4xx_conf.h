@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeDMA/stm32f4xx_conf.h  
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Library configuration file.
   ******************************************************************************
   * @attention

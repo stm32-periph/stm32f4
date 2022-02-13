@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_DMA/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -183,7 +183,7 @@ static void ADC_Config(void)
   ADC_InitStructure.ADC_NbrOfConversion = 1;
   ADC_Init(ADCx, &ADC_InitStructure);
 
-  /* ADC3 regular channel7 configuration *************************************/
+  /* ADC3 regular channel7 configuration **************************************/
   ADC_RegularChannelConfig(ADCx, ADC_CHANNEL, 1, ADC_SampleTime_3Cycles);
 
  /* Enable DMA request after last transfer (Single-ADC mode) */
@@ -198,7 +198,7 @@ static void ADC_Config(void)
 
 #ifdef USE_LCD
 /**
-  * @brief  Display ADC converted value on LCD
+  * @brief  Displays ADC converted value on LCD
   * @param  None
   * @retval None
   */

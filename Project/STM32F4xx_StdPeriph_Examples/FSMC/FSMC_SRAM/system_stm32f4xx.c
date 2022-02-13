@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    system_stm32f4xx.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    08-November-2013
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *          This file contains the system clock configuration for STM32F4xx devices.
   *             
@@ -11,6 +11,7 @@
   *     user application:
   *      - SystemInit(): Setups the system clock (System clock source, PLL Multiplier
   *                      and Divider factors, AHB/APBx prescalers and Flash settings),
+  *                      depending on the configuration made in the clock xls tool. 
   *                      This function is called at startup just after reset and 
   *                      before branch to main program. This call is made inside
   *                      the "startup_stm32f4xx.s" file.
@@ -233,13 +234,13 @@
 /*!< Uncomment the following line if you need to use external SRAM or SDRAM mounted
      on STM324xG_EVAL/STM324x7I_EVAL/STM324x9I_EVAL boards as data memory  */
      
-#if defined (STM32F40_41xxx) || defined (STM32F42_43xxx)
+#if defined (STM32F40_41xxx) || defined (STM32F427_437xx) || defined (STM32F429_439xx)
 /* #define DATA_IN_ExtSRAM */
-#endif /* STM32F40_41xxx || STM32F42_43xxx */
+#endif /* STM32F40_41xxx || STM32F427_437x || STM32F429_439xx */
 
-#if defined (STM32F42_43xxx)
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
 /* #define DATA_IN_ExtSDRAM */
-#endif /* STM32F42_43xxx */ 
+#endif /* STM32F427_437x || STM32F429_439xx */ 
 
 /*!< Uncomment the following line if you need to relocate your vector Table in
      Internal SRAM. */
@@ -260,11 +261,11 @@
 #define PLL_P      2
 #endif /* STM32F40_41xxx */
 
-#if defined (STM32F42_43xxx)
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
 #define PLL_N      360
 /* SYSCLK = PLL_VCO / PLL_P */
 #define PLL_P      2
-#endif /* STM32F40_41xxx */
+#endif /* STM32F427_437x || STM32F429_439xx */
 
 #if defined (STM32F401xx)
 #define PLL_N      336
@@ -294,9 +295,9 @@
   uint32_t SystemCoreClock = 168000000;
 #endif /* STM32F40_41xxx */
 
-#if defined (STM32F42_43xxx)
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
   uint32_t SystemCoreClock = 180000000;
-#endif /* STM32F40_41xxx */
+#endif /* STM32F427_437x || STM32F429_439xx */
 
 #if defined (STM32F401xx)
   uint32_t SystemCoreClock = 84000000;
@@ -501,13 +502,13 @@ static void SetSysClock(void)
     /* HCLK = SYSCLK / 1*/
     RCC->CFGR |= RCC_CFGR_HPRE_DIV1;
 
-#if defined (STM32F40_41xxx) || defined (STM32F42_43xxx)      
+#if defined (STM32F40_41xxx) || defined (STM32F427_437xx) || defined (STM32F429_439xx)      
     /* PCLK2 = HCLK / 2*/
     RCC->CFGR |= RCC_CFGR_PPRE2_DIV2;
     
     /* PCLK1 = HCLK / 4*/
     RCC->CFGR |= RCC_CFGR_PPRE1_DIV4;
-#endif /* STM32F40_41xxx || STM32F42_43xxx */
+#endif /* STM32F40_41xxx || STM32F427_437x || STM32F429_439xx */
 
 #if defined (STM32F401xx)
     /* PCLK2 = HCLK / 2*/
@@ -529,10 +530,24 @@ static void SetSysClock(void)
     {
     }
    
-#if defined (STM32F40_41xxx) || defined (STM32F42_43xxx)      
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+    /* Enable the Over-drive to extend the clock frequency to 180 Mhz */
+    PWR->CR |= PWR_CR_ODEN;
+    while((PWR->CSR & PWR_CSR_ODRDY) == 0)
+    {
+    }
+    PWR->CR |= PWR_CR_ODSWEN;
+    while((PWR->CSR & PWR_CSR_ODSWRDY) == 0)
+    {
+    }      
     /* Configure Flash prefetch, Instruction cache, Data cache and wait state */
     FLASH->ACR = FLASH_ACR_PRFTEN | FLASH_ACR_ICEN |FLASH_ACR_DCEN |FLASH_ACR_LATENCY_5WS;
-#endif /* STM32F40_41xxx || STM32F42_43xxx */
+#endif /* STM32F427_437x || STM32F429_439xx  */
+
+#if defined (STM32F40_41xxx)     
+    /* Configure Flash prefetch, Instruction cache, Data cache and wait state */
+    FLASH->ACR = FLASH_ACR_PRFTEN | FLASH_ACR_ICEN |FLASH_ACR_DCEN |FLASH_ACR_LATENCY_5WS;
+#endif /* STM32F40_41xxx  */
 
 #if defined (STM32F401xx)
     /* Configure Flash prefetch, Instruction cache, Data cache and wait state */
@@ -644,16 +659,51 @@ void SystemInit_ExtMemCtl(void)
   GPIOG->PUPDR   = 0x00000000;
   
 /*-- FMC Configuration ------------------------------------------------------*/
-  /* Enable the FMC interface clock */
+  /* Enable the FMC/FSMC interface clock */
   RCC->AHB3ENR         |= 0x00000001;
-
+  
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
   /* Configure and enable Bank1_SRAM2 */
   FMC_Bank1->BTCR[2]  = 0x00001011;
   FMC_Bank1->BTCR[3]  = 0x00000201;
   FMC_Bank1E->BWTR[2] = 0x0fffffff;
+#endif /* STM32F427_437xx || STM32F429_439xx */ 
+
+#if defined (STM32F40_41xxx)
+  /* Configure and enable Bank1_SRAM2 */
+  FSMC_Bank1->BTCR[2]  = 0x00001011;
+  FSMC_Bank1->BTCR[3]  = 0x00000201;
+  FSMC_Bank1E->BWTR[2] = 0x0fffffff;
+#endif  /* STM32F40_41xxx */
+
 /*
   Bank1_SRAM2 is configured as follow:
+  In case of FSMC configuration 
+  NORSRAMTimingStructure.FSMC_AddressSetupTime = 1;
+  NORSRAMTimingStructure.FSMC_AddressHoldTime = 0;
+  NORSRAMTimingStructure.FSMC_DataSetupTime = 2;
+  NORSRAMTimingStructure.FSMC_BusTurnAroundDuration = 0;
+  NORSRAMTimingStructure.FSMC_CLKDivision = 0;
+  NORSRAMTimingStructure.FSMC_DataLatency = 0;
+  NORSRAMTimingStructure.FSMC_AccessMode = FMC_AccessMode_A;
 
+  FSMC_NORSRAMInitStructure.FSMC_Bank = FSMC_Bank1_NORSRAM2;
+  FSMC_NORSRAMInitStructure.FSMC_DataAddressMux = FSMC_DataAddressMux_Disable;
+  FSMC_NORSRAMInitStructure.FSMC_MemoryType = FSMC_MemoryType_SRAM;
+  FSMC_NORSRAMInitStructure.FSMC_MemoryDataWidth = FSMC_MemoryDataWidth_16b;
+  FSMC_NORSRAMInitStructure.FSMC_BurstAccessMode = FSMC_BurstAccessMode_Disable;
+  FSMC_NORSRAMInitStructure.FSMC_AsynchronousWait = FSMC_AsynchronousWait_Disable;  
+  FSMC_NORSRAMInitStructure.FSMC_WaitSignalPolarity = FSMC_WaitSignalPolarity_Low;
+  FSMC_NORSRAMInitStructure.FSMC_WrapMode = FSMC_WrapMode_Disable;
+  FSMC_NORSRAMInitStructure.FSMC_WaitSignalActive = FSMC_WaitSignalActive_BeforeWaitState;
+  FSMC_NORSRAMInitStructure.FSMC_WriteOperation = FSMC_WriteOperation_Enable;
+  FSMC_NORSRAMInitStructure.FSMC_WaitSignal = FSMC_WaitSignal_Disable;
+  FSMC_NORSRAMInitStructure.FSMC_ExtendedMode = FSMC_ExtendedMode_Disable;
+  FSMC_NORSRAMInitStructure.FSMC_WriteBurst = FSMC_WriteBurst_Disable;
+  FSMC_NORSRAMInitStructure.FSMC_ReadWriteTimingStruct = &NORSRAMTimingStructure;
+  FSMC_NORSRAMInitStructure.FSMC_WriteTimingStruct = &NORSRAMTimingStructure;
+
+  In case of FMC configuration   
   NORSRAMTimingStructure.FMC_AddressSetupTime = 1;
   NORSRAMTimingStructure.FMC_AddressHoldTime = 0;
   NORSRAMTimingStructure.FMC_DataSetupTime = 2;
@@ -790,7 +840,7 @@ void SystemInit_ExtMemCtl(void)
   RCC->AHB3ENR |= 0x00000001;
   
   /* Configure and enable SDRAM bank1 */
-  FMC_Bank5_6->SDCR[0] = 0x000029D0;
+  FMC_Bank5_6->SDCR[0] = 0x000039D0;
   FMC_Bank5_6->SDTR[0] = 0x01115351;      
   
   /* SDRAM initialization sequence */

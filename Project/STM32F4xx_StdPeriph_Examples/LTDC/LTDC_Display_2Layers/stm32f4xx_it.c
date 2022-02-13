@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    LTDC/LTDC_Display_2Layers/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -34,7 +34,7 @@
   * @{
   */
 
-/** @addtogroup LTDC_Display_2Layer
+/** @addtogroup LTDC_Display_2Layers
   * @{
   */
 

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_Printf/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -65,7 +65,7 @@ int main(void)
        files (startup_stm32f40_41xxx.s/startup_stm32f427_437xx.s/startup_stm32f429_439xx.s)
        before to branch to application main. 
        To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f4xx.c file
+       system_stm32f4xx.c file.
      */     
 
   /* USART configuration */
@@ -88,7 +88,7 @@ static void USART_Config(void)
 {
   USART_InitTypeDef USART_InitStructure;
   
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit

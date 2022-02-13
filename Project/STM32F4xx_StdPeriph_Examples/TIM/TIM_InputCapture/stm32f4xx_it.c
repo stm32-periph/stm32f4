@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    TIM/TIM_InputCapture/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and peripherals
   *          interrupt service routine.
@@ -42,11 +42,11 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-__IO uint16_t uhIC3ReadValue1 = 0;
-__IO uint16_t uhIC3ReadValue2 = 0;
-__IO uint16_t uhCaptureNumber = 0;
-__IO uint32_t uwCapture = 0;
-__IO uint32_t uwTIM1Freq = 0;
+ uint16_t uhIC3ReadValue1 = 0;
+ uint16_t uhIC3ReadValue2 = 0;
+ uint16_t uhCaptureNumber = 0;
+ uint32_t uwCapture = 0;
+ uint32_t uwTIM1Freq = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/

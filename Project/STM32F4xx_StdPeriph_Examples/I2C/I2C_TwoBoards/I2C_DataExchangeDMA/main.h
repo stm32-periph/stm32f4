@@ -2,9 +2,9 @@
   ******************************************************************************
   * @file    I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Main program header
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
@@ -64,18 +64,20 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
    mode */
 //#define I2C_10BITS_ADDRESS
   
-/* Define I2C Speed --------------------------------------------------------*/
+/* Define I2C Speed ----------------------------------------------------------*/
 #ifdef FAST_I2C_MODE
  #define I2C_SPEED 340000
  #define I2C_DUTYCYCLE I2C_DutyCycle_16_9  
+
 #else /* STANDARD_I2C_MODE*/
  #define I2C_SPEED 100000
  #define I2C_DUTYCYCLE  I2C_DutyCycle_2
 #endif /* FAST_I2C_MODE*/
   
-/* Define Slave Address  ---------------------------------------------------*/
+/* Define Slave Address  -----------------------------------------------------*/
 #ifdef I2C_10BITS_ADDRESS
  #define SLAVE_ADDRESS (uint16_t)0x0330
+
 #else /* I2C_7BITS_ADDRESS */
  #define SLAVE_ADDRESS 0x30
 #endif /* I2C_10BITS_ADDRESS */

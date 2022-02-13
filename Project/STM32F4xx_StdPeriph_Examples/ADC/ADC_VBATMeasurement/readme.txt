@@ -1,12 +1,12 @@
 /**
-  @page ADC_VBATMeasurement ADC_VBAT_Measurement
+  @page ADC_VBATMeasurement ADC VBAT Measurement example
 
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    ADC/ADC_VBATMeasurement/readme.txt
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the ADC1 VBAT Measurement example.
   ******************************************************************************
   *
@@ -27,12 +27,12 @@
 
 @par Example Description 
 
-This example describes how to measure VBAT voltage using ADC1 regular channel 18.
-In fact, the measured value correspond to VBAT/2 for STM32F40xx/STM32F41xx devices and 
-to VBAT/4 for STM32F42xx/STM32F43xx devices; as the VBAT voltage could be higher
-than VDDA, to ensure the correct operation of the ADC, the VBAT pin is internally
-connected to a bridge divider by 2 for STM32F40xx/STM32F41xx devices and by 4 
-for STM32F42xx/STM32F43xx devices.
+This example shows how to measure VBAT voltage using ADC1 regular channel 18.
+In fact, the measured value corresponds to VBAT/2 for STM32F40xx/STM32F41xx 
+devices and to VBAT/4 for STM32F42xx/STM32F43xx devices; as the VBAT voltage 
+could be higher than VDDA, to ensure the correct operation of the ADC, the VBAT 
+pin is internally connected to a bridge divider by 2 for STM32F40xx/STM32F41xx 
+devices and by 4 for STM32F42xx/STM32F43xx devices.
 
 In this example the VBAT/2 voltage for STM32F40xx/STM32F41xx devices or VBAT/4 voltage 
 for STM32F42xx/STM32F43xx devices is continuously converted, each time an end
@@ -43,7 +43,7 @@ it is recommended to enable the bridge divider only when needed for ADC
 conversion then disable it.
 
 User can display the VBAT voltage on the Eval Board LCD (when the define USE_LCD
-is enabled in main.h)
+is enabled in main.h  file)
 
 In this example, the system clock is 144MHz, APB2 =72MHz and ADC clock = APB2 /2.
 So ADCCLK= 36MHz 
@@ -61,40 +61,41 @@ Conversion rate of Vbat channel  = Sampling Time + Conversion Time = 15 + 12 cyc
   - ADC/ADC_VBATMeasurement/main.c               Main program
   - ADC/ADC_VBATMeasurement/main.h               Main program header file
   
+  
 @par Hardware and Software environment 
 
   - This example runs on STM32F405xx/407xx, STM32F415xx/417xx, STM32F427xx/437xx and 
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
 
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c 
-     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_sram.c
+     - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_fsmc_sram.c
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_ioe.c 
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.c 
-     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_sram.c
+     - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_fmc_sram.c
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_ioe.c
      
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_lcd.c 
-     - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_sdram.c
+     - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_fmc_sdram.c
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_ioe8.c   
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval_ioe16.c 
             
@@ -103,3 +104,4 @@ In order to make the program work, you must do the following :
 
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
+ 

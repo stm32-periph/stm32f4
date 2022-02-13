@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_TwoBoards/SPI_DataExchangeInterrupt/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -54,7 +54,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 /* Uncomment the line below if you will use the SPI peripheral as a Master */
 /* #define SPI_MASTER */
 /* Uncomment the line below if you will use the SPI peripheral as a Slave */
- #define SPI_SLAVE  
+#define SPI_SLAVE  
 
 /* USER_TIMEOUT value for waiting loops. This timeout is just guarantee that the
    application will not remain stuck if the USART communication is corrupted. 
@@ -119,8 +119,6 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 #endif  /* USE_STM324x7I_EVAL */
 
 #define BUFFERSIZE                       100
-
-
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

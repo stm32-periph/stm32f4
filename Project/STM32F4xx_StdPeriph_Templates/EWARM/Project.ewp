@@ -2844,7 +2844,7 @@
         <option>
           <name>Variant</name>
           <version>20</version>
-          <state>39</state>
+          <state>40</state>
         </option>
         <option>
           <name>GEndianMode</name>
@@ -2901,7 +2901,7 @@
         </option>
         <option>
           <name>OGLastSavedByProductVersion</name>
-          <state>6.60.1.5099</state>
+          <state>6.70.1.5793</state>
         </option>
         <option>
           <name>GeneralEnableMisra</name>
@@ -2913,7 +2913,7 @@
         </option>
         <option>
           <name>OGChipSelectEditMenu</name>
-          <state>STM32F401CC	ST STM32F401CC</state>
+          <state>STM32F401xC	ST STM32F401xC</state>
         </option>
         <option>
           <name>GenLowLevelInterface</name>
@@ -2952,12 +2952,12 @@
         <option>
           <name>GFPUCoreSlave</name>
           <version>20</version>
-          <state>39</state>
+          <state>40</state>
         </option>
         <option>
           <name>GBECoreSlave</name>
           <version>20</version>
-          <state>39</state>
+          <state>40</state>
         </option>
         <option>
           <name>OGUseCmsis</name>

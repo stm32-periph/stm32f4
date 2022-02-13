@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_IOExpander/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -50,7 +50,7 @@
 /******************************************************************************/
 
 /**
-  * @brief   This function handles NMI exception.
+  * @brief  This function handles NMI exception.
   * @param  None
   * @retval None
   */
@@ -176,17 +176,17 @@ void EXTI0_IRQHandler(void)
   
   if(EXTI_GetITStatus(WAKEUP_BUTTON_EXTI_LINE) != RESET)
   {
-    /* Toggle LD3 */
+    /* Toggle LED3 */
     STM_EVAL_LEDToggle(LED3);
 
-    LCD_DisplayStringLine(Line4, (uint8_t *)"IT:  WAKEUP Pressed ");
+    LCD_DisplayStringLine(Line4, (uint8_t *)"IT:  WAKEUP Pressed       ");
 
     EXTI_ClearITPendingBit(WAKEUP_BUTTON_EXTI_LINE);
   }
 }
 
 /**
-  * @brief  This function handles External line 2 interrupt request.
+  * @brief  This function handles External lines 9 to 5 interrupt request.
   * @param  None
   * @retval None
   */
@@ -202,7 +202,7 @@ void EXTI9_5_IRQHandler(void)
     /* Get the interrupt status register */
     tmpsr = IOE16_GetITStatus();
     
-    /* Check Touch screen interrupt event occured */
+    /* Check Touch screen interrupt event occurred */
     if((tmpsr & IOE16_TS_IT) != 0)
     {
       /* Update the structure with the current position */
@@ -213,25 +213,25 @@ void EXTI9_5_IRQHandler(void)
         if ((TS_State->X > 60) && (TS_State->X < 120))
         {
           LCD_SetTextColor(LCD_COLOR_GREEN);   
-          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"     LD1                ");
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"     LED1               ");
           STM_EVAL_LEDOn(LED1);
         }
         else if ((TS_State->X > 140) && (TS_State->X < 200))
         {
           LCD_SetTextColor(LCD_COLOR_YELLOW); 
-          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"          LD2           ");
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"          LED2          ");
           STM_EVAL_LEDOn(LED2);
         }
         else if ((TS_State->X > 220) && (TS_State->X < 280))
         {
           LCD_SetTextColor(LCD_COLOR_RED); 
-          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"               LD3      ");
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"               LED3     ");
           STM_EVAL_LEDOn(LED3);
         }     
         else if ((TS_State->X > 300) && (TS_State->X < 360))
         {
           LCD_SetTextColor(LCD_COLOR_BLUE); 
-          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"                    LD4 ");
+          LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"                    LED4");
           STM_EVAL_LEDOn(LED4);
         }
       }
@@ -244,13 +244,13 @@ void EXTI9_5_IRQHandler(void)
       }    
       
       /* Clear the interrupt pending bits */    
-      IOE_ClearGITPending(IOE_TS_IT);     
+      IOE_ClearGITPending(IOE16_TS_IT);     
     }
     
-    /* Check joystick interrupt event occured */
+    /* Check joystick interrupt event occurred */
     if((tmpsr & IOE16_JOY_IT) != 0 )
     {
-      /* Get the Joystick State */
+      /* Get the joystick State */
       JoyState = IOE16_JoyStickGetState();
       
       /* Set the LCD Text Color */
@@ -302,10 +302,10 @@ void EXTI15_10_IRQHandler(void)
   
   if(EXTI_GetITStatus(TAMPER_BUTTON_EXTI_LINE) != RESET)
   {
-    /* Toggle LD2 */
+    /* Toggle LED2 */
     STM_EVAL_LEDToggle(LED2);
 
-    LCD_DisplayStringLine(Line4, (uint8_t *)"IT: TAMPER/KEY Pressed  ");
+    LCD_DisplayStringLine(Line4, (uint8_t *)"IT: TAMPER/KEY Pressed       ");
    
     EXTI_ClearITPendingBit(TAMPER_BUTTON_EXTI_LINE);
   }

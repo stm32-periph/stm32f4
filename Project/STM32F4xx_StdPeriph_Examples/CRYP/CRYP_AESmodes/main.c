@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CRYP/CRYP_AESmodes/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -79,6 +79,11 @@ uint8_t Decryptedtext[AES_TEXT_SIZE]; /* Decrypted text */
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
+static void USART_Config(void);
+static void Display_PlainData(uint32_t datalength);
+static void Display_EncryptedData(uint8_t mode,uint16_t keysize,uint32_t datalength);
+static void Display_DecryptedData(uint8_t mode,uint16_t keysize,uint32_t datalength);
+static char PressToContinue(void);
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -88,11 +93,6 @@ uint8_t Decryptedtext[AES_TEXT_SIZE]; /* Decrypted text */
   #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
-static void USART_Config(void);
-static void Display_PlainData(uint32_t datalength);
-static void Display_EncryptedData(uint8_t mode,uint16_t keysize,uint32_t datalength);
-static void Display_DecryptedData(uint8_t mode,uint16_t keysize,uint32_t datalength);
-static char PressToContinue(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -108,7 +108,7 @@ int main(void)
        before to branch to application main.
      */     
        
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_VBATMeasurement/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -197,7 +197,7 @@ static void ADC_Config(void)
 
 #ifdef USE_LCD
 /**
-  * @brief  Display ADC converted value on LCD
+  * @brief  Displays ADC converted value on LCD
   * @param  None
   * @retval None
   */

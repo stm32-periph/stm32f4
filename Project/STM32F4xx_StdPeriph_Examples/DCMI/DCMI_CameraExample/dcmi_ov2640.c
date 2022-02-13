@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DCMI/DCMI_CameraExample/dcmi_ov2640.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   This file includes the driver for OV2640 Camera module mounted on
   *          STM324xG-EVAL and STM32437I-EVAL evaluation boards.
   ******************************************************************************

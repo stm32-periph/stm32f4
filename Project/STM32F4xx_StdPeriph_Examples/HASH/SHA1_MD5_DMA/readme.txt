@@ -1,13 +1,13 @@
 /**
-  @page SHA1_MD5_DMA  HASH SHA-1 and MD5 with DMA
+  @page SHA1_MD5_DMA  HASH SHA-1 and MD5 with DMA example
 
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    HASH/SHA1_MD5_DMA/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the HASH with DMA Example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the HASH with DMA example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -27,8 +27,8 @@
 
 @par Example Description 
 
-This example provides a short description of how to use the HASH peripheral to 
-hash data using SHA-1 and MD5 Algorithms.
+This example shows how to use the HASH peripheral to hash data using SHA-1 
+and MD5 Algorithms.
 
 For this example, DMA is used to transfer data from memory to the HASH processor.
 The message to hash is a 2048 bit data, the SHA-1 message digest result is a
@@ -39,13 +39,13 @@ USART.
 
 
 @par Directory contents 
+  
   - HASH/SHA1_MD5_DMA/system_stm32f4xx.c   STM32F4xx system clock configuration file
   - HASH/SHA1_MD5_DMA/stm32f4xx_conf.h     Library Configuration file
-  - HASH/SHA1_MD5_DMA/stm32f4xx_it.h       Interrupt handlers header file
   - HASH/SHA1_MD5_DMA/stm32f4xx_it.c       Interrupt handlers
+  - HASH/SHA1_MD5_DMA/stm32f4xx_it.h       Interrupt handlers header file
   - HASH/SHA1_MD5_DMA/main.c               Main program
-  - HASH/SHA1_MD5_DMA/main.h               Main header
-  
+  - HASH/SHA1_MD5_DMA/main.h               Main program header file
 
 
 @par Hardware and Software environment 
@@ -53,7 +53,7 @@ USART.
   - This example runs on STM32F415xx/417xx, STM32F437xx and STM32F439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F41xx 
-    Devices), STM32437I-EVAL (STM32F437xx Devices) and STM32439I-EVAL 
+    Devices), STM32437I-EVAL (STM32F437xx Devices) and STM32439I-EVAL RevB 
     (STM32F439xx Devices) evaluation boards and can be easily tailored 
     to any other supported device and development board.
 
@@ -62,7 +62,7 @@ USART.
       CN16 (USART3) and PC serial port.
       @note Make sure that jumper JP22 is in position 1-2
       
-  - STM32439I-EVAL Set-up 
+  - STM32439I-EVAL RevB Set-up 
     - Connect a null-modem female/female RS232 cable between the DB9 connector 
       CN8 (USART1) and PC serial port.
       @note Make sure that jumper JP7 is in position 1-2
@@ -77,18 +77,18 @@ USART.
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
 
  - Rebuild all files and load your image into target memory

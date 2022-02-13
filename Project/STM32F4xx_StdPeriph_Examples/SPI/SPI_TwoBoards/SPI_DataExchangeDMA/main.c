@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SPI/SPI_TwoBoards/SPI_DataExchangeDMA/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -40,7 +40,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-    uint8_t aTxBuffer[BUFFERSIZE] = "SPI Master/Slave : Communication between two SPI using DMA";
+uint8_t aTxBuffer[BUFFERSIZE] = "SPI Master/Slave : Communication between two SPI using DMA";
 __IO uint8_t aRxBuffer [BUFFERSIZE];
 __IO uint8_t ubRxIndex = 0;
 __IO uint8_t ubTxIndex = 0;
@@ -74,7 +74,7 @@ int main(void)
   /* SysTick configuration */
   SysTickConfig();
   
-  /* LEDs configuration */      
+  /* Initialize LEDs mounted on EVAL board */     
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);

@@ -1,13 +1,13 @@
 /**
-  @page CortexM4_MPU CortexM4 MPU example
+  @page CortexM_MPU CortexM MPU example
   
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    CortexM4/MPU/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the CortexM4 MPU example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the CortexM MPU example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -40,19 +40,17 @@ the following line "PrivilegedReadOnlyArray[0] = 'e';" in the "stm32_mpu.c" file
 
 
 @par Directory contents 
-
+ 
+  - CortexM/MPU/system_stm32f4xx.c   STM32F4xx system clock configuration file
   - CortexM/MPU/stm32f4xx_conf.h     Library Configuration file
   - CortexM/MPU/stm32f4xx_it.c       Interrupt handlers
-  - CortexM/MPU/stm32f4xx_it.h       Header for stm32f4xx_it.c 
+  - CortexM/MPU/stm32f4xx_it.h       Interrupt handlers header file
   - CortexM/MPU/main.c               Main program
-  - CortexM/MPU/main.h               Header for main.c module
-  - CortexM/MPU/system_stm32f4xx.c   STM32F4xx system source file
+  - CortexM/MPU/main.h               Main program header file
   - CortexM/MPU/stm32_mpu.c          Cortex-M4 MPU regions Access rights file
   - CortexM/MPU/stm32_mpu.h          Header for stm32_mpu.c module
-        
-
-
-
+  - CortexM/MPU/Linker               Directory containing liker file for each toolchain
+       
 
 @par Hardware and Software environment
   
@@ -66,7 +64,7 @@ the following line "PrivilegedReadOnlyArray[0] = 'e';" in the "stm32_mpu.c" file
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain and setup your project configuration as follows
@@ -89,18 +87,16 @@ In order to make the program work, you must do the following :
           with other STM32 devices.         
 </ul>    
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
      - stm32_mpu.c
         
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      - stm32_mpu.c
      
  - Rebuild all files and load your image into target memory
  - Run the example
-
-
     
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

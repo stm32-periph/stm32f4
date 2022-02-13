@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    I2C/I2C_IOExpander/main.c 
+  * @file    I2C/I2C_IOExpander/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -35,15 +35,17 @@
 #include "stm324x9i_eval_ioe8.h"
 #include "stm324x9i_eval_ioe16.h"
 
-
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-
+/* Uncomment the line below if you will use the Buttons in polling mode */
 /* #define BUTTON_POLLING_MODE */
+/* Uncomment the line below if you will use the Buttons in interrupt mode */
 #define BUTTON_INTERRUPT_MODE     
 
-#define IOE_POLLING_MODE 
-/*#define IOE_INTERRUPT_MODE*/
+/* Uncomment the line below if you will use the IOE in polling mode */
+#define IOE_POLLING_MODE
+/* Uncomment the line below if you will use the IOE in interrupt mode */
+/* #define IOE_INTERRUPT_MODE */
 
 #ifdef BUTTON_POLLING_MODE
   #define BUTTON_MODE  BUTTON_MODE_GPIO

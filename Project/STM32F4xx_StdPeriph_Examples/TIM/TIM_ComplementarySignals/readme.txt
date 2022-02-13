@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    TIM/TIM_ComplementarySignals/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the TIM Complementary Signals example.
   ******************************************************************************
   *
@@ -52,12 +52,13 @@ The TIM1 waveform can be displayed using an oscilloscope.
 
 
 @par Directory contents 
-
-  - TIM/TIM_ComplementarySignals/stm32f4xx_conf.h    Library Configuration file
-  - TIM/TIM_ComplementarySignals/stm32f4xx_it.c      Interrupt handlers
-  - TIM/TIM_ComplementarySignals/stm32f4xx_it.h      Interrupt handlers header file
-  - TIM/TIM_ComplementarySignals/main.c              Main program
-  - TIM/TIM_ComplementarySignals/system_stm32f4xx.c  STM32F4xx system source file
+  
+  - TIM/TIM_ComplementarySignals/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - TIM/TIM_ComplementarySignals/stm32f4xx_conf.h     Library Configuration file
+  - TIM/TIM_ComplementarySignals/stm32f4xx_it.c       Interrupt handlers
+  - TIM/TIM_ComplementarySignals/stm32f4xx_it.h       Interrupt handlers header file
+  - TIM/TIM_ComplementarySignals/main.c               Main program
+  
  
 @par Hardware and Software environment 
 
@@ -65,18 +66,18 @@ The TIM1 waveform can be displayed using an oscilloscope.
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
 
-  - STM324xG-EVAL/STM32437I-EVAL and STM324x9I-EVAL Set-up 
+  - STM324xG-EVAL/STM32437I-EVAL and STM324x9I-EVAL RevB Set-up 
     - Connect the TIM1 pins to an oscilloscope to monitor the different waveforms:
-      - TIM1_CH1  pin (PA.08)  
-      - TIM1_CH1N pin (PB.13)  
-      - TIM1_CH2  pin (PE.11)  
-      - TIM1_CH2N pin (PB.14)  
-      - TIM1_CH3  pin (PA.10)  
-      - TIM1_CH3N pin (PB.15)
+      - TIM1_CH1  (PA.08)  
+      - TIM1_CH1N (PB.13)  
+      - TIM1_CH2  (PE.11)  
+      - TIM1_CH2N (PB.14)  
+      - TIM1_CH3  (PA.10)  
+      - TIM1_CH3N (PB.15)
 
     - Connect the TIM1 break pin TIM1_BKIN pin (PB.12) to the GND. To generate a 
       break event, switch this pin level from 0V to 3.3V.  
@@ -84,18 +85,18 @@ The TIM1 waveform can be displayed using an oscilloscope.
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
            
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
           
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
                  
  - Rebuild all files and load your image into target memory

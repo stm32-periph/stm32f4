@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_TwoBoards/I2C_DataExchangeDMA/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -74,22 +74,22 @@ int main(void)
        of SystemInit() function, refer to system_stm32f4xx.c file
      */    
 
-  /* I2C configuration ---------------------------------------------------------*/
+  /* I2C configuration */
   I2C_Config();
   
-  /* Initialize LEDs */
+  /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
   STM_EVAL_LEDInit(LED4);
   
-  /* SysTick configuration -----------------------------------------------------*/
+  /* SysTick configuration */
   SysTickConfig();
   
   /* Clear the RxBuffer */
   Fill_Buffer(aRxBuffer, RXBUFFERSIZE);
   
-  /*************************************Master Code******************************/
+  /*************************************Master Code****************************/
 #if defined (I2C_MASTER)
  
   /* I2C Struct Initialize */
@@ -108,7 +108,7 @@ int main(void)
   /* I2C Initialize */
   I2C_Init(I2Cx, &I2C_InitStructure);
   
-  /* Master Transmitter --------------------------------------------------------*/   
+  /* Master Transmitter ------------------------------------------------------*/   
   
   /* Generate the Start condition */
   I2C_GenerateSTART(I2Cx, ENABLE);
@@ -213,7 +213,7 @@ int main(void)
   DMA_ClearFlag(I2Cx_DMA_STREAM_TX, I2Cx_TX_DMA_TCFLAG | I2Cx_TX_DMA_FEIFLAG | I2Cx_TX_DMA_DMEIFLAG | \
                                        I2Cx_TX_DMA_TEIFLAG | I2Cx_TX_DMA_HTIFLAG);
   
-  /* Master Receiver -----------------------------------------------------------*/ 
+  /* Master Receiver ---------------------------------------------------------*/ 
   
   /* Enable DMA NACK automatic generation */
   I2C_DMALastTransferCmd(I2Cx, ENABLE);
@@ -369,7 +369,7 @@ int main(void)
   
   I2C_Init(I2Cx, &I2C_InitStructure);
   
-  /* Slave Receiver ------------------------------------------------------------*/
+  /* Slave Receiver ----------------------------------------------------------*/
 
   /* Test on I2C EV1 and clear it */
   while (!I2C_CheckEvent(I2Cx, I2C_EVENT_SLAVE_RECEIVER_ADDRESS_MATCHED))
@@ -632,7 +632,7 @@ static void I2C_Config(void)
 }
 
 /**
-  * @brief  Configure a SysTick Base time to 10 ms.
+  * @brief  Configures a SysTick Base time to 10 ms.
   * @param  None
   * @retval None
   */

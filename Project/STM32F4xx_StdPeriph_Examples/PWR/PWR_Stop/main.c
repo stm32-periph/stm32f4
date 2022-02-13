@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    PWR/PWR_Stop/main.c 
+  * @file    PWR/PWR_STOP/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -73,11 +73,12 @@ int main(void)
   /* Configure the SysTick to generate an interrupt each 250 ms */
   SysTick_Configuration();
 
-  /* Initialize LEDs and Key Button mounted on EVAL board */
+  /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED4);
 
+  /* Initialize Key Button mounted on EVAL board */
   /* Key button (EXTI_Line15) will be used to wakeup the system from STOP mode */
   STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_EXTI);
 

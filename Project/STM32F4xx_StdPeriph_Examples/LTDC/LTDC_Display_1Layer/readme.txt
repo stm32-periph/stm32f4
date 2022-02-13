@@ -5,13 +5,10 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    LTDC/LTDC_Display_1Layer/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the STM32F4xx LTDC_Display_1Layer example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the LTDC Display Layer 1 example.
   ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -30,14 +27,14 @@
 
 @par Example Description
 
-  This example provides a description of how to configure LTDC peripheral to 
-  display BMP image on LCD using only one layer.
-  In this basic example the goal is to explain the different fields of the LTDC 
-  structure. 
-  
-  After LCD initialization, the LCD layer 1 is configured to display image 
-  (modeled by an array) loaded from flash memory.
-  
+This example shows how to configure LTDC peripheral to display BMP image on 
+LCD using only one layer.
+
+In this basic example the goal is to explain the different fields of the LTDC 
+structure. 
+
+After LCD initialization, the LCD layer 1 is configured to display image 
+(modeled by an array) loaded from flash memory. 
 
   LCD_TFT synchronous timings configuration :
   -------------------------------------------
@@ -75,7 +72,7 @@
          
   Each LCD device has its specific synchronous timings values.
   This example uses AM480272H3TMQW-T01H LCD (MB1046 Rev.A) and configures 
-  the synchronous timings as following :
+  the synchronous timings as follows:
 
   Horizontal Synchronization (Hsync) = 41
   Horizontal Back Porch (HBP)        = 2
@@ -101,18 +98,20 @@
   Window_width and Window_heigh should be in line with the image size to be 
   displayed.
 
+
 @par Directory contents
+    
+  - LTDC/LTDC_Display_1Layer/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - LTDC/LTDC_Display_1Layer/stm32f4xx_conf.h     Library Configuration file
+  - LTDC/LTDC_Display_1Layer/stm32f4xx_it.c       Interrupt handlers
+  - LTDC/LTDC_Display_1Layer/stm32f4xx_it.h       Interrupt handlers header file
+  - LTDC/LTDC_Display_1Layer/main.c               Main program
+  - LTDC/LTDC_Display_1Layer/main.h               Main program header file
+  - LTDC/LTDC_Display_1Layer/RGB565_480x272.h     Image to be displayed
 
-    - LTDC/LTDC_Display_1Layer/main.h               Main configuration file
-    - LTDC/LTDC_Display_1Layer/stm32f4xx_it.h       Header for stm32f4xx_it.c
-    - LTDC/LTDC_Display_1Layer/stm32f4xx_conf.h     library configuration file
-    - LTDC/LTDC_Display_1Layer/RGB565_480x272.h     image to be displayed
-    - LTDC/LTDC_Display_1Layer/main.c               Main program  
-    - LTDC/LTDC_Display_1Layer/stm32f4xx_it.c       Interrupt handlers
-    - LTDC/LTDC_Display_1Layer/system_stm32f4xx.c   STM32F4xx system clock configuration file
 
-
-@par Hardware and Software environment  
+@par Hardware and Software environment 
+ 
   - This example runs on and STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM32429I-EVAL 
@@ -122,15 +121,16 @@
   - This example has been tested with STM324x9I-EVAL RevB board which includes
     the MB1046 LCD board. 
 
+
 @par How to use it ?
-In order to make the program work, you must do the following :
+
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the example
-
   
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */
-                                   
+ 

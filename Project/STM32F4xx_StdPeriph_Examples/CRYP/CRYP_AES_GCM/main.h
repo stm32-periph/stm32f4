@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CRYP/CRYP_AES_GCM/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -31,7 +31,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
-#include "stdio.h"
+#include <stdio.h>
 
 #if defined (USE_STM324x7I_EVAL) 
   #include "stm324x7i_eval.h"
@@ -46,7 +46,7 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* The size of the plain text in bytes. It must be a multiple of 16.
-   AES is a block cipher algorithm. The plaint text must be multiple of 128 bits = 16 bytes */
+   AES is a block cipher algorithm. The plain text must be multiple of 128 bits = 16 bytes */
 #define PLAINTEXT_SIZE    16
 /* The size of the key in bits must be 128 bits (16 bytes), 192 bits (24 bytes)
    or 256 bits (32 bytes) */
@@ -55,7 +55,7 @@
 #define HEADER_SIZE       16
 #define AES_MODE_GCM      1
 
-/* Exported functions ------------------------------------------------------- */
+/* Exported functions --------------------------------------------------------*/
 
 #endif /* __MAIN_H */
 

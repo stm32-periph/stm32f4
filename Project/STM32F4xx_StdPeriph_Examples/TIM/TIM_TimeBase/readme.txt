@@ -1,12 +1,12 @@
 /**
-  @page TIM_TimeBase TIM_TimeBase example
+  @page TIM_TimeBase TIM Time Base example
   
   @verbatim
   ******************************************************************************
   * @file    TIM/TIM_TimeBase/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the TIM Time Base example.
   ******************************************************************************
   *
@@ -33,7 +33,7 @@ mode with the corresponding Interrupt requests for each channel in order to gene
 
 The TIM3CLK frequency is set to SystemCoreClock / 2 (Hz), to get TIM3 counter 
 clock at 6 MHz so the Prescaler is computed as following:
-   - Prescaler = (TIM3CLK / TIM3 counter clock) - 1
+- Prescaler = (TIM3CLK / TIM3 counter clock) - 1
 
 SystemCoreClock is set to 168MHz for STM32F4xx Devices.
 
@@ -62,15 +62,15 @@ PI.09 and PC.07) are toggled with the following frequencies:
 - LED3: 219.7Hz (CC3) 
 - LED4: 439.4Hz (CC4)
 
-@par Directory contents 
 
+@par Directory contents 
+  
+  - TIM/TIM_TimeBase/system_stm32f4xx.c   STM32F4xx system clock configuration file
   - TIM/TIM_TimeBase/stm32f4xx_conf.h     Library Configuration file
   - TIM/TIM_TimeBase/stm32f4xx_it.c       Interrupt handlers
   - TIM/TIM_TimeBase/stm32f4xx_it.h       Interrupt handlers header file
-  - TIM/TIM_TimeBase/main.c               Main program 
-  - TIM/TIM_TimeBase/main.h               Main header file 
-  - TIM/TIM_TimeBase/system_stm32f4xx.c   STM32F4xx system clock configuration file
-  
+  - TIM/TIM_TimeBase/main.c               Main program
+  - TIM/TIM_TimeBase/main.h               Main program header file
 
 
 @par Hardware and Software environment 
@@ -79,29 +79,30 @@ PI.09 and PC.07) are toggled with the following frequencies:
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
 
-  - STM324xG-EVAL/STM32437I-EVAL and STM324x9I-EVAL Set-up  
+  - STM324xG-EVAL/STM32437I-EVAL and STM324x9I-EVAL RevB Set-up  
     - Use LED1, LED2, LED3 and LED4 connected respectively to PG.06, PG.08, PI.09
       and PC.07 pins and connect them on an oscilloscope to show the different 
-      Time Base signals.  
+      Time Base signals.
+        
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
            
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
           
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
                  
  - Rebuild all files and load your image into target memory

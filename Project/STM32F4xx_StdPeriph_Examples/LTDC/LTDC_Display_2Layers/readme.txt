@@ -5,13 +5,10 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    LTDC/LTDC_Display_2Layers/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the STM32F4xx LTDC_Display_2Layers example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the LTDC Display 2 layers example.
   ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -26,30 +23,30 @@
   * limitations under the License.
   *
   ******************************************************************************
-   @endverbatim
+  @endverbatim
 
 @par Example Description
 
-  This example describes how to configure the LTDC peripheral to display two Layers  
-  at the same time.
-  The goal of this example is to explain how to blend two layers and how to display 
-  an image with L8 (8bits per pixels indexed) as pixel format. 
+This example shows how to configure the LTDC peripheral to display two Layers 
+at the same time.
+The goal of this example is to explain how to blend two layers and how to display 
+an image with L8 (8bits per pixels indexed) as pixel format. 
  
-  After LCD initialization, the LCD layer 1 and Layer 2 are configured as following :
-  - Layer 1 is configured to display an image loaded from flash memory with direct
-    color (RGB565) as pixel format and 320x240 size.
-  - Layer 2 is configured to display an image loaded from flash memory with indirect
-    color (L8) as pixel format and 320x240 size.
-    To display an image with an indirect color as pixel format a color lookup table (CLUT) 
-    is loaded, then every byte from image data (L8_320x240) is considered as 
-    a position in color lookup table (CLUT).(see example below)  
+After LCD initialization, the LCD layer 1 and Layer 2 are configured as following :
+ - Layer 1 is configured to display an image loaded from flash memory with direct
+   color (RGB565) as pixel format and 320x240 size.
+ - Layer 2 is configured to display an image loaded from flash memory with indirect
+   color (L8) as pixel format and 320x240 size.
+   To display an image with an indirect color as pixel format a color lookup table (CLUT) 
+   is loaded, then every byte from image data (L8_320x240) is considered as 
+   a position in color lookup table (CLUT).(see example below)  
 
-  The blending is always active and the two layers can be blended following 
-  the configured blending factors and the constant alpha.
-  In this example the constant alpha for layer 2 is decreased to see the layer 1
-  in the intersection zone.
+The blending is always active and the two layers can be blended following 
+the configured blending factors and the constant alpha.
+In this example the constant alpha for layer 2 is decreased to see the layer 1
+in the intersection zone.
 
-  Example :
+  Example:
   ------------------------------------------------------------------------------
   |Image data   |  position   CLUT(RGB Value)  |   Alpha  | Output (ARGB value)|
   |-------------|------------------------------|----------|------------------- |
@@ -67,19 +64,21 @@
   |             |  255 -----> 0xAE6547         |          |                    |
   ------------------------------------------------------------------------------       
 
-@par Project Directory contents
 
-    - LTDC/LTDC_Display_2Layers/main.h               Main configuration file
-    - LTDC/LTDC_Display_2Layers/stm32f4xx_it.h       Header for stm32f4xx_it.c
-    - LTDC/LTDC_Display_2Layers/stm32f4xx_conf.h     library configuration file
-    - LTDC/LTDC_Display_2Layers/RGB565_320x240.h     image used for LTDC Validation
-    - LTDC/LTDC_Display_2Layers/L8_320x240.h         image used for LTDC Validation 
-    - LTDC/LTDC_Display_2Layers/main.c               Main program  
-    - LTDC/LTDC_Display_2Layers/stm32f4xx_it.c       Interrupt handlers
-    - LTDC/LTDC_Display_2Layers/system_stm32f4xx.c   STM32F4xx system clock configuration file 
+@par Directory contents
+    
+  - LTDC/LTDC_Display_2Layers/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - LTDC/LTDC_Display_2Layers/stm32f4xx_conf.h     Library Configuration file
+  - LTDC/LTDC_Display_2Layers/stm32f4xx_it.c       Interrupt handlers
+  - LTDC/LTDC_Display_2Layers/stm32f4xx_it.h       Interrupt handlers header file
+  - LTDC/LTDC_Display_2Layers/main.c               Main program
+  - LTDC/LTDC_Display_2Layers/main.h               Main program header file
+  - LTDC/LTDC_Display_2Layers/RGB565_320x240.h     Image used for LTDC Validation
+  - LTDC/LTDC_Display_2Layers/L8_320x240.h         Image used for LTDC Validation
 
 
-@par Hardware and Software environment  
+@par Hardware and Software environment
+  
   - This example runs on and STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM32429I-EVAL 
@@ -88,15 +87,16 @@
   
   - This example has been tested with STM324x9I-EVAL RevB board which includes
     the MB1046 LCD board. 
+    
 
 @par How to use it ?
-In order to make the program work, you must do the following :
+
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain
  - Rebuild all files and load your image into target memory
  - Run the example
-
   
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

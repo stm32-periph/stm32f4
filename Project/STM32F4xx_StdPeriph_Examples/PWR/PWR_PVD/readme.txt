@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    PWR/PWR_PVD/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the PWR Programmable Voltage Detector (PVD) example.
   ******************************************************************************
   *
@@ -31,21 +31,21 @@ This example shows how to configure the programmable voltage detector using
 an external interrupt line. In this example, EXTI line 16 is configured to generate 
 an interrupt on each rising or falling edge of the PVD output signal (which 
 indicates that the Vdd voltage is below the PVD threshold).
-In the interrupt routine a led connected to a specific GPIO pin is toggled every 
+In the interrupt routine a LED connected to a specific GPIO pin is toggled every 
 time the voltage drops below or above the target threshold.
 
 A LED connected to a specific GPIO pin is toggling to indicate that the system 
 is in RUN.
 
-@par Directory contents 
 
-  - PWR/PWR_PVD/stm32f4xx_conf.h    Library Configuration file
-  - PWR/PWR_PVD/stm32f4xx_it.c      Interrupt handlers
-  - PWR/PWR_PVD/stm32f4xx_it.h      Interrupt handlers header file
-  - PWR/PWR_PVD/main.c              Main program
-  - PWR/PWR_PVD/main.h              Header for main.c
-  - PWR/PWR_PVD/system_stm32f4xx.c  STM32F4xx system source file
+@par Directory contents 
   
+  - PWR/PWR_PVD/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - PWR/PWR_PVD/stm32f4xx_conf.h     Library Configuration file
+  - PWR/PWR_PVD/stm32f4xx_it.c       Interrupt handlers
+  - PWR/PWR_PVD/stm32f4xx_it.h       Interrupt handlers header file
+  - PWR/PWR_PVD/main.c               Main program
+  - PWR/PWR_PVD/main.h               Main program header file
 
 
 @par Hardware and Software environment
@@ -60,19 +60,21 @@ is in RUN.
   - HW Set-up
     - Connect a LED to PG.06 pin (will be referred to by LED1 in the example code)
     - Connect a LED to PG.07 pin (will be referred to by LED2 in the example code)
-    @note This example can't run on the evaluation boards.
+    
+ @note This example can't run on the evaluation boards.
+  
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
         
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
              
  - Rebuild all files and load your image into target memory

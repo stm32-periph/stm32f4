@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    FMC/FMC_SRAM_DataMemory/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -41,10 +41,10 @@
 #elif defined (USE_STM324x9I_EVAL) 
   #include "stm324x9i_eval.h"
   #include "stm324x9i_eval_fmc_sram.h"
+
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
-
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

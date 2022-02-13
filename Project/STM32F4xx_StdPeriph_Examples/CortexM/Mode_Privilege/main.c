@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CortexM/Mode_Privilege/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -32,7 +32,7 @@
   * @{
   */
 
-/** @addtogroup CortexM4_Mode_Privilege
+/** @addtogroup CortexM_Mode_Privilege
   * @{
   */ 
 
@@ -43,6 +43,7 @@
 #define SP_MAIN                     0x00   /* Main stack */
 #define THREAD_MODE_PRIVILEGED      0x00   /* Thread mode has privileged access */
 #define THREAD_MODE_UNPRIVILEGED    0x01   /* Thread mode has unprivileged access */
+    
  /* Private function prototypes -----------------------------------------------*/
 static __INLINE  void __SVC(void); 
  
@@ -68,7 +69,7 @@ __IO uint32_t Index = 0, PSPValue = 0, CurrentStack = 0, ThreadMode = 0;
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */

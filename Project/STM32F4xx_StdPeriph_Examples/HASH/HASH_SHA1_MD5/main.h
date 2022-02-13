@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    USART/USART_Smartcard/stm32f4xx_it.h 
+  * @file    HASH/HASH_SHA1_MD5/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   This file contains the headers of the interrupt handlers.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
@@ -24,33 +24,35 @@
   *
   ******************************************************************************
   */
-
+  
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F4xx_IT_H
-#define __STM32F4xx_IT_H
+#ifndef __MAIN_H
+#define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
-#include "smartcard.h"
-#include "main.h"
+#include "stdio.h"
+
+#if defined (USE_STM324xG_EVAL)
+  #include "stm324xg_eval.h"
+
+#elif defined (USE_STM324x7I_EVAL) 
+  #include "stm324x7i_eval.h"
+
+#elif defined (USE_STM324x9I_EVAL) 
+  #include "stm324x9i_eval.h"
+
+#else
+ #error "Please select first the Evaluation board used in your application (in Project Options)"
+#endif
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
+#define INPUT_TAB_SIZE    ((uint32_t) 261)
+
 /* Exported functions ------------------------------------------------------- */
 
-void NMI_Handler(void);
-void HardFault_Handler(void);
-void MemManage_Handler(void);
-void BusFault_Handler(void);
-void UsageFault_Handler(void);
-void SVC_Handler(void);
-void DebugMon_Handler(void);
-void PendSV_Handler(void);
-void SysTick_Handler(void);
-void SC_USART_IRQHandler(void);
-void SC_OFF_EXTI_IRQHandler(void);
-
-#endif /* __STM32F4xx_IT_H */
+#endif /* __MAIN_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

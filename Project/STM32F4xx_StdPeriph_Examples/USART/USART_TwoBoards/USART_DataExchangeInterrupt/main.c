@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeInterrupt/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -44,13 +44,13 @@ uint8_t aTxBuffer[BUFFERSIZE] = "USART Interrupt Example: Communication between 
 uint8_t aRxBuffer [BUFFERSIZE];
 __IO uint8_t ubRxIndex = 0x00;
 __IO uint8_t ubTxIndex = 0x00;
-
 __IO uint32_t TimeOut = 0x00;  
+
 /* Private function prototypes -----------------------------------------------*/
 static void USART_Config(void);
 static void SysTickConfig(void);
 #ifdef USART_RECEIVER
-static TestStatus Buffercmp(uint8_t* pBuffer1, uint8_t* pBuffer2, uint16_t BufferLength);
+static TestStatus Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferLength);
 #endif
 /* Private functions ---------------------------------------------------------*/
 
@@ -115,7 +115,7 @@ int main(void)
   }   
   
 #endif /* USART_RECEIVER */
-           
+  
   while (1)
   { 
   }
@@ -157,7 +157,7 @@ static void USART_Config(void)
   USART_OverSampling8Cmd(USARTx, ENABLE);  
 
   /* USARTx configuration ----------------------------------------------------*/
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 5250000 baud
 		   - Maximum BaudRate that can be achieved when using the Oversampling by 8
 		     is: (USART APB Clock / 8) 

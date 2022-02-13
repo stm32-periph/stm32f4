@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    SPI/SPI_FLASH/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the SPI FLASH example.
   ******************************************************************************
   *
@@ -27,8 +27,8 @@
 
 @par Example Description 
 
-This example provides a basic example of how to use the SPI firmware library
-and an associated driver "spi_flash.c" to communicate with an M25P64 SPI FLASH.
+This example shows how to use the SPI firmware library and an associated 
+driver "spi_flash.c" to communicate with an M25P64 SPI FLASH.
 
 The first step consist in reading the SPI Flash ID. A comparison between the ID 
 read from SPI flash and the expected one is done and LED1 is turned on in case
@@ -50,17 +50,16 @@ write and the read operations are defined in the main.c file.
 
 
 @par Directory contents 
-
-  - SPI/SPI_FLASH/spi_flash.c          SPI M25Pxxx driver
-  - SPI/SPI_FLASH/spi_flash.h          Header for spi_flash.c
+  
+  - SPI/SPI_FLASH/system_stm32f4xx.c   STM32F4xx system clock configuration file
   - SPI/SPI_FLASH/stm32f4xx_conf.h     Library Configuration file
   - SPI/SPI_FLASH/stm32f4xx_it.c       Interrupt handlers
-  - SPI/SPI_FLASH/stm32f4xx_it.h       Header for stm32f4xx_it.c
+  - SPI/SPI_FLASH/stm32f4xx_it.h       Interrupt handlers header file
   - SPI/SPI_FLASH/main.c               Main program
-  - SPI/SPI_FLASH/system_stm32f4xx.c   STM32F4xx system source file   
+  - SPI/SPI_FLASH/spi_flash.c          SPI M25Pxxx driver
+  - SPI/SPI_FLASH/spi_flash.h          SPI M25Pxxx driver header file
 
      
-      
 @par Hardware and Software environment 
 
   - This example runs on STM32F405xx/407xx, STM32F415xx/417xx and STM32F42xxx/43xxx devices.
@@ -82,14 +81,13 @@ write and the read operations are defined in the main.c file.
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Add the file "spi_flash.c" to the project source list
  - Rebuild all files and load your image into target memory
  - Run the example
-
    
  * <h3><center>&copy; COPYRIGHT STMicroelectronics</center></h3>
  */

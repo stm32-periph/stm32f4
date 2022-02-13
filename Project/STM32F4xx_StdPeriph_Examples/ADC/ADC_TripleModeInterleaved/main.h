@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_TripleModeInterleaved/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -49,36 +49,30 @@
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 #if defined (USE_STM324xG_EVAL)
-
   #define ADC_CHANNEL              ADC_Channel_12
   #define ADC1_2_CHANNEL_GPIO_CLK  RCC_AHB1Periph_GPIOC
   #define GPIO_PIN                 GPIO_Pin_2
   #define GPIO_PORT                GPIOC
   #define DMA_CHANNELx             DMA_Channel_0
   #define DMA_STREAMx              DMA2_Stream0
-
   #define ADC_CDR_ADDRESS          ((uint32_t)0x40012308)
 
 #elif defined (USE_STM324x7I_EVAL)
-
   #define ADC_CHANNEL              ADC_Channel_12
   #define ADC1_2_CHANNEL_GPIO_CLK  RCC_AHB1Periph_GPIOC
   #define GPIO_PIN                 GPIO_Pin_2
   #define GPIO_PORT                GPIOC
   #define DMA_CHANNELx             DMA_Channel_0
   #define DMA_STREAMx              DMA2_Stream0
-
   #define ADC_CDR_ADDRESS          ((uint32_t)0x40012308)
 
 #else 
-
   #define ADC_CHANNEL              ADC_Channel_12
   #define ADC1_2_CHANNEL_GPIO_CLK  RCC_AHB1Periph_GPIOC
   #define GPIO_PIN                 GPIO_Pin_2
   #define GPIO_PORT                GPIOC
   #define DMA_CHANNELx             DMA_Channel_0
   #define DMA_STREAMx              DMA2_Stream0
-
   #define ADC_CDR_ADDRESS          ((uint32_t)0x40012308)
 
 #endif

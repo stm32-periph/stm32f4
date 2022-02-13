@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval_ioe8.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file contains all the functions prototypes for the
   *          stm324x9i_eval_ioe8.c driver.
   ******************************************************************************
@@ -25,17 +25,6 @@
   *
   ******************************************************************************
   */ 
-
-  /* File Info : ---------------------------------------------------------------
-    SUPPORTED FEATURES:
-      - IO Read/write : Set/Reset and Read (Polling/Interrupt)
-      - Touch Screen Features: Single point mode (Polling/Interrupt)
-      - TempSensor Feature: accuracy not determined (Polling).
-
-    UNSUPPORTED FEATURES:
-      - Row ADC Feature is not supported (not implemented on STM324x9I_EVAL board)
-  ----------------------------------------------------------------------------*/
-
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM324x9I_EVAL_IOE_H
@@ -121,13 +110,6 @@ typedef enum
   */ 
 
 /**
- * @brief Uncomment the line below to enable verfying each written byte in write
- *        operation. The I2C_WriteDeviceRegister() function will then compare the
- *        written and read data and return error status if a mismatch occurs.
- */
-/* #define VERIFY_WRITTENDATA */
-
-/**
  * @brief Uncomment the line below if you want to use user timeout callback.
  *        Function prototypes is declared in this file but function body may be
  *        implemented into user application.  
@@ -147,7 +129,7 @@ typedef enum
   #define _delay_     Delay  /* !< User can provide more timing precise _delay_ function
                                    (with 10ms time base), using SysTick for example */
 #else
-  #define _delay_     delay      /* !< Default _delay_ function with less precise timing */
+  #define _delay_     delay  /* !< Default _delay_ function with less precise timing */
 #endif    
 
 /*------------------------------------------------------------------------------
@@ -170,14 +152,6 @@ typedef enum
 #define IOE_I2C_SDA_AF             GPIO_AF_I2C1
 #define IOE_I2C_DR                 ((uint32_t)0x40005410)
 
-/* I2C clock speed configuration (in Hz) 
-  WARNING: 
-   Make sure that this define is not already declared in other files (ie. 
-  stm324x9i_eval.h file). It can be used in parallel by other modules. */
-#ifndef I2C_SPEED
- #define I2C_SPEED                 100000
-#endif /* I2C_SPEED */
-
 /** 
   * @brief  IOE DMA definitions  
   */
@@ -198,21 +172,10 @@ typedef enum
 
 #ifndef IOE_DMA_RX_TCFLAG 
  #define IOE_DMA_RX_TCFLAG         DMA_FLAG_TCIF0
-#endif /* IOE_DMA_RX_TCFLAG */
-
-/** 
-  * @brief  IO Expander Interrupt line on EXTI  
-  */ 
-#define IOE_IT_PIN                 GPIO_Pin_2
-#define IOE_IT_GPIO_PORT           GPIOI
-#define IOE_IT_GPIO_CLK            RCC_AHB1Periph_GPIOI
-#define IOE_IT_EXTI_PORT_SOURCE    EXTI_PortSourceGPIOI
-#define IOE_IT_EXTI_PIN_SOURCE     EXTI_PinSource2
-#define IOE_IT_EXTI_LINE           EXTI_Line2
-#define IOE_IT_EXTI_IRQn           EXTI2_IRQn   
+#endif /* IOE_DMA_RX_TCFLAG */   
 
 /**
-  * @brief Eval Board IO Exapander Pins definition 
+  * @brief Eval Board IO Expander Pins definition 
   */ 
 #define IO1_IN_ALL_PINS            (uint32_t)(MEMS_INT1_PIN | MEMS_INT2_PIN)
 #define IO2_IN_ALL_PINS            (uint32_t)0x00
@@ -237,12 +200,12 @@ typedef enum
 #define IOE_IO_FCT                 0x04
 
 /** 
-  * @brief  Interrupt source configuration definitons  
+  * @brief  Interrupt source configuration definitions  
   */ 
 #define IOE_ITSRC_TSC              0x01
 
 /** 
-  * @brief  Glaobal Interrupts definitions  
+  * @brief  Global Interrupts definitions  
   */ 
 #define IOE_GIT_GPIO               0x80
 #define IOE_GIT_ADC                0x40
@@ -309,7 +272,7 @@ typedef enum
 #define IOE_REG_ADC_DATA_CH7       0x3C 
 
 /** 
-  * @brief  TouchScreen Registers  
+  * @brief  Touch Screen Registers  
   */ 
 #define IOE_REG_TSC_CTRL           0x40
 #define IOE_REG_TSC_CFG            0x41
@@ -325,7 +288,8 @@ typedef enum
 #define IOE_REG_TSC_DATA_Z         0x51
 #define IOE_REG_TSC_DATA_XYZ       0x52 
 #define IOE_REG_TSC_FRACT_XYZ      0x56
-#define IOE_REG_TSC_DATA           0x57
+#define IOE_REG_TSC_DATA_INC       0x57
+#define IOE_REG_TSC_DATA_NON_INC   0xD7
 #define IOE_REG_TSC_I_DRIVE        0x58
 #define IOE_REG_TSC_SHIELD         0x59
 
@@ -406,13 +370,7 @@ uint8_t IOE_Config(void);
 uint8_t IOE_TSITConfig(void);
 
 /** 
-  * @brief Interrupts Management functions
-  */
-FlagStatus  IOE_GetGITStatus(uint8_t Global_IT);
-uint8_t     IOE_ClearGITPending(uint8_t IO_IT);
-
-/** 
-  * @brief IO-Expander Control functions
+  * @brief IO Expander Control functions
   */
 uint8_t  IOE_IsOperational(void);
 uint8_t  IOE_Reset(void);
@@ -423,10 +381,16 @@ uint8_t  IOE_GITConfig(uint8_t Global_IT, FunctionalState NewState);
 uint8_t  IOE_IOAFConfig(uint8_t IO_Pin, FunctionalState NewState);
 
 /** 
+  * @brief Interrupts Management functions
+  */
+FlagStatus  IOE_GetGITStatus(uint8_t Global_IT);
+uint8_t     IOE_ClearGITPending(uint8_t IO_IT);
+
+/** 
   * @brief Touch Screen controller functions
   */
+uint8_t   IOE_TS_Config(void);  
 TS_STATE* IOE_TS_GetState(void);
-uint8_t   IOE_TS_Config(void);
 
 /** 
   * @brief Low Layer functions

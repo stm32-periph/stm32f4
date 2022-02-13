@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2C/I2C_IOExpander/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -46,7 +46,7 @@ RCC_ClocksTypeDef RCC_Clocks;
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -62,7 +62,7 @@ int main(void)
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
          
-  /* Initialize LEDs and push-buttons mounted on STM324x9I-EVAL board */
+  /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
   STM_EVAL_LEDInit(LED3);
@@ -86,30 +86,32 @@ int main(void)
   
   /* Clear the LCD */ 
   LCD_Clear(White);
+  
   /* Set the LCD Back Color */
   LCD_SetBackColor(White);
+  
   /* Set the LCD Text Color */
   LCD_SetTextColor(Blue);    
  
-  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t *)"        STM324x9I-EVAL    ");
-  LCD_DisplayStringLine(LCD_LINE_1, (uint8_t *)"      Example on how to   ");
-  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t *)"     use the IO Expander  ");
+  LCD_DisplayStringLine(LCD_LINE_0, (uint8_t *)"        STM324x9I-EVAL       ");
+  LCD_DisplayStringLine(LCD_LINE_1, (uint8_t *)"      Example on how to      ");
+  LCD_DisplayStringLine(LCD_LINE_2, (uint8_t *)"     use the IO Expander     ");
   
   /* Configure the IO Expander */
   if (IOE_Config() == IOE_OK && IOE16_Config() == IOE16_OK)
   {
-    LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"      IO Expander OK   ");
+    LCD_DisplayStringLine(LCD_LINE_3, (uint8_t *)"      IO Expander OK       ");
   }
   else
   {
-    LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"IO Expander FAILED ");
-    LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)" Please Reset the  ");
-    LCD_DisplayStringLine(LCD_LINE_6, (uint8_t *)"   board and start ");
-    LCD_DisplayStringLine(LCD_LINE_7, (uint8_t *)"    again          ");
+    LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"IO Expander FAILED    ");
+    LCD_DisplayStringLine(LCD_LINE_5, (uint8_t *)" Please Reset the     ");
+    LCD_DisplayStringLine(LCD_LINE_6, (uint8_t *)"   board and start    ");
+    LCD_DisplayStringLine(LCD_LINE_7, (uint8_t *)"    again             ");
     while(1);
   }
 
-  /* Leds Control blocks */
+  /* LEDs Control blocks */
   LCD_SetTextColor(Blue);
   LCD_DrawRect(310, 180,  40, 60);
   LCD_SetTextColor(Red);
@@ -182,25 +184,25 @@ int main(void)
       {
         LCD_SetTextColor(LCD_COLOR_GREEN);   
         LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"     LD1                ");
-        STM_EVAL_LEDOn(LED4);
+        STM_EVAL_LEDOn(LED1);
       }
       else if ((TS_State->X > 140) && (TS_State->X < 200))
       {
         LCD_SetTextColor(LCD_COLOR_YELLOW); 
         LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"          LD2           ");
-        STM_EVAL_LEDOn(LED3);
+        STM_EVAL_LEDOn(LED2);
       }
       else if ((TS_State->X > 220) && (TS_State->X < 280))
       {
         LCD_SetTextColor(LCD_COLOR_RED); 
         LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"               LD3      ");
-        STM_EVAL_LEDOn(LED2);
+        STM_EVAL_LEDOn(LED3);
       }     
       else if ((TS_State->X > 300) && (TS_State->X < 360))
       {
         LCD_SetTextColor(LCD_COLOR_BLUE); 
         LCD_DisplayStringLine(LCD_LINE_10, (uint8_t *)"                    LD4 ");
-        STM_EVAL_LEDOn(LED1);
+        STM_EVAL_LEDOn(LED4);
       }
     }
     else
@@ -224,14 +226,14 @@ int main(void)
       /* Toggle LD2 */
       STM_EVAL_LEDToggle(LED2);
 
-      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol: TAMPER/KEY Pressed ");
+      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol: TAMPER/KEY Pressed  ");
     }
 
     if (STM_EVAL_PBGetState(BUTTON_WAKEUP) != 0)
     {
       /* Toggle LD3 */
       STM_EVAL_LEDToggle(LED3);
-      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol: WAKEUP Pressed ");
+      LCD_DisplayStringLine(LCD_LINE_4, (uint8_t *)"Pol: WAKEUP Pressed      ");
     }
 #endif
   }

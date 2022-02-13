@@ -2,9 +2,9 @@
   ******************************************************************************
   * @file    USART/USART_TwoBoards/USART_DataExchangeDMA/main.h
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Main program body
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Header for main.c module
   ******************************************************************************
   * @attention
   *
@@ -60,7 +60,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 #if defined (USE_STM324xG_EVAL)
      
-  /* Definition for USARTx resources ********************************************/
+  /* Definition for USARTx resources ******************************************/
   #define USARTx                           USART3
   #define USARTx_CLK                       RCC_APB1Periph_USART3
   #define USARTx_CLK_INIT                  RCC_APB1PeriphClockCmd
@@ -79,7 +79,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
   #define USARTx_RX_SOURCE                 GPIO_PinSource11
   #define USARTx_RX_AF                     GPIO_AF_USART3
 
-  /* Definition for DMAx resources **********************************************/
+  /* Definition for DMAx resources ********************************************/
   #define USARTx_DR_ADDRESS                ((uint32_t)USART3 + 0x04) 
 
   #define USARTx_DMA                       DMA1
@@ -110,7 +110,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 #if defined (USE_STM324x7I_EVAL)
      
-  /* Definition for USARTx resources ********************************************/
+  /* Definition for USARTx resources ******************************************/
   #define USARTx                           USART3
   #define USARTx_CLK                       RCC_APB1Periph_USART3
   #define USARTx_CLK_INIT                  RCC_APB1PeriphClockCmd
@@ -129,7 +129,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
   #define USARTx_RX_SOURCE                 GPIO_PinSource11
   #define USARTx_RX_AF                     GPIO_AF_USART3
 
-  /* Definition for DMAx resources **********************************************/
+  /* Definition for DMAx resources ********************************************/
   #define USARTx_DR_ADDRESS                ((uint32_t)USART3 + 0x04) 
 
   #define USARTx_DMA                       DMA1
@@ -160,7 +160,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
 
 #if defined (USE_STM324x9I_EVAL)
      
-  /* Definition for USARTx resources ********************************************/
+  /* Definition for USARTx resources ******************************************/
   #define USARTx                           USART1
   #define USARTx_CLK                       RCC_APB2Periph_USART1
   #define USARTx_CLK_INIT                  RCC_APB2PeriphClockCmd
@@ -179,7 +179,7 @@ typedef enum {FAILED = 0, PASSED = !FAILED} TestStatus;
   #define USARTx_RX_SOURCE                 GPIO_PinSource10
   #define USARTx_RX_AF                     GPIO_AF_USART1
 
-  /* Definition for DMAx resources **********************************************/
+  /* Definition for DMAx resources ********************************************/
   #define USARTx_DR_ADDRESS                ((uint32_t)USART1 + 0x04) 
 
   #define USARTx_DMA                       DMA2

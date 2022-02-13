@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    TIM/TIM_6Steps/system_stm32f4xx.c
+  * @file    TIM/TIM_TimeBase/system_stm32f4xx.
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   CMSIS Cortex-M4 Device Peripheral Access Layer System Source File.
   *          This file contains the system clock configuration for STM32F4xx devices.
   *             

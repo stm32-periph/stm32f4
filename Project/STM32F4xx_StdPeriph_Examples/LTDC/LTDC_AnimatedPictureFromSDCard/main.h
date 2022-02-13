@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    LTDC/LTDC_AnimatedPictureFromSDCard/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -34,10 +34,10 @@
 #include "stm324x9i_eval_lcd.h"
 #include "stm324x9i_eval_ioe16.h"
 #include "stm324x9i_eval_sdio_sd.h"
-#include "ff.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "ff.h"
 #include "fatfs_storage.h"
 
 /* Exported types ------------------------------------------------------------*/

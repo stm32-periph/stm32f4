@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_IRQPriority/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -43,7 +43,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-extern __IO uint8_t ubPreemptionOccured;
+extern __IO uint8_t ubPreemptionOccurred;
 extern __IO uint8_t ubPreemptionPriorityValue; 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -152,7 +152,7 @@ void SysTick_Handler(void)
      by SysTick Handler */
   if(NVIC_GetActive(WAKEUP_BUTTON_EXTI_IRQn) != 0)
   {
-    ubPreemptionOccured = 1;
+    ubPreemptionOccurred = 1;
   }
 }
 
@@ -198,7 +198,7 @@ void EXTI15_10_IRQHandler(void)
   if(EXTI_GetITStatus(BUTTON_EXTI_LINE) != RESET)
   {
     ubPreemptionPriorityValue = !ubPreemptionPriorityValue;
-    ubPreemptionOccured = 0;
+    ubPreemptionOccurred = 0;
 
     /* Modify the WAKEUP_BUTTON_EXTI_IRQn Interrupt Preemption Priority */
     NVIC_InitStructure.NVIC_IRQChannel = WAKEUP_BUTTON_EXTI_IRQn;

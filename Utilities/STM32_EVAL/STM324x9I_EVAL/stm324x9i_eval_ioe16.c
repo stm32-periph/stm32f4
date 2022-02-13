@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval_ioe16.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file provides a set of functions needed to manage the STMPE1600
   *          IO Expander devices mounted on STM324x9I-EVAL evaluation board.
   ******************************************************************************
@@ -26,24 +26,23 @@
   ******************************************************************************
   */ 
 
-/* File Info : ------------------------------------------------------------------------
+/* File Info : -----------------------------------------------------------------
                                 User NOTES
 
     - This driver doesn't use the DMA method for sending and receiving data on I2C 
-      bus. It uses a direct I2C communication.  
+      bus. It uses a direct I2C communication (polling).  
   
-  1. Supported features:
-  ----------------------  
-      - IO Read/write : Set/Reset and Read (Polling/Interrupt)
-      - Joystick: config and Read (Polling/Interrupt)
+    - This driver is used to drive the io functionalities under the STM324x9I
+      evaluation board. 
+      
+    SUPPORTED FEATURES:
+      - IO Read/write : Set/Reset (Polling/Interrupt)
 
-  2. Unsupported features:
-  -------------------------  
+    UNSUPPORTED FEATURES:
       - Row ADC Feature is not supported (not implemented on STM324x9I_EVAL board)
       - Touch Screen Features: Single point mode (Polling/Interrupt)
-      - TempSensor Feature: accuracy not determined (Polling)
-      
---------------------------------------------------------------------------------------*/
+      - Temperature Sensor Feature: accuracy not determined (Polling)
+  ----------------------------------------------------------------------------*/
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm324x9i_eval_ioe16.h"
@@ -67,7 +66,7 @@
   */ 
 
 
-/** @defgroup STM324x9I_EVAL_IOE16_Private_TypesDefinitions
+/** @defgroup STM324x9I_EVAL_IOE16_Private_Types_Definitions
   * @{
   */ 
 /**
@@ -101,10 +100,9 @@ uint32_t IOE16_TimeOut = TIMEOUT_MAX; /*<! Value of Timeout when I2C communicati
   */ 
 
 
-/** @defgroup STM324x9I_EVAL_IOE16_Private_FunctionPrototypes
+/** @defgroup STM324x9I_EVAL_IOE16_Private_Function_Prototypes
   * @{
   */ 
-
 static void IOE16_GPIO_Config(void);
 static void IOE16_I2C_Config(void);
 static void IOE16_EXTI_Config(void);
@@ -124,7 +122,8 @@ static void delay(__IO uint32_t nCount);
 
 /**
   * @brief  Initializes and Configures the IO_Expander Functionalities and 
-  *         configures all STM324x9I_EVAL necessary hardware (GPIOs, APB clocks..).
+  *         configures all STM324x9I_EVAL necessary hardware resources
+  *         (GPIOs, APB clocks..).
   * @param  None
   * @retval IOE16_OK if all initializations done correctly. Other value if error.
   */
@@ -142,7 +141,7 @@ uint8_t IOE16_Config(void)
     return IOE16_NOT_OPERATIONAL;
   }
   
-  /* Generate IOExpander Software reset */
+  /* Generate IO Expander Software reset */
   IOE16_Reset();  
   
   /* Configuration is OK */
@@ -363,7 +362,6 @@ uint16_t IOE16_GetITStatus(void)
   return (tmpsr | tmpsr2);
 }
 
-
 /**
   * @brief  Checks if the device is correctly configured and communicates correctly 
   *         on the I2C bus.
@@ -404,7 +402,7 @@ uint8_t IOE16_Reset(void)
   /* wait for a delay to ensure registers erasing */
   _delay_(2); 
   
-  /* Power On the Codec after the power off => all registers are reinitialized*/
+  /* Power On the IOE after the power off => all registers are reinitialized*/
   IOE16_I2C_WriteDeviceRegister(IOE16_REG_SYS_CTRL, 0x00);
   
   /* If all OK return IOE16_OK */
@@ -557,12 +555,10 @@ uint8_t IOE16_IOITConfig(uint16_t IO_IT, FunctionalState NewState)
   * @brief  Writes a value in a register of the device through I2C without DMA.
   * @param  RegisterAddr: The target register address
   * @param  RegisterValue: The target register value to be written 
-  * @retval IOE16_OK: if all operations are OK. Other value if error.
+  * @retval IOE16_OK if all initializations are OK. Other value if error.     
   */
 uint8_t IOE16_I2C_WriteDeviceRegister(uint8_t RegisterAddr, uint8_t RegisterValue)
 {
-  uint32_t read_verif = 0;
-
   /* Begin the configuration sequence */
   I2C_GenerateSTART(IOE16_I2C, ENABLE);
 
@@ -616,29 +612,8 @@ uint8_t IOE16_I2C_WriteDeviceRegister(uint8_t RegisterAddr, uint8_t RegisterValu
   /* End the configuration sequence */
   I2C_GenerateSTOP(IOE16_I2C, ENABLE);
   
-#ifdef VERIFY_WRITTENDATA
-  /* Verify (if needed) that the loaded data is correct  */
-  
-  /* Read the just written register*/
-  read_verif = IOE16_I2C_ReadDeviceRegister(RegisterAddr);
-
-  /* Load the register and verify its value  */
-  if (read_verif != RegisterValue)
-  {
-    /* Control data wrongly transferred */
-    read_verif = IOE16_FAILURE;
-  }
-  else
-  {
-    /* Control data correctly transferred */
-    read_verif = 0;
-  }
-#endif
-  
-  /* Return the verifying value: 0 (Passed) or 1 (Failed) */
-  return read_verif;
+  return IOE16_OK;
 }
-
 
 /**
   * @brief  Reads a register of the device through I2C without DMA.
@@ -844,29 +819,32 @@ static void IOE16_GPIO_Config(void)
                          IOE16_IT_GPIO_CLK, ENABLE);
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
   
-  /* Reset I2C */
-  RCC_APB1PeriphResetCmd(IOE16_I2C_CLK, ENABLE);
+  /* If the I2C peripheral is already enabled, don't reconfigure it */
+  if ((IOE16_I2C->CR1 & I2C_CR1_PE) == 0)
+  {
+    /* Reset I2C */
+    RCC_APB1PeriphResetCmd(IOE16_I2C_CLK, ENABLE);
   
-  /* Release reset signal of I2C */
-  RCC_APB1PeriphResetCmd(IOE16_I2C_CLK, DISABLE);
-
-  /* Connect PXx to I2C_SCL*/
-  GPIO_PinAFConfig(IOE16_I2C_SCL_GPIO_PORT, IOE16_I2C_SCL_SOURCE, IOE16_I2C_SCL_AF);
-  
-  /* Connect PXx to I2C_SDA*/
-  GPIO_PinAFConfig(IOE16_I2C_SDA_GPIO_PORT, IOE16_I2C_SDA_SOURCE, IOE16_I2C_SDA_AF); 
+    /* Release reset signal of I2C */
+    RCC_APB1PeriphResetCmd(IOE16_I2C_CLK, DISABLE); 
     
-  /* I2C SCL and SDA pins configuration */
-  GPIO_InitStructure.GPIO_Pin = IOE16_I2C_SCL_PIN;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-  GPIO_Init(IOE16_I2C_SCL_GPIO_PORT, &GPIO_InitStructure);
+    /* Connect PXx to I2C_SCL*/
+    GPIO_PinAFConfig(IOE16_I2C_SCL_GPIO_PORT, IOE16_I2C_SCL_SOURCE, IOE16_I2C_SCL_AF);
+  
+    /* Connect PXx to I2C_SDA*/
+    GPIO_PinAFConfig(IOE16_I2C_SDA_GPIO_PORT, IOE16_I2C_SDA_SOURCE, IOE16_I2C_SDA_AF); 
+    
+    /* I2C SCL and SDA pins configuration */
+    GPIO_InitStructure.GPIO_Pin = IOE16_I2C_SCL_PIN;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+    GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+    GPIO_Init(IOE16_I2C_SCL_GPIO_PORT, &GPIO_InitStructure);
 
-  GPIO_InitStructure.GPIO_Pin = IOE16_I2C_SDA_PIN;
-  GPIO_Init(IOE16_I2C_SDA_GPIO_PORT, &GPIO_InitStructure);
- 
+    GPIO_InitStructure.GPIO_Pin = IOE16_I2C_SDA_PIN;
+    GPIO_Init(IOE16_I2C_SDA_GPIO_PORT, &GPIO_InitStructure);
+  }
 }
 
 /**
@@ -877,20 +855,24 @@ static void IOE16_GPIO_Config(void)
 static void IOE16_I2C_Config(void)
 {
   I2C_InitTypeDef I2C_InitStructure;
+
+  /* If the I2C peripheral is already enabled, don't reconfigure it */
+  if ((IOE16_I2C->CR1 & I2C_CR1_PE) == 0)
+  {   
+    /* IOE16_I2C configuration */
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = 0;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
   
-  /* IOE16_I2C configuration */
-  I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
-  I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
-  I2C_InitStructure.I2C_OwnAddress1 = 0x00;
-  I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
-  I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-  I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
+    /* Initialize the I2C peripheral */
+    I2C_Init(IOE16_I2C, &I2C_InitStructure);
   
-  /* Initialize the I2C peripheral */
-  I2C_Init(IOE16_I2C, &I2C_InitStructure);
-  
-  /* Enable the I2C peripheral */
-  I2C_Cmd(IOE16_I2C, ENABLE);
+    /* Enable the I2C peripheral */
+    I2C_Cmd(IOE16_I2C, ENABLE);
+  }
 }
 
 
@@ -923,7 +905,7 @@ static void IOE16_EXTI_Config(void)
   /* Configure Button EXTI line */
   EXTI_InitStructure.EXTI_Line = IOE16_IT_EXTI_LINE;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling; //EXTI_Trigger_Rising_Falling;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   EXTI_Init(&EXTI_InitStructure);
   
@@ -951,7 +933,7 @@ uint8_t IOE16_TimeoutUserCallback(void)
   
   IOE16_GPIO_Config();
 
-  /* CODEC_I2C peripheral configuration */
+  /* IOE16_I2C peripheral configuration */
   I2C_DeInit(IOE16_I2C);
   
   I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;

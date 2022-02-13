@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    SAI/SAI_Audio/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -29,7 +29,7 @@
 #include "main.h"
 #include "audio_sample.h"
 
-/** @addtogroup Template_Project
+/** @addtogroup SAI_Audio
   * @{
   */ 
 
@@ -52,7 +52,7 @@ static void PLLSAI_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -67,14 +67,14 @@ int main(void)
   RCC_GetClocksFreq(&RCC_Clocks);
   SysTick_Config(RCC_Clocks.HCLK_Frequency / 100);
   
-  /* Initialize LEDs and Push Buttons available on EVAL board */
-  /* LEDs Initialization */
+  /* Initialize LEDs mounted on EVAL board */
   STM_EVAL_LEDInit(LED1);
   STM_EVAL_LEDInit(LED2);
 
-  /* Key button for Volume High */
+  /* KEY button for Volume High */
   STM_EVAL_PBInit(BUTTON_KEY, BUTTON_MODE_GPIO);
-  /* Wake Up button for Volume Low */  
+  
+  /* WAKEUP button for Volume Low */  
   STM_EVAL_PBInit(BUTTON_WAKEUP, BUTTON_MODE_GPIO); 
   
   /* Configure PLLSAI */
@@ -83,12 +83,12 @@ int main(void)
   /* Initialize the Audio codec and all related peripherals (SAI, I2C, IOs...) */  
   if (EVAL_AUDIO_Init(OUTPUT_DEVICE_BOTH, uwVolume, SAI_AudioFreq_48k) == 0)
   {
-    /* AUDIO CODEC   OK */
+    /* AUDIO CODEC OK */
     STM_EVAL_LEDOn(LED1);
   }
   else
   {
-    /* AUDIO CODEC  FAIL */ 
+    /* AUDIO CODEC FAIL */ 
     STM_EVAL_LEDOn(LED2);
   }
   /* Insert 50 ms delay */
@@ -103,7 +103,7 @@ int main(void)
     /* Check on the Volume high button */
     if (STM_EVAL_PBGetState(BUTTON_TAMPER) != Bit_SET)
     {
-      /* wait to avoid rebound */
+      /* Wait to avoid rebound */
       while (STM_EVAL_PBGetState(BUTTON_TAMPER) != Bit_SET);
       
       /* Increase volume by 5% */
@@ -121,7 +121,7 @@ int main(void)
     /* Check on the Volume high button */
     if (STM_EVAL_PBGetState(BUTTON_WAKEUP) == Bit_SET)
     {
-      /* wait to avoid rebound */
+      /* Wait to avoid rebound */
       while (STM_EVAL_PBGetState(BUTTON_WAKEUP) == Bit_SET);
       
       /* Decrease volume by 5% */
@@ -142,7 +142,7 @@ int main(void)
 
 /**
   * @brief  Configure PLLSAI.
-  * @param  void.
+  * @param  None
   * @retval None
   */
 void PLLSAI_Config(void)
@@ -203,13 +203,8 @@ void EVAL_AUDIO_TransferComplete_CallBack(uint32_t pBuffer, uint32_t Size)
 
   /* Replay from the beginning */
   EVAL_AUDIO_Play((uint16_t*)(AUDIO_SAMPLE + AUDIO_START_ADDRESS), (AUDIO_FILE_SIZE - AUDIO_START_ADDRESS));
-  
-#else /* #ifdef AUDIO_MAL_MODE_CIRCULAR */
 
-  /* Display message on the LCD screen */
-  LCD_DisplayStringLine(Line8, " All Buffer Reached ");   
-
-#endif /* AUDIO_MAL_MODE_CIRCULAR */
+#endif /* AUDIO_MAL_MODE_NORMAL */
 }
 /**
   * @brief  Inserts a delay time.

@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    readme.txt
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   This sub-directory contains all the user-modifiable files needed to 
   *          create a new project linked with the STM32F4xx Standard Peripherals  
   *          Library and working with RealView Microcontroller Development Kit(MDK-ARM)
@@ -28,16 +28,16 @@
   ******************************************************************************
   @endverbatim
  
- @par Directory contents
+@par Directory contents
  
  - Project.uvproj/.uvopt: A pre-configured project file with the provided library 
                           structure that produces an executable image with MDK-ARM.
 
-@note Enabling "Options for Target — Output – Browser Information" is useful for
-      quick source files navigation but may slow the compilation time.                 
+ @note Enabling "Options for Target — Output – Browser Information" is useful for
+       quick source files navigation but may slow the compilation time.                 
  
  
- @par How to use it ?
+@par How to use it ?
  
  - Open the Project.uvproj project
  - In the workspace toolbar select the project config:

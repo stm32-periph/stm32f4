@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    NVIC/NVIC_WFIMode/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -30,7 +30,6 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval.h"
 
@@ -44,8 +43,6 @@
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
 
-
-
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 #ifdef USE_STM324x9I_EVAL 
@@ -55,6 +52,7 @@
  #define USART_DR_ADDRESS   ((uint32_t)0x40011004)
  #define DMA_Stream         DMA2_Stream5
  #define DMA_Stream_IRQn    DMA2_Stream5_IRQn
+
 #else
  #define BUTTON             BUTTON_KEY
  #define BUTTON_EXTI_LINE   KEY_BUTTON_EXTI_LINE
@@ -66,7 +64,7 @@
 
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-uint8_t Buffercmp16(uint16_t* pBuffer1, uint16_t* pBuffer2, uint16_t BufferLength);
+uint8_t Buffercmp16(uint16_t *pBuffer1, uint16_t *pBuffer2, uint16_t BufferLength);
 
 #endif /* __MAIN_H */
 

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_StopWatch/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -30,7 +30,6 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
-
 #if defined (USE_STM324xG_EVAL)
   #include "stm324xg_eval.h"
   #include "stm324xg_eval_lcd.h"
@@ -44,16 +43,16 @@
 #endif
 
 /* Exported types ------------------------------------------------------------*/
-typedef struct {
+typedef struct
+{
   uint8_t tab[12];
-} Table_TypeDef;
+}Table_TypeDef;
 
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
-Table_TypeDef RTC_Get_Time(uint32_t Second_fraction , RTC_TimeTypeDef* RTC_TimeStructure);
-void          RTC_Time_display(uint8_t Line,uint16_t Color_x,Table_TypeDef table );
-
+Table_TypeDef RTC_Get_Time(uint32_t Second_fraction , RTC_TimeTypeDef *RTC_TimeStructure);
+void RTC_Time_display(uint8_t Line,uint16_t Color_x, Table_TypeDef table);
 
 #endif /* __MAIN_H */
 

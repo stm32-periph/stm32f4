@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    USART/USART_HyperTerminal/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -28,7 +28,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
   */
@@ -44,7 +43,8 @@
 extern uint8_t ubNbrOfDataToTransfer;
 extern uint8_t ubNbrOfDataToRead;
 extern __IO uint8_t ubTxCounter; 
-extern __IO uint16_t uhRxCounter; 
+extern __IO uint16_t uhRxCounter;
+
 /* Private function prototypes -----------------------------------------------*/
 static void NVIC_Config(void);
 static void USART_Config(void);
@@ -52,7 +52,7 @@ static void USART_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -108,7 +108,7 @@ static void USART_Config(void)
   USART_InitTypeDef USART_InitStructure;
   
 /* USARTx configuration ------------------------------------------------------*/
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 9600 baud  
         - Word Length = 8 Bits
         - Two Stop Bit

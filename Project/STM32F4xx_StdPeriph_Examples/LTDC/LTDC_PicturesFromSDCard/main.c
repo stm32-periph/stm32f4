@@ -2,9 +2,9 @@
   ******************************************************************************
   * @file    LTDC/LTDC_PicturesFromSDCard/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   This file provides main program functions
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Main program body
   ******************************************************************************
   * @attention
   *
@@ -60,7 +60,7 @@ static void SDCard_Config(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Main program.
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -79,13 +79,13 @@ static void SDCard_Config(void);
     
     /* SysTick end of count event each 10ms */
     SysTick_Config(SystemCoreClock / 1000);
-    
-    /* SD Card Configuration */
-    SDCard_Config();
-    
+
     /* Configure LCD */
     LCD_Config();
     
+    /* SD Card Configuration */
+    SDCard_Config();    
+        
     /* Configure the File System */
     FileSystem_Config();    
       

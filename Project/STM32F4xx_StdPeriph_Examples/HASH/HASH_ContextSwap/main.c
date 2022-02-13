@@ -2,9 +2,9 @@
   ******************************************************************************
   * @file    HASH/HASH_ContextSwap/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Main program body.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Main program body
   ******************************************************************************
   * @attention
   *
@@ -347,7 +347,7 @@ static void Display_MD5Digest(void)
   */
 static void USART_Config(void)
 {
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit

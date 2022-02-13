@@ -1,17 +1,14 @@
 /**
-  @page LTDC_PicturesFromSDCard LTDC Example
+  @page LTDC_PicturesFromSDCard LTDC Pictures From SD Card example
   
   @verbatim  
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    LTDC/LTDC_PicturesFromSDCard/PICTURES/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the LTDC_PicturesFromSDCard example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the LTDC Pictures From SD Card example.
   ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -25,10 +22,11 @@
   * See the License for the specific language governing permissions and
   * limitations under the License.
   *
-  ******************************************************************************  
-   @endverbatim
+  ******************************************************************************
+  @endverbatim
 
-@par Description 
+@par Description
+ 
   - The bitmap images should be copied inside a dedicated directory named as "PICT" 
     at the micro SD card root.
     The images should have the following properties:

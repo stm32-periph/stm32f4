@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    HASH/HASH_SHA1_MD5/main.h 
+  * @file    HASH/HMAC_SHA1_MD5/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -41,6 +41,7 @@
 
 #elif defined (USE_STM324x9I_EVAL) 
   #include "stm324x9i_eval.h"
+
 #else
  #error "Please select first the Evaluation board used in your application (in Project Options)"
 #endif
@@ -48,7 +49,8 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-#define INPUT_TAB_SIZE    ((uint32_t) 261)
+#define INPUT_TAB_SIZE        ((uint32_t) 261)
+#define KEY_TAB_SIZE          ((uint32_t) 261)
 
 /* Exported functions ------------------------------------------------------- */
 

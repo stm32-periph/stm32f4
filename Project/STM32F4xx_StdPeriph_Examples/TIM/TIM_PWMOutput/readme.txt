@@ -1,13 +1,13 @@
 /**
-  @page TIM_PWMOutput TIM_PWMOutput example
+  @page TIM_PWMOutput TIM PWM Output example
   
   @verbatim
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    TIM/TIM_PWMOutput/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
-  * @brief   Description of the TIM PWM_Output example.
+  * @version V1.3.0
+  * @date    13-November-2013
+  * @brief   Description of the TIM PWM Output example.
   ******************************************************************************
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
@@ -58,14 +58,13 @@ The PWM waveform can be displayed using an oscilloscope.
 
 
 @par Directory contents 
-  
-  - TIM/TIM_PWMOutput/stm32f4xx_conf.h  Library Configuration file
-  - TIM/TIM_PWMOutput/stm32f4xx_it.c    Interrupt handlers
-  - TIM/TIM_PWMOutput/stm32f4xx_it.h    Interrupt handlers header file
-  - TIM/TIM_PWMOutput/main.c            Main program 
+    
   - TIM/TIM_PWMOutput/system_stm32f4xx.c   STM32F4xx system clock configuration file
+  - TIM/TIM_PWMOutput/stm32f4xx_conf.h     Library Configuration file
+  - TIM/TIM_PWMOutput/stm32f4xx_it.c       Interrupt handlers
+  - TIM/TIM_PWMOutput/stm32f4xx_it.h       Interrupt handlers header file
+  - TIM/TIM_PWMOutput/main.c               Main program
   
-
 
 @par Hardware and Software environment 
 
@@ -73,32 +72,33 @@ The PWM waveform can be displayed using an oscilloscope.
     STM32F429xx/439xx devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
-    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and STM324x9I-EVAL 
-    (STM32F429xx/STM32F439xx Devices) evaluation boards and can be easily tailored to any 
-    other supported device and development board.
+    STM32F41xx Devices), STM32437I-EVAL (STM32F427xx/STM32F437xx Devices) and 
+    STM324x9I-EVAL RevB (STM32F429xx/STM32F439xx Devices) evaluation boards and 
+    can be easily tailored to any other supported device and development board.
 
-  - STM324xG-EVAL/STM32437I-EVAL and STM324x9I-EVAL Set-up
+  - STM324xG-EVAL/STM32437I-EVAL and STM324x9I-EVAL RevB Set-up
     - Connect the following pins to an oscilloscope to monitor the different 
       waveforms:
-        - PC.06: (TIM3_CH1)
-        - PC.07: (TIM3_CH2)
-        - PC.08: (TIM3_CH3)
-        - PC.09: (TIM3_CH4)  
+        - TIM3_CH1 (PC.06)
+        - TIM3_CH2 (PC.07)
+        - TIM3_CH3 (PC.08)
+        - TIM3_CH4 (PC.09)  
+
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
            
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
           
-   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F429_439xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x9I_EVAL\stm324x9i_eval.c
                  
  - Rebuild all files and load your image into target memory

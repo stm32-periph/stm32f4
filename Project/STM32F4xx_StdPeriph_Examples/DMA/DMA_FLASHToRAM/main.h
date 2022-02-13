@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    DMA/DMA_FLASHToRAM/main.h 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Header for main.c module
   ******************************************************************************
   * @attention
@@ -48,7 +48,7 @@
 /* Exported constants --------------------------------------------------------*/
 /* DMA Stream parameters definitions. You can modify these parameters to select
    a different DMA Stream and/or channel.
-   But note that only DMA2 Streams are capable of Memory to Memory transfers. */
+   But note that only DMA2 Streams are capable of Memory to Memory transfers */
 #define DMA_STREAM               DMA2_Stream0
 #define DMA_CHANNEL              DMA_Channel_0
 #define DMA_STREAM_CLOCK         RCC_AHB1Periph_DMA2 

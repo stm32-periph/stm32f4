@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2S/I2S_Audio/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -27,7 +27,6 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -54,13 +53,10 @@
 /* Audio file size and start address are defined here since the audio file is 
    stored in Flash memory as a constant table of 16-bit data */
 #define AUDIO_FILE_SZE          990000
-#define AUIDO_START_ADDRESS     58 /* Offset relative to audio file header size */
-
-
+#define AUDIO_START_ADDRESS     58 /* Offset relative to audio file header size */
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-
 static __IO uint32_t uwTimingDelay;
 RCC_ClocksTypeDef RCC_Clocks;
 
@@ -75,7 +71,7 @@ uint32_t uwSpHpSwitch = 0;
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief  Main program.
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -143,8 +139,7 @@ int main(void)
     LCD_DisplayStringLine(Line4, (uint8_t *)"  AUDIO CODEC  FAIL ");
     LCD_DisplayStringLine(Line5, (uint8_t *)" Try to reset board ");
   }
-  
-  
+
   /* 
   Normal mode description:
       Start playing the audio file (using DMA stream) .
@@ -161,7 +156,7 @@ int main(void)
      In this case the audio data file is smaller than the DMA max buffer 
      size 65535 so there is no need to load buffer continuously or manage the 
      transfer complete or Half transfer interrupts callbacks. */
-  EVAL_AUDIO_Play((uint16_t*)(AUDIO_SAMPLE + AUIDO_START_ADDRESS), (AUDIO_FILE_SZE - AUIDO_START_ADDRESS));
+  EVAL_AUDIO_Play((uint16_t*)(AUDIO_SAMPLE + AUDIO_START_ADDRESS), (AUDIO_FILE_SZE - AUDIO_START_ADDRESS));
  
   /* Display the state on the screen */
   LCD_DisplayStringLine(Line8, (uint8_t *)"       PLAYING      ");
@@ -172,7 +167,7 @@ int main(void)
     /* Check on the Pause/Resume button */
     if (STM_EVAL_PBGetState(BUTTON_KEY) != Bit_SET)
     {
-      /* wait to avoid rebound */
+      /* Wait to avoid rebound */
       while (STM_EVAL_PBGetState(BUTTON_KEY) != Bit_SET);
       
       EVAL_AUDIO_PauseResume(uwCommand);
@@ -245,7 +240,7 @@ int main(void)
       }
       else
       {
-        /* wait to avoid rebound */
+        /* Wait to avoid rebound */
         while (STM_EVAL_PBGetState(BUTTON_TAMPER) != Bit_SET);
         
         /* Increase volume by 5% */
@@ -260,13 +255,13 @@ int main(void)
       }
     }  
     
-    /* Toggle LD4 */
+    /* Toggle LED4 */
     STM_EVAL_LEDToggle(LED3);
 
     /* Insert 50 ms delay */
     Delay(5);
 
-    /* Toggle LD2 */
+    /* Toggle LED2 */
     STM_EVAL_LEDToggle(LED2);
 
     /* Insert 50 ms delay */
@@ -297,7 +292,7 @@ void EVAL_AUDIO_TransferComplete_CallBack(uint32_t pBuffer, uint32_t Size)
 #ifdef AUDIO_MAL_MODE_NORMAL  
 
   /* Replay from the beginning */
-  EVAL_AUDIO_Play((uint16_t*)(AUDIO_SAMPLE + AUIDO_START_ADDRESS), (AUDIO_FILE_SZE - AUIDO_START_ADDRESS));
+  EVAL_AUDIO_Play((uint16_t*)(AUDIO_SAMPLE + AUDIO_START_ADDRESS), (AUDIO_FILE_SZE - AUDIO_START_ADDRESS));
   
 #else /* #ifdef AUDIO_MAL_MODE_CIRCULAR */
 

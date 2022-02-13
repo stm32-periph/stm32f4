@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    CRYP/CRYP_AES_GCM/main.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -51,11 +51,17 @@ uint8_t PlainText[PLAINTEXT_SIZE] = {0xc3, 0xb3, 0xc4, 0x1f, 0x11, 0x3a, 0x31, 0
 uint8_t ExpectedCypherText[PLAINTEXT_SIZE] = {0x93, 0xfe, 0x7d, 0x9e, 0x9b, 0xfd, 0x10, 0x34,
                                               0x8a, 0x56, 0x06, 0xe5, 0xca, 0xfa, 0x73, 0x54};
 uint8_t OutputText[PLAINTEXT_SIZE]; /* used for storing either encrypted or decrypted text */
-uint8_t TAG[16];/* used for storing computed MAC (TAG) */
+uint8_t TAG[16]; /* used for storing computed MAC (TAG) */
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
+static void USART_Config(void);
+static void Display_PlainData(uint32_t datalength);
+static void Display_EncryptedData(uint8_t mode, uint16_t keysize, uint32_t datalength);
+static void Display_DecryptedData(uint8_t mode, uint16_t keysize, uint32_t datalength);
+static void Display_TAG(uint8_t* TAG);
+static char PressToContinue(void);
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -65,12 +71,6 @@ uint8_t TAG[16];/* used for storing computed MAC (TAG) */
   #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
-static void USART_Config(void);
-static void Display_PlainData(uint32_t datalength);
-static void Display_EncryptedData(uint8_t mode, uint16_t keysize, uint32_t datalength);
-static void Display_DecryptedData(uint8_t mode, uint16_t keysize, uint32_t datalength);
-static void Display_TAG(uint8_t* TAG);
-static char PressToContinue(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
@@ -86,7 +86,7 @@ int main(void)
        before to branch to application main.
      */     
        
-  /* USARTx configured as follow:
+  /* USARTx configured as follows:
         - BaudRate = 115200 baud  
         - Word Length = 8 Bits
         - One Stop Bit

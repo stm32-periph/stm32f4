@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval_audio_codec.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file includes the low layer driver for WM8994 Audio Codec
   *          available on STM324x9I_EVAL evaluation board.  
   ******************************************************************************
@@ -393,11 +393,6 @@ uint32_t EVAL_AUDIO_Mute(uint32_t Cmd)
   */
 void Audio_MAL_IRQHandler(void)
 {    
-#ifndef AUDIO_MAL_MODE_NORMAL
-  uint16_t *pAddr = (uint16_t *)CurrentPos;
-  uint32_t Size = AudioRemSize;
-#endif /* AUDIO_MAL_MODE_NORMAL */
-  
 #ifdef AUDIO_MAL_DMA_IT_TC_EN
   /* Transfer complete interrupt */
   if (DMA_GetFlagStatus(AUDIO_MAL_DMA_STREAM, AUDIO_MAL_DMA_FLAG_TC) != RESET)
@@ -445,7 +440,7 @@ void Audio_MAL_IRQHandler(void)
  #elif defined(AUDIO_MAL_MODE_CIRCULAR)
     /* Manage the remaining file size and new address offset: This function 
        should be coded by user (its prototype is already declared in stm32_eval_audio_codec.h) */  
-    EVAL_AUDIO_TransferComplete_CallBack(pAddr, Size);    
+    EVAL_AUDIO_TransferComplete_CallBack((uint32_t)CurrentPos, AudioRemSize);    
     
     /* Clear the Interrupt flag */
     DMA_ClearFlag(AUDIO_MAL_DMA_STREAM, AUDIO_MAL_DMA_FLAG_TC);
@@ -459,7 +454,7 @@ void Audio_MAL_IRQHandler(void)
   {
     /* Manage the remaining file size and new address offset: This function 
        should be coded by user (its prototype is already declared in stm32_eval_audio_codec.h) */  
-    EVAL_AUDIO_HalfTransfer_CallBack((uint32_t)pAddr, Size);    
+    EVAL_AUDIO_HalfTransfer_CallBack((uint32_t)CurrentPos, AudioRemSize);    
    
     /* Clear the Interrupt flag */
     DMA_ClearFlag(AUDIO_MAL_DMA_STREAM, AUDIO_MAL_DMA_FLAG_HT);    
@@ -475,7 +470,7 @@ void Audio_MAL_IRQHandler(void)
   {
     /* Manage the error generated on DMA FIFO: This function 
        should be coded by user (its prototype is already declared in stm32_eval_audio_codec.h) */  
-    EVAL_AUDIO_Error_CallBack((uint32_t*)&pAddr);    
+    EVAL_AUDIO_Error_CallBack((uint32_t*)&CurrentPos);    
     
     /* Clear the Interrupt flag */
     DMA_ClearFlag(AUDIO_MAL_DMA_STREAM, AUDIO_MAL_DMA_FLAG_TE | AUDIO_MAL_DMA_FLAG_FE | \
@@ -515,7 +510,7 @@ static uint32_t Codec_Init(uint16_t OutputDevice, uint8_t Volume, uint32_t Audio
   /* Reset the Codec Registers */
   Codec_Reset();
   
-  /* WM8994 Coded configuration  */
+  /* WM8994 Codec configuration  */
   
   /* Errata Work-Arounds */
   
@@ -523,7 +518,7 @@ static uint32_t Codec_Init(uint16_t OutputDevice, uint8_t Volume, uint32_t Audio
   counter += Codec_WriteRegister(0x817, 0x0000);
   counter += Codec_WriteRegister(0x102, 0x0000);
   
-  /* Analogue Configuration */ 
+  /* Analog Configuration */ 
   
   /* Enable VMID soft start (fast), Start-up Bias Current Enabled */
   counter += Codec_WriteRegister(0x39, 0x0064);
@@ -668,7 +663,7 @@ static uint32_t Codec_Init(uint16_t OutputDevice, uint8_t Volume, uint32_t Audio
   /* Enable AIF1 Clock, AIF1 Clock Source = MCLK1 pin */
   counter += Codec_WriteRegister(0x200, 0x0001);
   
-  /* Analogue Output Configuration */
+  /* Analog Output Configuration */
   
   /* Enable SPKRVOL PGA, Enable SPKMIXR, Enable SPKLVOL PGA, Enable SPKMIXL */
   counter += Codec_WriteRegister(0x03, 0x0300);
@@ -1070,7 +1065,7 @@ static uint32_t Codec_ReadRegister(uint16_t RegisterAddr)
 {
   uint32_t result = 0;
 
-  /*!< While the bus is busy */
+  /* While the bus is busy */
   CODECTimeout = CODEC_LONG_TIMEOUT;
   while(I2C_GetFlagStatus(CODEC_I2C, I2C_FLAG_BUSY))
   {
@@ -1117,7 +1112,7 @@ static uint32_t Codec_ReadRegister(uint16_t RegisterAddr)
     if((CODECTimeout--) == 0) return Codec_TIMEOUT_UserCallback();
   }
   
-  /* Send STRAT condition a second time */  
+  /* Send START condition a second time */  
   I2C_GenerateSTART(CODEC_I2C, ENABLE);
   
   /*!< Test on EV5 and clear it (cleared by reading SR1 then writing to DR) */
@@ -1151,14 +1146,14 @@ static uint32_t Codec_ReadRegister(uint16_t RegisterAddr)
     if((CODECTimeout--) == 0) return Codec_TIMEOUT_UserCallback();
   }
   
-  /*!< Send STOP Condition */
+  /* Send STOP Condition */
   I2C_GenerateSTOP(CODEC_I2C, ENABLE);
   
-  /* Recive MSB first from the Codec */
+  /* Receive MSB first from the Codec */
   result = I2C_ReceiveData(CODEC_I2C);
   result = result << 8;
 
-  /* Recive LSB from the Codec */
+  /* Receive LSB from the Codec */
   result |= I2C_ReceiveData(CODEC_I2C);
   
   /* Wait to make sure that STOP flag has been cleared */
@@ -1168,10 +1163,10 @@ static uint32_t Codec_ReadRegister(uint16_t RegisterAddr)
     if((CODECTimeout--) == 0) return Codec_TIMEOUT_UserCallback();
   }  
   
-  /*!< Re-Enable Acknowledgment to be ready for another reception */
+  /* Re-Enable Acknowledgment to be ready for another reception */
   I2C_AcknowledgeConfig(CODEC_I2C, ENABLE);  
   
-  /*!< Disable Acknowledgment position */
+  /* Disable Acknowledgment position */
   I2C_NACKPositionConfig(CODEC_I2C, I2C_NACKPosition_Current);
     
   /* Clear AF flag for next communication */
@@ -1192,21 +1187,25 @@ static void Codec_CtrlInterface_Init(void)
   
   /* Enable the CODEC_I2C peripheral clock */
   RCC_APB1PeriphClockCmd(CODEC_I2C_CLK, ENABLE);
+
+  /* If the I2C peripheral is already enabled, don't reconfigure it */
+  if ((CODEC_I2C->CR1 & I2C_CR1_PE) == 0)
+  {   
+    /* CODEC_I2C peripheral configuration */
+    I2C_DeInit(CODEC_I2C);
+    I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
+    I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
+    I2C_InitStructure.I2C_OwnAddress1 = 0;
+    I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
+    I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
   
-  /* CODEC_I2C peripheral configuration */
-  I2C_DeInit(CODEC_I2C);
-  I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
-  I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
-  I2C_InitStructure.I2C_OwnAddress1 = 0x33;
-  I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
-  I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-  I2C_InitStructure.I2C_ClockSpeed = I2C_SPEED;
+    /* Initialize the I2C peripheral */
+    I2C_Init(CODEC_I2C, &I2C_InitStructure);    
   
-  /* Initialize the I2C peripheral */
-  I2C_Init(CODEC_I2C, &I2C_InitStructure);    
-  
-  /* Enable the I2C peripheral */
-  I2C_Cmd(CODEC_I2C, ENABLE);  
+    /* Enable the I2C peripheral */
+    I2C_Cmd(CODEC_I2C, ENABLE);
+  }  
 }
 
 /**
@@ -1331,16 +1330,19 @@ static void Codec_GPIO_Init(void)
   
   /* CODEC_I2C SCL and SDA pins configuration -------------------------------------*/
   /* Connect pins to Periph */
-  GPIO_PinAFConfig(CODEC_I2C_GPIO, CODEC_I2C_SCL_PINSRC, CODEC_I2C_GPIO_AF);  
-  GPIO_PinAFConfig(CODEC_I2C_GPIO, CODEC_I2C_SDA_PINSRC, CODEC_I2C_GPIO_AF);
+  /* If the I2C peripheral is already enabled, don't reconfigure it */
+  if ((CODEC_I2C->CR1 & I2C_CR1_PE) == 0)
+  { 
+    GPIO_PinAFConfig(CODEC_I2C_GPIO, CODEC_I2C_SCL_PINSRC, CODEC_I2C_GPIO_AF);  
+    GPIO_PinAFConfig(CODEC_I2C_GPIO, CODEC_I2C_SDA_PINSRC, CODEC_I2C_GPIO_AF);
   
-  GPIO_InitStructure.GPIO_Pin = CODEC_I2C_SCL_PIN | CODEC_I2C_SDA_PIN; 
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
-  GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-  GPIO_Init(CODEC_I2C_GPIO, &GPIO_InitStructure);      
-  
+    GPIO_InitStructure.GPIO_Pin = CODEC_I2C_SCL_PIN | CODEC_I2C_SDA_PIN; 
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+    GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
+    GPIO_Init(CODEC_I2C_GPIO, &GPIO_InitStructure);      
+  }
   /*CODEC_SAI SD MCLK SCK and FS pins configuration --------------------------------*/
   
   /* SAI1_Block_B Pins configuration  *****************************************/

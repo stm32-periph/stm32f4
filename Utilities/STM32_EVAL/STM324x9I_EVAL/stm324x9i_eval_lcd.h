@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm324x9i_eval_lcd.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    19-September-2013
+  * @version V1.0.3
+  * @date    13-November-2013
   * @brief   This file contains all the functions prototypes for the stm324x9i_eval_lcd.c
   *          driver.
   ******************************************************************************
@@ -195,14 +195,6 @@ typedef enum
 #define LCD_I2C_SDA_SOURCE               GPIO_PinSource9
 #define LCD_I2C_SDA_AF                   GPIO_AF_I2C1
 #define LCD_I2C_DR                       ((uint32_t)0x40005410)    
-
-/* I2C clock speed configuration (in Hz) 
-  WARNING: 
-   Make sure that this define is not already declared in other files (ie. 
-  stm324x9i_eval.h file). It can be used in parallel by other modules. */
-#ifndef I2C_SPEED
- #define I2C_SPEED                        100000
-#endif /* I2C_SPEED */
 
 /** 
   * @brief  The Touch panel connector for LCD panel addresses  

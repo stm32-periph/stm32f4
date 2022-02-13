@@ -5,8 +5,8 @@
   ******************** (C) COPYRIGHT 2013 STMicroelectronics *******************
   * @file    I2C/I2C_EEPROM/readme.txt 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Description of the I2C and M24CXX EEPROM communication example.
   ******************************************************************************
   *
@@ -27,9 +27,9 @@
 
 @par Example Description 
 
-This firmware provides a basic example of how to use the I2C firmware library and
-an associate I2C EEPROM driver to communicate with an I2C EEPROM device (here the
-example is interfacing with M24C64 EEPROM)
+This example shows how to use the I2C firmware library and an associate 
+I2C EEPROM driver to communicate with an I2C EEPROM device (here the example is 
+interfacing with M24C64 EEPROM)
 
 I2C peripheral is configured in Master transmitter during write operation and in
 Master receiver during read operation from I2C EEPROM. 
@@ -40,11 +40,11 @@ be configured by modifying the relative define in stm324xg_eval_i2c_ee.h
 (or stm324x7i_eval_i2c_ee.h) file.
 
 For M24C64 devices all the memory is accessible through the two-bytes 
-addressing mode and need to define block addresses. In this case, only the physical 
+addressing mode and needs to define block addresses. In this case, only the physical 
 address has to be defined (according to the address pins (E0,E1 and E2) connection).
 This address is defined in stm324xg_eval_i2c_ee.h (or stm324x7i_eval_i2c_ee.h) 
 (default is 0xA0: E0, E1 and E2 tied to ground). 
-The EEPROM addresses where the program start the write and the read operations 
+The EEPROM addresses where the program starts the write and the read operations 
 is defined in the main.c file. 
 
 First, the content of Tx1_Buffer is written to the EEPROM_WriteAddress1 and the
@@ -74,9 +74,9 @@ To enable this option uncomment the define USE_LCD in the main.h file.
   - I2C/I2C_EEPROM/main.c               Main program
   - I2C/I2C_EEPROM/main.h               Main program header file
 
-
       
-@par Hardware and Software environment  
+@par Hardware and Software environment
+  
   - This example runs on STM32F40xx/STM32F41xx, STM32F427x/STM32F437x Devices.
     
   - This example has been tested with STMicroelectronics STM324xG-EVAL (STM32F40xx/
@@ -92,17 +92,17 @@ To enable this option uncomment the define USE_LCD in the main.h file.
 
 @par How to use it ? 
 
-In order to make the program work, you must do the following :
+In order to make the program work, you must do the following:
  - Copy all source files from this example folder to the template folder under
    Project\STM32F4xx_StdPeriph_Templates
  - Open your preferred toolchain 
  - Select the project workspace related to the used device 
-   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list :
+   - If "STM32F40_41xxx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval.c
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_lcd.c 
      - Utilities\STM32_EVAL\STM3240_41_G_EVAL\stm324xg_eval_i2c_ee.c
       
-   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list :
+   - If "STM32F427_437xx" is selected as default project Add the following files in the project source list:
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval.c
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_lcd.c 
      - Utilities\STM32_EVAL\STM324x7I_EVAL\stm324x7i_eval_i2c_ee.c

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    ADC/ADC_DualModeInterleaved/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -86,7 +86,7 @@ static void Display(void);
 /* Private functions ---------------------------------------------------------*/
 
 /**
-  * @brief   Main program
+  * @brief  Main program
   * @param  None
   * @retval None
   */
@@ -209,12 +209,11 @@ static void ADC_Config(void)
 
   /* Enable ADC2 **************************************************************/
   ADC_Cmd(ADC2, ENABLE);
-} 
-  
+}  
 
 #ifdef USE_LCD
 /**
-  * @brief  Display ADCs converted values on LCD
+  * @brief  Displays ADCs converted values on LCD
   * @param  None
   * @retval None
   */

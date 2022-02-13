@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    I2S/I2S_TwoBoards/I2S_DataExchangePolling/main.c
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -65,7 +65,7 @@ __IO uint8_t  ubBufferCounter = 0;
 /* Private function prototypes -----------------------------------------------*/
 static void I2S_Config(void);
 static void SysTickConfig(void);
-static TestStatus Buffercmp(uint8_t* pBuffer1, __IO uint8_t* pBuffer2, uint16_t BufferLength);
+static TestStatus Buffercmp(uint8_t *pBuffer1, __IO uint8_t *pBuffer2, uint16_t BufferLength);
 static void Fill_Buffer(__IO uint8_t *pBuffer, uint16_t BufferLength);
 
 

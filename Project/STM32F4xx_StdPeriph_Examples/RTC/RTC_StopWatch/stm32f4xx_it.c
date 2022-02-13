@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    RTC/RTC_StopWatch/stm32f4xx_it.c 
   * @author  MCD Application Team
-  * @version V1.2.0
-  * @date    19-September-2013
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Main Interrupt Service Routines.
   *          This file provides template for all exceptions handler and 
   *          peripherals interrupt service routine.
@@ -45,7 +45,7 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-__IO uint32_t uwBackupindex = 0;
+uint32_t uwBackupindex = 0;
 __IO uint8_t  ubRTCCount = 0;
 __IO uint8_t  ubSSecondfraction = 0;
 
@@ -69,7 +69,7 @@ uint32_t aBKPDataReg[20] = { RTC_BKP_DR0, RTC_BKP_DR1, RTC_BKP_DR3, RTC_BKP_DR4,
 /******************************************************************************/
 
 /**
-  * @brief   This function handles NMI exception.
+  * @brief  This function handles NMI exception.
   * @param  None
   * @retval None
   */
@@ -236,7 +236,7 @@ void EXTI15_10_IRQHandler(void)
       LCD_SetFont(&Font12x12);
       
       /* Display result on the LCD */
-      RTC_Time_display( LINE(7 + uwBackupindex), Colorx, RTC_Get_Time(ubSSecondfraction , &RTC_StampTimeStruct) ); 
+      RTC_Time_display(LINE(7 + uwBackupindex), Colorx, RTC_Get_Time(ubSSecondfraction , &RTC_StampTimeStruct)); 
       
       /* Save time register  to Backup register (the first 10 registers are reserved for time) */
       RTC_WriteBackupRegister(aBKPDataReg[uwBackupindex],(uint32_t)RTC->TR);
